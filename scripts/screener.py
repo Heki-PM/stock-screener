@@ -63,51 +63,102 @@ def get_russell2000():
 
 def get_european_indices():
     """
-    Pobiera tickery europejskie z poprawnymi sufiksami Yahoo Finance:
-    .DE (Xetra), .PA (Paryż), .L (Londyn), .AS (Amsterdam),
-    .MC (Madryt), .SW (Szwajcaria), .MI (Mediolan), .ST (Sztokholm),
-    .OL (Oslo), .BR (Bruksela), .WA (Warszawa)
+    Statyczna lista tickerów europejskich z poprawnymi sufiksami Yahoo Finance.
+    Używamy statycznej listy zamiast scrapingu Wikipedii,
+    bo GitHub Actions jest blokowany przez Wikipedia (403).
     """
-    indices = [
-        ("DAX",    "https://en.wikipedia.org/wiki/DAX",               "Ticker", ".DE"),
-        ("CAC40",  "https://en.wikipedia.org/wiki/CAC_40",            "Ticker", ".PA"),
-        ("FTSE100","https://en.wikipedia.org/wiki/FTSE_100",          "EPIC",   ".L"),
-        ("AEX",    "https://en.wikipedia.org/wiki/AEX_index",         "Ticker", ".AS"),
-        ("IBEX35", "https://en.wikipedia.org/wiki/IBEX_35",           "Ticker", ".MC"),
-        ("SMI",    "https://en.wikipedia.org/wiki/Swiss_Market_Index","Ticker", ".SW"),
-        ("MIB",    "https://en.wikipedia.org/wiki/FTSE_MIB",          "Ticker", ".MI"),
-        ("OMX30",  "https://en.wikipedia.org/wiki/OMX_Stockholm_30",  "Ticker", ".ST"),
-        ("OBX",    "https://en.wikipedia.org/wiki/OBX_Index",         "Ticker", ".OL"),
-        ("BEL20",  "https://en.wikipedia.org/wiki/BEL_20",            "Ticker", ".BR"),
-        ("WIG20",  "https://en.wikipedia.org/wiki/WIG20",             "Ticker", ".WA"),
+    # DAX 40 (.DE)
+    dax = [
+        "ADS.DE","AIR.DE","ALV.DE","BAS.DE","BAYN.DE","BEI.DE","BMW.DE","BNR.DE",
+        "CON.DE","1COV.DE","DHER.DE","DB1.DE","DBK.DE","DHL.DE","DTE.DE","EOAN.DE",
+        "FRE.DE","FME.DE","HEI.DE","HEN3.DE","IFX.DE","LIN.DE","MBG.DE","MRK.DE",
+        "MTX.DE","MUV2.DE","PAH3.DE","POWR.DE","QGEN.DE","RHM.DE","RWE.DE","SAP.DE",
+        "SHL.DE","SIE.DE","SY1.DE","VNA.DE","VOW3.DE","ZAL.DE","PUM.DE","ENR.DE",
     ]
-    all_tickers = []
-    for name, url, col, suffix in indices:
-        try:
-            tables = pd.read_html(url)
-            found = False
-            for t in tables:
-                if col in t.columns:
-                    raw = t[col].dropna().str.strip().tolist()
-                    tickers = []
-                    for tk in raw:
-                        tk = str(tk).strip()
-                        if not tk or tk == "nan":
-                            continue
-                        base = tk.split(".")[0] if "." in tk else tk
-                        base = base.replace(" ", "-")
-                        tickers.append(base + suffix)
-                    all_tickers += tickers
-                    print(f"  {name}: {len(tickers)} spolok (sufiks: {suffix})")
-                    found = True
-                    break
-            if not found:
-                print(f"  {name}: nie znaleziono kolumny '{col}'")
-        except Exception as e:
-            print(f"  {name} blad: {e}")
+    # CAC 40 (.PA)
+    cac = [
+        "AC.PA","ACA.PA","AI.PA","AIR.PA","ALO.PA","MT.PA","ATO.PA","CS.PA","BNP.PA",
+        "EN.PA","CAP.PA","CA.PA","AXA.PA","DSY.PA","EDEN.PA","EL.PA","ERF.PA","EDF.PA",
+        "ENGI.PA","FP.PA","KER.PA","LR.PA","LHN.PA","MC.PA","ML.PA","ORA.PA","RI.PA",
+        "PUB.PA","RNO.PA","SAF.PA","SGO.PA","SAN.PA","SU.PA","GLE.PA","STLAM.PA",
+        "STM.PA","TEP.PA","HO.PA","URW.PA","VIE.PA","DG.PA","VIV.PA","WLN.PA",
+    ]
+    # FTSE 100 (.L)
+    ftse = [
+        "AAF.L","AAL.L","ABF.L","ADM.L","AHT.L","ANTO.L","AZN.L","AUTO.L","AV.L",
+        "BAB.L","BA.L","BARC.L","BATS.L","BHKLY.L","BP.L","BDEV.L","BKG.L","BLND.L",
+        "BT-A.L","CCH.L","CNA.L","CPG.L","CRDA.L","DCC.L","DGE.L","EXPN.L","FERG.L",
+        "FLTR.L","FRES.L","GSK.L","GLEN.L","HLMA.L","HL.L","HSBA.L","IMB.L","INF.L",
+        "IHG.L","III.L","ITRK.L","JD.L","JMAT.L","KGF.L","LAND.L","LGEN.L","LLOY.L",
+        "LMP.L","MKS.L","MNDI.L","MNG.L","MRO.L","NG.L","NXT.L","OCDO.L","PHNX.L",
+        "PRU.L","PSH.L","PSN.L","PSON.L","REL.L","RIO.L","RKT.L","RMV.L","RR.L",
+        "RS1.L","SBRY.L","SDR.L","SGE.L","SHEL.L","SKG.L","SKY.L","SLA.L","SMDS.L",
+        "SMIN.L","SMT.L","SN.L","SPX.L","SSE.L","STAN.L","SVT.L","TSCO.L","TW.L",
+        "ULVR.L","UTG.L","UU.L","VOD.L","WEIR.L","WPP.L","WTB.L",
+    ]
+    # AEX (.AS)
+    aex = [
+        "ABN.AS","ADYEN.AS","AGN.AS","AH.AS","AKZA.AS","MT.AS","ASML.AS","ASR.AS",
+        "BESI.AS","DSMF.AS","EXOR.AS","HEIA.AS","IMCD.AS","INGA.AS","JUST.AS",
+        "KPN.AS","NN.AS","PHIA.AS","PRX.AS","RAND.AS","REN.AS","SHELL.AS","SBM.AS",
+        "URW.AS","UNA.AS","VPK.AS","WKL.AS",
+    ]
+    # IBEX 35 (.MC)
+    ibex = [
+        "ACS.MC","ACX.MC","AMS.MC","ANA.MC","BBVA.MC","BKT.MC","CABK.MC","CLNX.MC",
+        "COL.MC","ELE.MC","ENG.MC","FDR.MC","FER.MC","GRF.MC","IAG.MC","IBE.MC",
+        "IDR.MC","ITX.MC","LOG.MC","MAP.MC","MEL.MC","MRL.MC","MTS.MC","NTGY.MC",
+        "RED.MC","REE.MC","REP.MC","ROVI.MC","SAB.MC","SAN.MC","SGRE.MC","SOL.MC",
+        "TEF.MC","UNI.MC","VIS.MC",
+    ]
+    # SMI (.SW)
+    smi = [
+        "ABBN.SW","ADEN.SW","ALC.SW","CSGN.SW","GEBN.SW","GIVN.SW","CFR.SW",
+        "HOLN.SW","LONN.SW","NESN.SW","NOVN.SW","ROG.SW","SANN.SW","SCMN.SW",
+        "SGSN.SW","SLHN.SW","SRENH.SW","UBSG.SW","ZURN.SW",
+    ]
+    # FTSE MIB (.MI)
+    mib = [
+        "A2A.MI","AMP.MI","ATL.MI","AZM.MI","BMED.MI","BMPS.MI","BZU.MI","CPR.MI",
+        "DIA.MI","ENEL.MI","ENI.MI","EXOR.MI","FCA.MI","FBK.MI","G.MI","HER.MI",
+        "ISP.MI","IVG.MI","LDO.MI","MB.MI","MONC.MI","PIRC.MI","PRY.MI","PST.MI",
+        "REC.MI","SRG.MI","STM.MI","TEN.MI","TIT.MI","TRN.MI","UCG.MI","UNI.MI",
+    ]
+    # OMX Stockholm 30 (.ST)
+    omx = [
+        "ABB.ST","ALFA.ST","ASSA-B.ST","AZN.ST","ATCO-A.ST","BOL.ST","ERIC-B.ST",
+        "ESSITY-B.ST","EVO.ST","GETI-B.ST","HEXA-B.ST","HM-B.ST","HUFV-A.ST",
+        "INVE-B.ST","KINV-B.ST","NDA-SE.ST","SAND.ST","SCA-B.ST","SEB-A.ST",
+        "SECU-B.ST","SKA-B.ST","SKF-B.ST","SSAB-A.ST","SHB-A.ST","SWED-A.ST",
+        "SWMA.ST","TEL2-B.ST","TELIA.ST","VOLV-B.ST","VOLCAR-B.ST",
+    ]
+    # OBX Norway (.OL)
+    obx = [
+        "AKERBP.OL","AKSO.OL","AKER.OL","AMSC.OL","AUTO.OL","BAKKA.OL","DNB.OL",
+        "EQNR.OL","FRO.OL","GOGL.OL","MOWI.OL","NEL.OL","NHY.OL","NSKOG.OL",
+        "ORK.OL","PGS.OL","REC.OL","SALM.OL","SCHA.OL","SDRL.OL","SNOG.OL",
+        "STB.OL","SUBC.OL","TEL.OL","TOM.OL","TGS.OL","VAR.OL","WILS.OL","YAR.OL",
+    ]
+    # BEL 20 (.BR)
+    bel = [
+        "ABI.BR","ACKB.BR","AGS.BR","APAM.BR","ARGX.BR","COLR.BR","D5MT.BR",
+        "EKTA-B.BR","GBL.BR","GLPG.BR","KBC.BR","MELE.BR","ONTEX.BR","PROX.BR",
+        "SOLB.BR","TNET.BR","UCB.BR","UMI.BR","WDP.BR",
+    ]
+    # WIG20 (.WA)
+    wig = [
+        "ALE.WA","CCC.WA","CDR.WA","CPS.WA","DNP.WA","JSW.WA","KGH.WA","KRU.WA",
+        "LPP.WA","MBK.WA","OPL.WA","PCO.WA","PEO.WA","PGE.WA","PKN.WA","PKO.WA",
+        "PZU.WA","SPL.WA","TPE.WA","XTB.WA",
+    ]
+
+    all_tickers = dax + cac + ftse + aex + ibex + smi + mib + omx + obx + bel + wig
     all_tickers = list(set(all_tickers))
-    print(f"  EU lacznie (po deduplikacji): {len(all_tickers)}")
+    print(f"  EU statyczna lista: {len(all_tickers)} tickerow")
+    print(f"    DAX:{len(dax)} CAC:{len(cac)} FTSE:{len(ftse)} AEX:{len(aex)} IBEX:{len(ibex)}")
+    print(f"    SMI:{len(smi)} MIB:{len(mib)} OMX:{len(omx)} OBX:{len(obx)} BEL:{len(bel)} WIG:{len(wig)}")
     return all_tickers
+
 
 # ══════════════════════════════════════════════════════════════
 #  ANALIZA TECHNICZNA
