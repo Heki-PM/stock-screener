@@ -1,0 +1,322 @@
+ticker,name,market,country,sector,price,currency,stoch_k,stoch_d,k_above_d,signal,rev_prev,rev_curr,earn_prev,earn_curr,scanned_at
+ARHS,"Arhaus, Inc.",USA,United States,Consumer Cyclical,7.79,USD,16.7,7.0,True,False,344.6,364.8,12.2,15.1,2026-04-19T14:45:46.443907
+BWB,"Bridgewater Bancshares, Inc.",USA,United States,Financial Services,19.16,USD,44.1,30.6,True,False,35.8,38.6,11.6,13.3,2026-04-19T14:45:48.813917
+HBNC,"Horizon Bancorp, Inc.",USA,United States,Financial Services,18.01,USD,56.5,37.4,True,False,-238.2,73.8,-222.0,26.9,2026-04-19T14:45:51.213039
+EXTR,"Extreme Networks, Inc.",USA,United States,Technology,17.99,USD,100.0,100.0,False,False,310.2,317.9,5.6,7.9,2026-04-19T14:45:52.303156
+URGN,UroGen Pharma Ltd.,USA,United States,Healthcare,22.54,USD,59.6,37.0,True,False,27.5,37.8,-33.3,-26.4,2026-04-19T14:45:54.060957
+IMMR,Immersion Corporation,USA,United States,Technology,6.45,USD,36.0,16.2,True,False,292.0,650.2,-0.9,12.0,2026-04-19T14:45:55.646430
+NWBI,"Northwest Bancshares, Inc.",USA,United States,Financial Services,13.45,USD,75.9,52.0,True,False,167.4,179.1,3.2,45.7,2026-04-19T14:45:58.329916
+QNST,"QuinStreet, Inc.",USA,United States,Communication Services,12.75,USD,16.7,14.5,True,False,285.9,287.8,4.5,50.2,2026-04-19T14:45:59.182029
+SLP,"Simulations Plus, Inc.",USA,United States,Healthcare,14.37,USD,13.4,7.9,True,False,18.4,24.3,0.7,4.5,2026-04-19T14:46:01.448489
+DSP,Viant Technology Inc.,USA,United States,Technology,11.61,USD,9.2,4.5,True,True,85.6,110.1,1.0,8.3,2026-04-19T14:46:03.416544
+ADMA,ADMA Biologics Inc,USA,United States,Healthcare,11.01,USD,11.6,4.9,True,False,134.2,139.2,36.4,49.4,2026-04-19T14:46:04.790165
+STXS,"Stereotaxis, Inc.",USA,United States,Healthcare,2.03,USD,29.6,29.4,True,False,7.5,8.6,-6.5,-5.5,2026-04-19T14:46:05.636008
+SKYH,Sky Harbour Group Corporation,USA,United States,Real Estate,10.95,USD,100.0,96.7,True,False,7.3,8.1,-1.9,9.6,2026-04-19T14:46:06.454894
+CBNA,"Chain Bridge Bancorp, Inc.",USA,United States,Financial Services,35.93,USD,55.8,30.9,True,False,13.1,14.7,4.7,5.3,2026-04-19T14:46:07.210214
+CURB,Curbline Properties Corp.,USA,United States,Real Estate,28.23,USD,76.1,66.8,True,False,48.6,54.1,9.3,9.5,2026-04-19T14:46:08.421480
+KMT,Kennametal Inc.,USA,United States,Industrials,38.95,USD,17.5,13.9,True,False,498.0,529.5,23.3,33.9,2026-04-19T14:46:09.832529
+QDEL,QuidelOrtho Corporation,USA,United States,Healthcare,12.71,USD,7.0,6.2,True,False,699.9,723.6,-733.0,-130.7,2026-04-19T14:46:12.216553
+PRAA,"PRA Group, Inc.",USA,United States,Financial Services,21.09,USD,71.5,65.9,True,False,314.1,336.4,-407.7,56.5,2026-04-19T14:46:13.218503
+ADTN,"ADTRAN Holdings, Inc.",USA,United States,Technology,16.96,USD,98.5,96.8,True,False,279.4,291.6,-10.3,-3.6,2026-04-19T14:46:14.380034
+STNE,StoneCo Ltd.,USA,Cayman Islands,Technology,15.1,USD,51.4,45.3,True,False,3286.2,3394.1,603.0,706.8,2026-04-19T14:46:16.382023
+GENI,Genius Sports Limited,USA,United Kingdom,Communication Services,4.89,USD,15.1,6.7,True,False,166.3,240.5,-28.8,-20.6,2026-04-19T14:46:17.217039
+HOPE,"Hope Bancorp, Inc.",USA,United States,Financial Services,12.53,USD,47.4,30.9,True,False,142.0,145.6,30.8,37.5,2026-04-19T14:46:19.403684
+STRS,Stratus Properties Inc.,USA,United States,Real Estate,29.9,USD,18.4,26.4,False,False,5.0,8.3,-5.0,19.6,2026-04-19T14:46:20.171429
+GCO,Genesco Inc.,USA,United States,Consumer Cyclical,36.0,USD,76.0,70.8,True,False,616.2,799.9,5.4,47.6,2026-04-19T14:46:21.138653
+VYX,NCR Voyix Corporation,USA,United States,Technology,6.86,USD,6.4,4.3,True,False,684.0,720.0,-19.0,98.0,2026-04-19T14:46:22.327002
+EBMT,"Eagle Bancorp Montana, Inc.",USA,United States,Financial Services,22.21,USD,19.4,11.3,True,False,23.0,24.0,3.6,4.7,2026-04-19T14:46:24.828012
+HVT,"Haverty Furniture Companies, In",USA,United States,Consumer Cyclical,23.28,USD,11.8,8.8,True,False,194.5,201.9,4.7,8.5,2026-04-19T14:46:25.709465
+BCAL,California BanCorp,USA,United States,Financial Services,18.8,USD,48.1,30.3,True,False,45.2,45.9,15.7,16.4,2026-04-19T14:46:26.688845
+FLNG,FLEX LNG Ltd.,USA,Bermuda,Energy,30.85,USD,76.2,78.3,False,False,85.7,87.5,16.8,21.6,2026-04-19T14:46:27.518719
+CRK,"Comstock Resources, Inc.",USA,United States,Energy,16.86,USD,13.0,29.9,False,False,449.9,495.4,111.1,305.5,2026-04-19T14:46:29.664828
+GLRE,"Greenlight Reinsurance, Ltd.",USA,Cayman Islands,Financial Services,18.5,USD,100.0,96.9,True,False,160.5,163.2,-4.4,49.3,2026-04-19T14:46:34.153688
+VRNS,"Varonis Systems, Inc.",USA,United States,Technology,24.22,USD,60.9,57.7,True,True,161.6,173.4,-29.9,-27.8,2026-04-19T14:46:35.520619
+NPB,"Northpointe Bancshares, Inc.",USA,United States,Financial Services,19.19,USD,70.1,52.7,True,False,64.4,65.1,22.2,23.6,2026-04-19T14:46:36.229140
+AIRO,"AIRO Group Holdings, Inc.",USA,United States,Industrials,8.07,USD,43.6,68.0,False,False,6.3,48.3,-8.0,-0.0,2026-04-19T14:46:37.075112
+ALIT,"Alight, Inc.",USA,United States,Technology,0.62,USD,18.6,8.2,True,False,533.0,653.0,-1067.0,-932.0,2026-04-19T14:46:38.315156
+ASIC,Ategrity Specialty Insurance Co,USA,United States,Financial Services,21.16,USD,42.3,19.8,True,False,117.0,122.3,22.7,25.3,2026-04-19T14:46:39.297283
+RXT,"Rackspace Technology, Inc.",USA,United States,Technology,1.47,USD,72.8,71.7,True,True,671.2,682.8,-67.1,-32.7,2026-04-19T14:46:42.163166
+NKSH,"National Bankshares, Inc.",USA,United States,Financial Services,37.69,USD,34.7,20.9,True,False,14.2,15.3,4.4,5.9,2026-04-19T14:46:43.054140
+NLOP,Net Lease Office Properties,USA,United States,Real Estate,12.84,USD,80.0,73.7,True,False,29.8,30.7,-64.2,-0.1,2026-04-19T14:46:43.800779
+USNA,"USANA Health Sciences, Inc.",USA,United States,Consumer Defensive,20.06,USD,47.6,43.5,True,False,213.7,226.2,-6.5,-1.8,2026-04-19T14:46:45.911464
+ASAN,"Asana, Inc.",USA,United States,Technology,5.84,USD,12.1,6.4,True,False,201.0,205.6,-68.4,-32.2,2026-04-19T14:46:46.717159
+OPRX,OptimizeRx Corporation,USA,United States,Healthcare,7.17,USD,33.1,26.6,True,False,26.1,32.2,0.8,5.0,2026-04-19T14:46:47.831051
+FWRG,"First Watch Restaurant Group, I",USA,United States,Consumer Cyclical,12.75,USD,33.0,23.1,True,False,316.0,316.4,3.0,15.2,2026-04-19T14:46:49.229676
+GEVO,"Gevo, Inc.",USA,United States,Basic Materials,1.7,USD,54.8,69.5,False,False,42.7,45.3,-8.0,-6.3,2026-04-19T14:46:50.080548
+TLSI,"TriSalus Life Sciences, Inc.",USA,United States,Healthcare,4.65,USD,31.8,17.8,True,False,11.6,13.2,-10.8,-9.8,2026-04-19T14:46:52.414840
+PKBK,"Parke Bancorp, Inc.",USA,United States,Financial Services,30.43,USD,58.5,42.5,True,False,21.0,22.7,10.6,11.1,2026-04-19T14:46:53.605775
+APPS,"Digital Turbine, Inc.",USA,United States,Technology,3.75,USD,24.4,9.0,True,False,140.4,151.4,-21.4,5.1,2026-04-19T14:46:55.366773
+ENTA,"Enanta Pharmaceuticals, Inc.",USA,United States,Healthcare,14.01,USD,44.8,21.0,True,False,15.1,18.6,-18.7,-11.9,2026-04-19T14:46:57.945986
+UIS,Unisys Corporation New,USA,United States,Technology,2.58,USD,27.7,30.5,False,False,460.2,574.5,-308.9,18.7,2026-04-19T14:47:01.012190
+NMAX,"Newsmax, Inc.",USA,United States,Communication Services,6.95,USD,63.4,44.7,True,True,45.3,52.2,-4.1,-3.0,2026-04-19T14:47:02.063567
+AKR,Acadia Realty Trust,USA,United States,Real Estate,21.73,USD,39.6,20.5,True,False,101.0,104.8,5.6,7.7,2026-04-19T14:47:03.876060
+RLGT,"Radiant Logistics, Inc.",USA,United States,Industrials,8.32,USD,65.0,44.4,True,False,226.7,232.1,1.3,5.3,2026-04-19T14:47:05.713776
+RGCO,RGC Resources Inc.,USA,United States,Utilities,22.5,USD,86.1,52.8,True,False,14.3,30.3,-0.2,4.9,2026-04-19T14:47:06.533286
+EVI,"EVI Industries, Inc.",USA,United States,Industrials,21.49,USD,30.3,39.3,False,False,108.3,115.3,1.8,2.4,2026-04-19T14:47:07.860308
+OSPN,OneSpan Inc.,USA,United States,Technology,11.49,USD,33.6,20.4,True,False,57.1,62.9,6.5,43.5,2026-04-19T14:47:09.016168
+NVAX,"Novavax, Inc.",USA,United States,Healthcare,8.84,USD,47.9,58.1,False,False,70.4,147.1,-202.4,17.5,2026-04-19T14:47:11.109969
+XMTR,"Xometry, Inc.",USA,United States,Industrials,49.4,USD,16.1,9.7,True,False,180.7,192.4,-11.6,-8.6,2026-04-19T14:47:12.364728
+MCHB,Mechanics Bancorp,USA,United States,Financial Services,15.51,USD,53.2,47.2,True,False,160.6,201.1,55.2,124.3,2026-04-19T14:47:14.522871
+GCMG,GCM Grosvenor Inc.,USA,United States,Financial Services,10.94,USD,23.3,12.7,True,True,138.7,177.8,10.5,19.0,2026-04-19T14:47:15.636799
+FRD,Friedman Industries Inc.,USA,United States,Basic Materials,19.38,USD,49.8,24.2,True,False,152.4,168.0,2.2,3.0,2026-04-19T14:47:17.462560
+AROW,Arrow Financial Corporation,USA,United States,Financial Services,37.37,USD,40.7,28.0,True,False,42.8,43.4,12.8,14.0,2026-04-19T14:47:19.964709
+DOMO,"Domo, Inc.",USA,United States,Technology,3.8,USD,60.7,55.4,True,True,79.4,79.6,-10.4,-8.0,2026-04-19T14:47:20.734057
+SLQT,"SelectQuote, Inc.",USA,United States,Financial Services,0.78,USD,17.9,10.4,True,False,328.8,537.1,-30.5,69.3,2026-04-19T14:47:22.451733
+SLDE,"Slide Insurance Holdings, Inc.",USA,United States,Financial Services,19.63,USD,33.3,17.0,True,False,265.7,347.0,111.0,170.4,2026-04-19T14:47:24.726837
+INR,"Infinity Natural Resources, Inc",USA,United States,Energy,15.78,USD,25.7,44.8,False,False,79.7,117.1,10.4,20.7,2026-04-19T14:47:28.302975
+HIMS,"Hims & Hers Health, Inc.",USA,United States,Healthcare,28.82,USD,99.2,97.6,True,False,599.0,617.8,15.8,20.6,2026-04-19T14:47:29.048898
+GOOD,Gladstone Commercial Corporatio,USA,United States,Real Estate,12.8,USD,66.5,67.7,False,False,40.8,43.5,4.1,5.4,2026-04-19T14:47:30.455315
+LZ,"LegalZoom.com, Inc.",USA,United States,Industrials,6.49,USD,16.4,9.8,True,False,190.2,190.3,4.5,6.1,2026-04-19T14:47:32.936571
+AVA,Avista Corporation,USA,United States,Utilities,41.75,USD,77.0,68.7,True,False,403.0,533.0,29.0,71.0,2026-04-19T14:47:34.075800
+ZUMZ,Zumiez Inc.,USA,United States,Consumer Cyclical,24.97,USD,41.5,25.6,True,False,239.1,291.3,9.2,19.6,2026-04-19T14:47:36.267964
+FLY,Firefly Aerospace Inc.,USA,United States,Industrials,43.72,USD,99.8,92.1,True,False,30.8,57.7,-133.4,-41.1,2026-04-19T14:47:38.084975
+ARAY,Accuray Incorporated,USA,United States,Healthcare,0.44,USD,66.7,53.3,True,False,93.9,102.2,-21.7,-13.8,2026-04-19T14:47:39.928547
+SHO,"Sunstone Hotel Investors, Inc. ",USA,United States,Real Estate,9.65,USD,73.1,56.4,True,False,229.3,237.0,1.3,7.2,2026-04-19T14:47:41.709502
+NEO,"NeoGenomics, Inc.",USA,United States,Healthcare,8.35,USD,4.2,3.6,True,False,187.8,190.2,-27.1,-9.9,2026-04-19T14:47:43.171861
+TDS,"Telephone and Data Systems, Inc",USA,United States,Communication Services,45.82,USD,17.3,16.8,True,True,308.5,330.7,-81.8,56.5,2026-04-19T14:47:47.397231
+MCBS,"MetroCity Bankshares, Inc.",USA,United States,Financial Services,32.66,USD,92.9,70.8,True,False,38.0,41.5,17.3,18.1,2026-04-19T14:47:48.174327
+RPT,Rithm Property Trust Inc.,USA,United States,Real Estate,14.44,USD,27.7,16.2,True,False,2.0,3.4,-0.3,3.2,2026-04-19T14:47:49.121733
+PMTS,CPI Card Group Inc.,USA,United States,Financial Services,18.75,USD,91.5,68.1,True,False,138.0,153.1,2.3,7.3,2026-04-19T14:47:50.316395
+KINS,"Kingstone Companies, Inc",USA,United States,Financial Services,18.64,USD,40.0,16.8,True,False,55.7,56.4,10.9,14.8,2026-04-19T14:47:51.102808
+MAC,Macerich Company (The),USA,United States,Real Estate,22.3,USD,53.2,31.7,True,False,253.3,261.7,-87.4,-18.8,2026-04-19T14:47:51.945079
+MTW,"Manitowoc Company, Inc. (The)",USA,United States,Industrials,13.01,USD,20.5,14.2,True,False,553.4,677.1,5.0,7.0,2026-04-19T14:47:54.487932
+RAMP,"LiveRamp Holdings, Inc.",USA,United States,Technology,28.78,USD,77.5,58.0,True,False,199.8,212.2,27.4,39.9,2026-04-19T14:47:56.477123
+BHB,"Bar Harbor Bankshares, Inc.",USA,United States,Financial Services,34.84,USD,47.6,32.4,True,False,47.5,48.9,8.9,11.8,2026-04-19T14:48:00.004627
+ACT,"Enact Holdings, Inc.",USA,United States,Financial Services,42.89,USD,32.2,19.7,True,False,311.5,312.7,163.5,177.2,2026-04-19T14:48:01.106061
+RCEL,"Avita Medical, Inc.",USA,United States,Healthcare,5.14,USD,86.4,81.8,True,False,17.1,17.6,-13.2,-11.6,2026-04-19T14:48:01.934200
+CRNX,"Crinetics Pharmaceuticals, Inc.",USA,United States,Healthcare,41.0,USD,19.1,14.1,True,False,0.1,6.2,-130.1,-122.8,2026-04-19T14:48:03.526055
+GSHD,"Goosehead Insurance, Inc.",USA,United States,Financial Services,43.85,USD,3.7,3.4,True,False,90.4,105.3,7.9,12.4,2026-04-19T14:48:04.283325
+DEA,"Easterly Government Properties,",USA,United States,Real Estate,23.51,USD,48.2,45.0,True,False,86.2,87.0,1.2,4.6,2026-04-19T14:48:05.655009
+CMP,Compass Minerals Intl Inc,USA,United States,Basic Materials,25.32,USD,26.7,30.4,False,False,227.5,396.1,-7.2,18.6,2026-04-19T14:48:06.514776
+WNEB,"Western New England Bancorp, In",USA,United States,Financial Services,14.07,USD,43.4,27.7,True,False,20.6,23.9,3.2,5.2,2026-04-19T14:48:07.387007
+NNOX,NANO-X IMAGING LTD,USA,Israel,Healthcare,2.85,USD,90.3,79.2,True,False,3.0,3.4,-14.7,-13.7,2026-04-19T14:48:08.482806
+GAIA,"Gaia, Inc.",USA,United States,Communication Services,2.92,USD,48.0,33.1,True,False,25.0,25.5,-1.2,-0.5,2026-04-19T14:48:10.389789
+MQ,"Marqeta, Inc.",USA,United States,Technology,4.39,USD,38.2,18.0,True,False,163.3,172.1,-3.6,-1.4,2026-04-19T14:48:12.298248
+INOD,Innodata Inc.,USA,United States,Technology,46.93,USD,27.0,34.8,False,False,62.5,72.4,8.3,8.8,2026-04-19T14:48:13.050967
+PAGS,PagSeguro Digital Ltd.,USA,Brazil,Technology,11.26,USD,54.0,41.6,True,False,1988.7,1992.6,536.8,554.5,2026-04-19T14:48:14.062366
+PWP,Perella Weinberg Partners,USA,United States,Financial Services,21.56,USD,52.2,49.3,True,False,164.6,219.2,6.0,9.4,2026-04-19T14:48:17.212893
+HRTX,"Heron Therapeutics, Inc.",USA,United States,Healthcare,1.0,USD,17.0,10.8,True,False,38.2,40.6,-17.5,-3.0,2026-04-19T14:48:18.049969
+PDLB,"Ponce Financial Group, Inc.",USA,United States,Financial Services,17.95,USD,73.4,41.3,True,False,26.6,31.3,6.5,10.1,2026-04-19T14:48:19.072434
+ALCO,"Alico, Inc.",USA,United States,Consumer Defensive,43.18,USD,60.8,46.2,True,False,0.8,1.9,-8.5,-3.5,2026-04-19T14:48:20.002550
+MNRO,"Monro, Inc.",USA,United States,Consumer Cyclical,17.87,USD,17.4,11.3,True,False,288.9,293.4,5.7,11.1,2026-04-19T14:48:20.903673
+SOUN,"SoundHound AI, Inc.",USA,United States,Technology,8.08,USD,70.7,55.7,True,False,42.0,55.1,-109.3,40.1,2026-04-19T14:48:23.324861
+DH,Definitive Healthcare Corp.,USA,United States,Healthcare,1.03,USD,0.9,2.9,False,False,60.0,61.5,-14.8,-9.3,2026-04-19T14:48:24.451004
+NATL,NCR Atleos Corporation,USA,United States,Technology,45.69,USD,68.8,63.6,True,False,1121.0,1152.0,26.0,83.0,2026-04-19T14:48:25.581795
+MFIN,Medallion Financial Corp.,USA,United States,Financial Services,9.54,USD,43.5,24.4,True,False,55.9,67.6,11.3,12.2,2026-04-19T14:48:26.557016
+OUST,"Ouster, Inc.",USA,United States,Technology,24.26,USD,76.3,71.2,True,False,39.5,62.2,-21.7,4.0,2026-04-19T14:48:27.334006
+CTO,"CTO Realty Growth, Inc.",USA,United States,Real Estate,20.08,USD,25.9,15.9,True,False,37.8,38.3,2.9,28.3,2026-04-19T14:48:29.202492
+RNST,Renasant Corporation,USA,United States,Financial Services,40.47,USD,37.3,25.9,True,False,269.5,278.5,59.8,78.9,2026-04-19T14:48:30.499991
+CIM,Chimera Investment Corporation,USA,United States,Real Estate,13.7,USD,49.1,42.6,True,False,33.8,66.0,-0.6,28.3,2026-04-19T14:48:32.327749
+ATEC,"Alphatec Holdings, Inc.",USA,United States,Healthcare,11.1,USD,0.3,1.8,False,False,196.5,212.9,-28.6,-21.7,2026-04-19T14:48:33.491289
+SPWR,SunPower Inc.,USA,United States,Technology,1.18,USD,5.5,5.8,False,False,70.0,79.7,-16.9,-14.2,2026-04-19T14:48:35.289796
+LNSR,"LENSAR, Inc.",USA,United States,Healthcare,5.93,USD,1.5,0.5,True,False,14.3,16.0,-3.7,-1.5,2026-04-19T14:48:36.010996
+GOSS,"Gossamer Bio, Inc.",USA,United States,Healthcare,0.45,USD,7.1,3.8,True,False,13.3,13.8,-48.2,-47.2,2026-04-19T14:48:38.431379
+NMRK,"Newmark Group, Inc.",USA,United States,Real Estate,16.53,USD,39.7,19.9,True,False,863.5,1006.0,46.2,68.0,2026-04-19T14:48:39.221541
+ASUR,Asure Software Inc,USA,United States,Technology,9.15,USD,8.7,5.2,True,True,36.3,39.3,-5.4,0.8,2026-04-19T14:48:42.681676
+AVBH,"Avidbank Holdings, Inc.",USA,United States,Financial Services,29.89,USD,47.8,29.1,True,False,-38.2,26.8,-37.7,6.9,2026-04-19T14:48:43.508047
+VCYT,"Veracyte, Inc.",USA,United States,Healthcare,33.8,USD,25.9,15.6,True,False,131.9,140.6,19.1,41.1,2026-04-19T14:48:45.711145
+ARR,"ARMOUR Residential REIT, Inc.",USA,United States,Real Estate,17.64,USD,18.1,11.7,True,False,160.8,213.8,159.3,211.7,2026-04-19T14:48:46.496285
+FSBC,Five Star Bancorp,USA,United States,Financial Services,41.42,USD,55.1,36.5,True,False,41.0,43.1,16.3,17.6,2026-04-19T14:48:47.771741
+OPCH,"Option Care Health, Inc.",USA,United States,Healthcare,28.82,USD,11.4,5.8,True,False,1435.0,1465.4,51.8,58.5,2026-04-19T14:48:48.514013
+TDAY,"USA TODAY Co., Inc.",USA,United States,Communication Services,7.31,USD,94.4,85.2,True,False,560.8,585.0,-39.2,-30.1,2026-04-19T14:48:50.824426
+SIBN,"SI-BONE, Inc.",USA,United States,Healthcare,14.09,USD,15.4,9.0,True,False,48.7,56.3,-4.6,-1.6,2026-04-19T14:48:52.295009
+TCX,Tucows Inc.,USA,Canada,Technology,17.63,USD,16.0,10.9,True,False,98.6,98.7,-23.0,-22.0,2026-04-19T14:48:53.048570
+UVE,UNIVERSAL INSURANCE HOLDINGS IN,USA,United States,Financial Services,35.58,USD,77.3,55.1,True,False,401.0,407.9,39.8,66.6,2026-04-19T14:48:53.879775
+HTFL,"Heartflow, Inc.",USA,United States,Healthcare,31.34,USD,54.0,49.2,True,True,46.3,49.1,-50.9,-24.4,2026-04-19T14:48:54.629997
+NRDY,Nerdy Inc.,USA,United States,Technology,0.94,USD,47.2,28.6,True,False,37.0,49.1,-12.3,-9.2,2026-04-19T14:48:57.371889
+CNDT,Conduent Incorporated,USA,United States,Technology,1.63,USD,55.5,34.8,True,False,767.0,770.0,-46.0,-33.0,2026-04-19T14:49:00.911254
+WEAV,"Weave Communications, Inc.",USA,United States,Healthcare,5.33,USD,21.0,11.3,True,False,61.3,63.4,-8.7,-1.8,2026-04-19T14:49:02.338908
+JMSB,"John Marshall Bancorp, Inc.",USA,United States,Financial Services,21.03,USD,81.6,48.6,True,False,16.3,16.4,5.4,5.9,2026-04-19T14:49:03.155986
+AMRX,"Amneal Pharmaceuticals, Inc.",USA,United States,Healthcare,13.91,USD,15.7,7.7,True,False,784.5,814.3,2.4,35.1,2026-04-19T14:49:04.259478
+OFIX,Orthofix Medical Inc.,USA,United States,Healthcare,12.71,USD,19.3,11.8,True,False,205.6,219.9,-22.8,-2.2,2026-04-19T14:49:05.360992
+VSTM,"Verastem, Inc.",USA,United States,Healthcare,6.58,USD,63.3,44.3,True,False,11.2,17.5,-98.5,-32.9,2026-04-19T14:49:06.125412
+INDI,"indie Semiconductor, Inc.",USA,United States,Technology,3.38,USD,59.8,54.3,True,False,53.7,58.0,-38.3,-31.2,2026-04-19T14:49:06.883203
+ADEA,Adeia Inc.,USA,United States,Technology,28.93,USD,93.3,94.1,False,False,87.3,182.6,8.8,73.7,2026-04-19T14:49:08.328120
+FIGS,"FIGS, Inc.",USA,United States,Consumer Cyclical,16.17,USD,21.0,12.7,True,False,151.7,201.9,8.7,18.5,2026-04-19T14:49:09.060978
+TSHA,"Taysha Gene Therapies, Inc.",USA,United States,Healthcare,6.43,USD,42.8,17.5,True,False,0.0,5.5,-32.7,-27.9,2026-04-19T14:49:11.289919
+NEXN,Nexxen International Ltd.,USA,Israel,Communication Services,7.49,USD,83.3,74.4,True,True,94.8,100.7,4.2,10.5,2026-04-19T14:49:12.800349
+ALKT,"Alkami Technology, Inc.",USA,United States,Technology,17.83,USD,35.4,19.3,True,False,113.0,120.8,-14.8,-11.4,2026-04-19T14:49:14.285462
+LINC,Lincoln Educational Services Co,USA,United States,Consumer Defensive,41.95,USD,99.3,98.8,True,False,141.4,142.9,3.8,12.7,2026-04-19T14:49:18.449687
+KALV,"KalVista Pharmaceuticals, Inc.",USA,United States,Healthcare,20.48,USD,84.5,78.1,True,False,1.4,13.7,-60.1,-49.5,2026-04-19T14:49:19.194204
+ATLO,Ames National Corporation,USA,United States,Financial Services,28.66,USD,74.8,62.1,True,False,16.6,18.7,4.6,6.5,2026-04-19T14:49:20.057565
+SEVN,Seven Hills Realty Trust,USA,United States,Real Estate,8.54,USD,62.8,44.2,True,False,5.7,6.1,3.4,4.6,2026-04-19T14:49:21.828824
+ASLE,AerSale Corporation,USA,United States,Industrials,6.94,USD,7.0,4.3,True,True,71.2,90.9,-0.1,5.4,2026-04-19T14:49:22.913208
+MYGN,"Myriad Genetics, Inc.",USA,United States,Healthcare,5.08,USD,75.0,54.2,True,False,205.7,209.8,-27.4,-7.9,2026-04-19T14:49:24.609273
+PGEN,"Precigen, Inc.",USA,United States,Healthcare,3.98,USD,18.6,15.4,True,False,2.9,4.6,-146.3,-23.5,2026-04-19T14:49:30.125986
+IBEX,IBEX Limited,USA,United States,Technology,29.72,USD,14.2,8.3,True,False,151.2,164.2,12.0,12.2,2026-04-19T14:49:32.745309
+ENVX,Enovix Corporation,USA,United States,Industrials,6.62,USD,78.5,53.0,True,False,8.0,11.3,-53.7,-35.0,2026-04-19T14:49:33.892940
+WAFD,"WaFd, Inc.",USA,United States,Financial Services,35.24,USD,39.9,21.5,True,False,187.6,191.5,60.6,64.2,2026-04-19T14:49:34.803044
+STIM,"Neuronetics, Inc.",USA,United States,Healthcare,1.42,USD,60.5,80.7,False,False,37.3,41.8,-9.0,-7.2,2026-04-19T14:49:37.490865
+STRW,"Strawberry Fields REIT, Inc.",USA,United States,Real Estate,12.81,USD,42.4,29.9,True,False,39.7,40.1,2.0,2.0,2026-04-19T14:49:38.240145
+TNDM,"Tandem Diabetes Care, Inc.",USA,United States,Healthcare,20.61,USD,8.7,6.8,True,True,249.3,290.4,-21.2,-0.6,2026-04-19T14:49:39.997521
+NPKI,NPK International Inc.,USA,United States,Energy,14.7,USD,69.4,63.7,True,False,68.2,75.2,8.7,14.6,2026-04-19T14:49:41.386622
+PEBK,Peoples Bancorp of North Caroli,USA,United States,Financial Services,42.16,USD,64.8,38.7,True,False,18.6,19.1,3.7,6.6,2026-04-19T14:49:42.816832
+UPBD,"Upbound Group, Inc.",USA,United States,Technology,19.91,USD,41.0,45.3,False,False,1164.7,1196.4,13.2,19.7,2026-04-19T14:49:44.537621
+MGNI,"Magnite, Inc.",USA,United States,Communication Services,13.71,USD,48.5,39.7,True,True,179.5,205.4,20.1,123.0,2026-04-19T14:49:46.101116
+CARE,"Carter Bankshares, Inc.",USA,United States,Financial Services,24.25,USD,58.8,48.2,True,False,38.1,38.6,5.4,8.5,2026-04-19T14:49:46.940467
+BALY,Bally's Corporation,USA,United States,Consumer Cyclical,11.87,USD,19.9,9.6,True,False,657.5,663.7,-228.4,-102.9,2026-04-19T14:49:47.945861
+POWW,Outdoor Holding Company,USA,United States,Industrials,2.07,USD,77.9,53.3,True,False,12.0,13.4,1.4,2.2,2026-04-19T14:49:48.913105
+HGV,Hilton Grand Vacations Inc.,USA,United States,Consumer Cyclical,49.02,USD,33.6,19.4,True,False,1300.0,1333.0,25.0,48.0,2026-04-19T14:49:49.971813
+SVV,"Savers Value Village, Inc.",USA,United States,Consumer Cyclical,8.64,USD,17.1,15.4,True,True,426.9,464.7,-14.0,22.4,2026-04-19T14:49:51.032635
+FFAI,Faraday Future Intelligent Elec,USA,United States,Consumer Cyclical,0.3,USD,15.9,8.3,True,False,0.0,0.1,-222.2,-33.6,2026-04-19T14:49:52.476824
+CPSS,"Consumer Portfolio Services, In",USA,United States,Financial Services,8.65,USD,30.4,16.3,True,False,49.3,50.1,4.9,5.0,2026-04-19T14:49:55.805031
+HUBG,"Hub Group, Inc.",USA,United States,Industrials,42.66,USD,13.2,7.3,True,False,905.6,934.5,25.2,28.6,2026-04-19T14:49:57.899083
+CTOS,"Custom Truck One Source, Inc.",USA,United States,Industrials,7.61,USD,59.8,47.0,True,False,482.1,528.2,-5.8,20.9,2026-04-19T14:49:58.703057
+AVPT,"AvePoint, Inc.",USA,United States,Technology,10.04,USD,31.2,18.5,True,False,109.7,114.7,13.0,15.6,2026-04-19T14:50:02.221426
+CMT,Core Molding Technologies Inc,USA,United States,Basic Materials,27.27,USD,86.1,67.9,True,False,58.4,74.7,1.9,3.1,2026-04-19T14:50:06.334119
+SBGI,"Sinclair, Inc.",USA,United States,Communication Services,16.79,USD,49.0,25.7,True,False,773.0,836.0,-1.0,109.0,2026-04-19T14:50:09.224791
+WWW,"Wolverine World Wide, Inc.",USA,United States,Consumer Cyclical,18.05,USD,42.3,37.4,True,False,470.3,517.5,25.1,31.8,2026-04-19T14:50:11.178143
+HLLY,Holley Inc.,USA,United States,Consumer Cyclical,3.32,USD,21.7,15.2,True,False,138.4,155.4,-0.8,6.3,2026-04-19T14:50:12.793891
+ABX,"Abacus Global Management, Inc.",USA,United States,Financial Services,9.26,USD,15.3,7.0,True,True,63.0,71.9,7.1,7.2,2026-04-19T14:50:14.438253
+LQDA,Liquidia Corporation,USA,United States,Healthcare,39.47,USD,17.8,12.0,True,False,54.3,92.0,-3.5,14.6,2026-04-19T14:50:16.554321
+RLAY,"Relay Therapeutics, Inc.",USA,United States,Healthcare,16.76,USD,93.5,66.3,True,False,0.0,7.0,-74.1,-54.9,2026-04-19T14:50:18.541254
+GNK,Genco Shipping & Trading Limite,USA,United States,Industrials,24.46,USD,51.5,49.4,True,False,79.9,109.9,-1.1,15.4,2026-04-19T14:50:19.843690
+LVWR,"LiveWire Group, Inc.",USA,United States,Consumer Cyclical,2.02,USD,52.0,28.3,True,False,5.7,11.4,-19.4,-17.6,2026-04-19T14:50:22.022775
+XRX,Xerox Holdings Corporation,USA,United States,Industrials,1.73,USD,30.4,16.2,True,False,1961.0,2028.0,-760.0,-73.0,2026-04-19T14:50:23.100622
+SSP,E.W. Scripps Company (The),USA,United States,Communication Services,4.94,USD,47.4,26.0,True,False,525.9,560.3,-33.0,-28.5,2026-04-19T14:50:25.697297
+DCOM,"Dime Community Bancshares, Inc.",USA,United States,Financial Services,37.08,USD,50.1,35.5,True,False,115.6,123.8,27.7,31.9,2026-04-19T14:50:26.965117
+CFBK,CF Bankshares Inc.,USA,United States,Financial Services,29.74,USD,27.6,20.9,True,False,15.3,15.6,2.3,5.7,2026-04-19T14:50:28.979971
+PECO,"Phillips Edison & Company, Inc.",USA,United States,Real Estate,39.59,USD,53.7,31.8,True,True,182.7,187.9,24.7,47.5,2026-04-19T14:50:30.081259
+FMAO,"Farmers & Merchants Bancorp, In",USA,United States,Financial Services,27.37,USD,53.3,32.4,True,False,30.2,31.5,8.9,9.8,2026-04-19T14:50:31.491848
+SGRY,"Surgery Partners, Inc.",USA,United States,Healthcare,14.0,USD,55.0,44.0,True,False,821.5,885.0,-22.7,-15.0,2026-04-19T14:50:32.724406
+CVRX,"CVRx, Inc.",USA,United States,Healthcare,7.36,USD,82.1,91.2,False,False,14.7,16.0,-12.9,-11.9,2026-04-19T14:50:34.083167
+ASB,Associated Banc-Corp,USA,United States,Financial Services,28.14,USD,40.2,27.2,True,False,384.8,388.0,124.7,137.1,2026-04-19T14:50:35.961792
+WASH,"Washington Trust Bancorp, Inc.",USA,United States,Financial Services,35.97,USD,49.8,38.7,True,False,56.5,59.3,10.8,16.0,2026-04-19T14:50:37.660470
+FRST,Primis Financial Corp.,USA,United States,Financial Services,14.04,USD,32.7,22.4,True,False,35.8,41.0,2.4,6.8,2026-04-19T14:50:39.139413
+FNLC,"First Bancorp, Inc (ME)",USA,United States,Financial Services,29.42,USD,53.6,36.3,True,False,24.5,25.9,9.1,10.2,2026-04-19T14:50:40.421304
+MAMA,"Mama's Creations, Inc.",USA,United States,Consumer Defensive,14.69,USD,17.3,11.5,True,False,47.3,54.0,0.5,2.2,2026-04-19T14:50:41.476757
+FRSH,Freshworks Inc.,USA,United States,Technology,8.54,USD,17.4,11.5,True,False,215.1,222.7,-4.7,191.4,2026-04-19T14:50:43.459430
+RCMT,"RCM Technologies, Inc.",USA,United States,Industrials,31.76,USD,92.7,75.6,True,False,70.3,86.5,2.3,6.1,2026-04-19T14:50:45.393916
+INVA,"Innoviva, Inc.",USA,United States,Healthcare,24.24,USD,100.0,93.3,True,False,107.8,114.6,89.9,164.2,2026-04-19T14:50:46.136897
+ANIK,Anika Therapeutics Inc.,USA,United States,Healthcare,16.0,USD,99.3,97.6,True,False,27.8,30.6,-2.3,0.3,2026-04-19T14:50:48.175335
+PDYN,Palladyne AI Corp.,USA,United States,Technology,6.57,USD,64.6,70.7,False,False,0.9,1.7,-3.7,-1.5,2026-04-19T14:50:48.920930
+GBFH,GBank Financial Holdings Inc.,USA,United States,Financial Services,30.43,USD,65.0,39.5,True,False,19.6,19.9,4.3,7.4,2026-04-19T14:50:49.986798
+ABAT,American Battery Technology Com,USA,United States,Industrials,3.4,USD,16.5,15.0,True,False,0.9,4.8,-10.3,-9.3,2026-04-19T14:50:51.829176
+RXST,"RxSight, Inc.",USA,United States,Healthcare,7.61,USD,31.2,16.9,True,False,30.3,32.6,-9.8,-9.2,2026-04-19T14:50:52.976636
+EDIT,"Editas Medicine, Inc.",USA,United States,Healthcare,3.49,USD,100.0,96.9,True,False,7.5,24.7,-25.1,-5.6,2026-04-19T14:50:53.778298
+FA,First Advantage Corporation,USA,United States,Industrials,12.51,USD,12.1,9.7,True,True,409.2,420.0,2.6,3.5,2026-04-19T14:50:55.210961
+GTY,Getty Realty Corporation,USA,United States,Real Estate,34.61,USD,66.9,61.5,True,False,55.6,60.5,23.3,27.0,2026-04-19T14:50:57.256936
+PUBM,"PubMatic, Inc.",USA,United States,Technology,9.81,USD,92.8,84.4,True,False,68.0,80.0,-6.5,6.7,2026-04-19T14:50:58.015149
+BUSE,First Busey Corporation,USA,United States,Financial Services,26.98,USD,48.7,30.9,True,False,196.3,200.2,57.1,60.8,2026-04-19T14:51:00.735860
+KW,Kennedy-Wilson Holdings Inc.,USA,United States,Real Estate,10.89,USD,81.0,79.6,True,False,116.4,120.6,-10.4,40.5,2026-04-19T14:51:01.555958
+CXW,"CoreCivic, Inc.",USA,United States,Industrials,20.45,USD,42.5,52.9,False,False,580.4,604.0,26.3,26.5,2026-04-19T14:51:03.244439
+STKL,"SunOpta, Inc.",USA,United States,Consumer Defensive,6.47,USD,99.8,99.8,False,False,205.4,219.2,0.8,5.8,2026-04-19T14:51:04.575681
+GRPN,"Groupon, Inc.",USA,United States,Communication Services,14.21,USD,64.6,55.6,True,True,122.8,132.7,-118.4,7.3,2026-04-19T14:51:05.445318
+EHTH,"eHealth, Inc.",USA,United States,Financial Services,1.84,USD,13.4,4.8,True,True,53.9,326.2,-31.7,87.2,2026-04-19T14:51:06.729777
+VOXR,Vox Royalty Corp.,USA,United States,Basic Materials,5.65,USD,37.6,22.4,True,False,3.8,7.4,0.2,6.5,2026-04-19T14:51:07.508941
+RELY,"Remitly Global, Inc.",USA,United States,Technology,20.01,USD,82.5,68.2,True,False,419.5,442.2,8.8,41.2,2026-04-19T14:51:09.041384
+BBNX,"Beta Bionics, Inc.",USA,United States,Healthcare,12.98,USD,20.5,7.5,True,True,27.3,32.1,-14.2,-13.5,2026-04-19T14:51:10.674882
+PNTG,"The Pennant Group, Inc.",USA,United States,Healthcare,30.74,USD,18.3,9.5,True,False,229.0,289.3,6.1,8.6,2026-04-19T14:51:11.400664
+OXM,"Oxford Industries, Inc.",USA,United States,Consumer Cyclical,44.89,USD,99.2,82.4,True,False,307.3,374.5,-63.7,-7.1,2026-04-19T14:51:13.630444
+CXM,"Sprinklr, Inc.",USA,United States,Technology,5.45,USD,12.2,11.6,True,False,219.1,220.6,2.9,9.0,2026-04-19T14:51:15.362755
+VIR,"Vir Biotechnology, Inc.",USA,United States,Healthcare,10.75,USD,94.9,87.6,True,False,-0.1,63.8,-163.1,-42.9,2026-04-19T14:51:16.485233
+TBPH,"Theravance Biopharma, Inc.",USA,United States,Healthcare,17.23,USD,30.5,25.5,True,False,20.0,45.9,3.6,61.0,2026-04-19T14:51:17.236692
+FDMT,"4D Molecular Therapeutics, Inc.",USA,United States,Healthcare,10.49,USD,100.0,89.4,True,False,0.1,85.1,-56.9,19.4,2026-04-19T14:51:19.971254
+VLGEA,"Village Super Market, Inc.",USA,United States,Consumer Defensive,42.71,USD,92.4,84.3,True,False,582.6,641.0,12.0,17.9,2026-04-19T14:51:24.324898
+AEBI,Aebi Schmidt Holding AG,USA,Switzerland,Industrials,11.85,USD,13.6,8.4,True,False,471.3,528.4,1.2,8.8,2026-04-19T14:51:26.555416
+HTBK,Heritage Commerce Corp,USA,United States,Financial Services,13.45,USD,33.8,20.0,True,False,48.9,56.6,14.7,15.1,2026-04-19T14:51:28.229316
+JYNT,The Joint Corp.,USA,United States,Healthcare,9.22,USD,20.5,20.1,True,True,13.4,15.2,0.9,1.0,2026-04-19T14:51:29.023818
+VMD,"Viemed Healthcare, Inc.",USA,United States,Healthcare,9.74,USD,69.8,64.7,True,False,71.9,76.2,3.5,5.6,2026-04-19T14:51:31.030850
+AVAH,Aveanna Healthcare Holdings Inc,USA,United States,Healthcare,6.77,USD,17.2,10.5,True,False,621.9,662.5,14.1,178.8,2026-04-19T14:51:33.088391
+KSS,Kohl's Corporation,USA,United States,Consumer Cyclical,14.52,USD,19.2,10.5,True,False,3575.0,5173.0,8.0,125.0,2026-04-19T14:51:34.824310
+DBRG,"DigitalBridge Group, Inc.",USA,United States,Financial Services,15.59,USD,43.9,62.0,False,False,-1.6,42.4,31.4,65.1,2026-04-19T14:51:37.562319
+MPB,Mid Penn Bancorp,USA,United States,Financial Services,34.32,USD,44.4,26.3,True,False,60.8,61.1,18.3,19.4,2026-04-19T14:51:40.219503
+ZVRA,"Zevra Therapeutics, Inc.",USA,United States,Healthcare,10.67,USD,91.2,85.9,True,False,26.1,34.1,-0.5,12.2,2026-04-19T14:51:40.976325
+SHEN,Shenandoah Telecommunications C,USA,United States,Communication Services,16.28,USD,85.9,82.4,True,False,89.8,91.6,-9.4,-5.4,2026-04-19T14:51:41.856441
+MAGN,Magnera Corporation,USA,United States,Consumer Defensive,10.81,USD,12.1,5.8,True,False,824.0,839.0,-41.0,-18.0,2026-04-19T14:51:44.334706
+VRM,"Vroom, Inc.",USA,United States,Financial Services,15.43,USD,85.2,53.3,True,False,0.0,6.9,-26.8,-11.4,2026-04-19T14:51:45.274308
+BTSG,"BrightSpring Health Services, I",USA,United States,Healthcare,47.27,USD,47.8,34.1,True,False,3334.1,3550.6,55.8,77.1,2026-04-19T14:51:46.939670
+COOK,"Traeger, Inc.",USA,United States,Consumer Cyclical,43.47,USD,33.8,17.3,True,False,125.4,145.4,-89.8,-17.2,2026-04-19T14:51:48.226993
+HWBK,"Hawthorn Bancshares, Inc.",USA,United States,Financial Services,35.26,USD,75.3,46.5,True,False,20.7,21.2,6.1,6.2,2026-04-19T14:51:50.503189
+TALK,"Talkspace, Inc.",USA,United States,Healthcare,5.18,USD,86.6,87.0,False,False,59.4,63.0,3.3,4.8,2026-04-19T14:51:51.868203
+ARDX,"Ardelyx, Inc.",USA,United States,Healthcare,6.45,USD,15.0,17.5,False,False,110.3,125.2,-1.0,-0.4,2026-04-19T14:51:52.639672
+FLOC,Flowco Holdings Inc.,USA,United States,Energy,23.67,USD,9.8,4.9,True,True,176.9,197.2,12.5,17.2,2026-04-19T14:51:53.759093
+AIP,"Arteris, Inc.",USA,United States,Technology,22.13,USD,76.6,60.4,True,False,17.4,20.1,-9.0,-8.5,2026-04-19T14:51:54.936752
+FLWS,"1-800-FLOWERS.COM, Inc.",USA,United States,Consumer Cyclical,3.88,USD,28.8,20.7,True,False,215.2,702.2,-53.0,70.6,2026-04-19T14:51:56.407351
+FFIN,"First Financial Bankshares, Inc",USA,United States,Financial Services,32.47,USD,49.0,49.7,False,False,157.5,161.2,52.3,73.3,2026-04-19T14:51:57.559894
+MOV,Movado Group Inc.,USA,United States,Consumer Cyclical,28.41,USD,29.2,22.7,True,False,186.1,191.6,9.6,12.6,2026-04-19T14:51:58.913697
+FDBC,"Fidelity D & D Bancorp, Inc.",USA,United States,Financial Services,45.66,USD,83.5,56.4,True,False,23.3,24.2,7.3,7.9,2026-04-19T14:51:59.804099
+INTA,"Intapp, Inc.",USA,United States,Technology,22.82,USD,5.1,5.5,False,False,139.0,140.2,-14.4,-5.9,2026-04-19T14:52:02.353223
+CV,"CapsoVision, Inc.",USA,United States,Healthcare,6.01,USD,34.5,15.1,True,False,3.5,3.9,-7.9,-7.4,2026-04-19T14:52:03.949128
+VTEX,VTEX,USA,Cayman Islands,Technology,4.21,USD,100.0,99.6,True,False,59.6,68.0,6.4,9.8,2026-04-19T14:52:07.019320
+EQBK,"Equity Bancshares, Inc.",USA,United States,Financial Services,45.99,USD,40.4,29.6,True,False,17.1,72.3,-29.7,22.1,2026-04-19T14:52:08.090186
+FCPT,"Four Corners Property Trust, In",USA,United States,Real Estate,25.65,USD,45.7,50.3,False,False,74.1,75.7,28.8,29.4,2026-04-19T14:52:09.424772
+SMBK,"SmartFinancial, Inc.",USA,United States,Financial Services,42.38,USD,52.5,35.7,True,False,47.1,53.3,13.7,13.7,2026-04-19T14:52:10.418703
+CFFN,"Capitol Federal Financial, Inc.",USA,United States,Financial Services,7.71,USD,52.3,30.6,True,False,53.9,56.1,18.8,20.3,2026-04-19T14:52:13.216050
+SBSI,"Southside Bancshares, Inc.",USA,United States,Financial Services,33.38,USD,47.5,30.3,True,False,43.7,62.8,4.9,21.0,2026-04-19T14:52:14.678912
+MKTW,"MarketWise, Inc.",USA,United States,Financial Services,17.0,USD,74.4,79.8,False,False,81.3,83.4,1.5,1.9,2026-04-19T14:52:15.921668
+GCBC,"Greene County Bancorp, Inc.",USA,United States,Financial Services,23.7,USD,67.8,41.8,True,False,21.5,22.2,8.9,10.3,2026-04-19T14:52:17.335754
+PSTL,"Postal Realty Trust, Inc.",USA,United States,Real Estate,21.27,USD,33.9,34.2,False,False,24.3,26.0,3.8,4.6,2026-04-19T14:52:18.492845
+CLBK,"Columbia Financial, Inc.",USA,United States,Financial Services,18.56,USD,81.3,53.4,True,False,67.3,68.8,14.9,15.7,2026-04-19T14:52:20.264990
+PINE,"Alpine Income Property Trust, I",USA,United States,Real Estate,19.82,USD,29.1,22.6,True,False,14.6,16.9,-1.3,1.5,2026-04-19T14:52:21.983461
+ELA,Envela Corporation,USA,United States,Consumer Cyclical,17.91,USD,94.4,77.9,True,False,57.4,80.5,3.4,6.0,2026-04-19T14:52:25.006502
+EVTC,"Evertec, Inc.",USA,United States,Technology,30.68,USD,79.1,71.1,True,True,228.6,244.8,32.9,35.6,2026-04-19T14:52:25.762010
+ATRC,"AtriCure, Inc.",USA,United States,Healthcare,29.72,USD,3.3,3.1,True,False,134.3,140.5,-0.3,1.8,2026-04-19T14:52:27.645107
+ACEL,"Accel Entertainment, Inc.",USA,United States,Consumer Cyclical,12.0,USD,32.3,15.6,True,False,329.7,341.4,13.4,16.2,2026-04-19T14:52:28.987996
+NUVB,Nuvation Bio Inc.,USA,United States,Healthcare,5.08,USD,14.4,6.6,True,False,13.1,41.9,-55.8,-36.6,2026-04-19T14:52:30.169738
+EML,Eastern Company (The),USA,United States,Industrials,22.43,USD,90.3,79.4,True,False,55.3,57.5,0.6,1.2,2026-04-19T14:52:33.341411
+SKIL,Skillsoft Corp.,USA,United States,Consumer Defensive,6.82,USD,51.3,54.0,False,False,129.0,130.7,-41.3,-36.7,2026-04-19T14:52:36.293102
+BZAI,"Blaize Holdings, Inc.",USA,United States,Technology,2.52,USD,100.0,91.5,True,False,11.9,23.8,-26.3,-3.3,2026-04-19T14:52:37.735437
+TOWN,Towne Bank,USA,United States,Financial Services,36.31,USD,47.9,33.3,True,False,215.7,218.5,39.0,41.1,2026-04-19T14:52:40.134736
+TRMK,Trustmark Corporation,USA,United States,Financial Services,45.29,USD,55.5,42.1,True,False,172.7,175.7,56.8,57.9,2026-04-19T14:52:41.044793
+FCF,First,USA,United States,Financial Services,18.81,USD,39.4,28.0,True,False,136.0,137.9,41.3,44.9,2026-04-19T14:52:41.930946
+SFNC,Simmons First National Corporat,USA,United States,Financial Services,21.52,USD,31.3,24.3,True,False,-572.7,249.1,-562.8,78.1,2026-04-19T14:52:43.011075
+CIA,"Citizens, Inc.",USA,United States,Financial Services,5.59,USD,93.0,61.8,True,False,62.8,72.1,2.4,7.3,2026-04-19T14:52:43.803138
+PBYI,Puma Biotechnology Inc,USA,United States,Healthcare,7.47,USD,44.6,29.4,True,False,54.5,75.5,8.8,13.4,2026-04-19T14:52:44.982429
+BGS,"B&G Foods, Inc.",USA,United States,Consumer Defensive,5.43,USD,79.9,64.8,True,False,439.3,539.6,-19.1,-15.2,2026-04-19T14:52:52.568956
+CRSR,"Corsair Gaming, Inc.",USA,United States,Technology,6.48,USD,88.5,79.9,True,False,345.8,436.9,-10.6,25.8,2026-04-19T14:52:54.310383
+ORGO,Organogenesis Holdings Inc.,USA,United States,Healthcare,2.5,USD,16.7,7.9,True,False,150.5,225.1,21.6,43.7,2026-04-19T14:52:55.649906
+KIDS,OrthoPediatrics Corp.,USA,United States,Healthcare,16.75,USD,2.5,6.5,False,False,61.2,61.6,-11.8,-10.1,2026-04-19T14:52:59.418235
+PCT,"PureCycle Technologies, Inc.",USA,United States,Industrials,6.77,USD,27.7,34.9,False,False,2.4,2.7,-28.4,-18.8,2026-04-19T14:53:00.402303
+RMR,The RMR Group Inc.,USA,United States,Real Estate,16.96,USD,26.1,31.1,False,False,159.4,180.4,3.4,12.2,2026-04-19T14:53:01.731674
+PEBO,Peoples Bancorp Inc.,USA,United States,Financial Services,34.36,USD,54.9,40.0,True,False,112.1,120.8,29.5,31.8,2026-04-19T14:53:04.578143
+FLG,"Flagstar Bank, N.A.",USA,United States,Financial Services,14.65,USD,45.3,29.6,True,False,519.0,557.0,-36.0,29.0,2026-04-19T14:53:06.163961
+ADAM,"Adamas Trust, Inc.",USA,United States,Real Estate,7.88,USD,17.1,12.2,True,False,102.5,108.1,44.8,53.5,2026-04-19T14:53:07.049222
+BVFL,"BV Financial, Inc.",USA,United States,Financial Services,20.32,USD,70.9,45.5,True,False,10.0,10.6,3.7,4.8,2026-04-19T14:53:07.801949
+PGC,Peapack-Gladstone Financial Cor,USA,United States,Financial Services,39.44,USD,82.5,70.3,True,False,69.1,76.2,9.6,12.2,2026-04-19T14:53:09.377258
+AMSC,American Superconductor Corpora,USA,United States,Industrials,39.72,USD,97.6,94.9,True,False,65.9,74.5,4.8,117.8,2026-04-19T14:53:10.152474
+GENC,"Gencor Industries, Inc.",USA,United States,Industrials,15.03,USD,86.1,90.8,False,False,18.8,23.6,1.9,3.4,2026-04-19T14:53:11.348456
+KN,Knowles Corporation,USA,United States,Technology,29.69,USD,78.5,68.5,True,False,152.9,162.2,17.4,21.0,2026-04-19T14:53:15.174028
+AISP,"Airship AI Holdings, Inc",USA,United States,Technology,2.47,USD,75.2,77.0,False,False,1.2,6.5,6.4,23.0,2026-04-19T14:53:16.629293
+VABK,Virginia National Bankshares Co,USA,United States,Financial Services,41.72,USD,61.1,33.1,True,False,14.4,15.0,4.6,6.0,2026-04-19T14:53:17.428272
+BBW,"Build-A-Bear Workshop, Inc.",USA,United States,Consumer Cyclical,39.05,USD,0.2,4.5,False,False,122.7,154.5,8.1,16.4,2026-04-19T14:53:18.618983
+AUPH,Aurinia Pharmaceuticals Inc,USA,Canada,Healthcare,16.05,USD,58.9,35.2,True,False,73.5,77.1,31.6,210.8,2026-04-19T14:53:20.776608
+BFLY,"Butterfly Network, Inc.",USA,United States,Healthcare,5.45,USD,15.4,7.7,True,True,21.5,31.5,-34.0,-15.3,2026-04-19T14:53:23.390852
+RNGR,"Ranger Energy Services, Inc.",USA,United States,Energy,17.06,USD,40.1,55.3,False,False,128.9,142.2,1.2,3.2,2026-04-19T14:53:25.422384
+PSFE,Paysafe Limited,USA,United Kingdom,Technology,8.85,USD,86.3,74.7,True,False,433.8,438.4,-87.7,-25.2,2026-04-19T14:53:26.942407
+ORC,"Orchid Island Capital, Inc.",USA,United States,Real Estate,7.04,USD,14.1,11.0,True,False,77.5,109.2,72.1,103.4,2026-04-19T14:53:28.109612
+SMTI,Sanara MedTech Inc.,USA,United States,Healthcare,20.77,USD,23.2,10.6,True,True,26.3,27.5,-30.4,-1.6,2026-04-19T14:53:28.846195
+VYGR,"Voyager Therapeutics, Inc.",USA,United States,Healthcare,4.13,USD,84.2,81.3,True,False,13.4,15.3,-27.9,-27.4,2026-04-19T14:53:29.549114
+MBIN,Merchants Bancorp,USA,United States,Financial Services,48.91,USD,60.9,50.3,True,False,169.8,184.3,54.7,67.8,2026-04-19T14:53:32.132318
+MIAX,"Miami International Holdings, I",USA,United States,Financial Services,45.17,USD,61.3,34.0,True,False,339.8,369.4,-102.1,29.9,2026-04-19T14:53:32.895999
+TOI,"The Oncology Institute, Inc.",USA,United States,Healthcare,3.54,USD,50.1,47.9,True,True,136.6,142.0,-16.5,-7.5,2026-04-19T14:53:33.937949
+CBAN,"Colony Bankcorp, Inc.",USA,United States,Financial Services,21.25,USD,44.6,34.9,True,False,32.8,36.9,5.8,7.8,2026-04-19T14:53:35.390263
+CEVA,"CEVA, Inc.",USA,United States,Technology,23.42,USD,60.6,46.2,True,False,28.4,31.3,-2.5,-1.1,2026-04-19T14:53:36.175872
+OUT,OUTFRONT Media Inc.,USA,United States,Real Estate,30.01,USD,23.1,13.2,True,False,467.5,513.3,51.3,96.8,2026-04-19T14:53:38.395703
+RXRX,"Recursion Pharmaceuticals, Inc.",USA,United States,Healthcare,3.78,USD,46.7,28.6,True,False,5.0,35.4,-162.3,-108.1,2026-04-19T14:53:40.092691
+DHT,"DHT Holdings, Inc.",USA,Bermuda,Energy,18.32,USD,60.0,72.7,False,False,107.3,144.2,44.8,66.1,2026-04-19T14:53:41.550290
+FVCB,"FVCBankcorp, Inc.",USA,United States,Financial Services,15.55,USD,14.6,15.5,False,False,16.6,17.6,5.6,5.6,2026-04-19T14:53:43.357362
+MASS,908 Devices Inc.,USA,United States,Healthcare,7.16,USD,98.5,89.0,True,False,14.0,17.4,-15.0,4.2,2026-04-19T14:53:44.343078
+MXL,"MaxLinear, Inc",USA,United States,Technology,26.27,USD,65.5,42.7,True,False,126.5,136.4,-45.5,-14.9,2026-04-19T14:53:45.085691
+CVBF,CVB Financial Corporation,USA,United States,Financial Services,20.68,USD,49.5,33.7,True,False,128.6,133.9,52.6,55.0,2026-04-19T14:53:48.512289
+AVNS,"Avanos Medical, Inc.",USA,United States,Healthcare,24.62,USD,66.1,52.5,True,False,177.8,180.9,-1.4,-1.3,2026-04-19T14:53:51.261327
+CBRL,Cracker Barrel Old Country Stor,USA,United States,Consumer Cyclical,30.2,USD,76.5,80.5,False,False,797.2,874.8,-24.6,1.3,2026-04-19T14:53:54.612643
+HCKT,"The Hackett Group, Inc.",USA,United States,Technology,13.96,USD,14.6,8.9,True,False,73.1,75.8,2.5,5.6,2026-04-19T14:53:55.596159
+EGHT,8x8 Inc,USA,United States,Technology,1.98,USD,34.4,28.0,True,False,184.1,185.1,0.8,5.1,2026-04-19T14:53:57.245938
+LAUR,"Laureate Education, Inc.",USA,United States,Consumer Defensive,33.84,USD,1.5,1.5,False,False,400.2,541.4,34.5,171.6,2026-04-19T14:53:59.335119
+KLTR,"Kaltura, Inc.",USA,United States,Technology,1.17,USD,6.4,2.4,True,True,43.9,45.5,-2.6,-0.6,2026-04-19T14:54:00.640445
+PLSE,"Pulse Biosciences, Inc",USA,United States,Healthcare,23.4,USD,83.3,84.1,False,False,0.1,0.3,-19.4,-17.4,2026-04-19T14:54:01.825138
+LAND,Gladstone Land Corporation,USA,United States,Real Estate,10.3,USD,13.5,27.4,False,False,17.8,41.5,2.1,4.2,2026-04-19T14:54:04.204925
+TXG,"10x Genomics, Inc.",USA,United States,Healthcare,26.08,USD,37.2,31.5,True,False,149.0,166.0,-27.5,-16.3,2026-04-19T14:54:04.945454
+SBRA,"Sabra Health Care REIT, Inc.",USA,United States,Real Estate,20.68,USD,53.5,48.4,True,False,190.0,211.9,22.5,27.2,2026-04-19T14:54:07.671827
+BVS,Bioventus Inc.,USA,United States,Healthcare,10.52,USD,97.6,91.4,True,False,138.7,157.9,3.2,14.8,2026-04-19T14:54:08.807708
+FRBA,First Bank,USA,United States,Financial Services,17.02,USD,55.2,33.5,True,False,38.0,38.5,11.7,12.3,2026-04-19T14:54:09.665231
+ADCT,ADC Therapeutics SA,USA,Switzerland,Healthcare,4.28,USD,81.4,59.1,True,False,16.4,23.1,-41.0,-6.4,2026-04-19T14:54:10.412560
+TREE,"LendingTree, Inc.",USA,United States,Financial Services,47.96,USD,13.6,22.6,False,False,307.8,319.7,10.2,144.7,2026-04-19T14:54:11.611669
+PACK,Ranpak Holdings Corp,USA,United States,Consumer Cyclical,4.12,USD,6.8,6.8,False,False,99.6,111.9,-10.4,-9.5,2026-04-19T14:54:12.723874
+CRI,"Carter's, Inc.",USA,United States,Consumer Cyclical,38.51,USD,9.2,10.7,False,False,757.8,925.5,11.6,64.2,2026-04-19T14:54:14.786391
+FBYD,"Falcon's Beyond Global, Inc.",USA,United States,Industrials,13.57,USD,68.2,42.1,True,False,4.1,6.6,-4.4,0.2,2026-04-19T14:54:16.376756
+HSHP,Himalaya Shipping Ltd.,USA,Bermuda,Industrials,14.24,USD,42.4,48.6,False,False,37.9,42.1,9.5,13.5,2026-04-19T14:54:17.866784
+RPC,"Ridgepost Capital, Inc.",USA,United States,Financial Services,7.85,USD,7.1,2.9,True,False,75.9,81.0,2.1,9.5,2026-04-19T14:54:20.529958
+MGTX,MeiraGTx Holdings plc,USA,United States,Healthcare,10.12,USD,99.4,80.5,True,False,0.4,75.4,-50.5,15.1,2026-04-19T14:54:23.108037
+ABUS,ABUS,USA,—,—,4.72,USD,51.9,46.7,True,True,0.5,1.1,-7.7,-3.8,2026-04-19T14:54:25.183284
