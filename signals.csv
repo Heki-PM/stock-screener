@@ -1,26 +1,44 @@
 ticker,name,market,country,sector,price,currency,stoch_k,stoch_d,k_above_d,signal,rev_prev,rev_curr,earn_prev,earn_curr,scanned_at
-SMTI,Sanara MedTech Inc.,USA,United States,Healthcare,20.77,USD,23.2,10.6,True,True,26.3,27.5,-30.4,-1.6,2026-04-19T16:09:05.496973
-TDS,"Telephone and Data Systems, Inc",USA,United States,Communication Services,45.82,USD,17.3,16.8,True,True,308.5,330.7,-81.8,56.5,2026-04-19T16:09:14.291993
-GRPN,"Groupon, Inc.",USA,United States,Communication Services,14.21,USD,64.6,55.6,True,True,122.8,132.7,-118.4,7.3,2026-04-19T16:09:32.957536
-DSP,Viant Technology Inc.,USA,United States,Technology,11.61,USD,9.2,4.5,True,True,85.6,110.1,1.0,8.3,2026-04-19T16:09:33.773493
-EVTC,"Evertec, Inc.",USA,United States,Technology,30.68,USD,79.1,71.1,True,True,228.6,244.8,32.9,35.6,2026-04-19T16:09:36.927922
-ABX,"Abacus Global Management, Inc.",USA,United States,Financial Services,9.26,USD,15.3,7.0,True,True,63.0,71.9,7.1,7.2,2026-04-19T16:09:57.553449
-ABUS,Arbutus Biopharma Corporation,USA,United States,Healthcare,4.72,USD,51.9,46.7,True,True,0.5,1.1,-7.7,-3.8,2026-04-19T16:09:58.621884
-TOI,"The Oncology Institute, Inc.",USA,United States,Healthcare,3.54,USD,50.1,47.9,True,True,136.6,142.0,-16.5,-7.5,2026-04-19T16:10:03.097945
-NEXN,Nexxen International Ltd.,USA,Israel,Communication Services,7.49,USD,83.3,74.4,True,True,94.8,100.7,4.2,10.5,2026-04-19T16:10:41.645839
-ASLE,AerSale Corporation,USA,United States,Industrials,6.94,USD,7.0,4.3,True,True,71.2,90.9,-0.1,5.4,2026-04-19T16:12:17.799302
-TNDM,"Tandem Diabetes Care, Inc.",USA,United States,Healthcare,20.61,USD,8.7,6.8,True,True,249.3,290.4,-21.2,-0.6,2026-04-19T16:12:23.978768
-FLOC,Flowco Holdings Inc.,USA,United States,Energy,23.67,USD,9.8,4.9,True,True,176.9,197.2,12.5,17.2,2026-04-19T16:12:27.729691
-NXXT,"NextNRG, Inc.",USA,United States,Utilities,0.39,USD,6.9,3.4,True,True,19.7,22.9,-36.1,-14.1,2026-04-19T16:12:35.192613
-RXT,"Rackspace Technology, Inc.",USA,United States,Technology,1.47,USD,72.8,71.7,True,True,671.2,682.8,-67.1,-32.7,2026-04-19T16:12:46.697829
-SVV,"Savers Value Village, Inc.",USA,United States,Consumer Cyclical,8.64,USD,17.1,15.4,True,True,426.9,464.7,-14.0,22.4,2026-04-19T16:13:37.833099
-CNMD,CONMED Corporation,USA,United States,Healthcare,39.08,USD,48.5,45.4,True,True,337.9,373.2,2.9,16.7,2026-04-19T16:13:52.203231
-CLFD,"Clearfield, Inc.",USA,United States,Technology,29.98,USD,44.1,43.5,True,True,17.6,34.3,-9.1,-0.6,2026-04-19T16:14:05.050742
-SDGR,"Schrodinger, Inc.",USA,United States,Healthcare,12.34,USD,10.1,7.6,True,True,54.3,87.2,-32.8,32.5,2026-04-19T16:15:08.742455
-BOX,"Box, Inc.",USA,United States,Technology,23.75,USD,52.9,42.5,True,True,301.1,305.9,12.1,81.7,2026-04-19T16:15:32.537285
-VRNS,"Varonis Systems, Inc.",USA,United States,Technology,24.22,USD,60.9,57.7,True,True,161.6,173.4,-29.9,-27.8,2026-04-19T16:15:46.824628
-PECO,"Phillips Edison & Company, Inc.",USA,United States,Real Estate,39.59,USD,53.7,31.8,True,True,182.7,187.9,24.7,47.5,2026-04-19T16:15:57.638042
-PACS,"PACS Group, Inc.",USA,United States,Healthcare,35.2,USD,0.3,0.2,True,True,1344.6,1358.0,52.4,59.7,2026-04-19T16:16:37.526444
-KLTR,"Kaltura, Inc.",USA,United States,Technology,1.17,USD,6.4,2.4,True,True,43.9,45.5,-2.6,-0.6,2026-04-19T16:16:44.986692
-FA,First Advantage Corporation,USA,United States,Industrials,12.51,USD,12.1,9.7,True,True,409.2,420.0,2.6,3.5,2026-04-19T16:17:09.074322
-TBCH,Turtle Beach Corporation,USA,United States,Technology,11.81,USD,30.9,18.0,True,True,80.5,118.8,1.7,17.6,2026-04-19T16:17:56.477508
+EHTH,"eHealth, Inc.",USA,United States,Financial Services,1.84,USD,13.4,4.8,True,True,53.9,326.2,-31.7,87.2,2026-04-19T16:52:14.000968
+WVE,Wave Life Sciences Ltd.,USA,Singapore,Healthcare,7.49,USD,6.2,2.5,True,True,7.6,17.2,-53.9,-53.2,2026-04-19T16:53:18.179854
+EVTC,"Evertec, Inc.",USA,United States,Technology,30.68,USD,79.1,71.1,True,True,228.6,244.8,32.9,35.6,2026-04-19T16:54:50.790788
+CNMD,CONMED Corporation,USA,United States,Healthcare,39.08,USD,48.5,45.4,True,True,337.9,373.2,2.9,16.7,2026-04-19T16:55:37.470810
+SDGR,"Schrodinger, Inc.",USA,United States,Healthcare,12.34,USD,10.1,7.6,True,True,54.3,87.2,-32.8,32.5,2026-04-19T16:56:02.811249
+DSP,Viant Technology Inc.,USA,United States,Technology,11.61,USD,9.2,4.5,True,True,85.6,110.1,1.0,8.3,2026-04-19T16:56:33.233881
+VRNS,"Varonis Systems, Inc.",USA,United States,Technology,24.22,USD,60.9,57.7,True,True,161.6,173.4,-29.9,-27.8,2026-04-19T16:56:48.853564
+SVV,"Savers Value Village, Inc.",USA,United States,Consumer Cyclical,8.64,USD,17.1,15.4,True,True,426.9,464.7,-14.0,22.4,2026-04-19T16:56:53.629326
+TNDM,"Tandem Diabetes Care, Inc.",USA,United States,Healthcare,20.61,USD,8.7,6.8,True,True,249.3,290.4,-21.2,-0.6,2026-04-19T16:57:27.321410
+HTFL,"Heartflow, Inc.",USA,United States,Healthcare,31.34,USD,54.0,49.2,True,True,46.3,49.1,-50.9,-24.4,2026-04-19T16:58:26.040257
+TOI,"The Oncology Institute, Inc.",USA,United States,Healthcare,3.54,USD,50.1,47.9,True,True,136.6,142.0,-16.5,-7.5,2026-04-19T16:58:48.137935
+KLTR,"Kaltura, Inc.",USA,United States,Technology,1.17,USD,6.4,2.4,True,True,43.9,45.5,-2.6,-0.6,2026-04-19T16:59:07.948984
+MXCT,"MaxCyte, Inc.",USA,United States,Healthcare,0.85,USD,17.7,9.2,True,True,6.8,7.3,-12.4,-9.6,2026-04-19T16:59:18.837706
+BFLY,"Butterfly Network, Inc.",USA,United States,Healthcare,5.45,USD,15.4,7.7,True,True,21.5,31.5,-34.0,-15.3,2026-04-19T17:00:10.188710
+RXT,"Rackspace Technology, Inc.",USA,United States,Technology,1.47,USD,72.8,71.7,True,True,671.2,682.8,-67.1,-32.7,2026-04-19T17:00:12.122523
+GRPN,"Groupon, Inc.",USA,United States,Communication Services,14.21,USD,64.6,55.6,True,True,122.8,132.7,-118.4,7.3,2026-04-19T17:01:24.095782
+ASUR,Asure Software Inc,USA,United States,Technology,9.15,USD,8.7,5.2,True,True,36.3,39.3,-5.4,0.8,2026-04-19T17:01:35.369950
+IOVA,"Iovance Biotherapeutics, Inc.",USA,United States,Healthcare,3.86,USD,27.3,26.2,True,True,67.5,86.8,-91.3,-71.9,2026-04-19T17:01:37.850506
+FA,First Advantage Corporation,USA,United States,Industrials,12.51,USD,12.1,9.7,True,True,409.2,420.0,2.6,3.5,2026-04-19T17:01:49.911103
+MGNI,"Magnite, Inc.",USA,United States,Communication Services,13.71,USD,48.5,39.7,True,True,179.5,205.4,20.1,123.0,2026-04-19T17:01:59.895008
+NXXT,"NextNRG, Inc.",USA,United States,Utilities,0.39,USD,6.9,3.4,True,True,19.7,22.9,-36.1,-14.1,2026-04-19T17:02:23.373578
+NVCR,NovoCure Limited,USA,Switzerland,Healthcare,12.83,USD,13.3,12.3,True,True,167.2,174.3,-37.3,-24.5,2026-04-19T17:02:26.365949
+ABUS,Arbutus Biopharma Corporation,USA,United States,Healthcare,4.72,USD,51.9,46.7,True,True,0.5,1.1,-7.7,-3.8,2026-04-19T17:02:27.774102
+PACS,"PACS Group, Inc.",USA,United States,Healthcare,35.2,USD,0.3,0.2,True,True,1344.6,1358.0,52.4,59.7,2026-04-19T17:02:34.988227
+NMAX,"Newsmax, Inc.",USA,United States,Communication Services,6.95,USD,63.4,44.7,True,True,45.3,52.2,-4.1,-3.0,2026-04-19T17:03:25.436184
+ABX,"Abacus Global Management, Inc.",USA,United States,Financial Services,9.26,USD,15.3,7.0,True,True,63.0,71.9,7.1,7.2,2026-04-19T17:03:34.458318
+DOMO,"Domo, Inc.",USA,United States,Technology,3.8,USD,60.7,55.4,True,True,79.4,79.6,-10.4,-8.0,2026-04-19T17:04:07.891385
+GCMG,GCM Grosvenor Inc.,USA,United States,Financial Services,10.94,USD,23.3,12.7,True,True,138.7,177.8,10.5,19.0,2026-04-19T17:05:23.167476
+SMTI,Sanara MedTech Inc.,USA,United States,Healthcare,20.77,USD,23.2,10.6,True,True,26.3,27.5,-30.4,-1.6,2026-04-19T17:05:30.564665
+PECO,"Phillips Edison & Company, Inc.",USA,United States,Real Estate,39.59,USD,53.7,31.8,True,True,182.7,187.9,24.7,47.5,2026-04-19T17:06:01.879541
+JYNT,The Joint Corp.,USA,United States,Healthcare,9.22,USD,20.5,20.1,True,True,13.4,15.2,0.9,1.0,2026-04-19T17:06:19.502051
+CLFD,"Clearfield, Inc.",USA,United States,Technology,29.98,USD,44.1,43.5,True,True,17.6,34.3,-9.1,-0.6,2026-04-19T17:06:31.244492
+TDS,"Telephone and Data Systems, Inc",USA,United States,Communication Services,45.82,USD,17.3,16.8,True,True,308.5,330.7,-81.8,56.5,2026-04-19T17:06:33.565141
+BBNX,"Beta Bionics, Inc.",USA,United States,Healthcare,12.98,USD,20.5,7.5,True,True,27.3,32.1,-14.2,-13.5,2026-04-19T17:06:35.561734
+BOX,"Box, Inc.",USA,United States,Technology,23.75,USD,52.9,42.5,True,True,301.1,305.9,12.1,81.7,2026-04-19T17:06:37.705965
+FLOC,Flowco Holdings Inc.,USA,United States,Energy,23.67,USD,9.8,4.9,True,True,176.9,197.2,12.5,17.2,2026-04-19T17:07:13.166729
+TBCH,Turtle Beach Corporation,USA,United States,Technology,11.81,USD,30.9,18.0,True,True,80.5,118.8,1.7,17.6,2026-04-19T17:08:07.836259
+ASLE,AerSale Corporation,USA,United States,Industrials,6.94,USD,7.0,4.3,True,True,71.2,90.9,-0.1,5.4,2026-04-19T17:08:42.257292
+NEXN,Nexxen International Ltd.,USA,Israel,Communication Services,7.49,USD,83.3,74.4,True,True,94.8,100.7,4.2,10.5,2026-04-19T17:08:56.449807
+CLNX.MC,"CELLNEX TELECOM, S.A.",EU,Spain,Real Estate,28.86,EUR,51.0,47.1,True,True,995.0,1183.3,-148.0,-97.8,2026-04-19T17:09:32.253259
+AUTO.OL,AUTOSTORE HOLDINGS LTD.,EU,Norway,Technology,11.19,NOK,7.0,6.0,True,True,133.9,179.7,11.3,40.9,2026-04-19T17:10:03.395323
+ZAL.DE,Zalando SE                    I,EU,Germany,Consumer Cyclical,23.55,EUR,51.9,36.7,True,True,3020.6,4071.1,14.8,93.7,2026-04-19T17:10:21.433275
+RAND.AS,Randstad N.V.,EU,Netherlands,Industrials,24.37,EUR,46.1,29.9,True,True,5794.0,5817.0,47.0,90.0,2026-04-19T17:10:41.682523
