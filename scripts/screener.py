@@ -192,26 +192,59 @@ def bullish_cross(k, d):
 #  ANALIZA FUNDAMENTALNA
 # ══════════════════════════════════════════════════════════════
 
-def check_fundamentals(tkr_obj):
+def check_fundamentals(tkr_obj, min_annual_rev_growth=0.15):
+    """
+    Sprawdza kryteria fundamentalne:
+    - Revenue rosnace QoQ (ostatni kwartal vs poprzedni)
+    - Net Income rosnace QoQ
+    - Roczny wzrost przychodow > min_annual_rev_growth (domyslnie 15%)
+    Zwraca: (rev_up, earn_up, rev_vals, earn_vals, annual_rev_growth)
+    """
     try:
         q = tkr_obj.quarterly_financials
         if q is None or q.empty:
-            return False, False, None, None
+            return False, False, None, None, None
+
         rev_up = earn_up = False
         rev_vals = earn_vals = None
+        annual_rev_growth = None
+
         if "Total Revenue" in q.index:
             rev = q.loc["Total Revenue"].dropna()
+
+            # QoQ: ostatni kwartal vs poprzedni
             if len(rev) >= 2:
                 rev_up   = float(rev.iloc[0]) > float(rev.iloc[1])
                 rev_vals = (round(float(rev.iloc[1])/1e6, 1), round(float(rev.iloc[0])/1e6, 1))
+
+            # YoY: suma ostatnich 4 kwartalow vs 4 poprzednich
+            if len(rev) >= 8:
+                ttm_curr = float(rev.iloc[0:4].sum())
+                ttm_prev = float(rev.iloc[4:8].sum())
+                if ttm_prev > 0:
+                    annual_rev_growth = (ttm_curr - ttm_prev) / ttm_prev
+            # Fallback: ostatni kwartal vs ten sam kwartal rok temu
+            elif len(rev) >= 5:
+                curr = float(rev.iloc[0])
+                prev_year = float(rev.iloc[4])
+                if prev_year > 0:
+                    annual_rev_growth = (curr - prev_year) / prev_year
+
         if "Net Income" in q.index:
             net = q.loc["Net Income"].dropna()
             if len(net) >= 2:
                 earn_up   = float(net.iloc[0]) > float(net.iloc[1])
                 earn_vals = (round(float(net.iloc[1])/1e6, 1), round(float(net.iloc[0])/1e6, 1))
-        return rev_up, earn_up, rev_vals, earn_vals
+
+        # Filtr rocznego wzrostu przychodow
+        if annual_rev_growth is None:
+            rev_annual_ok = False  # brak danych = odrzuc
+        else:
+            rev_annual_ok = annual_rev_growth >= min_annual_rev_growth
+
+        return rev_up, earn_up, rev_vals, earn_vals, annual_rev_growth, rev_annual_ok
     except:
-        return False, False, None, None
+        return False, False, None, None, None, False
 
 # ══════════════════════════════════════════════════════════════
 #  GŁÓWNA PĘTLA SCREENER
@@ -248,8 +281,8 @@ def run_screener():
 
             currency = getattr(fi, "currency", "USD")
 
-            rev_up, earn_up, rev_vals, earn_vals = check_fundamentals(tkr)
-            if not (rev_up and earn_up):
+            rev_up, earn_up, rev_vals, earn_vals, annual_growth, rev_annual_ok = check_fundamentals(tkr)
+            if not (rev_up and earn_up and rev_annual_ok):
                 skipped += 1
                 continue
 
@@ -273,30 +306,34 @@ def run_screener():
                 sector  = "—"
                 country = "—"
 
+            annual_growth_pct = round(annual_growth * 100, 1) if annual_growth is not None else None
+
             row = {
-                "ticker":    symbol,
-                "name":      name,
-                "market":    market,
-                "country":   country,
-                "sector":    sector,
-                "price":     round(price, 2),
-                "currency":  currency,
-                "stoch_k":   k_val,
-                "stoch_d":   d_val,
-                "k_above_d": k_val > d_val,
-                "signal":    signal,
-                "rev_prev":  rev_vals[0] if rev_vals else None,
-                "rev_curr":  rev_vals[1] if rev_vals else None,
-                "earn_prev": earn_vals[0] if earn_vals else None,
-                "earn_curr": earn_vals[1] if earn_vals else None,
-                "scanned_at": datetime.now().isoformat(),
+                "ticker":        symbol,
+                "name":          name,
+                "market":        market,
+                "country":       country,
+                "sector":        sector,
+                "price":         round(price, 2),
+                "currency":      currency,
+                "stoch_k":       k_val,
+                "stoch_d":       d_val,
+                "k_above_d":     k_val > d_val,
+                "signal":        signal,
+                "rev_prev":      rev_vals[0] if rev_vals else None,
+                "rev_curr":      rev_vals[1] if rev_vals else None,
+                "earn_prev":     earn_vals[0] if earn_vals else None,
+                "earn_curr":     earn_vals[1] if earn_vals else None,
+                "rev_yoy_pct":   annual_growth_pct,
+                "scanned_at":    datetime.now().isoformat(),
             }
             results.append(row)
+            growth_str = f"+{annual_growth_pct}% YoY" if annual_growth_pct else ""
             if signal:
                 signals.append(row)
-                print(f"  🎯 [{i+1}] {symbol:10s} {market} | {price:6.2f} {currency} | K={k_val} D={d_val} | SYGNAŁ!")
+                print(f"  SYGNAŁ [{i+1}] {symbol:10s} {market} | {price:6.2f} {currency} | K={k_val} D={d_val} | {growth_str}")
             else:
-                print(f"  ✓  [{i+1}] {symbol:10s} {market} | {price:6.2f} {currency} | K={k_val} D={d_val}")
+                print(f"  ok     [{i+1}] {symbol:10s} {market} | {price:6.2f} {currency} | K={k_val} D={d_val} | {growth_str}")
 
             time.sleep(DELAY)
 
