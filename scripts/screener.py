@@ -62,30 +62,51 @@ def get_russell2000():
         return []
 
 def get_european_indices():
+    """
+    Pobiera tickery europejskie z poprawnymi sufiksami Yahoo Finance:
+    .DE (Xetra), .PA (Paryż), .L (Londyn), .AS (Amsterdam),
+    .MC (Madryt), .SW (Szwajcaria), .MI (Mediolan), .ST (Sztokholm),
+    .OL (Oslo), .BR (Bruksela), .WA (Warszawa)
+    """
     indices = [
-        ("DAX",    "https://en.wikipedia.org/wiki/DAX",                "Ticker"),
-        ("CAC 40", "https://en.wikipedia.org/wiki/CAC_40",             "Ticker"),
-        ("FTSE100","https://en.wikipedia.org/wiki/FTSE_100",           "EPIC"),
-        ("AEX",    "https://en.wikipedia.org/wiki/AEX_index",          "Ticker"),
-        ("IBEX35", "https://en.wikipedia.org/wiki/IBEX_35",            "Ticker"),
-        ("SMI",    "https://en.wikipedia.org/wiki/Swiss_Market_Index",  "Ticker"),
-        ("MIB",    "https://en.wikipedia.org/wiki/FTSE_MIB",           "Ticker"),
-        ("OMX30",  "https://en.wikipedia.org/wiki/OMX_Stockholm_30",   "Ticker"),
-        ("OBX",    "https://en.wikipedia.org/wiki/OBX_Index",          "Ticker"),
-        ("BEL20",  "https://en.wikipedia.org/wiki/BEL_20",             "Ticker"),
+        ("DAX",    "https://en.wikipedia.org/wiki/DAX",               "Ticker", ".DE"),
+        ("CAC40",  "https://en.wikipedia.org/wiki/CAC_40",            "Ticker", ".PA"),
+        ("FTSE100","https://en.wikipedia.org/wiki/FTSE_100",          "EPIC",   ".L"),
+        ("AEX",    "https://en.wikipedia.org/wiki/AEX_index",         "Ticker", ".AS"),
+        ("IBEX35", "https://en.wikipedia.org/wiki/IBEX_35",           "Ticker", ".MC"),
+        ("SMI",    "https://en.wikipedia.org/wiki/Swiss_Market_Index","Ticker", ".SW"),
+        ("MIB",    "https://en.wikipedia.org/wiki/FTSE_MIB",          "Ticker", ".MI"),
+        ("OMX30",  "https://en.wikipedia.org/wiki/OMX_Stockholm_30",  "Ticker", ".ST"),
+        ("OBX",    "https://en.wikipedia.org/wiki/OBX_Index",         "Ticker", ".OL"),
+        ("BEL20",  "https://en.wikipedia.org/wiki/BEL_20",            "Ticker", ".BR"),
+        ("WIG20",  "https://en.wikipedia.org/wiki/WIG20",             "Ticker", ".WA"),
     ]
     all_tickers = []
-    for name, url, col in indices:
+    for name, url, col, suffix in indices:
         try:
             tables = pd.read_html(url)
+            found = False
             for t in tables:
                 if col in t.columns:
-                    tickers = t[col].dropna().str.strip().tolist()
+                    raw = t[col].dropna().str.strip().tolist()
+                    tickers = []
+                    for tk in raw:
+                        tk = str(tk).strip()
+                        if not tk or tk == "nan":
+                            continue
+                        base = tk.split(".")[0] if "." in tk else tk
+                        base = base.replace(" ", "-")
+                        tickers.append(base + suffix)
                     all_tickers += tickers
-                    print(f"  {name}: {len(tickers)} spółek")
+                    print(f"  {name}: {len(tickers)} spolok (sufiks: {suffix})")
+                    found = True
                     break
+            if not found:
+                print(f"  {name}: nie znaleziono kolumny '{col}'")
         except Exception as e:
-            print(f"  {name} błąd: {e}")
+            print(f"  {name} blad: {e}")
+    all_tickers = list(set(all_tickers))
+    print(f"  EU lacznie (po deduplikacji): {len(all_tickers)}")
     return all_tickers
 
 # ══════════════════════════════════════════════════════════════
