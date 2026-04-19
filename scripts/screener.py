@@ -23,29 +23,34 @@ OUTPUT_DIR = "results"
 # ══════════════════════════════════════════════════════════════
 
 def get_sp500():
+    """Pobiera S&P 500 z iShares ETF holdings (IVV) - dziala z GitHub Actions"""
     try:
-        url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-        df = pd.read_html(url)[0]
-        tickers = df["Symbol"].str.replace(".", "-", regex=False).tolist()
-        print(f"  S&P 500: {len(tickers)} spółek")
+        url = ("https://www.ishares.com/us/products/239726/ISHARES-CORE-SP-500-ETF/"
+               "1467271812596.ajax?fileType=csv&fileName=IVV_holdings&dataType=fund")
+        r = requests.get(url, timeout=20, headers={"User-Agent": "Mozilla/5.0"})
+        df = pd.read_csv(StringIO(r.text), skiprows=9)
+        df = df[df["Asset Class"] == "Equity"]
+        tickers = df["Ticker"].dropna().str.strip().str.replace(".", "-", regex=False).tolist()
+        print(f"  S&P 500 (iShares IVV): {len(tickers)} spolok")
         return tickers
     except Exception as e:
-        print(f"  S&P 500 błąd: {e}")
+        print(f"  S&P 500 blad: {e}")
         return []
 
 def get_sp600():
+    """Pobiera S&P 600 z iShares ETF holdings (IJR) - dziala z GitHub Actions"""
     try:
-        url = "https://en.wikipedia.org/wiki/List_of_S%26P_600_companies"
-        tables = pd.read_html(url)
-        for t in tables:
-            for col in ["Ticker symbol", "Symbol", "Ticker"]:
-                if col in t.columns:
-                    tickers = t[col].str.replace(".", "-", regex=False).dropna().tolist()
-                    print(f"  S&P 600: {len(tickers)} spółek")
-                    return tickers
+        url = ("https://www.ishares.com/us/products/239774/ISHARES-CORE-SP-SMALLCAP-ETF/"
+               "1467271812596.ajax?fileType=csv&fileName=IJR_holdings&dataType=fund")
+        r = requests.get(url, timeout=20, headers={"User-Agent": "Mozilla/5.0"})
+        df = pd.read_csv(StringIO(r.text), skiprows=9)
+        df = df[df["Asset Class"] == "Equity"]
+        tickers = df["Ticker"].dropna().str.strip().str.replace(".", "-", regex=False).tolist()
+        print(f"  S&P 600 (iShares IJR): {len(tickers)} spolok")
+        return tickers
     except Exception as e:
-        print(f"  S&P 600 błąd: {e}")
-    return []
+        print(f"  S&P 600 blad: {e}")
+        return []
 
 def get_russell2000():
     try:
