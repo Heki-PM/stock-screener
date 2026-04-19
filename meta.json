@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-04-19T14:54:31.933313",
-  "elapsed_min": 8.8,
+  "generated_at": "2026-04-19T16:18:04.192004",
+  "elapsed_min": 9.2,
   "total_scanned": 1933,
-  "candidates": 321,
-  "signals": 28,
-  "skipped": 875,
-  "errors": 737
+  "candidates": 331,
+  "signals": 25,
+  "skipped": 914,
+  "errors": 688
 }
