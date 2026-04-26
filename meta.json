@@ -1,9 +1,11 @@
 {
-  "generated_at": "2026-04-26T07:59:37.096290",
-  "elapsed_min": 6.6,
+  "generated_at": "2026-04-26T17:15:34.870796",
+  "elapsed_min": 6.8,
   "total_scanned": 2883,
-  "candidates": 141,
-  "signals": 3,
-  "skipped": 940,
-  "errors": 1802
+  "candidates": 119,
+  "signals": 15,
+  "strong": 13,
+  "skipped": 1077,
+  "errors": 1687,
+  "indicator": "SMI(10,3,3)"
 }
