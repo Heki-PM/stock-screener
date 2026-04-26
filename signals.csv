@@ -1,9 +1,4 @@
 ticker,name,market,country,sector,price,currency,stoch_k,stoch_d,k_above_d,signal,rev_prev,rev_curr,earn_prev,earn_curr,rev_yoy_pct,scanned_at
-VCTR,"Victory Capital Holdings, Inc. ",USA,United States,Financial Services,74.78,USD,22.3,18.7,True,True,361.2,374.1,96.5,112.8,61.0,2026-04-24T17:38:35.193828
-ATEC,"Alphatec Holdings, Inc.",USA,United States,Healthcare,10.69,USD,3.1,1.6,True,True,196.5,212.9,-28.6,-21.7,20.4,2026-04-24T17:41:42.717711
-ADEA,Adeia Inc.,USA,United States,Technology,30.31,USD,96.4,94.7,True,True,87.3,182.6,8.8,73.7,53.3,2026-04-24T17:42:09.385402
-RUN,Sunrun Inc.,USA,United States,Technology,12.62,USD,13.6,12.0,True,True,724.6,1158.8,16.6,103.6,123.5,2026-04-24T17:48:58.333002
-ESPR,"Esperion Therapeutics, Inc.",USA,United States,Healthcare,1.88,USD,5.0,2.4,True,True,87.3,168.4,-31.3,61.8,143.7,2026-04-24T17:53:11.802321
-ZETA,Zeta Global Holdings Corp.,USA,United States,Technology,17.3,USD,9.1,4.0,True,True,337.2,394.6,-3.6,6.5,25.4,2026-04-24T17:54:10.303332
-BCRX,"BioCryst Pharmaceuticals, Inc.",USA,United States,Healthcare,8.84,USD,91.5,88.0,True,True,159.4,406.6,12.9,245.8,209.1,2026-04-24T17:54:47.522702
-INTA,"Intapp, Inc.",USA,United States,Technology,21.96,USD,13.1,6.7,True,True,139.0,140.2,-14.4,-5.9,15.7,2026-04-24T17:56:08.950586
+ZETA,Zeta Global Holdings Corp.,USA,United States,Technology,17.53,USD,9.8,4.2,True,True,337.2,394.6,-3.6,6.5,25.4,2026-04-26T07:53:19.358283
+ATEC,"Alphatec Holdings, Inc.",USA,United States,Healthcare,10.9,USD,3.3,1.7,True,True,196.5,212.9,-28.6,-21.7,20.4,2026-04-26T07:53:32.602402
+INTA,"Intapp, Inc.",USA,United States,Technology,22.25,USD,13.3,6.8,True,True,139.0,140.2,-14.4,-5.9,15.7,2026-04-26T07:56:54.050174
