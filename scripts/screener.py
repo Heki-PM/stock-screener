@@ -15,7 +15,7 @@ import os
 from datetime import datetime
 from io import StringIO
 
-MAX_PRICE  = 50
+MAX_PRICE  = 100
 DELAY      = 0.25
 OUTPUT_DIR = "results"
 
