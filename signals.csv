@@ -1,20 +1,18 @@
 ticker,name,market,country,sector,price,currency,smi,smi_ema,smi_above_ema,zone,signal,strong_signal,rev_prev,rev_curr,earn_prev,earn_curr,rev_yoy_pct,scanned_at
-SOUN,"SoundHound AI, Inc.",USA,United States,Technology,8.19,USD,-27.2,-46.62,True,Bearish,True,True,42.0,55.1,-109.3,40.1,59.4,2026-04-26T18:41:06.689715
-BLMN,"Bloomin' Brands, Inc.",USA,United States,Consumer Cyclical,6.13,USD,-23.86,-39.96,True,Bearish,True,True,928.8,975.2,-45.9,-13.5,63.2,2026-04-26T18:41:20.993930
-RXRX,"Recursion Pharmaceuticals, Inc.",USA,United States,Healthcare,3.51,USD,-25.03,-40.5,True,Bearish,True,True,5.0,35.4,-162.3,-108.1,683.7,2026-04-26T18:41:34.256558
-STEP,StepStone Group Inc.,USA,United States,Financial Services,51.82,USD,-31.66,-45.8,True,Bearish,True,True,454.2,586.5,-366.1,-123.5,73.0,2026-04-26T18:41:55.228650
-XERS,"Xeris Biopharma Holdings, Inc.",USA,United States,Healthcare,6.05,USD,-34.85,-47.44,True,Bearish,True,True,74.4,85.8,0.6,11.1,42.8,2026-04-26T18:42:00.140957
-ZETA,Zeta Global Holdings Corp.,USA,United States,Technology,17.53,USD,-26.61,-40.13,True,Bearish,True,True,337.2,394.6,-3.6,6.5,25.4,2026-04-26T18:42:12.065247
-RIGL,"Rigel Pharmaceuticals, Inc.",USA,United States,Healthcare,30.29,USD,-30.82,-46.23,True,Bearish,True,True,69.5,69.8,27.9,268.1,21.2,2026-04-26T18:42:45.935376
-ROOT,"Root, Inc.",USA,United States,Financial Services,57.68,USD,-31.22,-52.7,True,Bearish,True,True,387.8,397.0,-5.4,5.3,21.5,2026-04-26T18:43:02.381687
-HOOD,"Robinhood Markets, Inc.",USA,United States,Financial Services,84.71,USD,-20.84,-43.63,True,Bearish,True,True,1274.0,1283.0,556.0,605.0,26.5,2026-04-26T18:43:11.399832
-RYTM,"Rhythm Pharmaceuticals, Inc.",USA,United States,Healthcare,85.7,USD,-37.73,-46.06,True,Bearish,True,True,51.3,57.3,-52.9,-47.5,36.9,2026-04-26T18:43:13.491436
-SWBI,"Smith & Wesson Brands, Inc.",USA,United States,Industrials,15.0,USD,72.06,71.93,True,OVERBOUGHT,True,False,124.7,135.7,1.9,3.8,17.1,2026-04-26T18:44:28.557138
-NXXT,"NextNRG, Inc.",USA,United States,Utilities,0.44,USD,-81.43,-84.61,True,OVERSOLD,True,True,19.7,22.9,-36.1,-14.1,227.2,2026-04-26T18:44:41.115204
-MFIN,Medallion Financial Corp.,USA,United States,Financial Services,9.4,USD,-24.04,-39.29,True,Bearish,True,True,55.9,67.6,11.3,12.2,25.4,2026-04-26T18:44:46.611328
-GOLD,"Gold.com, Inc.",USA,United States,Financial Services,47.01,USD,-42.13,-43.5,True,OVERSOLD,True,True,3680.8,6476.9,-0.9,11.6,136.2,2026-04-26T18:44:53.089149
-ADUS,Addus HomeCare Corporation,USA,United States,Healthcare,95.71,USD,-78.88,-79.95,True,OVERSOLD,True,True,362.3,373.1,22.8,29.8,25.6,2026-04-26T18:45:34.693365
-INOD,Innodata Inc.,USA,United States,Technology,42.34,USD,-38.99,-53.75,True,Bearish,True,True,62.5,72.4,8.3,8.8,22.3,2026-04-26T18:45:49.916590
-WYFI,"WhiteFiber, Inc.",USA,United States,Technology,16.55,USD,-21.88,-40.54,True,Bearish,True,True,20.2,23.6,-15.8,-1.5,27.6,2026-04-26T18:46:36.102983
-KFS,"Kingsway Financial Services, In",USA,United States,Consumer Cyclical,11.8,USD,-19.1,-38.13,True,Bearish,True,True,37.6,39.0,-2.5,-1.7,29.0,2026-04-26T18:47:10.043564
-TCMD,"Tactile Systems Technology, Inc",USA,United States,Healthcare,25.07,USD,-80.51,-81.52,True,OVERSOLD,True,True,85.8,103.6,8.2,10.6,21.0,2026-04-26T18:47:32.892651
+LZ,"LegalZoom.com, Inc.",USA,United States,Industrials,6.47,USD,-37.65,-52.88,True,Bearish,True,True,190.2,190.3,4.5,6.1,17.7,2026-04-29T16:45:05.887912
+MPT,"Medical Properties Trust, Inc.",USA,United States,Real Estate,5.19,USD,-36.29,-47.17,True,Bearish,True,True,237.5,270.3,-77.7,17.3,16.6,2026-04-29T16:46:22.646972
+LFST,"LifeStance Health Group, Inc.",USA,United States,Healthcare,7.45,USD,-24.38,-41.42,True,Bearish,True,True,363.8,382.2,1.1,11.7,17.4,2026-04-29T16:46:41.125229
+XRX,Xerox Holdings Corporation,USA,United States,Industrials,1.55,USD,-38.19,-52.4,True,Bearish,True,True,1961.0,2028.0,-760.0,-73.0,25.7,2026-04-29T16:46:56.391528
+SVV,"Savers Value Village, Inc.",USA,United States,Consumer Cyclical,8.2,USD,-37.85,-46.41,True,Bearish,True,True,426.9,464.7,-14.0,22.4,15.6,2026-04-29T16:47:25.402784
+ABAT,American Battery Technology Com,USA,United States,Industrials,3.09,USD,-28.25,-41.53,True,Bearish,True,True,0.9,4.8,-10.3,-9.3,1331.8,2026-04-29T16:47:34.509054
+EVER,"EverQuote, Inc.",USA,United States,Communication Services,15.86,USD,-39.4,-50.13,True,Bearish,True,True,173.9,195.3,18.9,57.8,32.5,2026-04-29T16:48:35.078707
+XMTR,"Xometry, Inc.",USA,United States,Industrials,44.87,USD,-39.51,-50.43,True,Bearish,True,True,180.7,192.4,-11.6,-8.6,29.5,2026-04-29T16:49:41.042459
+AMPL,"Amplitude, Inc.",USA,United States,Technology,7.05,USD,-22.7,-37.42,True,Bearish,True,True,88.6,91.4,-24.0,-17.7,17.0,2026-04-29T16:53:53.092142
+PAYX,"Paychex, Inc.",USA,United States,Technology,93.16,USD,-38.98,-46.49,True,Bearish,True,True,1557.6,1808.9,395.4,560.3,19.9,2026-04-29T16:54:01.635325
+ADMA,ADMA Biologics Inc,USA,United States,Healthcare,10.59,USD,-35.6,-42.42,True,Bearish,True,True,134.2,139.2,36.4,49.4,18.4,2026-04-29T16:54:32.480969
+AVPT,"AvePoint, Inc.",USA,United States,Technology,9.9,USD,-39.72,-49.75,True,Bearish,True,True,109.7,114.7,13.0,15.6,28.6,2026-04-29T16:56:01.123864
+CBNA,"Chain Bridge Bancorp, Inc.",USA,United States,Financial Services,37.04,USD,18.45,9.97,True,Bullish,True,False,13.1,14.7,4.7,5.3,16.3,2026-04-29T16:56:02.613210
+GOLD,"Gold.com, Inc.",USA,United States,Financial Services,44.54,USD,-39.66,-41.58,True,Bearish,True,True,3680.8,6476.9,-0.9,11.6,136.2,2026-04-29T16:59:04.503135
+VTR,"Ventas, Inc.",USA,United States,Real Estate,87.13,USD,36.19,33.68,True,Bullish,True,False,1489.0,1566.0,66.0,70.2,21.7,2026-04-29T17:00:16.547638
+FWRG,"First Watch Restaurant Group, I",USA,United States,Consumer Cyclical,12.91,USD,-32.42,-46.08,True,Bearish,True,True,316.0,316.4,3.0,15.2,20.2,2026-04-29T17:02:19.581558
+STNG,Scorpio Tankers Inc.,USA,Monaco,Energy,80.9,USD,50.39,45.63,True,OVERBOUGHT,True,False,241.4,252.7,84.5,128.1,23.9,2026-04-29T17:02:30.347180
