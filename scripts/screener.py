@@ -845,6 +845,43 @@ def generate_html(meta, results, signals, strong):
   .empty::before {{ content:'//'; display:block; font-size:32px; margin-bottom:1rem; color:var(--border); }}
 
   footer {{ border-top:1px solid var(--border); padding:1rem 2rem; font-size:11px; color:var(--muted); font-family:'IBM Plex Mono',monospace; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }}
+
+  /* ── AI ANALIZA PANEL ───────────────────────────────────── */
+  .ai-panel-wrap {{ max-width:900px; }}
+  .ai-intro {{ font-size:13px; color:var(--muted); margin-bottom:1.5rem; line-height:1.7; }}
+  .ai-intro strong {{ color:var(--text); }}
+  .ai-key-row {{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:1rem; }}
+  .ai-key-input {{ background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:8px 14px; color:var(--text); font-family:'IBM Plex Mono',monospace; font-size:12px; width:340px; outline:none; letter-spacing:.05em; }}
+  .ai-key-input:focus {{ border-color:var(--fvg); box-shadow:0 0 0 2px rgba(176,127,255,.15); }}
+  .ai-run-btn {{ background:linear-gradient(135deg,rgba(176,127,255,.2),rgba(0,200,255,.15)); border:1px solid rgba(176,127,255,.4); border-radius:6px; padding:8px 20px; color:var(--fvg); font-family:'IBM Plex Mono',monospace; font-size:12px; cursor:pointer; white-space:nowrap; transition:all .2s; }}
+  .ai-run-btn:hover:not(:disabled) {{ background:linear-gradient(135deg,rgba(176,127,255,.35),rgba(0,200,255,.25)); border-color:var(--fvg); }}
+  .ai-run-btn:disabled {{ opacity:.5; cursor:not-allowed; }}
+  .ai-key-note {{ font-size:11px; color:var(--muted); font-family:'IBM Plex Mono',monospace; }}
+  .ai-status {{ display:none; font-size:12px; font-family:'IBM Plex Mono',monospace; padding:6px 12px; border-radius:5px; margin-bottom:.75rem; }}
+  .ai-status.ok    {{ background:rgba(0,229,153,.12); color:var(--green); border:1px solid rgba(0,229,153,.25); }}
+  .ai-status.error {{ background:rgba(255,69,96,.12);  color:var(--red);   border:1px solid rgba(255,69,96,.25); }}
+  .ai-output {{ min-height:80px; }}
+  .ai-loading {{ display:flex; flex-direction:column; align-items:center; padding:3rem; color:var(--muted); font-family:'IBM Plex Mono',monospace; font-size:12px; }}
+  .ai-dots {{ display:flex; gap:6px; }}
+  .ai-dots span {{ width:8px; height:8px; border-radius:50%; background:var(--fvg); animation:ai-bounce .9s ease-in-out infinite; }}
+  .ai-dots span:nth-child(2) {{ animation-delay:.15s; }}
+  .ai-dots span:nth-child(3) {{ animation-delay:.30s; }}
+  @keyframes ai-bounce {{ 0%,100%{{transform:translateY(0);opacity:.4}} 50%{{transform:translateY(-6px);opacity:1}} }}
+  .ai-spin {{ display:inline-block; animation:ai-rotate 1s linear infinite; }}
+  @keyframes ai-rotate {{ to{{transform:rotate(360deg)}} }}
+  .ai-cursor {{ animation:ai-blink 1s step-end infinite; color:var(--fvg); }}
+  @keyframes ai-blink {{ 50%{{opacity:0}} }}
+  .ai-error {{ background:rgba(255,69,96,.08); border:1px solid rgba(255,69,96,.25); border-radius:6px; padding:1rem 1.25rem; color:var(--red); font-size:13px; }}
+  .ai-result {{ background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:1.75rem 2rem; line-height:1.75; }}
+  .ai-h2 {{ font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:500; color:var(--fvg); margin:1.5rem 0 .5rem; padding-bottom:6px; border-bottom:1px solid var(--border); }}
+  .ai-h2:first-child {{ margin-top:0; }}
+  .ai-h3 {{ font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:500; color:var(--accent); margin:.75rem 0 .25rem; }}
+  .ai-p {{ margin:.35rem 0; font-size:13.5px; color:var(--text); }}
+  .ai-gap {{ height:.5rem; }}
+  .ai-ul, .ai-ol {{ margin:.4rem 0 .4rem 1.25rem; padding:0; }}
+  .ai-ul li, .ai-ol li {{ font-size:13.5px; color:var(--text); margin:.2rem 0; }}
+  .ai-num {{ font-family:'IBM Plex Mono',monospace; color:var(--fvg); font-size:12px; margin-right:4px; }}
+  .ai-code {{ font-family:'IBM Plex Mono',monospace; font-size:12px; background:rgba(255,255,255,.07); padding:1px 5px; border-radius:3px; color:var(--amber); }}
 </style>
 </head>
 <body>
@@ -879,6 +916,7 @@ def generate_html(meta, results, signals, strong):
 <div class="tabs">
   <button class="tab active" onclick="switchTab('signals',this)">Sygnały BUY ({sc})</button>
   <button class="tab" onclick="switchTab('all',this)">Wszyscy kandydaci ({cc})</button>
+  <button class="tab" onclick="switchTab('ai',this)" style="color:var(--fvg);margin-left:auto">✦ AI Analiza</button>
 </div>
 
 <div class="content">
@@ -948,6 +986,28 @@ def generate_html(meta, results, signals, strong):
     </div>
   </div>
 
+  <!-- ── PANEL AI ─────────────────────────────────────────── -->
+  <div id="panel-ai" class="panel">
+    <div class="ai-panel-wrap">
+      <p class="ai-intro">
+        Wklej swój klucz <strong>Anthropic API</strong> — Claude przeanalizuje wszystkie {sc} sygnałów
+        z tego skanu: sektory, ryzyka, FVG confluence i ranking wejść.<br>
+        <span style="color:var(--muted);font-size:11px;font-family:'IBM Plex Mono',monospace">
+          // Klucz używany wyłącznie w tej sesji przeglądarki — nie jest zapisywany nigdzie.
+        </span>
+      </p>
+      <div class="ai-key-row">
+        <input type="password" id="ai-key-input" class="ai-key-input"
+               placeholder="sk-ant-api03-..."
+               onkeydown="if(event.key==='Enter') runAiAnalysis()"/>
+        <button id="ai-run-btn" class="ai-run-btn" onclick="runAiAnalysis()">✦ Analizuj z Claude</button>
+        <span class="ai-key-note">// claude-sonnet-4 | max 4000 tokenów</span>
+      </div>
+      <div id="ai-status" class="ai-status"></div>
+      <div id="ai-output" class="ai-output"></div>
+    </div>
+  </div>
+
 </div>
 
 <footer>
@@ -956,22 +1016,49 @@ def generate_html(meta, results, signals, strong):
 </footer>
 
 <script>
-function switchTab(name, btn) {{
+__TABS_JS__
+__AI_JS__
+</script>
+</body>
+</html>"""
+
+    # Wstrzyknięcie kodu AI JS poza f-stringiem (brak podwajania nawiasów)
+    signals_json = json.dumps(signals, ensure_ascii=False)
+    meta_json    = json.dumps(meta,    ensure_ascii=False)
+    html = html.replace("__TABS_JS__", build_tabs_js())
+    html = html.replace("__AI_JS__",   build_ai_js(signals_json, meta_json))
+
+    path = f"{OUTPUT_DIR}/index.html"
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"  Raport: {path}")
+
+
+# ══════════════════════════════════════════════════════════════
+#  GENERATOR KODU JS DLA ANALIZY AI
+#  Budowany poza f-stringiem HTML, żeby uniknąć konieczności
+#  podwajania wszystkich nawiasów klamrowych ({{}}).
+# ══════════════════════════════════════════════════════════════
+
+def build_tabs_js() -> str:
+    """Zwraca JS obsługujący zakładki i filtry tabeli."""
+    return """
+function switchTab(name, btn) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('panel-' + name).classList.add('active');
-}}
+}
 let mf = '', zf = '', ff = '';
-function filterMarket(v) {{ mf = v; applyFilters(); }}
-function filterZone(v)   {{ zf = v; applyFilters(); }}
-function filterFvg(v)    {{ ff = v; applyFilters(); }}
-function filterTable(v)  {{ applyFilters(v); }}
-function applyFilters(search) {{
+function filterMarket(v) { mf = v; applyFilters(); }
+function filterZone(v)   { zf = v; applyFilters(); }
+function filterFvg(v)    { ff = v; applyFilters(); }
+function filterTable(v)  { applyFilters(v); }
+function applyFilters(search) {
   const rows = document.querySelectorAll('#tbody-all tr');
   let visible = 0;
   const s = (search ?? document.querySelector('.search-input').value).toLowerCase();
-  rows.forEach(row => {{
+  rows.forEach(row => {
     const t = row.textContent.toLowerCase();
     const ok = (!mf || t.includes(mf.toLowerCase()))
             && (!zf || t.includes(zf.toLowerCase()))
@@ -979,17 +1066,208 @@ function applyFilters(search) {{
             && (!s  || t.includes(s));
     row.style.display = ok ? '' : 'none';
     if (ok) visible++;
-  }});
+  });
   document.getElementById('row-count').textContent = visible + ' wyników';
-}}
-</script>
-</body>
-</html>"""
+}
+"""
 
-    path = f"{OUTPUT_DIR}/index.html"
-    with open(path, "w", encoding="utf-8") as f:
-        f.write(html)
-    print(f"  Raport: {path}")
+def build_ai_js(signals_json: str, meta_json: str) -> str:
+    """Zwraca blok JavaScript obsługujący analizę AI w przeglądarce."""
+    return (
+        "const SIGNALS_DATA = " + signals_json + ";\n"
+        "const META_DATA = "    + meta_json    + ";\n\n"
+        """
+// ── Budowanie promptu ────────────────────────────────────────
+function buildPrompt() {
+  const sc = SIGNALS_DATA;
+  if (!sc || sc.length === 0) return null;
+
+  const sigLines = sc.map(s => {
+    const fvgTag = s.fvg_confluence      ? '[FVG✦ KONFLUENCJA]'  :
+                   s.fvg_price_in_bull   ? '[FVG▲ w strefie]'    :
+                   s.fvg_price_near_bull ? '[FVG~ blisko]'        :
+                   s.fvg_bull            ? '[FVG bullish]'        :
+                   s.fvg_price_in_bear   ? '[FVG▼ opór]'         : '';
+    const sigType  = s.strong_signal ? 'STRONG BUY' : 'BUY';
+    const rev      = s.rev_curr  != null ? `Rev: ${s.rev_prev}→${s.rev_curr}M`   : '';
+    const earn     = s.earn_curr != null ? `NetInc: ${s.earn_prev}→${s.earn_curr}M` : '';
+    const yoy      = s.rev_yoy_pct != null ? `YoY: +${s.rev_yoy_pct}%` : '';
+    const fvgZone  = s.fvg_bull
+      ? `FVG-bull: ${s.fvg_bull_bot}–${s.fvg_bull_top} (${s.fvg_bull_age}W temu)` : '';
+    return `- ${s.ticker} (${s.name}) | ${s.market} | ${s.sector} | ${s.price} ${s.currency}`
+         + ` | SMI=${s.smi} EMA=${s.smi_ema} | Strefa: ${s.zone} | ${sigType} ${fvgTag}`
+         + ` | ${rev} | ${earn} | ${yoy} | ${fvgZone}`.trimEnd();
+  }).join('\\n');
+
+  const m = META_DATA;
+  const dt = m.generated_at ? m.generated_at.slice(0, 10) : '—';
+
+  return `Jesteś doświadczonym analitykiem rynków akcji i traderem technicznym. Przeanalizuj wyniki automatycznego screener giełdowego i przygotuj pełną analizę inwestycyjną.
+
+PARAMETRY SKANU:
+- Data: ${dt}
+- Przeskanowano: ${m.total_scanned} spółek (USA + Europa)
+- Kandydaci (fundamenty OK): ${m.candidates}
+- Sygnały BUY: ${m.signals} | Strong BUY: ${m.strong}
+- Niezapełnione Bullish FVG: ${m.fvg_bull_count} | FVG✦ Konfluencja: ${m.fvg_conf_count}
+- Wskaźnik: SMI(10,3,3) interwał tygodniowy
+- Kryteria fundamentalne: Revenue ↑ QoQ + Net Income ↑ QoQ + Rev YoY ≥ 15%
+
+LISTA SYGNAŁÓW (${sc.length} pozycji):
+${sigLines}
+
+Przygotuj analizę w języku polskim zgodnie z poniższą strukturą:
+
+## 1. Ogólna ocena skanu
+Oceń jakość i siłę obecnego skanu: stosunek sygnałów do kandydatów, dominujące strefy SMI, rozkład USA vs EU. Co to mówi o aktualnym sentymencie rynkowym?
+
+## 2. Analiza sektorowa
+Które sektory dominują wśród sygnałów? Czy to przypadkowe, czy sygnalizuje szerszy trend makroekonomiczny? Które sektory budzą Twoje szczególne zainteresowanie?
+
+## 3. FVG Confluence — najsilniejsze setupy techniczne
+Szczegółowo opisz każdą spółkę z oznaczeniem FVG✦ (SMI crossover + cena przy niezapełnionej Bullish FVG). Wyjaśnij dlaczego połączenie tych dwóch sygnałów jest technicznie wyjątkowe. Oceń siłę każdego setupu.
+
+## 4. Ranking Top 5 sygnałów
+Dla każdego z 5 najlepszych sygnałów podaj:
+- **Ticker i uzasadnienie wyboru**
+- **Mocne strony** (techniczne + fundamentalne)
+- **Ryzyka i słabe punkty**
+- **Sugerowany poziom wejścia** (przy FVG, przy cenie bieżącej, czy czekamy na cofnięcie?)
+
+## 5. Sygnały ostrzegawcze
+Które spółki spełniły kryteria screener, ale budzą wątpliwości? Podaj konkretne powody (np. mała dynamika wzrostu, strefa OVERBOUGHT, opór w postaci Bearish FVG, niedawny duży ruch, itp.).
+
+## 6. Podsumowanie i kolejność wejść
+Konkretna lista priorytetów (1–5) z jednozdaniowym uzasadnieniem dla każdej pozycji. Który ticker wchodzi pierwszy i dlaczego?
+
+Używaj konkretnych danych liczbowych z listy. Odpowiedź NIE stanowi porady inwestycyjnej.`;
+}
+
+// ── Wywołanie API z SSE streamingiem ─────────────────────────
+async function runAiAnalysis() {
+  const key = (document.getElementById('ai-key-input') || {}).value.trim();
+  if (!key) { showAiStatus('error', 'Wpisz klucz Anthropic API (sk-ant-...)'); return; }
+  if (!SIGNALS_DATA || SIGNALS_DATA.length === 0) {
+    showAiStatus('error', 'Ten skan nie zawiera sygnałów — brak danych do analizy.'); return;
+  }
+
+  const prompt = buildPrompt();
+  const btn    = document.getElementById('ai-run-btn');
+  const output = document.getElementById('ai-output');
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="ai-spin">⟳</span> Analizuję...';
+  output.innerHTML = '<div class="ai-loading"><div class="ai-dots"><span></span><span></span><span></span></div>'
+    + '<div style="margin-top:12px;font-size:13px">Claude analizuje ' + SIGNALS_DATA.length + ' sygnałów…</div></div>';
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': key,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 4000,
+        stream: true,
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    });
+
+    if (!resp.ok) {
+      let msg = `HTTP ${resp.status}`;
+      try { const e = await resp.json(); msg = e.error?.message || msg; } catch {}
+      throw new Error(msg);
+    }
+
+    output.innerHTML = '<div class="ai-result" id="ai-result-inner"></div>';
+    const el = document.getElementById('ai-result-inner');
+    let fullText = '';
+    let buf = '';
+
+    const reader  = resp.body.getReader();
+    const decoder = new TextDecoder();
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += decoder.decode(value, { stream: true });
+      const lines = buf.split('\\n');
+      buf = lines.pop();          // niedokończona linia – trzymamy w buforze
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        const raw = line.slice(6).trim();
+        if (raw === '[DONE]') continue;
+        try {
+          const parsed = JSON.parse(raw);
+          if (parsed.type === 'content_block_delta' && parsed.delta?.type === 'text_delta') {
+            fullText += parsed.delta.text;
+            el.innerHTML = renderMd(fullText) + '<span class="ai-cursor">▋</span>';
+            el.scrollIntoView({ block: 'end', behavior: 'smooth' });
+          }
+        } catch {}
+      }
+    }
+    el.innerHTML = renderMd(fullText);
+    showAiStatus('ok', '✓ Analiza zakończona');
+
+  } catch (err) {
+    output.innerHTML = '<div class="ai-error">❌ ' + err.message + '<br><small>Sprawdź klucz API i połączenie z internetem.</small></div>';
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '✦ Analizuj z Claude';
+  }
+}
+
+function showAiStatus(type, msg) {
+  const el = document.getElementById('ai-status');
+  if (!el) return;
+  el.className = 'ai-status ' + type;
+  el.textContent = msg;
+  el.style.display = 'block';
+  if (type === 'ok') setTimeout(() => { el.style.display = 'none'; }, 4000);
+}
+
+// ── Prosty renderer Markdown → HTML ──────────────────────────
+function renderMd(raw) {
+  let t = raw
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/^## (.+)$/gm,  '<h3 class="ai-h2">$1</h3>')
+    .replace(/^### (.+)$/gm, '<h4 class="ai-h3">$1</h4>')
+    .replace(/\\*\\*(.+?)\\*\\*/g, '<strong>$1</strong>')
+    .replace(/\\*(.+?)\\*/g,  '<em>$1</em>')
+    .replace(/`(.+?)`/g,      '<code class="ai-code">$1</code>');
+
+  // Listy: zbieramy kolejne linie z "-" i "1." w bloki <ul>/<ol>
+  const lines = t.split('\\n');
+  const out = [];
+  let inUl = false, inOl = false;
+  for (const ln of lines) {
+    const ulM = ln.match(/^- (.+)$/);
+    const olM = ln.match(/^(\\d+)\\. (.+)$/);
+    if (ulM) {
+      if (inOl) { out.push('</ol>'); inOl = false; }
+      if (!inUl) { out.push('<ul class="ai-ul">'); inUl = true; }
+      out.push(`<li>${ulM[1]}</li>`);
+    } else if (olM) {
+      if (inUl) { out.push('</ul>'); inUl = false; }
+      if (!inOl) { out.push('<ol class="ai-ol">'); inOl = true; }
+      out.push(`<li><span class="ai-num">${olM[1]}.</span> ${olM[2]}</li>`);
+    } else {
+      if (inUl) { out.push('</ul>'); inUl = false; }
+      if (inOl) { out.push('</ol>'); inOl = false; }
+      out.push(ln === '' ? '<div class="ai-gap"></div>' : `<p class="ai-p">${ln}</p>`);
+    }
+  }
+  if (inUl) out.push('</ul>');
+  if (inOl) out.push('</ol>');
+  return out.join('\\n');
+}
+"""
+    )
 
 
 if __name__ == "__main__":
