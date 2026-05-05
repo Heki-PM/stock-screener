@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-05-02T09:43:22.510936",
-  "elapsed_min": 23.5,
-  "total_scanned": 2879,
-  "candidates": 311,
-  "signals": 23,
-  "strong": 20,
-  "skipped": 2568,
-  "errors": 0,
+  "generated_at": "2026-05-05T16:37:50.461931",
+  "elapsed_min": 7.5,
+  "total_scanned": 2875,
+  "candidates": 151,
+  "signals": 6,
+  "strong": 3,
+  "skipped": 1025,
+  "errors": 1699,
   "indicator": "SMI(10,3,3)",
-  "fvg_bull_count": 199,
-  "fvg_conf_count": 1
+  "fvg_bull_count": 100,
+  "fvg_conf_count": 0
 }
