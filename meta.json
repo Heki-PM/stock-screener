@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-05-06T17:53:23.731195",
-  "elapsed_min": 15.1,
-  "total_scanned": 2874,
-  "candidates": 258,
-  "signals": 15,
-  "strong": 8,
-  "skipped": 1850,
-  "errors": 766,
+  "generated_at": "2026-05-08T16:33:21.157245",
+  "elapsed_min": 17.3,
+  "total_scanned": 2873,
+  "candidates": 227,
+  "signals": 20,
+  "strong": 11,
+  "skipped": 1797,
+  "errors": 849,
   "indicator": "SMI(10,3,3)",
-  "fvg_bull_count": 167,
-  "fvg_conf_count": 0
+  "max_price": 100,
+  "min_cap_mln": 200.0
 }
