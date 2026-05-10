@@ -1,0 +1,20 @@
+ticker,name,market,country,sector,price,currency,market_cap_mln,smi,smi_ema,smi_above_ema,zone,signal,strong_signal,rev_prev,rev_curr,earn_prev,earn_curr,rev_yoy_pct,scanned_at
+INTA,"Intapp, Inc.",USA,United States,Technology,24.84,USD,1914.2,-33.34,-41.23,True,Bearish,True,True,121.2,140.2,-10.2,-5.9,15.7,2026-05-10T07:04:22.916306
+PTC,PTC Inc.,USA,United States,Technology,146.65,USD,16938.9,-54.98,-61.53,True,OVERSOLD,True,True,565.1,685.8,82.2,166.5,21.4,2026-05-10T07:04:41.460703
+RDVT,"Red Violet, Inc.",USA,United States,Technology,49.7,USD,701.2,-19.4,-38.36,True,Bearish,True,True,19.6,23.4,0.9,2.8,19.6,2026-05-10T07:05:06.066982
+NVAX,"Novavax, Inc.",USA,United States,Healthcare,10.11,USD,1662.5,-42.61,-49.19,True,OVERSOLD,True,True,88.3,147.1,-81.0,17.5,66.6,2026-05-10T07:05:12.687732
+IBEX,IBEX Limited,USA,United States,Technology,32.33,USD,435.4,-13.21,-34.4,True,Bearish,True,True,140.7,164.2,9.3,12.2,16.7,2026-05-10T07:05:17.010063
+ACVA,ACV Auctions Inc.,USA,United States,Consumer Cyclical,6.41,USD,1119.1,-17.16,-39.3,True,Bearish,True,True,159.5,183.6,-26.1,-19.6,15.1,2026-05-10T07:05:25.500930
+EOSE,"Eos Energy Enterprises, Inc.",USA,United States,Industrials,8.01,USD,2719.4,-33.5,-48.86,True,Bearish,True,True,7.3,58.0,-268.1,-120.5,699.6,2026-05-10T07:05:30.567911
+FDMT,"4D Molecular Therapeutics, Inc.",USA,United States,Healthcare,10.14,USD,530.1,18.4,17.34,True,Bullish,True,False,0.0,85.1,-49.7,19.4,8508900.0,2026-05-10T07:05:53.889962
+GLNG,Golar LNG Limited,USA,Bermuda,Energy,55.7,USD,5669.1,67.59,65.59,True,OVERBOUGHT,True,False,64.8,132.8,-34.8,10.4,104.9,2026-05-10T07:06:21.303233
+OSG,"Octave Specialty Group, Inc.",USA,United States,Financial Services,5.37,USD,241.7,-29.45,-44.78,True,Bearish,True,True,62.8,104.2,-46.4,-6.9,66.0,2026-05-10T07:06:24.554828
+HSHP,Himalaya Shipping Ltd.,USA,Bermuda,Industrials,16.24,USD,762.8,53.75,48.56,True,OVERBOUGHT,True,False,29.6,42.1,1.0,13.5,42.2,2026-05-10T07:06:28.006059
+MLP,"Maui Land & Pineapple Company, ",USA,United States,Real Estate,15.66,USD,311.1,-50.18,-50.24,True,OVERSOLD,True,True,3.4,4.5,-1.9,-1.2,32.6,2026-05-10T07:07:31.213241
+ETON,"Eton Pharmaceuticals, Inc.",USA,United States,Healthcare,29.65,USD,811.2,67.28,66.92,True,OVERBOUGHT,True,False,11.6,21.3,-0.6,1.5,82.7,2026-05-10T07:08:34.323385
+AVAH,Aveanna Healthcare Holdings Inc,USA,United States,Healthcare,6.74,USD,1466.0,-34.29,-45.06,True,Bearish,True,True,519.9,662.5,29.2,178.8,27.4,2026-05-10T07:08:35.942477
+LLY,Eli Lilly and Company,USA,United States,Healthcare,948.45,USD,845772.1,-34.43,-45.91,True,Bearish,True,True,12729.0,19799.0,2759.0,7396.0,55.5,2026-05-10T07:09:04.983781
+CBL,"CBL & Associates Properties, In",USA,United States,Real Estate,47.35,USD,1465.2,77.4,76.43,True,OVERBOUGHT,True,False,131.7,156.4,38.0,49.0,18.8,2026-05-10T07:09:31.613092
+ESPR,"Esperion Therapeutics, Inc.",USA,United States,Healthcare,3.14,USD,808.3,-13.49,-39.11,True,Bearish,True,True,69.1,168.4,-21.3,61.8,143.7,2026-05-10T07:09:38.622630
+BKSY,BlackSky Technology Inc.,USA,United States,Industrials,39.45,USD,1464.0,53.94,51.21,True,OVERBOUGHT,True,False,30.4,35.2,-19.4,-0.9,15.9,2026-05-10T07:10:11.241361
+PNTG,"The Pennant Group, Inc.",USA,United States,Healthcare,35.9,USD,1248.2,4.39,-6.74,True,Bullish,True,False,188.9,289.3,5.8,8.6,53.2,2026-05-10T07:10:20.804354

@@ -1,13 +1,12 @@
 {
-  "generated_at": "2026-05-09T20:38:33.800256",
-  "elapsed_min": 29.3,
+  "generated_at": "2026-05-10T07:12:22.690655",
+  "elapsed_min": 8.1,
   "total_scanned": 2873,
-  "candidates": 20,
-  "signals": 0,
-  "strong": 0,
-  "skipped": 2853,
-  "errors": 0,
+  "candidates": 185,
+  "signals": 19,
+  "strong": 12,
+  "skipped": 738,
+  "errors": 1950,
   "indicator": "SMI(10,3,3)",
-  "max_price": 100,
   "min_cap_mln": 200.0
 }
