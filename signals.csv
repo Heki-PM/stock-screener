@@ -1,23 +1,56 @@
 ticker,name,market,country,sector,price,currency,market_cap_mln,volume_k,smi,smi_ema,smi_above_ema,zone,signal,strong_signal,eps_ttm,sales_ttm_mln,quick_ratio,scanned_at
-FCFS,"FirstCash Holdings, Inc.",USA,United States,Financial Services,227.68,USD,9980.7,342.9,77.6,76.21,True,OVERBOUGHT,True,False,7.97,3876.3,3.1,2026-05-10T11:37:19.682045
-SSRM,SSR Mining Inc.,USA,United States,Basic Materials,34.2,USD,7096.2,4101.6,28.18,24.72,True,Bullish,True,False,2.61,1894.8,1.18,2026-05-10T11:37:45.361280
-WEN,Wendy's Company (The),USA,United States,Consumer Cyclical,7.3,USD,1390.4,9314.3,-35.86,-46.25,True,Bearish,True,True,0.77,2194.1,1.19,2026-05-10T11:38:31.683524
-APAM,Artisan Partners Asset Manageme,USA,United States,Financial Services,38.02,USD,2699.2,770.5,-35.38,-45.49,True,Bearish,True,True,3.99,1222.6,2.75,2026-05-10T11:38:44.779075
-VVX,"V2X, Inc.",USA,United States,Industrials,70.08,USD,2194.2,556.0,-19.0,-19.7,True,Bearish,True,False,2.8,4718.2,1.11,2026-05-10T11:39:11.308679
-GLNG,Golar LNG Limited,USA,Bermuda,Energy,55.7,USD,5669.1,2073.0,67.59,65.59,True,OVERBOUGHT,True,False,0.6,393.5,2.47,2026-05-10T11:39:13.208025
-DXCM,"DexCom, Inc.",USA,United States,Healthcare,60.61,USD,23387.8,4597.5,-58.28,-59.08,True,OVERSOLD,True,True,2.33,4817.9,1.58,2026-05-10T11:40:14.760478
-FSLR,"First Solar, Inc.",USA,United States,Technology,219.95,USD,23634.4,2295.3,-28.73,-45.36,True,Bearish,True,True,15.48,5419.0,1.91,2026-05-10T11:40:36.958082
-CWST,"Casella Waste Systems, Inc.",USA,United States,Industrials,85.44,USD,5434.8,893.9,-29.88,-38.55,True,Bearish,True,True,0.11,1877.1,1.17,2026-05-10T11:40:38.735577
-DVA,DaVita Inc.,USA,United States,Healthcare,198.65,USD,12750.3,893.3,60.39,53.71,True,OVERBOUGHT,True,False,10.39,13835.1,1.28,2026-05-10T11:41:01.704517
-OSBC,"Old Second Bancorp, Inc.",USA,United States,Financial Services,21.28,USD,1094.5,399.3,17.28,14.43,True,Bullish,True,False,1.67,324.9,,2026-05-10T11:41:17.151787
-TGTX,"TG Therapeutics, Inc.",USA,United States,Healthcare,42.86,USD,6561.2,2037.4,62.46,59.22,True,OVERBOUGHT,True,False,2.86,700.3,4.84,2026-05-10T11:41:23.723279
-QLYS,"Qualys, Inc.",USA,United States,Technology,94.28,USD,3320.3,854.9,-31.7,-47.55,True,Bearish,True,True,5.57,684.9,1.32,2026-05-10T11:41:30.698000
-MITK,"Mitek Systems, Inc.",USA,United States,Technology,15.61,USD,704.9,976.8,46.69,44.3,True,OVERBOUGHT,True,False,0.34,189.6,2.5,2026-05-10T11:41:53.191792
-NSIT,"Insight Enterprises, Inc.",USA,United States,Technology,83.79,USD,2530.8,461.4,-14.28,-31.56,True,Bearish,True,True,5.61,8271.6,1.13,2026-05-10T11:42:04.429688
-DOC,"Healthpeak Properties, Inc.",USA,United States,Real Estate,19.64,USD,13540.2,8827.9,26.54,7.15,True,Bullish,True,False,0.32,2872.6,1.41,2026-05-10T11:42:51.194740
-PKG,Packaging Corporation of Americ,USA,United States,Consumer Cyclical,224.59,USD,20036.4,1003.7,-21.99,-36.67,True,Bearish,True,True,8.22,9216.1,1.79,2026-05-10T11:42:51.960175
-HWM,Howmet Aerospace Inc.,USA,United States,Industrials,270.56,USD,108253.1,2493.1,23.36,18.83,True,Bullish,True,False,4.3,8623.0,1.46,2026-05-10T11:42:57.556325
-ATEN,"A10 Networks, Inc.",USA,United States,Technology,27.8,USD,2001.5,1066.2,75.63,74.89,True,OVERBOUGHT,True,False,0.61,299.4,3.4,2026-05-10T11:43:04.923390
-CMRE,Costamare Inc.,USA,Monaco,Industrials,17.62,USD,2124.8,432.6,12.26,11.72,True,Bullish,True,False,2.83,866.1,1.74,2026-05-10T11:43:22.381828
-SBRA,"Sabra Health Care REIT, Inc.",USA,United States,Real Estate,20.75,USD,5232.9,2508.6,43.2,42.24,True,OVERBOUGHT,True,False,0.63,815.7,1.99,2026-05-10T11:43:23.954011
-DAKT,"Daktronics, Inc.",USA,United States,Technology,20.53,USD,1000.8,503.6,-76.59,-76.93,True,OVERSOLD,True,True,0.55,802.6,1.62,2026-05-10T11:43:28.261216
+FSLR,"First Solar, Inc.",USA,United States,Technology,219.95,USD,23634.4,2295.3,-28.73,-45.36,True,Bearish,True,True,15.48,5419.0,1.91,2026-05-10T12:00:22.459049
+EPAC,Enerpac Tool Group Corp.,USA,United States,Industrials,35.52,USD,1874.6,391.7,-62.14,-62.33,True,OVERSOLD,True,True,1.59,625.2,1.64,2026-05-10T12:00:33.451419
+LCII,LCI Industries,USA,United States,Consumer Cyclical,118.82,USD,2885.6,370.2,-59.63,-64.62,True,OVERSOLD,True,True,8.16,4166.9,1.06,2026-05-10T12:00:48.798624
+WEN,Wendy's Company (The),USA,United States,Consumer Cyclical,7.3,USD,1390.4,9314.3,-35.86,-46.25,True,Bearish,True,True,0.77,2194.1,1.19,2026-05-10T12:01:11.075720
+HOMB,"Home BancShares, Inc.",USA,United States,Financial Services,26.76,USD,5389.8,1482.6,-43.67,-45.36,True,OVERSOLD,True,True,2.43,1074.7,,2026-05-10T12:01:15.574418
+DAKT,"Daktronics, Inc.",USA,United States,Technology,20.53,USD,1000.8,503.6,-76.59,-76.93,True,OVERSOLD,True,True,0.55,802.6,1.62,2026-05-10T12:01:41.923953
+GDYN,"Grid Dynamics Holdings, Inc.",USA,United States,Technology,6.98,USD,583.7,1812.5,-32.71,-50.56,True,Bearish,True,True,0.06,415.5,7.56,2026-05-10T12:02:27.063494
+PDFS,"PDF Solutions, Inc.",USA,United States,Technology,51.63,USD,2061.1,402.6,70.57,67.28,True,OVERBOUGHT,True,False,0.18,231.4,2.21,2026-05-10T12:02:46.071143
+RRR,"Red Rock Resorts, Inc.",USA,United States,Consumer Cyclical,54.48,USD,3185.2,956.1,-57.22,-57.75,True,OVERSOLD,True,True,3.1,2020.9,,2026-05-10T12:03:20.474544
+DOC,"Healthpeak Properties, Inc.",USA,United States,Real Estate,19.64,USD,13540.2,8827.9,26.54,7.15,True,Bullish,True,False,0.32,2872.6,1.41,2026-05-10T12:04:10.460786
+REGN,"Regeneron Pharmaceuticals, Inc.",USA,United States,Healthcare,714.89,USD,74948.4,684.0,-40.41,-41.76,True,OVERSOLD,True,True,40.96,14919.6,2.84,2026-05-10T12:04:26.992835
+PGNY,"Progyny, Inc.",USA,United States,Healthcare,23.72,USD,1842.0,1552.9,-8.88,-36.51,True,Bearish,True,True,0.77,1293.1,2.07,2026-05-10T12:04:33.709687
+AKAM,"Akamai Technologies, Inc.",USA,United States,Technology,147.71,USD,21565.7,5376.6,19.95,1.27,True,Bullish,True,False,2.95,4266.6,1.75,2026-05-10T12:05:09.551220
+NSIT,"Insight Enterprises, Inc.",USA,United States,Technology,83.79,USD,2530.8,461.4,-14.28,-31.56,True,Bearish,True,True,5.61,8271.6,1.13,2026-05-10T12:05:19.184028
+TGTX,"TG Therapeutics, Inc.",USA,United States,Healthcare,42.86,USD,6561.2,2037.4,62.46,59.22,True,OVERBOUGHT,True,False,2.86,700.3,4.84,2026-05-10T12:05:32.269402
+OSBC,"Old Second Bancorp, Inc.",USA,United States,Financial Services,21.28,USD,1094.5,399.3,17.28,14.43,True,Bullish,True,False,1.67,324.9,,2026-05-10T12:05:46.861442
+APAM,Artisan Partners Asset Manageme,USA,United States,Financial Services,38.02,USD,2699.2,770.5,-35.38,-45.49,True,Bearish,True,True,3.99,1222.6,2.75,2026-05-10T12:06:13.230717
+RVTY,"Revvity, Inc.",USA,United States,Healthcare,101.0,USD,11292.1,1203.7,-16.91,-36.66,True,Bearish,True,True,2.08,2902.4,1.25,2026-05-10T12:06:22.889580
+GLNG,Golar LNG Limited,USA,Bermuda,Energy,55.7,USD,5669.1,2073.0,67.59,65.59,True,OVERBOUGHT,True,False,0.6,393.5,2.47,2026-05-10T12:06:57.184285
+VISN,"Vistance Networks, Inc.",USA,United States,Technology,11.72,USD,2643.7,6054.5,33.96,23.78,True,Bullish,True,False,0.68,2015.3,5.79,2026-05-10T12:07:28.683669
+PHR,"Phreesia, Inc.",USA,United States,Healthcare,10.17,USD,618.0,2051.3,-38.13,-50.35,True,Bearish,True,True,0.04,480.6,1.24,2026-05-10T12:07:35.522647
+CWST,"Casella Waste Systems, Inc.",USA,United States,Industrials,85.44,USD,5434.8,893.9,-29.88,-38.55,True,Bearish,True,True,0.11,1877.1,1.17,2026-05-10T12:08:06.485375
+BV,"BrightView Holdings, Inc.",USA,United States,Industrials,12.97,USD,1208.8,596.4,-33.9,-43.74,True,Bearish,True,True,0.03,2728.7,1.06,2026-05-10T12:09:07.450715
+FCFS,"FirstCash Holdings, Inc.",USA,United States,Financial Services,227.68,USD,9980.7,342.9,77.6,76.21,True,OVERBOUGHT,True,False,7.97,3876.3,3.1,2026-05-10T12:09:35.492760
+RPC,"Ridgepost Capital, Inc.",USA,United States,Financial Services,8.75,USD,957.9,799.3,-16.62,-39.36,True,Bearish,True,True,0.21,304.7,1.99,2026-05-10T12:10:51.190927
+A,"Agilent Technologies, Inc.",USA,United States,Healthcare,115.62,USD,32674.5,2271.2,-36.39,-43.56,True,Bearish,True,True,4.53,7065.0,1.47,2026-05-10T12:11:48.381994
+LIVN,LivaNova PLC,USA,United Kingdom,Healthcare,71.86,USD,3947.5,885.9,7.44,-6.13,True,Bullish,True,False,1.96,1433.5,1.01,2026-05-10T12:12:11.603437
+QLYS,"Qualys, Inc.",USA,United States,Technology,94.28,USD,3320.3,854.9,-31.7,-47.55,True,Bearish,True,True,5.57,684.9,1.32,2026-05-10T12:13:03.247706
+VVX,"V2X, Inc.",USA,United States,Industrials,70.08,USD,2194.2,556.0,-19.0,-19.7,True,Bearish,True,False,2.8,4718.2,1.11,2026-05-10T12:13:07.840751
+PTC,PTC Inc.,USA,United States,Technology,146.65,USD,16938.9,1245.0,-54.98,-61.53,True,OVERSOLD,True,True,10.41,2997.9,1.06,2026-05-10T12:13:31.195803
+TDC,Teradata Corporation,USA,United States,Technology,31.59,USD,2972.6,2267.4,-27.53,-47.97,True,Bearish,True,True,4.37,1689.0,1.19,2026-05-10T12:15:20.690673
+PKG,Packaging Corporation of Americ,USA,United States,Consumer Cyclical,224.59,USD,20036.4,1003.7,-21.99,-36.67,True,Bearish,True,True,8.22,9216.1,1.79,2026-05-10T12:15:35.540918
+BCO,Brinks Company (The),USA,United States,Industrials,107.22,USD,4415.4,518.1,-38.62,-41.98,True,Bearish,True,True,4.28,5389.6,1.12,2026-05-10T12:17:01.386614
+EVER,"EverQuote, Inc.",USA,United States,Communication Services,20.5,USD,725.2,1067.9,-18.6,-37.09,True,Bearish,True,True,2.93,716.7,3.06,2026-05-10T12:17:54.413918
+ATEN,"A10 Networks, Inc.",USA,United States,Technology,27.8,USD,2001.5,1066.2,75.63,74.89,True,OVERBOUGHT,True,False,0.61,299.4,3.4,2026-05-10T12:20:06.709624
+SSRM,SSR Mining Inc.,USA,United States,Basic Materials,34.2,USD,7096.2,4101.6,28.18,24.72,True,Bullish,True,False,2.61,1894.8,1.18,2026-05-10T12:20:32.469070
+LTC,"LTC Properties, Inc.",USA,United States,Real Estate,39.12,USD,2002.2,381.1,32.63,30.52,True,Bullish,True,False,2.55,301.0,17.21,2026-05-10T12:20:36.987336
+CXM,"Sprinklr, Inc.",USA,United States,Technology,5.33,USD,1326.4,3847.1,-35.22,-37.15,True,Bearish,True,True,0.09,857.2,1.43,2026-05-10T12:20:58.917949
+ENPH,"Enphase Energy, Inc.",USA,United States,Technology,36.45,USD,4804.0,6034.7,-56.71,-60.32,True,OVERSOLD,True,True,1.01,1399.8,2.71,2026-05-10T12:21:05.520056
+CMRE,Costamare Inc.,USA,Monaco,Industrials,17.62,USD,2124.8,432.6,12.26,11.72,True,Bullish,True,False,2.83,866.1,1.74,2026-05-10T12:22:12.374055
+SIGA,SIGA Technologies Inc.,USA,United States,Healthcare,4.8,USD,344.3,651.0,-34.19,-43.3,True,Bearish,True,True,0.28,93.8,2.3,2026-05-10T12:23:45.121644
+DXCM,"DexCom, Inc.",USA,United States,Healthcare,60.61,USD,23387.8,4597.5,-58.28,-59.08,True,OVERSOLD,True,True,2.33,4817.9,1.58,2026-05-10T12:24:20.538317
+VOXR,Vox Royalty Corp.,USA,United States,Basic Materials,5.95,USD,410.0,517.4,-4.52,-10.61,True,Bearish,True,False,0.1,16.6,2.62,2026-05-10T12:24:28.441228
+DVA,DaVita Inc.,USA,United States,Healthcare,198.65,USD,12750.3,893.3,60.39,53.71,True,OVERBOUGHT,True,False,10.39,13835.1,1.28,2026-05-10T12:24:34.237738
+AVAH,Aveanna Healthcare Holdings Inc,USA,United States,Healthcare,6.74,USD,1466.0,1215.2,-34.29,-45.06,True,Bearish,True,True,1.05,2433.2,1.21,2026-05-10T12:26:16.255338
+PD,"PagerDuty, Inc.",USA,United States,Technology,7.29,USD,558.8,3157.1,-17.97,-37.8,True,Bearish,True,True,1.87,492.5,1.9,2026-05-10T12:26:40.414480
+MITK,"Mitek Systems, Inc.",USA,United States,Technology,15.61,USD,704.9,976.8,46.69,44.3,True,OVERBOUGHT,True,False,0.34,189.6,2.5,2026-05-10T12:26:54.114887
+SBRA,"Sabra Health Care REIT, Inc.",USA,United States,Real Estate,20.75,USD,5232.9,2508.6,43.2,42.24,True,OVERBOUGHT,True,False,0.63,815.7,1.99,2026-05-10T12:30:24.628935
+HWM,Howmet Aerospace Inc.,USA,United States,Industrials,270.56,USD,108253.1,2493.1,23.36,18.83,True,Bullish,True,False,4.3,8623.0,1.46,2026-05-10T12:30:43.722774
+CAP.PA,CAPGEMINI,EU,France,Technology,103.45,EUR,17290.7,772.4,-30.74,-40.69,True,Bearish,True,True,9.13,22465.0,1.1,2026-05-10T12:31:09.699933
+FRO.OL,FRONTLINE PLC,EU,Cyprus,Energy,358.0,NOK,79699.0,1403.6,15.27,13.3,True,Bullish,True,False,15.82,1965.1,1.09,2026-05-10T12:31:30.461098
+AMP.MI,AMPLIFON,EU,Italy,Healthcare,10.95,EUR,2408.6,3236.7,-32.01,-41.48,True,Bearish,True,True,0.31,2387.7,,2026-05-10T12:31:33.091767
+ITX.MC,INDUSTRIA DE DISE...O TEXTIL S.,EU,Spain,Consumer Cyclical,51.32,EUR,159895.2,2679.2,-24.67,-25.75,True,Bearish,True,False,2.0,39864.0,1.21,2026-05-10T12:33:00.777158
+RS1.L,RS GROUP PLC ORD 10P,EU,United Kingdom,Industrials,614.0,GBp,290855.7,1686.5,-33.79,-41.93,True,Bearish,True,True,0.34,2865.1,1.17,2026-05-10T12:34:32.717959
+FRES.L,FRESNILLO PLC ORD USD0.50,EU,Mexico,Basic Materials,3572.0,GBp,2632183.9,1170.9,-22.0,-23.13,True,Bearish,True,False,1.39,4561.2,3.85,2026-05-10T12:36:10.783380
