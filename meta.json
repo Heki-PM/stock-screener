@@ -1,12 +1,16 @@
 {
-  "generated_at": "2026-05-10T07:12:22.690655",
-  "elapsed_min": 8.1,
+  "generated_at": "2026-05-10T11:27:31.261643",
+  "elapsed_min": 3.5,
   "total_scanned": 2873,
-  "candidates": 185,
-  "signals": 19,
-  "strong": 12,
-  "skipped": 738,
-  "errors": 1950,
+  "candidates": 24,
+  "signals": 0,
+  "strong": 0,
+  "skipped": 520,
+  "errors": 2329,
   "indicator": "SMI(10,3,3)",
-  "min_cap_mln": 200.0
+  "min_cap_mln": 200.0,
+  "min_volume": 300000,
+  "min_roe_pct": 5.0,
+  "min_quick": 1.5,
+  "max_peg": 2.0
 }
