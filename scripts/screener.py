@@ -1,7 +1,7 @@
 """
 Stock Screener – SMI Signal Strategy
-Kryteria: USA + Europa | cena < 100 USD/EUR | market cap > 200 mln
-         | rosnące Revenue i Net Income QoQ
+Kryteria: USA + Europa | market cap > 200 mln
+         | rosnące Revenue i Net Income YoY (Q vs Q rok wcześniej)
 Sygnał wejścia: SMI crossover / exit OS na interwale tygodniowym
 (port Pine Script: "SMI Signal Strategy" – lengthK=10, lengthD=3, lengthEMA=3)
 """
@@ -16,7 +16,6 @@ import os
 from datetime import datetime
 from io import StringIO
 
-MAX_PRICE      = 100
 MIN_MARKET_CAP = 200_000_000   # 200 mln USD / EUR
 DELAY          = 0.25
 OUTPUT_DIR     = "results"
@@ -229,20 +228,13 @@ def smi_signals(smi: pd.Series, smi_ema: pd.Series,
 def check_fundamentals(tkr_obj, min_annual_rev_growth: float = 0.15,
                        trend_quarters: int = 4):
     """
-    Sprawdza trend fundamentalny na przestrzeni ostatnich `trend_quarters` kwartałów.
+    Porównuje kwartały rok do roku (YoY):
+      Q1 2025 vs Q1 2024, Q2 2025 vs Q2 2024, itd.
 
-    Kryterium wzrostu przychodu (rev_up):
-      Każdy z `trend_quarters` ostatnich kwartałów musi być wyższy od poprzedniego,
-      tj. q[0] > q[1] > q[2] > ... > q[trend_quarters-1].
-      Jeśli dostępnych kwartałów jest mniej niż trend_quarters+1, wymagamy
-      co najmniej 2 kwartałów (fallback do zwykłego QoQ).
+    W danych yfinance indeks 0 = najnowszy kwartał, indeks 4 = ten sam
+    kwartał rok wcześniej. Sprawdzamy window kolejnych par (i, i+4).
 
-    Kryterium wzrostu zysku (earn_up):
-      Analogicznie – pełny trend wzrostowy w oknie trend_quarters kwartałów.
-
-    rev_vals / earn_vals:
-      Pokazują najstarszy i najnowszy kwartał z analizowanego okna
-      (zamiast tylko pary Q0/Q1).
+    rev_vals / earn_vals: (najstarszy Q poprzedniego roku, najnowszy Q bieżący)
     """
     try:
         q = tkr_obj.quarterly_financials
@@ -253,26 +245,33 @@ def check_fundamentals(tkr_obj, min_annual_rev_growth: float = 0.15,
         rev_vals = earn_vals = None
         annual_rev_growth = None
 
-        # ── Revenue ──────────────────────────────────────────────
+        # ── Revenue YoY ──────────────────────────────────────────────
         if "Total Revenue" in q.index:
-            rev = q.loc["Total Revenue"].dropna()
+            rev   = q.loc["Total Revenue"].dropna()
             n_rev = len(rev)
 
-            if n_rev >= 2:
-                # Ile kwartałów możemy realnie porównać
-                window = min(trend_quarters, n_rev - 1)
-                # rev.iloc[0] = najnowszy; iloc[window] = najstarszy w oknie
-                rev_vals = (
-                    round(float(rev.iloc[window]) / 1e6, 1),   # najstarszy
-                    round(float(rev.iloc[0])      / 1e6, 1),   # najnowszy
-                )
-                # Sprawdzamy czy każda para (i, i+1) jest rosnąca
+            if n_rev >= 5:
+                # Ile par (bieżący Q, Q rok temu) możemy sprawdzić
+                window = min(trend_quarters, n_rev - 4)
+                # Każdy z ostatnich `window` kwartałów musi być wyższy niż ten
+                # sam kwartał rok wcześniej (offset = 4 pozycje w liście)
                 rev_up = all(
-                    float(rev.iloc[i]) > float(rev.iloc[i + 1])
+                    float(rev.iloc[i]) > float(rev.iloc[i + 4])
                     for i in range(window)
                 )
+                rev_vals = (
+                    round(float(rev.iloc[window - 1 + 4]) / 1e6, 1),  # najstarszy porównywany Q (rok temu)
+                    round(float(rev.iloc[0])              / 1e6, 1),   # najnowszy Q
+                )
+            elif n_rev >= 2:
+                # Za mało danych na YoY – fallback do prostego QoQ
+                rev_up   = float(rev.iloc[0]) > float(rev.iloc[1])
+                rev_vals = (
+                    round(float(rev.iloc[1]) / 1e6, 1),
+                    round(float(rev.iloc[0]) / 1e6, 1),
+                )
 
-            # YoY (TTM vs TTM lub Q vs Q sprzed roku)
+            # Roczny wzrost przychodów (TTM lub Q vs Q sprzed roku)
             if n_rev >= 8:
                 ttm_curr = float(rev.iloc[0:4].sum())
                 ttm_prev = float(rev.iloc[4:8].sum())
@@ -284,20 +283,26 @@ def check_fundamentals(tkr_obj, min_annual_rev_growth: float = 0.15,
                 if prev_year > 0:
                     annual_rev_growth = (curr - prev_year) / prev_year
 
-        # ── Net Income ───────────────────────────────────────────
+        # ── Net Income YoY ───────────────────────────────────────────
         if "Net Income" in q.index:
-            net = q.loc["Net Income"].dropna()
+            net   = q.loc["Net Income"].dropna()
             n_net = len(net)
 
-            if n_net >= 2:
-                window = min(trend_quarters, n_net - 1)
-                earn_vals = (
-                    round(float(net.iloc[window]) / 1e6, 1),
-                    round(float(net.iloc[0])      / 1e6, 1),
-                )
+            if n_net >= 5:
+                window = min(trend_quarters, n_net - 4)
                 earn_up = all(
-                    float(net.iloc[i]) > float(net.iloc[i + 1])
+                    float(net.iloc[i]) > float(net.iloc[i + 4])
                     for i in range(window)
+                )
+                earn_vals = (
+                    round(float(net.iloc[window - 1 + 4]) / 1e6, 1),
+                    round(float(net.iloc[0])              / 1e6, 1),
+                )
+            elif n_net >= 2:
+                earn_up   = float(net.iloc[0]) > float(net.iloc[1])
+                earn_vals = (
+                    round(float(net.iloc[1]) / 1e6, 1),
+                    round(float(net.iloc[0]) / 1e6, 1),
                 )
 
         rev_annual_ok = (annual_rev_growth is not None
@@ -319,7 +324,7 @@ def run_screener():
     print(f"SCREENER START: {start.strftime('%Y-%m-%d %H:%M:%S')}")
     print("Wskaźnik: SMI Signal Strategy (lengthK=10, lengthD=3, lengthEMA=3)")
     print("Sygnały:  cross_up + exit_OS | strong = z głębi strefy OS")
-    print(f"Filtry:   cena ≤ {MAX_PRICE} USD/EUR | market cap > {MIN_MARKET_CAP/1e6:.0f} mln")
+    print(f"Filtry:   market cap > {MIN_MARKET_CAP/1e6:.0f} mln | Revenue YoY ↑ | Net Income YoY ↑")
     print("=" * 60)
 
     print("\n[1/5] Pobieranie list spółek...")
@@ -341,8 +346,8 @@ def run_screener():
             fi    = tkr.fast_info
             price = getattr(fi, "last_price", None)
 
-            # ── Filtr ceny
-            if not price or price <= 0 or price > MAX_PRICE:
+            # ── Filtr poprawności ceny (bez limitu górnego/dolnego)
+            if not price or price <= 0:
                 skipped += 1
                 continue
 
@@ -413,7 +418,7 @@ def run_screener():
             growth_str = f"+{annual_growth_pct}% YoY" if annual_growth_pct else ""
             sig_tag    = "STRONG" if strong_sig else ("SYGNAŁ" if buy_sig else "ok    ")
             cap_str    = f"cap={market_cap_mln:.0f}M"
-            print(f"  {sig_tag} [{i+1}] {symbol:10s} {market} | {price:6.2f} {currency} "
+            print(f"  {sig_tag} [{i+1}] {symbol:10s} {market} | {price:8.2f} {currency} "
                   f"| {cap_str:12s} | SMI={smi_val:6.1f} EMA={smi_ema_val:6.1f} "
                   f"| {zone:12s} | {growth_str}")
 
@@ -447,7 +452,6 @@ def run_screener():
         "skipped":       skipped,
         "errors":        errors,
         "indicator":     "SMI(10,3,3)",
-        "max_price":     MAX_PRICE,
         "min_cap_mln":   MIN_MARKET_CAP / 1e6,
     }
     for fname, data in [("meta", meta), ("results", results), ("signals", signals), ("strong", strong)]:
@@ -544,8 +548,8 @@ def generate_html(meta, results, signals, strong):
                 f'<div class="sc-row"><span>Strefa</span><span style="color:{zone_color}">{zone}</span></div>'
                 f'<div class="sc-row"><span>Sektor</span><span>{r["sector"]}</span></div>'
                 f'<div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">{cap_str}</span></div>'
-                f'<div class="sc-row"><span>Revenue QoQ</span><span style="color:var(--green)">{rev_str}</span></div>'
-                f'<div class="sc-row"><span>Net Income QoQ</span><span style="color:var(--green)">{earn_str}</span></div>'
+                f'<div class="sc-row"><span>Revenue YoY</span><span style="color:var(--green)">{rev_str}</span></div>'
+                f'<div class="sc-row"><span>Net Income YoY</span><span style="color:var(--green)">{earn_str}</span></div>'
                 f'<div class="sc-row"><span>Rev. wzrost YoY</span><span style="color:var(--green)">{yoy_str}</span></div>'
                 f'<div class="sc-stoch">'
                 f'<div class="sc-stoch-item"><div class="sc-stoch-label">SMI</div>'
@@ -709,10 +713,9 @@ def generate_html(meta, results, signals, strong):
     <p>// generated {dt} &nbsp;|&nbsp; elapsed {el} min &nbsp;|&nbsp; SMI(10,3,3) weekly</p>
     <div class="criteria-pills">
       <span class="pill active">USA + Europa</span>
-      <span class="pill active">cena ≤ 100 USD/EUR</span>
       <span class="pill active">market cap &gt; {cap} mln</span>
-      <span class="pill active">Revenue ↑ QoQ</span>
-      <span class="pill active">Net Income ↑ QoQ</span>
+      <span class="pill active">Revenue ↑ YoY</span>
+      <span class="pill active">Net Income ↑ YoY</span>
       <span class="pill active">Rev YoY ≥ 15%</span>
       <span class="pill active">SMI cross / exit OS (1W)</span>
     </div>
@@ -746,8 +749,8 @@ def generate_html(meta, results, signals, strong):
         <th style="text-align:right">SMI</th>
         <th style="text-align:right">EMA</th>
         <th>Strefa</th>
-        <th style="text-align:right">Revenue (M)</th>
-        <th style="text-align:right">Net Inc. (M)</th>
+        <th style="text-align:right">Revenue YoY (M)</th>
+        <th style="text-align:right">Net Inc. YoY (M)</th>
       </tr></thead><tbody>{signal_rows}</tbody></table>
     </div>
   </div>
@@ -778,8 +781,8 @@ def generate_html(meta, results, signals, strong):
           <th style="text-align:right">SMI</th>
           <th style="text-align:right">EMA</th>
           <th>Strefa</th>
-          <th style="text-align:right">Revenue (M)</th>
-          <th style="text-align:right">Net Inc. (M)</th>
+          <th style="text-align:right">Revenue YoY (M)</th>
+          <th style="text-align:right">Net Inc. YoY (M)</th>
         </tr></thead>
         <tbody id="tbody-all">{all_rows}</tbody>
       </table>
@@ -876,8 +879,8 @@ function buildPrompt() {
 
   const sigLines = sc.map(s => {
     const sigType = s.strong_signal ? 'STRONG BUY' : 'BUY';
-    const rev     = s.rev_curr  != null ? `Rev: ${s.rev_prev}→${s.rev_curr}M`      : '';
-    const earn    = s.earn_curr != null ? `NetInc: ${s.earn_prev}→${s.earn_curr}M` : '';
+    const rev     = s.rev_curr  != null ? `Rev YoY: ${s.rev_prev}→${s.rev_curr}M`      : '';
+    const earn    = s.earn_curr != null ? `NetInc YoY: ${s.earn_prev}→${s.earn_curr}M` : '';
     const yoy     = s.rev_yoy_pct != null ? `YoY: +${s.rev_yoy_pct}%` : '';
     const cap     = s.market_cap_mln != null ? `Cap: ${s.market_cap_mln}M` : '';
     return `- ${s.ticker} (${s.name}) | ${s.market} | ${s.sector} | ${s.price} ${s.currency}`
@@ -896,7 +899,7 @@ PARAMETRY SKANU:
 - Kandydaci (fundamenty OK): ${m.candidates}
 - Sygnały BUY: ${m.signals} | Strong BUY: ${m.strong}
 - Wskaźnik: SMI(10,3,3) interwał tygodniowy
-- Kryteria: cena ≤ ${m.max_price} USD/EUR | market cap > ${m.min_cap_mln} mln | Revenue ↑ QoQ + Net Income ↑ QoQ + Rev YoY ≥ 15%
+- Kryteria: market cap > ${m.min_cap_mln} mln | Revenue ↑ YoY (Q vs Q rok wcześniej) + Net Income ↑ YoY + Rev YoY ≥ 15%
 
 LISTA SYGNAŁÓW (${sc.length} pozycji):
 ${sigLines}
