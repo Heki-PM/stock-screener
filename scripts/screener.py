@@ -703,7 +703,7 @@ def generate_html(meta, mtf_results):
 </html>"""
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    path = f"{OUTPUT_DIR}/report.html"
+    path = f"{OUTPUT_DIR}/index.html"
     with open(path, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"✅ Raport: {path}")
