@@ -190,27 +190,7 @@ def smi_signals(smi, smi_ema):
     else:           zone = "Bearish"
     return buy, strong, round(s0, 2), round(e0, 2), zone
 
-def check_fundamentals(info):
-    eps   = info.get("trailingEps")
-    sales = info.get("totalRevenue")
-    quick = info.get("quickRatio")
-
-    # Jezeli info jest puste (401) - nie filtrujemy
-    if not info:
-        metrics = {"eps_ttm": None, "sales_ttm_mln": None, "quick_ratio": None}
-        return True, metrics
-
-    eps_ok   = eps is None or eps > 0          # None = brak danych = przepuszczamy
-    sales_ok = sales is None or sales > 0
-    quick_ok = quick is None or quick > MIN_QUICK
-
-    ok = eps_ok and sales_ok and quick_ok
-    metrics = {
-        "eps_ttm":       round(eps,   2)            if eps   is not None else None,
-        "sales_ttm_mln": round(sales / 1e6, 1)      if sales is not None else None,
-        "quick_ratio":   round(quick, 2)             if quick is not None else None,
-    }
-    return ok, metrics
+# check_fundamentals zastapiona przez _get_fundamentals_from_statements
 
 # ══════════════════════════════════════════════════════════════
 #  NOWE: BULK DOWNLOAD
@@ -332,18 +312,87 @@ def phase2_daily_crossover(weekly_bullish):
 #  FAZA 3 – Meta + Fundamenty (równolegle)
 # ══════════════════════════════════════════════════════════════
 
-def _fetch_info_with_retry(tkr, retries=3, wait=2):
-    """Pobiera tkr.info z retry przy bledach 401/timeout."""
-    import time
-    for attempt in range(retries):
-        try:
-            info = tkr.info
-            if info and len(info) > 5:
-                return info
-        except Exception:
-            if attempt < retries - 1:
-                time.sleep(wait)
-    return {}
+def _get_fundamentals_from_statements(tkr):
+    """
+    Pobiera dane fundamentalne z raportow finansowych zamiast tkr.info.
+    Uzywa tych samych endpointow co dane historyczne — odporne na bledy 401.
+    Zwraca dict z: eps_ttm, sales_ttm_mln, quick_ratio, name, sector
+    """
+    result = {
+        "eps_ttm":       None,
+        "sales_ttm_mln": None,
+        "quick_ratio":   None,
+        "name":          None,
+        "sector":        None,
+        "country":       None,
+    }
+    try:
+        # EPS TTM i Sales TTM z rocznych sprawozdan finansowych
+        fin = tkr.financials  # roczne
+        if fin is not None and not fin.empty:
+            # Sales TTM — Total Revenue najnowszy rok
+            for label in ["Total Revenue", "Operating Revenue"]:
+                if label in fin.index:
+                    rev = fin.loc[label].dropna()
+                    if len(rev) >= 1:
+                        result["sales_ttm_mln"] = round(float(rev.iloc[0]) / 1e6, 1)
+                    break
+
+            # EPS TTM — Net Income / shares (przyblizenie)
+            for label in ["Net Income", "Net Income Common Stockholders"]:
+                if label in fin.index:
+                    ni = fin.loc[label].dropna()
+                    if len(ni) >= 1:
+                        ni_val = float(ni.iloc[0])
+                        # jesli dodatni = EPS > 0 (przyblizenie bez shares)
+                        result["eps_ttm"] = round(ni_val / 1e6, 2)  # w mln jako proxy
+                    break
+    except Exception:
+        pass
+
+    try:
+        # Quick Ratio z bilansu: (Current Assets - Inventory) / Current Liabilities
+        bs = tkr.balance_sheet
+        if bs is not None and not bs.empty:
+            ca  = None
+            inv = 0.0
+            cl  = None
+            for label in ["Current Assets", "Total Current Assets"]:
+                if label in bs.index:
+                    v = bs.loc[label].dropna()
+                    if len(v) >= 1: ca = float(v.iloc[0])
+                    break
+            for label in ["Inventory", "Inventories"]:
+                if label in bs.index:
+                    v = bs.loc[label].dropna()
+                    if len(v) >= 1: inv = float(v.iloc[0])
+                    break
+            for label in ["Current Liabilities", "Total Current Liabilities"]:
+                if label in bs.index:
+                    v = bs.loc[label].dropna()
+                    if len(v) >= 1: cl = float(v.iloc[0])
+                    break
+            if ca is not None and cl is not None and cl > 0:
+                result["quick_ratio"] = round((ca - inv) / cl, 2)
+    except Exception:
+        pass
+
+    try:
+        # Nazwa, sektor, kraj — probuj info ale nie blokuj jesli 401
+        info = tkr.info
+        if info and len(info) > 5:
+            result["name"]    = info.get("shortName")
+            result["sector"]  = info.get("sector")
+            result["country"] = info.get("country")
+            # Nadpisz EPS jesli jest w info (bardziej dokladne)
+            eps = info.get("trailingEps")
+            if eps is not None:
+                result["eps_ttm"] = round(float(eps), 2)
+    except Exception:
+        pass  # 401 — uzywamy tego co mamy z sprawozdan
+
+    return result
+
 
 def _check_one(symbol, market, weekly_data, daily_signal):
     """Sprawdza market cap, volume, fundamenty dla jednego tickera."""
@@ -366,15 +415,27 @@ def _check_one(symbol, market, weekly_data, daily_signal):
 
         currency = getattr(fi, "currency", "USD")
 
-        info = _fetch_info_with_retry(tkr)
+        # Dane fundamentalne z sprawozdan (odporne na 401)
+        fund = _get_fundamentals_from_statements(tkr)
 
-        fund_ok, metrics = check_fundamentals(info)
-        if not fund_ok:
+        # Filtr: jesli mamy EPS z rachunku wynikow (nie None) musi byc > 0
+        # (eps_ttm jako proxy net income w mln — jesli < 0 firma traci)
+        if fund["eps_ttm"] is not None and fund["eps_ttm"] < 0:
             return None
 
-        name    = info.get("shortName", symbol)
-        sector  = info.get("sector", "—")
-        country = info.get("country", "—")
+        # Quick ratio — jesli mamy dane i jest za niskie, odrzuc
+        if fund["quick_ratio"] is not None and fund["quick_ratio"] < MIN_QUICK:
+            return None
+
+        name    = fund["name"]    or symbol
+        sector  = fund["sector"]  or "—"
+        country = fund["country"] or "—"
+
+        metrics = {
+            "eps_ttm":       fund["eps_ttm"],
+            "sales_ttm_mln": fund["sales_ttm_mln"],
+            "quick_ratio":   fund["quick_ratio"],
+        }
 
         return {
             "ticker":         symbol,
