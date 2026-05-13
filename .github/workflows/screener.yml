@@ -6,7 +6,7 @@ on:
       max_price:
         description: 'Maksymalna cena akcji (USD/EUR)'
         required: false
-        default: '50'
+        default: '100'
         type: string
       delay:
         description: 'Opóźnienie między requestami (sekundy)'
