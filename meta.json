@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-05-13T17:41:25.007853",
-  "elapsed_min": 7.2,
+  "generated_at": "2026-05-13T18:17:46.492077",
+  "elapsed_min": 5.6,
   "total_scanned": 2870,
-  "weekly_bullish": 1645,
-  "daily_crossover": 151,
-  "mtf_total": 125,
-  "mtf_strong": 12,
-  "mtf_buy": 113,
+  "weekly_bullish": 1649,
+  "daily_crossover": 164,
+  "mtf_total": 56,
+  "mtf_strong": 7,
+  "mtf_buy": 49,
   "indicator": "SMI(10,3,3)",
   "daily_lookback": 2
 }
