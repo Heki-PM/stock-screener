@@ -1,5 +1,0 @@
-ticker,name,market,country,sector,price,currency,market_cap_mln,volume_k,smi,smi_ema,smi_above_ema,zone,signal,strong_signal,eps_ttm,sales_ttm_mln,quick_ratio,scanned_at
-VIRT,"Virtu Financial, Inc.",USA,United States,Financial Services,51.35,USD,4469.1,1243.7,71.57,68.58,True,OVERBOUGHT,True,False,6.04,3049.7,1.1,2026-05-12T15:56:22.493785
-CALM,"Cal-Maine Foods, Inc.",USA,United States,Consumer Defensive,77.27,USD,3660.8,872.5,-57.03,-57.62,True,OVERSOLD,True,True,14.37,3462.7,6.51,2026-05-12T15:58:10.898156
-AGYS,"Agilysys, Inc.",USA,United States,Technology,71.08,USD,1997.9,304.7,-31.38,-45.92,True,Bearish,True,True,1.07,310.6,1.17,2026-05-12T15:58:40.761630
-HLIO,"Helios Technologies, Inc.",USA,United States,Industrials,75.04,USD,2479.6,357.5,1.58,-6.47,True,Bullish,True,False,1.45,871.9,1.41,2026-05-12T16:00:46.685579

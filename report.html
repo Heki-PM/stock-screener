@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stock Screener MTF – 13.05.2026 17:06</title>
+<style>
+  :root {
+    --bg:#0b0d1a; --bg2:#11142a; --bg3:#181c35; --border:#252840;
+    --text:#d0d4e8; --muted:#555d7a; --accent:#7c9ef0;
+    --green:#3ecf8e; --red:#ff4560; --orange:#ff6b00; --yellow:#ffb800;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+        background:var(--bg);color:var(--text);min-height:100vh}
+  .page{max-width:1600px;margin:0 auto;padding:2rem}
+  h1{font-size:1.5rem;font-weight:700;color:#fff;letter-spacing:-.3px}
+  h2{font-size:1.05rem;font-weight:600;color:#fff;margin-bottom:1rem}
+  .subtitle{font-size:.8rem;color:var(--muted);margin-top:.3rem}
+
+  /* Stats bar */
+  .stats-bar{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0}
+  .stat{background:var(--bg2);border:1px solid var(--border);border-radius:8px;
+         padding:.6rem 1.1rem;min-width:110px}
+  .stat-val{font-size:1.4rem;font-weight:700;color:#fff}
+  .stat-val.green{color:var(--green)} .stat-val.orange{color:var(--orange)}
+  .stat-val.yellow{color:var(--yellow)}
+  .stat-label{font-size:.72rem;color:var(--muted);margin-top:.1rem}
+
+  /* Sections */
+  .section{background:var(--bg2);border:1px solid var(--border);border-radius:12px;
+            padding:1.5rem;margin-bottom:1.5rem}
+  .section-mtf{border-color:#ff6b00;box-shadow:0 0 20px rgba(255,107,0,.08)}
+  .section-header{display:flex;align-items:center;gap:.6rem;margin-bottom:1.2rem}
+  .section-icon{font-size:1.2rem}
+
+  /* Cards */
+  .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+  .signal-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;
+                padding:1.2rem;position:relative;overflow:hidden}
+  .sc-ticker{font-size:1.1rem;font-weight:700;color:#fff;letter-spacing:-.3px}
+  .sc-name{font-size:.75rem;color:var(--muted);margin-top:.1rem;
+            white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
+  .sc-price{font-size:1.3rem;font-weight:700;color:var(--accent);margin:.7rem 0}
+  .sc-row{display:flex;justify-content:space-between;font-size:.78rem;
+           padding:.25rem 0;border-bottom:1px solid var(--border)}
+  .sc-row span:first-child{color:var(--muted)}
+  .sc-divider{height:1px;background:var(--border);margin:.5rem 0}
+  .sc-stoch{display:flex;gap:.5rem;margin-top:.7rem}
+  .sc-stoch-item{flex:1;background:var(--bg2);border-radius:6px;padding:.4rem .6rem;text-align:center}
+  .sc-stoch-label{font-size:.65rem;color:var(--muted)}
+  .sc-stoch-val{font-size:.95rem;font-weight:600;color:var(--text)}
+  .sc-stoch-val.green{color:var(--green)} .sc-stoch-val.red{color:var(--red)}
+  .empty{color:var(--muted);text-align:center;padding:2rem;font-size:.9rem}
+
+  /* Table */
+  .table-wrap{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:.8rem}
+  th{background:var(--bg3);color:var(--muted);font-weight:600;text-align:left;
+      padding:.6rem 1rem;border-bottom:1px solid var(--border);white-space:nowrap}
+  td{padding:.55rem 1rem;border-bottom:1px solid rgba(37,40,64,.6);vertical-align:middle}
+  tr:hover td{background:rgba(255,255,255,.02)}
+  .num{text-align:right;font-variant-numeric:tabular-nums}
+  .name-col{max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .smi-above{color:var(--green)} .smi-below{color:var(--red)}
+  .ticker{font-weight:600;color:#fff;margin-right:.3rem}
+
+  /* Badges */
+  .badge-strong{background:#3d1500;color:var(--orange);font-size:.68rem;
+                 font-weight:700;padding:.15rem .45rem;border-radius:3px;margin-left:.2rem}
+  .badge-signal{background:#0b2318;color:var(--green);font-size:.68rem;
+                 font-weight:700;padding:.15rem .45rem;border-radius:3px;margin-left:.2rem}
+  .badge-weekly-strong{background:#2a1f00;color:var(--yellow);font-size:.65rem;
+                        font-weight:700;padding:.12rem .4rem;border-radius:3px;margin-left:.2rem}
+  .badge-weekly{background:#0d1a2e;color:var(--accent);font-size:.65rem;
+                 font-weight:700;padding:.12rem .4rem;border-radius:3px;margin-left:.2rem}
+  .badge-usa{background:#0d1a2e;color:var(--accent);font-size:.72rem;
+              padding:.15rem .5rem;border-radius:4px;border:1px solid var(--border)}
+  .badge-eu{background:#1a1a0d;color:var(--yellow);font-size:.72rem;
+             padding:.15rem .5rem;border-radius:4px;border:1px solid var(--border)}
+
+  /* Zone badges */
+  .zone-badge{font-size:.72rem;padding:.15rem .5rem;border-radius:4px;font-weight:500}
+  .zone-ob{background:#3d0010;color:#ff4560}
+  .zone-os{background:#0b2318;color:var(--green)}
+  .zone-bull{background:#0d1a2e;color:var(--accent)}
+  .zone-bear{background:#1a1505;color:#ffa040}
+
+  @media(max-width:900px){.page{padding:1rem} th,td{padding:.45rem .6rem}}
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>📊 Stock Screener — Multi-Timeframe (MTF)</h1>
+  <p class="subtitle">Wygenerowano: 13.05.2026 17:06 | Czas: 8.8 min | Wskaźnik: SMI(10,3,3)</p>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-val">2870</div><div class="stat-label">Przeskanowano</div></div>
+    <div class="stat"><div class="stat-val">1662</div><div class="stat-label">SMI byczym (W)</div></div>
+    <div class="stat"><div class="stat-val">155</div><div class="stat-label">Dzienny cross.</div></div>
+    <div class="stat"><div class="stat-val green">0</div><div class="stat-label">MTF Sygnały</div></div>
+    <div class="stat"><div class="stat-val orange">0</div><div class="stat-label">Strong BUY</div></div>
+    <div class="stat"><div class="stat-val yellow">0</div><div class="stat-label">BUY</div></div>
+  </div>
+
+  <!-- MTF Strong BUY -->
+  <div class="section section-mtf">
+    <div class="section-header">
+      <span class="section-icon">⚡</span>
+      <h2>MTF Strong BUY — 0 sygnałów</h2>
+    </div>
+    <p style="font-size:.8rem;color:var(--muted);margin-bottom:1rem">
+      Tygodniowy SMI byczym + dzienny crossover z strefy wyprzedania (&lt;−40)
+    </p>
+    <div class='empty'>Brak sygnałów MTF w tym skanie</div>
+  </div>
+
+  <!-- MTF BUY -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">✅</span>
+      <h2>MTF BUY — 0 sygnałów</h2>
+    </div>
+    <p style="font-size:.8rem;color:var(--muted);margin-bottom:1rem">
+      Tygodniowy SMI byczym + dzienny crossover (strefa neutralna)
+    </p>
+    <div class='empty'>Brak sygnałów MTF w tym skanie</div>
+  </div>
+
+  <!-- Tabela wszystkich wyników MTF -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">📋</span>
+      <h2>Wszystkie wyniki MTF — 0</h2>
+    </div>
+    <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th>Ticker</th><th>Nazwa</th><th>Rynek</th><th>Sektor</th>
+        <th class="num">Cena</th><th class="num">Cap</th><th class="num">Vol avg</th>
+        <th class="num">SMI(W)</th><th class="num">EMA(W)</th><th>Strefa</th>
+        <th class="num">EPS</th><th class="num">Sales</th><th class="num">QR</th>
+      </tr></thead>
+      <tbody><tr><td colspan='14' style='text-align:center;color:#888;padding:2rem'>Brak wyników</td></tr></tbody>
+    </table>
+    </div>
+  </div>
+
+  <p style="font-size:.75rem;color:var(--muted);text-align:center;margin-top:1rem">
+    Strategia: Tygodniowy SMI &gt; EMA (trend byczym) + Dzienny SMI crossover ↑ (ostatnie 2 sesje)
+    | Fundamenty: Cap &gt; 200M | Vol &gt; 300,000 | EPS&gt;0 | Sales&gt;0 | QR&gt;1.0
+  </p>
+</div>
+</body>
+</html>
