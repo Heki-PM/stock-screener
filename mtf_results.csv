@@ -1,0 +1,47 @@
+ticker,name,market,country,sector,price,currency,market_cap_mln,volume_k,smi,smi_ema,zone,weekly_signal,weekly_strong,daily_signal,eps_ttm,sales_ttm_mln,quick_ratio,scanned_at
+KLIC,"Kulicke and Soffa Industries, I",USA,Singapore,Technology,102.81,USD,5380.1,685.5,78.09,71.18,OVERBOUGHT,False,False,BUY,1.04,768.2,3.18,2026-05-13T17:25:26.273698
+ITGR,Integer Holdings Corporation,USA,United States,Healthcare,89.9,USD,3052.5,752.0,15.61,-5.17,Bullish,False,False,BUY,4.03,1855.8,2.19,2026-05-13T17:25:26.278243
+WTTR,"Select Water Solutions, Inc.",USA,United States,Energy,18.09,USD,2249.6,2017.8,64.46,63.82,OVERBOUGHT,True,False,BUY,0.21,1398.9,1.61,2026-05-13T17:25:26.279585
+MYRG,"MYR Group, Inc.",USA,United States,Industrials,466.24,USD,7259.8,304.9,83.33,81.72,OVERBOUGHT,False,False,BUY,9.06,3824.6,1.25,2026-05-13T17:25:26.300724
+CTRE,"CareTrust REIT, Inc.",USA,United States,Real Estate,41.88,USD,9893.7,2775.6,58.22,41.75,OVERBOUGHT,False,False,BUY,1.58,522.6,1.75,2026-05-13T17:25:26.307954
+RIGL,"Rigel Pharmaceuticals, Inc.",USA,United States,Healthcare,32.03,USD,592.6,380.1,-16.77,-26.04,Bearish,False,False,Strong BUY,19.29,299.8,2.2,2026-05-13T17:25:26.317022
+HIW,"Highwoods Properties, Inc.",USA,United States,Real Estate,25.84,USD,2849.4,1407.6,60.85,38.03,OVERBOUGHT,False,False,BUY,0.83,823.8,1.48,2026-05-13T17:25:26.327680
+WELL,Welltower Inc.,USA,United States,Real Estate,220.32,USD,155527.1,2989.0,66.93,57.07,OVERBOUGHT,False,False,BUY,2.07,11766.9,1.24,2026-05-13T17:25:26.814978
+SEM,Select Medical Holdings Corpora,USA,United States,Healthcare,16.45,USD,2040.7,2285.7,86.85,85.89,OVERBOUGHT,False,False,BUY,1.07,5521.1,1.0,2026-05-13T17:25:27.063192
+ON,ON Semiconductor Corporation,USA,United States,Technology,114.95,USD,45049.3,9384.1,90.01,79.82,OVERBOUGHT,False,False,BUY,1.36,6063.0,2.8,2026-05-13T17:25:27.109800
+CORT,Corcept Therapeutics Incorporat,USA,United States,Healthcare,56.06,USD,6018.7,1676.8,78.26,61.76,OVERBOUGHT,False,False,BUY,0.35,769.1,2.53,2026-05-13T17:25:27.115081
+SBRA,"Sabra Health Care REIT, Inc.",USA,United States,Real Estate,20.98,USD,5290.9,2426.7,54.47,48.35,OVERBOUGHT,False,False,BUY,0.63,815.7,1.99,2026-05-13T17:25:27.162831
+JPM,JP Morgan Chase & Co.,USA,United States,Financial Services,301.49,USD,807846.2,9546.2,24.08,20.38,Bullish,False,False,Strong BUY,20.88,173559.0,,2026-05-13T17:25:27.164279
+GLNG,Golar LNG Limited,USA,Bermuda,Energy,56.69,USD,5769.4,2101.6,73.3,69.45,OVERBOUGHT,False,False,BUY,0.6,393.5,2.47,2026-05-13T17:25:27.530289
+SEI,"Solaris Energy Infrastructure, ",USA,United States,Energy,76.15,USD,4447.6,2713.0,57.95,52.91,OVERBOUGHT,False,False,BUY,0.84,692.1,1.05,2026-05-13T17:25:27.717436
+AKAM,"Akamai Technologies, Inc.",USA,United States,Technology,156.99,USD,22824.8,5497.1,52.7,26.99,OVERBOUGHT,False,False,BUY,2.96,4266.6,1.75,2026-05-13T17:25:27.819407
+VRT,"Vertiv Holdings, LLC",USA,United States,Industrials,372.59,USD,143115.1,7577.4,83.78,82.36,OVERBOUGHT,False,False,BUY,3.97,10843.4,1.06,2026-05-13T17:25:27.897381
+ALKS,Alkermes plc,USA,Ireland,Healthcare,39.05,USD,6508.7,2378.6,61.53,47.45,OVERBOUGHT,False,False,BUY,0.9,1562.3,1.53,2026-05-13T17:25:28.452259
+LBRT,Liberty Energy Inc.,USA,United States,Energy,33.67,USD,5494.7,4343.4,59.22,50.99,OVERBOUGHT,False,False,BUY,0.91,4049.8,1.88,2026-05-13T17:25:28.580401
+APP,Applovin Corporation,USA,United States,Communication Services,463.72,USD,155781.9,4985.6,14.68,2.9,Bullish,False,False,BUY,11.48,6164.2,3.16,2026-05-13T17:25:28.581443
+ROOT,"Root, Inc.",USA,United States,Financial Services,58.59,USD,927.3,348.6,22.52,5.77,Bullish,False,False,BUY,3.38,1561.2,1.74,2026-05-13T17:25:28.695698
+HAL,Halliburton Company,USA,United States,Energy,41.22,USD,34439.3,14773.5,58.41,54.87,OVERBOUGHT,False,False,BUY,1.81,22169.0,1.3,2026-05-13T17:25:29.174165
+PANL,Pangaea Logistics Solutions Ltd,USA,United States,Industrials,8.06,USD,527.6,595.2,-14.23,-23.77,Bearish,False,False,BUY,0.54,679.8,1.08,2026-05-13T17:25:29.197288
+CALM,"Cal-Maine Foods, Inc.",USA,United States,Consumer Defensive,79.0,USD,3743.0,874.2,-52.02,-55.11,OVERSOLD,True,True,BUY,14.37,3462.7,6.51,2026-05-13T17:25:29.251669
+BORR,Borr Drilling Limited,USA,Bermuda,Energy,6.14,USD,1893.9,7795.5,54.31,49.21,OVERBOUGHT,False,False,BUY,0.17,1020.8,2.07,2026-05-13T17:25:29.368965
+TTMI,"TTM Technologies, Inc.",USA,United States,Technology,170.64,USD,17721.0,2002.2,67.22,64.86,OVERBOUGHT,False,False,BUY,1.85,3103.7,1.52,2026-05-13T17:25:29.856265
+ASTH,Astrana Health Inc.,USA,United States,Healthcare,39.38,USD,1952.8,492.4,90.08,83.86,OVERBOUGHT,False,False,BUY,0.61,3526.5,1.31,2026-05-13T17:25:29.954528
+NTRS,Northern Trust Corporation,USA,United States,Financial Services,162.9,USD,30144.2,1098.7,47.01,43.56,OVERBOUGHT,False,False,Strong BUY,9.55,8363.5,,2026-05-13T17:25:29.977430
+CDRE,"Cadre Holdings, Inc.",USA,United States,Industrials,30.63,USD,1310.9,415.1,-71.65,-75.02,OVERSOLD,True,True,BUY,0.84,635.6,1.09,2026-05-13T17:25:30.008298
+ECVT,Ecovyst Inc.,USA,United States,Basic Materials,14.69,USD,1608.4,2182.3,76.4,74.95,OVERBOUGHT,True,False,BUY,0.17,795.4,2.02,2026-05-13T17:25:30.056590
+DDD,3D Systems Corporation,USA,United States,Technology,3.13,USD,457.9,3142.5,37.68,13.39,Bullish,False,False,BUY,0.44,387.9,1.39,2026-05-13T17:25:30.091453
+INVX,"Innovex International, Inc.",USA,United States,Energy,27.54,USD,1893.6,580.7,20.37,11.13,Bullish,False,False,BUY,0.75,976.9,3.3,2026-05-13T17:25:30.564050
+META,"Meta Platforms, Inc.",USA,United States,Communication Services,615.22,USD,1561676.2,15408.4,17.1,15.86,Bullish,False,False,Strong BUY,27.5,214963.0,2.11,2026-05-13T17:25:30.674678
+VCTR,"Victory Capital Holdings, Inc. ",USA,United States,Financial Services,86.51,USD,5409.6,672.0,70.3,53.2,OVERBOUGHT,False,False,BUY,4.45,1474.5,1.67,2026-05-13T17:25:30.758841
+MMSI,"Merit Medical Systems, Inc.",USA,United States,Healthcare,62.83,USD,3748.1,817.7,-76.06,-77.18,OVERSOLD,True,True,Strong BUY,2.32,1542.4,3.3,2026-05-13T17:25:30.809169
+STT,State Street Corporation,USA,United States,Financial Services,151.14,USD,41830.6,2109.2,72.0,67.35,OVERBOUGHT,False,False,BUY,9.85,14393.0,,2026-05-13T17:25:30.815111
+BK,The Bank of New York Mellon Cor,USA,United States,Financial Services,136.01,USD,93357.8,3678.0,60.16,54.16,OVERBOUGHT,False,False,Strong BUY,8.06,20754.0,,2026-05-13T17:25:30.906966
+UBSG.SW,UBS GROUP N,EU,Switzerland,Financial Services,36.22,CHF,118722.1,6487.4,67.17,46.61,OVERBOUGHT,False,False,BUY,2.17,51311.0,,2026-05-13T17:25:31.014819
+BNR.DE,Brenntag SE                   N,EU,Germany,Basic Materials,60.6,EUR,8749.8,452.9,74.91,72.53,OVERBOUGHT,False,False,BUY,1.83,15171.5,1.28,2026-05-13T17:25:31.029021
+ABN.AS,ABN AMRO BANK N.V.,EU,Netherlands,Financial Services,31.77,EUR,25981.5,2557.7,68.95,50.56,OVERBOUGHT,False,False,BUY,2.45,8698.0,,2026-05-13T17:25:31.104296
+EVO.ST,Evolution AB,EU,Sweden,Consumer Cyclical,640.2,SEK,127544.9,604.3,71.26,68.38,OVERBOUGHT,False,False,BUY,57.04,2058.6,1.75,2026-05-13T17:25:31.275271
+SUBC.OL,SUBSEA 7,EU,Luxembourg,Energy,331.8,NOK,98261.8,513.1,64.12,63.16,OVERBOUGHT,True,False,BUY,15.31,7346.2,1.07,2026-05-13T17:25:31.288918
+ROG.SW,ROCHE GS,EU,Switzerland,Healthcare,322.3,CHF,256427.6,1074.4,-11.0,-18.38,Bearish,False,False,BUY,16.03,63356.0,1.05,2026-05-13T17:25:31.289225
+ABI.BR,AB INBEV,EU,Belgium,Consumer Defensive,68.54,EUR,132753.2,2048.5,40.11,24.12,OVERBOUGHT,False,False,BUY,3.07,60959.0,,2026-05-13T17:25:31.292034
+SY1.DE,Symrise AG                    I,EU,Germany,Basic Materials,74.02,EUR,10345.9,429.8,20.77,17.08,Bullish,False,False,BUY,1.78,4929.3,1.61,2026-05-13T17:25:31.333877
+BAS.DE,BASF SE                       N,EU,Germany,Basic Materials,54.0,EUR,47753.6,3373.3,74.59,71.19,OVERBOUGHT,False,False,BUY,1.6,59168.0,1.04,2026-05-13T17:25:31.346620
