@@ -1,5 +1,7 @@
 name: Stock Screener
 on:
+  schedule:
+    - cron: '0 15 * * 1-5'  # 17:00 CET (UTC+2 lato) = 15:00 UTC, pon-pt
   workflow_dispatch:
     inputs:
       max_price:
