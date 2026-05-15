@@ -3,10 +3,7 @@ name: Daily Stock Screener
 on:
   schedule:
     # 15:00 UTC = 17:00 CEST (lato) / 16:00 CET (zima)
-    # Uruchamia się pon–pt
     - cron: '0 15 * * 1-5'
-
-  # Możliwość ręcznego uruchomienia z GitHub UI
   workflow_dispatch:
 
 jobs:
@@ -14,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write   # potrzebne do commitu JSON
+      contents: write
 
     steps:
       - name: Checkout repo
@@ -35,25 +32,22 @@ jobs:
         env:
           PYTHONUNBUFFERED: "1"
 
-      # Sprawdza czy JSON został wygenerowany
       - name: Verify JSON output
         run: |
-          if [ ! -f data/screener_results.json ]; then
-            echo "BŁĄD: data/screener_results.json nie został wygenerowany!"
+          if [ ! -f results/results.json ]; then
+            echo "BŁĄD: results/results.json nie został wygenerowany!"
             exit 1
           fi
-          echo "✅ Znaleziono $(cat data/screener_results.json | python3 -c \
-            'import json,sys; d=json.load(sys.stdin); print(d["total_signals"])') sygnałów"
+          COUNT=$(python3 -c "import json; d=json.load(open('results/results.json')); print(len(d))")
+          echo "✅ Znaleziono ${COUNT} wyników"
 
       - name: Commit results to repo
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add data/screener_results.json
-          git add docs/index.html  || true   # raport HTML (jeśli generujesz)
+          git add results/
 
-          # Commit tylko jeśli są zmiany
           git diff --staged --quiet || \
             git commit -m "📊 Screener results $(date -u +'%Y-%m-%d %H:%M UTC')"
 
