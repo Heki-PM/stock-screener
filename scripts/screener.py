@@ -783,3 +783,73 @@ def run_screener():
 
 if __name__ == "__main__":
     run_screener()
+# ============================================================
+# WKLEJ TEN BLOK NA KONIEC SWOJEGO screener.py
+# (po tym jak budujesz listę wyników / results)
+# ============================================================
+
+import json
+import os
+from datetime import datetime, timezone
+
+def save_results_json(results: list[dict]) -> None:
+    """
+    Zapisuje wyniki screenera do data/screener_results.json
+    w formacie czytelnym dla Cowork equity-research plugin.
+
+    Parametr `results` to lista słowników — taka sama, której
+    używasz do budowania tabeli HTML w swoim raporcie.
+    Każdy słownik musi zawierać klucze wymienione poniżej
+    (dopasuj nazwy kluczy do swoich, jeśli się różnią).
+    """
+
+    now_utc = datetime.now(timezone.utc)
+
+    payload = {
+        "scan_date":     now_utc.strftime("%Y-%m-%d"),
+        "scan_time_utc": now_utc.strftime("%H:%M"),
+        "total_signals": len(results),
+        "signals": []
+    }
+
+    for r in results:
+        payload["signals"].append({
+            # --- identyfikacja ---
+            "ticker":             r.get("ticker", ""),
+            "name":               r.get("name", r.get("shortName", "")),
+            "market":             r.get("market", "US"),   # "US" lub "EU"
+            "currency":           r.get("currency", "USD"),
+
+            # --- cena ---
+            "price":              round(float(r.get("price", 0)), 2),
+
+            # --- sygnał techniczny ---
+            "signal_type":        r.get("signal", "BUY"),   # "BUY" | "Strong BUY"
+            "smi_value":          round(float(r.get("smi", 0)), 2),
+
+            # --- fundamenty (QoQ / YoY) ---
+            "revenue_growth_yoy": round(float(r.get("revenue_growth_yoy", 0)), 2),
+            "revenue_qoq":        round(float(r.get("revenue_qoq", 0)), 2),
+            "net_income_qoq":     round(float(r.get("net_income_qoq", 0)), 2),
+
+            # --- opcjonalne (jeśli pobierasz z yfinance) ---
+            "market_cap":         r.get("marketCap", None),
+            "sector":             r.get("sector", ""),
+            "pe_ratio":           r.get("trailingPE", None),
+        })
+
+    os.makedirs("data", exist_ok=True)
+    output_path = os.path.join("data", "screener_results.json")
+
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2, ensure_ascii=False)
+
+    print(f"[JSON] Zapisano {len(results)} sygnałów → {output_path}")
+
+
+# ---- Wywołanie na końcu screener.py ----
+# Upewnij się, że `results` to Twoja lista wynikowa przed tym wywołaniem
+# Przykład:
+#
+#   results = [...]   # Twoja lista spółek z sygnałami
+#   save_results_json(results)
