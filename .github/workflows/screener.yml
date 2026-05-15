@@ -31,7 +31,7 @@ jobs:
 
       - name: Run screener
         run: |
-          python screener.py
+          python scripts/screener.py
         env:
           PYTHONUNBUFFERED: "1"
 
