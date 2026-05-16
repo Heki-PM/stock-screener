@@ -43,7 +43,8 @@ SMI_LEN_K, SMI_LEN_D, SMI_LEN_EMA = 10, 3, 3
 def get_sp500():
     try:
         url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-        tables = pd.read_html(url)
+        r   = requests.get(url, timeout=20, headers={"User-Agent": "Mozilla/5.0"})
+        tables = pd.read_html(StringIO(r.text), flavor="html.parser")
         df = tables[0]
         tickers = df["Symbol"].dropna().str.strip().str.replace(".", "-", regex=False).tolist()
         print(f"  S&P 500 (Wikipedia): {len(tickers)} spolki")
@@ -55,12 +56,10 @@ def get_sp500():
 def get_sp600():
     try:
         url = "https://en.wikipedia.org/wiki/List_of_S%26P_600_companies"
-        tables = pd.read_html(url)
+        r   = requests.get(url, timeout=20, headers={"User-Agent": "Mozilla/5.0"})
+        tables = pd.read_html(StringIO(r.text), flavor="html.parser")
         df = tables[0]
-        # kolumna moze sie nazywac "Ticker symbol" lub "Symbol"
-        col = next((c for c in df.columns if "ticker" in c.lower() or "symbol" in c.lower()), None)
-        if col is None:
-            col = df.columns[0]
+        col = next((c for c in df.columns if "ticker" in str(c).lower() or "symbol" in str(c).lower()), df.columns[0])
         tickers = df[col].dropna().str.strip().str.replace(".", "-", regex=False).tolist()
         print(f"  S&P 600 (Wikipedia): {len(tickers)} spolki")
         return tickers
@@ -70,13 +69,11 @@ def get_sp600():
 
 def get_russell2000():
     try:
-        # S&P 400 mid-cap jako uzupelnienie (Wikipedia, stabilne)
         url = "https://en.wikipedia.org/wiki/List_of_S%26P_400_companies"
-        tables = pd.read_html(url)
+        r   = requests.get(url, timeout=20, headers={"User-Agent": "Mozilla/5.0"})
+        tables = pd.read_html(StringIO(r.text), flavor="html.parser")
         df = tables[0]
-        col = next((c for c in df.columns if "ticker" in c.lower() or "symbol" in c.lower()), None)
-        if col is None:
-            col = df.columns[0]
+        col = next((c for c in df.columns if "ticker" in str(c).lower() or "symbol" in str(c).lower()), df.columns[0])
         tickers = df[col].dropna().str.strip().str.replace(".", "-", regex=False).tolist()
         print(f"  S&P 400 mid-cap (Wikipedia): {len(tickers)} spolki")
         return tickers
