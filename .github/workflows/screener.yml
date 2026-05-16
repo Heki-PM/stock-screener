@@ -43,6 +43,11 @@ jobs:
           COUNT=$(python3 -c "import json; d=json.load(open('results/results.json')); print(len(d))")
           echo "✅ Wyników: ${COUNT}"
 
+      # ── NOWY KROK: generuj plik do wklejenia w Claude.ai ──────────────
+      - name: Generate Claude.ai prompt file
+        run: python scripts/make_prompt.py
+      # ──────────────────────────────────────────────────────────────────
+
       - name: Commit JSON results to repo
         run: |
           git config user.name  "github-actions[bot]"
