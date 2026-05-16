@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Stock Screener SMI - 15.05.2026 18:02</title>
+<title>Stock Screener SMI - 16.05.2026 10:35</title>
 <style>
   :root {
     --bg:#0b0d1a; --bg2:#11142a; --bg3:#181c35; --border:#252840;
@@ -24,13 +24,16 @@
          padding:.6rem 1.1rem;min-width:110px}
   .stat-val{font-size:1.4rem;font-weight:700;color:#fff}
   .stat-val.green{color:var(--green)} .stat-val.orange{color:var(--orange)}
-  .stat-val.yellow{color:var(--yellow)} .stat-val.purple{color:var(--purple)}
   .stat-label{font-size:.72rem;color:var(--muted);margin-top:.1rem}
+
+  .strategy-box{background:var(--bg2);border:1px solid #ff6b00;border-radius:10px;
+                 padding:1rem 1.4rem;margin-bottom:1.5rem;font-size:.82rem;line-height:1.7}
+  .strategy-box strong{color:var(--orange)}
+  .strategy-box ul{margin:.4rem 0 0 1.2rem;color:var(--text)}
 
   .section{background:var(--bg2);border:1px solid var(--border);border-radius:12px;
             padding:1.5rem;margin-bottom:1.5rem}
   .section-strong  {border-color:#ff6b00;box-shadow:0 0 20px rgba(255,107,0,.08)}
-  .section-buy     {border-color:#00c8ff;box-shadow:0 0 20px rgba(0,200,255,.05)}
   .section-turning {border-color:#7b2ff7;box-shadow:0 0 20px rgba(196,113,237,.08)}
   .section-header{display:flex;align-items:center;gap:.6rem;margin-bottom:1.2rem}
   .section-icon{font-size:1.2rem}
@@ -64,12 +67,10 @@
   .smi-col{color:var(--green)}
   .ticker{font-weight:600;color:#fff;margin-right:.3rem}
 
-  .badge-strong  {background:#3d1500;color:var(--orange);font-size:.68rem;font-weight:700;
-                   padding:.15rem .45rem;border-radius:3px;margin-left:.2rem}
-  .badge-signal  {background:#0b2318;color:var(--green);font-size:.68rem;font-weight:700;
-                   padding:.15rem .45rem;border-radius:3px;margin-left:.2rem}
-  .badge-turning {background:#1a0a2e;color:var(--purple);font-size:.68rem;font-weight:700;
-                   padding:.15rem .45rem;border-radius:3px;margin-left:.2rem}
+  .badge-strong{background:#3d1500;color:var(--orange);font-size:.68rem;font-weight:700;
+                 padding:.15rem .45rem;border-radius:3px;margin-left:.2rem}
+  .badge-turning{background:#1a0a2e;color:var(--purple);font-size:.68rem;font-weight:700;
+                  padding:.15rem .45rem;border-radius:3px;margin-left:.2rem}
   .badge-usa{background:#0d1a2e;color:var(--accent);font-size:.72rem;
               padding:.15rem .5rem;border-radius:4px;border:1px solid var(--border)}
   .badge-eu {background:#1a1a0d;color:var(--yellow);font-size:.72rem;
@@ -87,668 +88,66 @@
 <body>
 <div class="page">
   <h1>Stock Screener &mdash; SMI Tygodniowy</h1>
-  <p class="subtitle">Wygenerowano: 15.05.2026 18:02 &nbsp;|&nbsp; Czas: 3.9 min &nbsp;|&nbsp; SMI(10,3,3)</p>
+  <p class="subtitle">Wygenerowano: 16.05.2026 10:35 &nbsp;|&nbsp; Czas: 0.6 min &nbsp;|&nbsp; SMI(10,3,3)</p>
+
+  <div class="strategy-box">
+    <strong>&#9881; Aktywna strategia wejść:</strong>
+    <ul>
+      <li>Sygnały <strong>Strong BUY</strong> i <strong>Turning Up</strong> (bez zwykłego BUY)</li>
+      <li>Kurs akcji min. <strong>30% poniżej 52-tygodniowego szczytu</strong> &mdash; głęboka korekta (deep discount)</li>
+    </ul>
+  </div>
 
   <div class="stats-bar">
-    <div class="stat"><div class="stat-val">2868</div><div class="stat-label">Przeskanowano</div></div>
-    <div class="stat"><div class="stat-val">158</div><div class="stat-label">Sygnalow SMI</div></div>
-    <div class="stat"><div class="stat-val green">43</div><div class="stat-label">Po filtrach</div></div>
-    <div class="stat"><div class="stat-val orange">20</div><div class="stat-label">Strong BUY</div></div>
-    <div class="stat"><div class="stat-val yellow">6</div><div class="stat-label">BUY</div></div>
-    <div class="stat"><div class="stat-val purple">17</div><div class="stat-label">Turning Up</div></div>
+    <div class="stat"><div class="stat-val">382</div><div class="stat-label">Przeskanowano</div></div>
+    <div class="stat"><div class="stat-val">30</div><div class="stat-label">Sygnalow SMI</div></div>
+    <div class="stat"><div class="stat-val green">0</div><div class="stat-label">Po filtrach</div></div>
+    <div class="stat"><div class="stat-val orange">0</div><div class="stat-label">Strong BUY</div></div>
+    <div class="stat"><div class="stat-val purple">0</div><div class="stat-label">Turning Up</div></div>
   </div>
 
   <div class="section section-strong">
     <div class="section-header"><span class="section-icon">&#9889;</span>
-      <h2>Strong BUY &mdash; 20 sygnalow</h2></div>
+      <h2>Strong BUY &mdash; 0 sygnalow</h2></div>
     <p style="font-size:.8rem;color:var(--muted);margin-bottom:1rem">
-      Crossover SMI &gt; EMA ze strefy wyprzedania (&lt;&minus;40)
+      Crossover SMI &gt; EMA ze strefy wyprzedania (&lt;&minus;40) &nbsp;&bull;&nbsp;
+      Kurs &ge; 30% poni&#380;ej 52W High &nbsp;&bull;&nbsp;
+      Sortowanie: najwi&#281;kszy discount najpierw
     </p>
-    <div class="cards-grid"><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">SCHW</div><div class="sc-name">SCHW</div></div><span class="badge-usa">USA</span></div><div class="sc-price">91.13 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">158.5 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>10.4M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">8852.0</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">23921.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">--</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-64.1</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-64.77</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">PGR</div><div class="sc-name">Progressive Corporation (The)</div></div><span class="badge-usa">USA</span></div><div class="sc-price">201.59 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>Financial Services</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">117.8 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>2.9M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">19.67</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">87637.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">--</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-38.84</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-40.85</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">VRTX</div><div class="sc-name">Vertex Pharmaceuticals Incorpor</div></div><span class="badge-usa">USA</span></div><div class="sc-price">437.89 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>Healthcare</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">111.1 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>1.3M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">16.85</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">12001.3 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">2.46</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-67.03</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-69.34</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">CME</div><div class="sc-name">CME Group Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">299.83 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>Financial Services</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">108.6 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>2.4M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">11.73</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">6520.6 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.03</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-32.51</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-31.86</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">MMM</div><div class="sc-name">3M Company</div></div><span class="badge-usa">USA</span></div><div class="sc-price">146.04 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>Industrials</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">76.2 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>3.9M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">5.2</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">24948.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.33</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-55.55</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-56.05</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">WDAY</div><div class="sc-name">Workday, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">125.06 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>Technology</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">31.2 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>5.4M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">2.59</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">9552.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.32</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-39.85</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-46.91</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">GEHC</div><div class="sc-name">GE HealthCare Technologies Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">61.38 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>Healthcare</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">27.9 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>4.4M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">4.17</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">20625.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.13</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-70.65</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-70.8</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">WRB</div><div class="sc-name">W.R. Berkley Corporation</div></div><span class="badge-usa">USA</span></div><div class="sc-price">66.24 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>Financial Services</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">24.7 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>2.1M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">4.72</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">14639.9 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">--</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-43.72</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-45.28</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">STE</div><div class="sc-name">STERIS plc (Ireland)</div></div><span class="badge-usa">USA</span></div><div class="sc-price">213.13 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>Healthcare</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">20.9 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>811K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">7.93</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">5459.5 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.39</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-46.79</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-52.21</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">SJM</div><div class="sc-name">SJM</div></div><span class="badge-usa">USA</span></div><div class="sc-price">100.04 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">10.7 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>2.2M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">--</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">-- M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">--</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-34.89</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-44.0</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">ENPH</div><div class="sc-name">Enphase Energy, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">52.96 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>Technology</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">7.0 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>6.2M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">1.01</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">1473.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.84</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-10.43</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-35.37</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">CALM</div><div class="sc-name">Cal-Maine Foods, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">77.56 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>Consumer Defensive</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">3.7 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>877K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">14.37</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">4261.9 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">5.42</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-56.02</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-57.11</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">RUN</div><div class="sc-name">Sunrun Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">14.12 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>Technology</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">3.4 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>10.0M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">2.13</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">2957.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.27</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-25.87</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-39.18</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">TPB</div><div class="sc-name">Turning Point Brands, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">90.15 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>Consumer Defensive</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">1.7 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>505K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">2.92</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">463.1 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">4.12</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-34.37</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-46.91</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">WLDN</div><div class="sc-name">Willdan Group, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">91.96 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>Industrials</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">1.4 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>393K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">3.72</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">681.6 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.56</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-22.76</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-44.52</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">CDRE</div><div class="sc-name">Cadre Holdings, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">30.16 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>Industrials</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">1.3 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>428K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">0.84</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">610.3 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">2.54</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-72.64</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-75.52</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">EE</div><div class="sc-name">Excelerate Energy, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">35.91 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>Energy</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">1.1 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>488K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">1.19</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">1228.3 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">2.34</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-38.57</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-47.09</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">RPD</div><div class="sc-name">Rapid7, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">6.55 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>Technology</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">438 M</span></div><div class="sc-row"><span>Wolumen avg</span><span>2.2M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">0.35</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">859.8 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.28</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-15.7</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-37.22</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">CWH</div><div class="sc-name">CWH</div></div><span class="badge-usa">USA</span></div><div class="sc-price">6.67 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">424 M</span></div><div class="sc-row"><span>Wolumen avg</span><span>3.5M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">--</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">-- M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">--</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-37.07</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-45.03</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">CMCO</div><div class="sc-name">Columbus McKinnon Corporation</div></div><span class="badge-usa">USA</span></div><div class="sc-price">14.36 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>Industrials</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">413 M</span></div><div class="sc-row"><span>Wolumen avg</span><span>407K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">0.21</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">963.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.04</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-38.67</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-44.65</div></div></div></div></div>
-  </div>
-
-  <div class="section section-buy">
-    <div class="section-header"><span class="section-icon">&#10003;</span>
-      <h2>BUY &mdash; 6 sygnalow</h2></div>
-    <p style="font-size:.8rem;color:var(--muted);margin-bottom:1rem">
-      Crossover SMI &gt; EMA (strefa neutralna lub bycza)
-    </p>
-    <div class="cards-grid"><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#00c8ff,#00e599)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">NHY.OL</div><div class="sc-name">NHY.OL</div></div><span class="badge-eu">EU</span></div><div class="sc-price">105.75 NOK</div><div class="sc-row"><span>Sygnal</span><span style="color:#00c8ff;font-weight:600">BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ff4560">OVERBOUGHT</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">207.8 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>4.7M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">6717.0</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">207971.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.14</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">64.03</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">62.27</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#00c8ff,#00e599)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">PWR</div><div class="sc-name">Quanta Services, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">768.85 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#00c8ff;font-weight:600">BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ff4560">OVERBOUGHT</span></div><div class="sc-row"><span>Sektor</span><span>Industrials</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">115.4 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>1.1M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">7.25</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">28479.7 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.09</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">81.57</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">81.48</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#00c8ff,#00e599)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">ALL</div><div class="sc-name">ALL</div></div><span class="badge-usa">USA</span></div><div class="sc-price">217.27 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#00c8ff;font-weight:600">BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#4da6ff">Bullish</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">55.9 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>1.5M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">10282.0</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">67069.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">--</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">38.78</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">38.63</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#00c8ff,#00e599)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">FN</div><div class="sc-name">Fabrinet</div></div><span class="badge-usa">USA</span></div><div class="sc-price">737.99 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#00c8ff;font-weight:600">BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ff4560">OVERBOUGHT</span></div><div class="sc-row"><span>Sektor</span><span>Technology</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">26.4 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>736K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">11.64</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">3419.3 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">2.28</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">65.12</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">63.27</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#00c8ff,#00e599)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">VIRT</div><div class="sc-name">Virtu Financial, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">54.82 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#00c8ff;font-weight:600">BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ff4560">OVERBOUGHT</span></div><div class="sc-row"><span>Sektor</span><span>Financial Services</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">4.8 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>1.2M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">6.04</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">3632.1 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.69</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">74.43</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">70.01</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#00c8ff,#00e599)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">WTTR</div><div class="sc-name">Select Water Solutions, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">18.83 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#00c8ff;font-weight:600">BUY</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ff4560">OVERBOUGHT</span></div><div class="sc-row"><span>Sektor</span><span>Energy</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">2.3 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>2.0M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">0.21</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">1407.3 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.42</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">69.49</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">66.34</div></div></div></div></div>
+    <div class='empty'>Brak sygnalow w tym skanie</div>
   </div>
 
   <div class="section section-turning">
     <div class="section-header"><span class="section-icon">&#128260;</span>
-      <h2>Turning Up &mdash; 17 sygnalow</h2></div>
+      <h2>Turning Up &mdash; 0 sygnalow</h2></div>
     <p style="font-size:.8rem;color:var(--muted);margin-bottom:1rem">
       SMI osiagnal lokalny dolek i zmienia kierunek na rosnacy &mdash; jeszcze ponizej EMA.
       Wczesny sygnal przed potencjalnym crossoverem.
       <strong style="color:var(--purple)">delta</strong> = odleglosc SMI od EMA (im mniejsza, tym blizej crossovera).
     </p>
-    <div class="cards-grid"><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">ABT</div><div class="sc-name">Abbott Laboratories</div></div><span class="badge-usa">USA</span></div><div class="sc-price">84.46 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-1.18</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>Healthcare</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">147.1 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>12.0M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">3.57</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">44328.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.18</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-91.31</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-90.13</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">SYK</div><div class="sc-name">Stryker Corporation</div></div><span class="badge-usa">USA</span></div><div class="sc-price">306.49 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-1.4</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>Healthcare</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">117.5 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>2.2M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">8.65</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">25116.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.21</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-73.93</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-72.53</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">MDT</div><div class="sc-name">Medtronic plc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">76.04 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-0.8</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>Healthcare</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">97.6 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>8.8M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">3.58</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">33537.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.42</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-87.91</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-87.11</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">FCX</div><div class="sc-name">Freeport-McMoRan, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">63.3 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-1.51</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#4da6ff">Bullish</span></div><div class="sc-row"><span>Sektor</span><span>Basic Materials</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">91.0 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>17.2M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">1.89</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">25915.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.05</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">10.17</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">11.68</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">VLO</div><div class="sc-name">Valero Energy Corporation</div></div><span class="badge-usa">USA</span></div><div class="sc-price">247.76 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-0.75</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ff4560">OVERBOUGHT</span></div><div class="sc-row"><span>Sektor</span><span>Energy</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">73.6 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>3.7M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">13.68</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">122687.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.11</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">43.81</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">44.56</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">AON</div><div class="sc-name">Aon plc</div></div><span class="badge-usa">USA</span></div><div class="sc-price">318.94 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-2.7</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>Financial Services</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">68.1 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>1.4M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">18.23</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">17181.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.11</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-43.76</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-41.06</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">TKO</div><div class="sc-name">TKO Group Holdings, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">188.24 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-1.16</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>Communication Services</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">14.1 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>1.4M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">2.7</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">4735.2 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.23</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-65.24</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-64.08</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">NE</div><div class="sc-name">Noble Corporation plc A</div></div><span class="badge-usa">USA</span></div><div class="sc-price">52.65 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-2.86</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ff4560">OVERBOUGHT</span></div><div class="sc-row"><span>Sektor</span><span>Energy</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">8.4 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>1.8M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">1.43</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">3285.6 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.67</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">46.48</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">49.34</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">HSIC</div><div class="sc-name">HSIC</div></div><span class="badge-usa">USA</span></div><div class="sc-price">72.11 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-1.33</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">8.2 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>1.4M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">398.0</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">13184.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">--</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-55.09</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-53.76</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">VAL</div><div class="sc-name">Valaris Limited</div></div><span class="badge-usa">USA</span></div><div class="sc-price">103.43 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-0.6</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#4da6ff">Bullish</span></div><div class="sc-row"><span>Sektor</span><span>Energy</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">7.2 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>1.1M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">14.15</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">2369.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.77</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">35.79</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">36.39</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">NJR</div><div class="sc-name">NJR</div></div><span class="badge-usa">USA</span></div><div class="sc-price">57.17 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-3.14</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ff4560">OVERBOUGHT</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">5.8 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>540K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">335.63</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">2036.4 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">--</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">48.31</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">51.45</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">MMSI</div><div class="sc-name">MMSI</div></div><span class="badge-usa">USA</span></div><div class="sc-price">61.74 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-0.19</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">3.7 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>828K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">--</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">-- M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">--</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-78.69</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-78.5</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">UTI</div><div class="sc-name">Universal Technical Institute I</div></div><span class="badge-usa">USA</span></div><div class="sc-price">40.35 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-0.26</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#4da6ff">Bullish</span></div><div class="sc-row"><span>Sektor</span><span>Consumer Defensive</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">2.2 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>729K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">0.76</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">835.6 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.07</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">38.79</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">39.05</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">SPIR</div><div class="sc-name">Spire Global, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">19.62 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-1.53</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#4da6ff">Bullish</span></div><div class="sc-row"><span>Sektor</span><span>Industrials</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">759 M</span></div><div class="sc-row"><span>Wolumen avg</span><span>1.5M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">1.59</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">71.6 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.3</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">36.06</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">37.59</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">MAMA</div><div class="sc-name">Mama's Creations, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">14.43 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-2.18</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>Consumer Defensive</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">587 M</span></div><div class="sc-row"><span>Wolumen avg</span><span>422K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">0.13</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">171.7 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.71</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-54.8</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-52.62</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">IPI</div><div class="sc-name">Intrepid Potash, Inc</div></div><span class="badge-usa">USA</span></div><div class="sc-price">42.01 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-2.57</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>Basic Materials</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">564 M</span></div><div class="sc-row"><span>Wolumen avg</span><span>361K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">1.11</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">298.3 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">2.29</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-29.12</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-26.55</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">SD</div><div class="sc-name">SandRidge Energy, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">15.2 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Do crossovera (delta)</span><span style="color:#c471ed">-3.87</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>Energy</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">561 M</span></div><div class="sc-row"><span>Wolumen avg</span><span>402K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">2.05</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">156.4 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">2.17</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-48.73</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-44.86</div></div></div></div></div>
+    <div class='empty'>Brak sygnalow w tym skanie</div>
   </div>
 
   <div class="section">
     <div class="section-header"><span class="section-icon">&#128203;</span>
-      <h2>Wszystkie wyniki &mdash; 43</h2></div>
+      <h2>Wszystkie wyniki &mdash; 0</h2></div>
     <div class="table-wrap">
     <table>
       <thead><tr>
         <th>Ticker</th><th>Nazwa</th><th>Rynek</th><th>Sektor</th>
-        <th class="num">Cena</th><th class="num">Cap</th><th class="num">Vol avg</th>
+        <th class="num">Cena</th><th class="num">Discount 52W</th>
+        <th class="num">Cap</th><th class="num">Vol avg</th>
         <th class="num">SMI (W)</th><th class="num">EMA (W)</th><th>Strefa</th>
         <th class="num">EPS</th><th class="num">Sales</th><th class="num">QR</th>
       </tr></thead>
-      <tbody><tr>
-              <td><span class="ticker">SCHW</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">SCHW</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">91.13 USD</td>
-              <td class="num">158.5 B</td>
-              <td class="num">10.4M</td>
-              <td class="num smi-col">-64.1</td>
-              <td class="num">-64.77</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">8852.0</td>
-              <td class="num">23921.0 M</td>
-              <td class="num">--</td>
-            </tr><tr>
-              <td><span class="ticker">PGR</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">Progressive Corporation (The)</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Financial Services</td>
-              <td class="num">201.59 USD</td>
-              <td class="num">117.8 B</td>
-              <td class="num">2.9M</td>
-              <td class="num smi-col">-38.84</td>
-              <td class="num">-40.85</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">19.67</td>
-              <td class="num">87637.0 M</td>
-              <td class="num">--</td>
-            </tr><tr>
-              <td><span class="ticker">VRTX</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">Vertex Pharmaceuticals Incorpor</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Healthcare</td>
-              <td class="num">437.89 USD</td>
-              <td class="num">111.1 B</td>
-              <td class="num">1.3M</td>
-              <td class="num smi-col">-67.03</td>
-              <td class="num">-69.34</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">16.85</td>
-              <td class="num">12001.3 M</td>
-              <td class="num">2.46</td>
-            </tr><tr>
-              <td><span class="ticker">CME</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">CME Group Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Financial Services</td>
-              <td class="num">299.83 USD</td>
-              <td class="num">108.6 B</td>
-              <td class="num">2.4M</td>
-              <td class="num smi-col">-32.51</td>
-              <td class="num">-31.86</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">11.73</td>
-              <td class="num">6520.6 M</td>
-              <td class="num">1.03</td>
-            </tr><tr>
-              <td><span class="ticker">MMM</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">3M Company</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Industrials</td>
-              <td class="num">146.04 USD</td>
-              <td class="num">76.2 B</td>
-              <td class="num">3.9M</td>
-              <td class="num smi-col">-55.55</td>
-              <td class="num">-56.05</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">5.2</td>
-              <td class="num">24948.0 M</td>
-              <td class="num">1.33</td>
-            </tr><tr>
-              <td><span class="ticker">WDAY</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">Workday, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Technology</td>
-              <td class="num">125.06 USD</td>
-              <td class="num">31.2 B</td>
-              <td class="num">5.4M</td>
-              <td class="num smi-col">-39.85</td>
-              <td class="num">-46.91</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">2.59</td>
-              <td class="num">9552.0 M</td>
-              <td class="num">1.32</td>
-            </tr><tr>
-              <td><span class="ticker">GEHC</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">GE HealthCare Technologies Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Healthcare</td>
-              <td class="num">61.38 USD</td>
-              <td class="num">27.9 B</td>
-              <td class="num">4.4M</td>
-              <td class="num smi-col">-70.65</td>
-              <td class="num">-70.8</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">4.17</td>
-              <td class="num">20625.0 M</td>
-              <td class="num">1.13</td>
-            </tr><tr>
-              <td><span class="ticker">WRB</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">W.R. Berkley Corporation</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Financial Services</td>
-              <td class="num">66.24 USD</td>
-              <td class="num">24.7 B</td>
-              <td class="num">2.1M</td>
-              <td class="num smi-col">-43.72</td>
-              <td class="num">-45.28</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">4.72</td>
-              <td class="num">14639.9 M</td>
-              <td class="num">--</td>
-            </tr><tr>
-              <td><span class="ticker">STE</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">STERIS plc (Ireland)</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Healthcare</td>
-              <td class="num">213.13 USD</td>
-              <td class="num">20.9 B</td>
-              <td class="num">811K</td>
-              <td class="num smi-col">-46.79</td>
-              <td class="num">-52.21</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">7.93</td>
-              <td class="num">5459.5 M</td>
-              <td class="num">1.39</td>
-            </tr><tr>
-              <td><span class="ticker">SJM</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">SJM</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">100.04 USD</td>
-              <td class="num">10.7 B</td>
-              <td class="num">2.2M</td>
-              <td class="num smi-col">-34.89</td>
-              <td class="num">-44.0</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">--</td>
-              <td class="num">-- M</td>
-              <td class="num">--</td>
-            </tr><tr>
-              <td><span class="ticker">ENPH</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">Enphase Energy, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Technology</td>
-              <td class="num">52.96 USD</td>
-              <td class="num">7.0 B</td>
-              <td class="num">6.2M</td>
-              <td class="num smi-col">-10.43</td>
-              <td class="num">-35.37</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">1.01</td>
-              <td class="num">1473.0 M</td>
-              <td class="num">1.84</td>
-            </tr><tr>
-              <td><span class="ticker">CALM</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">Cal-Maine Foods, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Consumer Defensive</td>
-              <td class="num">77.56 USD</td>
-              <td class="num">3.7 B</td>
-              <td class="num">877K</td>
-              <td class="num smi-col">-56.02</td>
-              <td class="num">-57.11</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">14.37</td>
-              <td class="num">4261.9 M</td>
-              <td class="num">5.42</td>
-            </tr><tr>
-              <td><span class="ticker">RUN</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">Sunrun Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Technology</td>
-              <td class="num">14.12 USD</td>
-              <td class="num">3.4 B</td>
-              <td class="num">10.0M</td>
-              <td class="num smi-col">-25.87</td>
-              <td class="num">-39.18</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">2.13</td>
-              <td class="num">2957.0 M</td>
-              <td class="num">1.27</td>
-            </tr><tr>
-              <td><span class="ticker">TPB</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">Turning Point Brands, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Consumer Defensive</td>
-              <td class="num">90.15 USD</td>
-              <td class="num">1.7 B</td>
-              <td class="num">505K</td>
-              <td class="num smi-col">-34.37</td>
-              <td class="num">-46.91</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">2.92</td>
-              <td class="num">463.1 M</td>
-              <td class="num">4.12</td>
-            </tr><tr>
-              <td><span class="ticker">WLDN</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">Willdan Group, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Industrials</td>
-              <td class="num">91.96 USD</td>
-              <td class="num">1.4 B</td>
-              <td class="num">393K</td>
-              <td class="num smi-col">-22.76</td>
-              <td class="num">-44.52</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">3.72</td>
-              <td class="num">681.6 M</td>
-              <td class="num">1.56</td>
-            </tr><tr>
-              <td><span class="ticker">CDRE</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">Cadre Holdings, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Industrials</td>
-              <td class="num">30.16 USD</td>
-              <td class="num">1.3 B</td>
-              <td class="num">428K</td>
-              <td class="num smi-col">-72.64</td>
-              <td class="num">-75.52</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">0.84</td>
-              <td class="num">610.3 M</td>
-              <td class="num">2.54</td>
-            </tr><tr>
-              <td><span class="ticker">EE</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">Excelerate Energy, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Energy</td>
-              <td class="num">35.91 USD</td>
-              <td class="num">1.1 B</td>
-              <td class="num">488K</td>
-              <td class="num smi-col">-38.57</td>
-              <td class="num">-47.09</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">1.19</td>
-              <td class="num">1228.3 M</td>
-              <td class="num">2.34</td>
-            </tr><tr>
-              <td><span class="ticker">RPD</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">Rapid7, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Technology</td>
-              <td class="num">6.55 USD</td>
-              <td class="num">438 M</td>
-              <td class="num">2.2M</td>
-              <td class="num smi-col">-15.7</td>
-              <td class="num">-37.22</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">0.35</td>
-              <td class="num">859.8 M</td>
-              <td class="num">1.28</td>
-            </tr><tr>
-              <td><span class="ticker">CWH</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">CWH</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">6.67 USD</td>
-              <td class="num">424 M</td>
-              <td class="num">3.5M</td>
-              <td class="num smi-col">-37.07</td>
-              <td class="num">-45.03</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">--</td>
-              <td class="num">-- M</td>
-              <td class="num">--</td>
-            </tr><tr>
-              <td><span class="ticker">CMCO</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">Columbus McKinnon Corporation</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Industrials</td>
-              <td class="num">14.36 USD</td>
-              <td class="num">413 M</td>
-              <td class="num">407K</td>
-              <td class="num smi-col">-38.67</td>
-              <td class="num">-44.65</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">0.21</td>
-              <td class="num">963.0 M</td>
-              <td class="num">1.04</td>
-            </tr><tr>
-              <td><span class="ticker">NHY.OL</span><span class="badge-signal">BUY</span></td>
-              <td class="name-col">NHY.OL</td>
-              <td><span class="badge-eu">EU</span></td>
-              <td>--</td>
-              <td class="num">105.75 NOK</td>
-              <td class="num">207.8 B</td>
-              <td class="num">4.7M</td>
-              <td class="num smi-col">64.03</td>
-              <td class="num">62.27</td>
-              <td><span class="zone-badge zone-ob">OVERBOUGHT</span></td>
-              <td class="num">6717.0</td>
-              <td class="num">207971.0 M</td>
-              <td class="num">1.14</td>
-            </tr><tr>
-              <td><span class="ticker">PWR</span><span class="badge-signal">BUY</span></td>
-              <td class="name-col">Quanta Services, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Industrials</td>
-              <td class="num">768.85 USD</td>
-              <td class="num">115.4 B</td>
-              <td class="num">1.1M</td>
-              <td class="num smi-col">81.57</td>
-              <td class="num">81.48</td>
-              <td><span class="zone-badge zone-ob">OVERBOUGHT</span></td>
-              <td class="num">7.25</td>
-              <td class="num">28479.7 M</td>
-              <td class="num">1.09</td>
-            </tr><tr>
-              <td><span class="ticker">ALL</span><span class="badge-signal">BUY</span></td>
-              <td class="name-col">ALL</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">217.27 USD</td>
-              <td class="num">55.9 B</td>
-              <td class="num">1.5M</td>
-              <td class="num smi-col">38.78</td>
-              <td class="num">38.63</td>
-              <td><span class="zone-badge zone-bull">Bullish</span></td>
-              <td class="num">10282.0</td>
-              <td class="num">67069.0 M</td>
-              <td class="num">--</td>
-            </tr><tr>
-              <td><span class="ticker">FN</span><span class="badge-signal">BUY</span></td>
-              <td class="name-col">Fabrinet</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Technology</td>
-              <td class="num">737.99 USD</td>
-              <td class="num">26.4 B</td>
-              <td class="num">736K</td>
-              <td class="num smi-col">65.12</td>
-              <td class="num">63.27</td>
-              <td><span class="zone-badge zone-ob">OVERBOUGHT</span></td>
-              <td class="num">11.64</td>
-              <td class="num">3419.3 M</td>
-              <td class="num">2.28</td>
-            </tr><tr>
-              <td><span class="ticker">VIRT</span><span class="badge-signal">BUY</span></td>
-              <td class="name-col">Virtu Financial, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Financial Services</td>
-              <td class="num">54.82 USD</td>
-              <td class="num">4.8 B</td>
-              <td class="num">1.2M</td>
-              <td class="num smi-col">74.43</td>
-              <td class="num">70.01</td>
-              <td><span class="zone-badge zone-ob">OVERBOUGHT</span></td>
-              <td class="num">6.04</td>
-              <td class="num">3632.1 M</td>
-              <td class="num">1.69</td>
-            </tr><tr>
-              <td><span class="ticker">WTTR</span><span class="badge-signal">BUY</span></td>
-              <td class="name-col">Select Water Solutions, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Energy</td>
-              <td class="num">18.83 USD</td>
-              <td class="num">2.3 B</td>
-              <td class="num">2.0M</td>
-              <td class="num smi-col">69.49</td>
-              <td class="num">66.34</td>
-              <td><span class="zone-badge zone-ob">OVERBOUGHT</span></td>
-              <td class="num">0.21</td>
-              <td class="num">1407.3 M</td>
-              <td class="num">1.42</td>
-            </tr><tr>
-              <td><span class="ticker">ABT</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">Abbott Laboratories</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Healthcare</td>
-              <td class="num">84.46 USD</td>
-              <td class="num">147.1 B</td>
-              <td class="num">12.0M</td>
-              <td class="num smi-col">-91.31<span style="color:#c471ed;font-size:.7rem"> (-1.18)</span></td>
-              <td class="num">-90.13</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">3.57</td>
-              <td class="num">44328.0 M</td>
-              <td class="num">1.18</td>
-            </tr><tr>
-              <td><span class="ticker">SYK</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">Stryker Corporation</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Healthcare</td>
-              <td class="num">306.49 USD</td>
-              <td class="num">117.5 B</td>
-              <td class="num">2.2M</td>
-              <td class="num smi-col">-73.93<span style="color:#c471ed;font-size:.7rem"> (-1.4)</span></td>
-              <td class="num">-72.53</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">8.65</td>
-              <td class="num">25116.0 M</td>
-              <td class="num">1.21</td>
-            </tr><tr>
-              <td><span class="ticker">MDT</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">Medtronic plc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Healthcare</td>
-              <td class="num">76.04 USD</td>
-              <td class="num">97.6 B</td>
-              <td class="num">8.8M</td>
-              <td class="num smi-col">-87.91<span style="color:#c471ed;font-size:.7rem"> (-0.8)</span></td>
-              <td class="num">-87.11</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">3.58</td>
-              <td class="num">33537.0 M</td>
-              <td class="num">1.42</td>
-            </tr><tr>
-              <td><span class="ticker">FCX</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">Freeport-McMoRan, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Basic Materials</td>
-              <td class="num">63.3 USD</td>
-              <td class="num">91.0 B</td>
-              <td class="num">17.2M</td>
-              <td class="num smi-col">10.17<span style="color:#c471ed;font-size:.7rem"> (-1.51)</span></td>
-              <td class="num">11.68</td>
-              <td><span class="zone-badge zone-bull">Bullish</span></td>
-              <td class="num">1.89</td>
-              <td class="num">25915.0 M</td>
-              <td class="num">1.05</td>
-            </tr><tr>
-              <td><span class="ticker">VLO</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">Valero Energy Corporation</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Energy</td>
-              <td class="num">247.76 USD</td>
-              <td class="num">73.6 B</td>
-              <td class="num">3.7M</td>
-              <td class="num smi-col">43.81<span style="color:#c471ed;font-size:.7rem"> (-0.75)</span></td>
-              <td class="num">44.56</td>
-              <td><span class="zone-badge zone-ob">OVERBOUGHT</span></td>
-              <td class="num">13.68</td>
-              <td class="num">122687.0 M</td>
-              <td class="num">1.11</td>
-            </tr><tr>
-              <td><span class="ticker">AON</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">Aon plc</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Financial Services</td>
-              <td class="num">318.94 USD</td>
-              <td class="num">68.1 B</td>
-              <td class="num">1.4M</td>
-              <td class="num smi-col">-43.76<span style="color:#c471ed;font-size:.7rem"> (-2.7)</span></td>
-              <td class="num">-41.06</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">18.23</td>
-              <td class="num">17181.0 M</td>
-              <td class="num">1.11</td>
-            </tr><tr>
-              <td><span class="ticker">TKO</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">TKO Group Holdings, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Communication Services</td>
-              <td class="num">188.24 USD</td>
-              <td class="num">14.1 B</td>
-              <td class="num">1.4M</td>
-              <td class="num smi-col">-65.24<span style="color:#c471ed;font-size:.7rem"> (-1.16)</span></td>
-              <td class="num">-64.08</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">2.7</td>
-              <td class="num">4735.2 M</td>
-              <td class="num">1.23</td>
-            </tr><tr>
-              <td><span class="ticker">NE</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">Noble Corporation plc A</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Energy</td>
-              <td class="num">52.65 USD</td>
-              <td class="num">8.4 B</td>
-              <td class="num">1.8M</td>
-              <td class="num smi-col">46.48<span style="color:#c471ed;font-size:.7rem"> (-2.86)</span></td>
-              <td class="num">49.34</td>
-              <td><span class="zone-badge zone-ob">OVERBOUGHT</span></td>
-              <td class="num">1.43</td>
-              <td class="num">3285.6 M</td>
-              <td class="num">1.67</td>
-            </tr><tr>
-              <td><span class="ticker">HSIC</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">HSIC</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">72.11 USD</td>
-              <td class="num">8.2 B</td>
-              <td class="num">1.4M</td>
-              <td class="num smi-col">-55.09<span style="color:#c471ed;font-size:.7rem"> (-1.33)</span></td>
-              <td class="num">-53.76</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">398.0</td>
-              <td class="num">13184.0 M</td>
-              <td class="num">--</td>
-            </tr><tr>
-              <td><span class="ticker">VAL</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">Valaris Limited</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Energy</td>
-              <td class="num">103.43 USD</td>
-              <td class="num">7.2 B</td>
-              <td class="num">1.1M</td>
-              <td class="num smi-col">35.79<span style="color:#c471ed;font-size:.7rem"> (-0.6)</span></td>
-              <td class="num">36.39</td>
-              <td><span class="zone-badge zone-bull">Bullish</span></td>
-              <td class="num">14.15</td>
-              <td class="num">2369.0 M</td>
-              <td class="num">1.77</td>
-            </tr><tr>
-              <td><span class="ticker">NJR</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">NJR</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">57.17 USD</td>
-              <td class="num">5.8 B</td>
-              <td class="num">540K</td>
-              <td class="num smi-col">48.31<span style="color:#c471ed;font-size:.7rem"> (-3.14)</span></td>
-              <td class="num">51.45</td>
-              <td><span class="zone-badge zone-ob">OVERBOUGHT</span></td>
-              <td class="num">335.63</td>
-              <td class="num">2036.4 M</td>
-              <td class="num">--</td>
-            </tr><tr>
-              <td><span class="ticker">MMSI</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">MMSI</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">61.74 USD</td>
-              <td class="num">3.7 B</td>
-              <td class="num">828K</td>
-              <td class="num smi-col">-78.69<span style="color:#c471ed;font-size:.7rem"> (-0.19)</span></td>
-              <td class="num">-78.5</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">--</td>
-              <td class="num">-- M</td>
-              <td class="num">--</td>
-            </tr><tr>
-              <td><span class="ticker">UTI</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">Universal Technical Institute I</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Consumer Defensive</td>
-              <td class="num">40.35 USD</td>
-              <td class="num">2.2 B</td>
-              <td class="num">729K</td>
-              <td class="num smi-col">38.79<span style="color:#c471ed;font-size:.7rem"> (-0.26)</span></td>
-              <td class="num">39.05</td>
-              <td><span class="zone-badge zone-bull">Bullish</span></td>
-              <td class="num">0.76</td>
-              <td class="num">835.6 M</td>
-              <td class="num">1.07</td>
-            </tr><tr>
-              <td><span class="ticker">SPIR</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">Spire Global, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Industrials</td>
-              <td class="num">19.62 USD</td>
-              <td class="num">759 M</td>
-              <td class="num">1.5M</td>
-              <td class="num smi-col">36.06<span style="color:#c471ed;font-size:.7rem"> (-1.53)</span></td>
-              <td class="num">37.59</td>
-              <td><span class="zone-badge zone-bull">Bullish</span></td>
-              <td class="num">1.59</td>
-              <td class="num">71.6 M</td>
-              <td class="num">1.3</td>
-            </tr><tr>
-              <td><span class="ticker">MAMA</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">Mama's Creations, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Consumer Defensive</td>
-              <td class="num">14.43 USD</td>
-              <td class="num">587 M</td>
-              <td class="num">422K</td>
-              <td class="num smi-col">-54.8<span style="color:#c471ed;font-size:.7rem"> (-2.18)</span></td>
-              <td class="num">-52.62</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">0.13</td>
-              <td class="num">171.7 M</td>
-              <td class="num">1.71</td>
-            </tr><tr>
-              <td><span class="ticker">IPI</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">Intrepid Potash, Inc</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Basic Materials</td>
-              <td class="num">42.01 USD</td>
-              <td class="num">564 M</td>
-              <td class="num">361K</td>
-              <td class="num smi-col">-29.12<span style="color:#c471ed;font-size:.7rem"> (-2.57)</span></td>
-              <td class="num">-26.55</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">1.11</td>
-              <td class="num">298.3 M</td>
-              <td class="num">2.29</td>
-            </tr><tr>
-              <td><span class="ticker">SD</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">SandRidge Energy, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Energy</td>
-              <td class="num">15.2 USD</td>
-              <td class="num">561 M</td>
-              <td class="num">402K</td>
-              <td class="num smi-col">-48.73<span style="color:#c471ed;font-size:.7rem"> (-3.87)</span></td>
-              <td class="num">-44.86</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">2.05</td>
-              <td class="num">156.4 M</td>
-              <td class="num">2.17</td>
-            </tr></tbody>
+      <tbody><tr><td colspan='14' style='text-align:center;color:#888;padding:2rem'>Brak wynikow</td></tr></tbody>
     </table>
     </div>
   </div>
 
   <p style="font-size:.75rem;color:var(--muted);text-align:center;margin-top:1rem">
-    Strong BUY = crossover ze strefy wyprzedania &lt;&minus;40 &nbsp;|&nbsp;
-    BUY = crossover SMI &gt; EMA &nbsp;|&nbsp;
-    Turning Up = lokalny dolek SMI, kierunek zmienia sie na rosnacy (przed crossoverem)
+    Strong BUY = crossover SMI &gt; EMA ze strefy &lt;&minus;40 &nbsp;|&nbsp;
+    Discount 52W = odleglosc od rocznego szczytu (min. 30%)
     <br>Fundamenty: Cap &gt; 200M | Vol &gt; 300,000 | EPS&gt;0 | Sales&gt;0 | QR&gt;1.0
   </p>
 </div>
