@@ -1,44 +1,10 @@
-ticker,name,market,country,sector,price,currency,market_cap_mln,volume_k,smi,smi_ema,zone,signal,eps_ttm,sales_ttm_mln,quick_ratio,scanned_at
-RPD,"Rapid7, Inc.",USA,United States,Technology,6.55,USD,437.7,2192.1,-15.7,-37.22,Bearish,Strong BUY,0.35,859.8,1.28,2026-05-15T18:01:59.966129
-SD,"SandRidge Energy, Inc.",USA,United States,Energy,15.2,USD,561.3,402.3,-48.73,-44.86,OVERSOLD,Turning Up,2.05,156.4,2.17,2026-05-15T18:01:59.968932
-PGR,Progressive Corporation (The),USA,United States,Financial Services,201.59,USD,117796.3,2856.7,-38.84,-40.85,Bearish,Strong BUY,19.67,87637.0,,2026-05-15T18:01:59.984248
-CMCO,Columbus McKinnon Corporation,USA,United States,Industrials,14.36,USD,412.7,406.9,-38.67,-44.65,Bearish,Strong BUY,0.21,963.0,1.04,2026-05-15T18:02:01.077714
-VIRT,"Virtu Financial, Inc.",USA,United States,Financial Services,54.82,USD,4770.7,1244.9,74.43,70.01,OVERBOUGHT,BUY,6.04,3632.1,1.69,2026-05-15T18:02:01.248796
-WDAY,"Workday, Inc.",USA,United States,Technology,125.06,USD,31225.7,5409.0,-39.85,-46.91,Bearish,Strong BUY,2.59,9552.0,1.32,2026-05-15T18:02:01.326184
-CME,CME Group Inc.,USA,United States,Financial Services,299.83,USD,108648.0,2350.1,-32.51,-31.86,Bearish,Strong BUY,11.73,6520.6,1.03,2026-05-15T18:02:01.372092
-RUN,Sunrun Inc.,USA,United States,Technology,14.12,USD,3368.3,9982.0,-25.87,-39.18,Bearish,Strong BUY,2.13,2957.0,1.27,2026-05-15T18:02:01.597689
-ABT,Abbott Laboratories,USA,United States,Healthcare,84.46,USD,147113.5,12005.8,-91.31,-90.13,OVERSOLD,Turning Up,3.57,44328.0,1.18,2026-05-15T18:02:02.038717
-NE,Noble Corporation plc A,USA,United States,Energy,52.65,USD,8400.1,1760.6,46.48,49.34,OVERBOUGHT,Turning Up,1.43,3285.6,1.67,2026-05-15T18:02:02.125479
-VLO,Valero Energy Corporation,USA,United States,Energy,247.76,USD,73569.6,3659.1,43.81,44.56,OVERBOUGHT,Turning Up,13.68,122687.0,1.11,2026-05-15T18:02:02.300074
-MAMA,"Mama's Creations, Inc.",USA,United States,Consumer Defensive,14.43,USD,586.7,422.1,-54.8,-52.62,OVERSOLD,Turning Up,0.13,171.7,1.71,2026-05-15T18:02:03.340826
-SPIR,"Spire Global, Inc.",USA,United States,Industrials,19.62,USD,759.3,1479.2,36.06,37.59,Bullish,Turning Up,1.59,71.6,1.3,2026-05-15T18:02:03.544878
-CDRE,"Cadre Holdings, Inc.",USA,United States,Industrials,30.16,USD,1290.8,428.4,-72.64,-75.52,OVERSOLD,Strong BUY,0.84,610.3,2.54,2026-05-15T18:02:03.851021
-TKO,"TKO Group Holdings, Inc.",USA,United States,Communication Services,188.24,USD,14112.3,1369.2,-65.24,-64.08,OVERSOLD,Turning Up,2.7,4735.2,1.23,2026-05-15T18:02:03.999408
-EE,"Excelerate Energy, Inc.",USA,United States,Energy,35.91,USD,1143.3,488.3,-38.57,-47.09,Bearish,Strong BUY,1.19,1228.3,2.34,2026-05-15T18:02:04.004088
-ENPH,"Enphase Energy, Inc.",USA,United States,Technology,52.96,USD,6979.4,6179.1,-10.43,-35.37,Bearish,Strong BUY,1.01,1473.0,1.84,2026-05-15T18:02:04.066954
-GEHC,GE HealthCare Technologies Inc.,USA,United States,Healthcare,61.38,USD,27921.3,4367.8,-70.65,-70.8,OVERSOLD,Strong BUY,4.17,20625.0,1.13,2026-05-15T18:02:04.190278
-FCX,"Freeport-McMoRan, Inc.",USA,United States,Basic Materials,63.3,USD,90997.5,17199.5,10.17,11.68,Bullish,Turning Up,1.89,25915.0,1.05,2026-05-15T18:02:04.267488
-VRTX,Vertex Pharmaceuticals Incorpor,USA,United States,Healthcare,437.89,USD,111140.1,1283.8,-67.03,-69.34,OVERSOLD,Strong BUY,16.85,12001.3,2.46,2026-05-15T18:02:04.502957
-STE,STERIS plc (Ireland),USA,United States,Healthcare,213.13,USD,20918.1,810.9,-46.79,-52.21,OVERSOLD,Strong BUY,7.93,5459.5,1.39,2026-05-15T18:02:04.803727
-SYK,Stryker Corporation,USA,United States,Healthcare,306.49,USD,117496.2,2207.5,-73.93,-72.53,OVERSOLD,Turning Up,8.65,25116.0,1.21,2026-05-15T18:02:05.162242
-FN,Fabrinet,USA,Cayman Islands,Technology,737.99,USD,26442.2,736.1,65.12,63.27,OVERBOUGHT,BUY,11.64,3419.3,2.28,2026-05-15T18:02:06.035230
-CALM,"Cal-Maine Foods, Inc.",USA,United States,Consumer Defensive,77.56,USD,3674.4,876.6,-56.02,-57.11,OVERSOLD,Strong BUY,14.37,4261.9,5.42,2026-05-15T18:02:06.037091
-AON,Aon plc,USA,Ireland,Financial Services,318.94,USD,68118.2,1389.7,-43.76,-41.06,OVERSOLD,Turning Up,18.23,17181.0,1.11,2026-05-15T18:02:06.332942
-VAL,Valaris Limited,USA,Bermuda,Energy,103.43,USD,7163.1,1118.0,35.79,36.39,Bullish,Turning Up,14.15,2369.0,1.77,2026-05-15T18:02:06.397683
-TPB,"Turning Point Brands, Inc.",USA,United States,Consumer Defensive,90.15,USD,1746.1,505.1,-34.37,-46.91,Bearish,Strong BUY,2.92,463.1,4.12,2026-05-15T18:02:06.891686
-PWR,"Quanta Services, Inc.",USA,United States,Industrials,768.85,USD,115374.5,1143.7,81.57,81.48,OVERBOUGHT,BUY,7.25,28479.7,1.09,2026-05-15T18:02:07.179983
-WTTR,"Select Water Solutions, Inc.",USA,United States,Energy,18.83,USD,2341.6,2035.8,69.49,66.34,OVERBOUGHT,BUY,0.21,1407.3,1.42,2026-05-15T18:02:07.205242
-WLDN,"Willdan Group, Inc.",USA,United States,Industrials,91.96,USD,1389.6,392.6,-22.76,-44.52,Bearish,Strong BUY,3.72,681.6,1.56,2026-05-15T18:02:07.462034
-IPI,"Intrepid Potash, Inc",USA,United States,Basic Materials,42.01,USD,564.3,361.3,-29.12,-26.55,Bearish,Turning Up,1.11,298.3,2.29,2026-05-15T18:02:08.161107
-UTI,Universal Technical Institute I,USA,United States,Consumer Defensive,40.35,USD,2221.7,728.6,38.79,39.05,Bullish,Turning Up,0.76,835.6,1.07,2026-05-15T18:02:08.830689
-MDT,Medtronic plc.,USA,Ireland,Healthcare,76.04,USD,97626.6,8832.7,-87.91,-87.11,OVERSOLD,Turning Up,3.58,33537.0,1.42,2026-05-15T18:02:08.945318
-WRB,W.R. Berkley Corporation,USA,United States,Financial Services,66.24,USD,24657.7,2104.0,-43.72,-45.28,OVERSOLD,Strong BUY,4.72,14639.9,,2026-05-15T18:02:09.137939
-MMM,3M Company,USA,United States,Industrials,146.04,USD,76167.1,3870.0,-55.55,-56.05,OVERSOLD,Strong BUY,5.2,24948.0,1.33,2026-05-15T18:02:09.161968
-SCHW,SCHW,USA,--,--,91.13,USD,158487.4,10393.2,-64.1,-64.77,OVERSOLD,Strong BUY,8852.0,23921.0,,2026-05-15T18:02:09.986474
-ALL,ALL,USA,--,--,217.27,USD,55929.8,1463.7,38.78,38.63,Bullish,BUY,10282.0,67069.0,,2026-05-15T18:02:09.991024
-NJR,NJR,USA,--,--,57.17,USD,5769.2,540.3,48.31,51.45,OVERBOUGHT,Turning Up,335.63,2036.4,,2026-05-15T18:02:10.036327
-CWH,CWH,USA,--,--,6.67,USD,423.7,3528.0,-37.07,-45.03,Bearish,Strong BUY,,,,2026-05-15T18:02:10.049343
-MMSI,MMSI,USA,--,--,61.74,USD,3683.4,828.2,-78.69,-78.5,OVERSOLD,Turning Up,,,,2026-05-15T18:02:10.055350
-HSIC,HSIC,USA,--,--,72.11,USD,8215.1,1436.4,-55.09,-53.76,OVERSOLD,Turning Up,398.0,13184.0,,2026-05-15T18:02:10.061018
-SJM,SJM,USA,--,--,100.04,USD,10669.1,2232.3,-34.89,-44.0,Bearish,Strong BUY,,,,2026-05-15T18:02:10.078518
-NHY.OL,NHY.OL,EU,--,--,105.75,NOK,207828.2,4670.1,64.03,62.27,OVERBOUGHT,BUY,6717.0,207971.0,1.14,2026-05-15T18:02:11.082774
+ticker,name,market,country,sector,price,currency,high_52w,discount_52w,market_cap_mln,volume_k,smi,smi_ema,zone,signal,eps_ttm,sales_ttm_mln,quick_ratio,scanned_at
+AGYS,"Agilysys, Inc.",USA,United States,Technology,67.34,USD,145.25,53.6,1892.8,303.0,-39.87,-50.17,Bearish,Strong BUY,1.07,275.6,1.07,2026-05-16T10:55:20.947880
+CELH,"Celsius Holdings, Inc.",USA,United States,Consumer Defensive,30.16,USD,66.74,54.8,7710.1,7766.2,-85.31,-85.63,OVERSOLD,Strong BUY,0.43,2515.3,1.37,2026-05-16T10:55:20.969163
+WDAY,"Workday, Inc.",USA,United States,Technology,125.01,USD,274.65,54.5,31213.2,5405.0,-39.6,-46.78,Bearish,Strong BUY,2.59,9552.0,1.32,2026-05-16T10:55:21.198781
+ABT,Abbott Laboratories,USA,United States,Healthcare,84.47,USD,139.06,39.3,147131.0,12020.1,-91.22,-90.08,OVERSOLD,Turning Up,3.57,44328.0,1.18,2026-05-16T10:55:21.342045
+RUN,Sunrun Inc.,USA,United States,Technology,13.99,USD,22.44,37.7,3337.3,10006.2,-26.26,-39.37,Bearish,Strong BUY,2.13,2957.0,1.27,2026-05-16T10:55:21.539289
+PGR,Progressive Corporation (The),USA,United States,Financial Services,199.73,USD,289.96,31.1,116709.5,2863.7,-42.54,-42.7,OVERSOLD,Strong BUY,19.65,87637.0,,2026-05-16T10:55:21.630708
+MMSI,"Merit Medical Systems, Inc.",USA,United States,Healthcare,61.36,USD,100.05,38.7,3660.4,826.6,-80.03,-79.17,OVERSOLD,Turning Up,2.32,1515.9,2.95,2026-05-16T10:55:21.700532
+CALM,"Cal-Maine Foods, Inc.",USA,United States,Consumer Defensive,76.88,USD,126.4,39.2,3642.3,879.4,-58.16,-58.18,OVERSOLD,Strong BUY,14.37,4261.9,5.42,2026-05-16T10:55:21.738154
+RLI,RLI Corp.,USA,United States,Financial Services,50.82,USD,77.24,34.2,4672.3,788.4,-74.09,-70.44,OVERSOLD,Turning Up,4.29,1882.4,,2026-05-16T10:55:21.843044
