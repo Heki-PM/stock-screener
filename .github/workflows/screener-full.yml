@@ -1,10 +1,6 @@
 name: Stock Screener – Full Scan (bez filtrów)
 
-# ──────────────────────────────────────────────
-#  TRIGGERY
-# ──────────────────────────────────────────────
 on:
-  # 1. Ręczne uruchomienie z GitHub UI (Actions → Run workflow)
   workflow_dispatch:
     inputs:
       include_strong_buy:
@@ -26,76 +22,64 @@ on:
         type: choice
         options: ['true', 'false']
 
-  # 2. Harmonogram – co poniedziałek o 07:30 UTC (9:30 PL czasu letniego)
-  #    Odkomentuj poniższe 2 linie, aby włączyć automatyczne skany tygodniowe
+  # Harmonogram – co poniedziałek o 07:30 UTC (9:30 PL czasu letniego)
+  # Odkomentuj aby włączyć automatyczne skany tygodniowe:
   # schedule:
   #   - cron: '30 7 * * 1'
 
-# ──────────────────────────────────────────────
-#  UPRAWNIENIA (zapis do repozytorium)
-# ──────────────────────────────────────────────
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   scan:
     name: Full SMI Scan
     runs-on: ubuntu-latest
-    timeout-minutes: 90          # pełny scan może trwać do ~60–75 min
+    timeout-minutes: 90
 
     steps:
-      # 1. Pobierz kod
       - name: Checkout repozytorium
         uses: actions/checkout@v4
 
-      # 2. Python 3.11
       - name: Ustaw Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
 
-      # 3. Zainstaluj zależności
       - name: Zainstaluj biblioteki
         run: |
           pip install --upgrade pip
           pip install yfinance pandas numpy requests
 
-      # 4. (Opcjonalnie) nadpisz flagi sygnałów z inputu workflow_dispatch
-      #    Przy uruchomieniu scheduled wartości domyślne = true/true/true
       - name: Ustaw zmienne środowiskowe
         run: |
           echo "INCLUDE_STRONG_BUY=${{ github.event.inputs.include_strong_buy || 'true' }}" >> $GITHUB_ENV
-          echo "INCLUDE_BUY=${{ github.event.inputs.include_buy || 'true' }}"                 >> $GITHUB_ENV
-          echo "INCLUDE_TURNING_UP=${{ github.event.inputs.include_turning_up || 'true' }}"  >> $GITHUB_ENV
+          echo "INCLUDE_BUY=${{ github.event.inputs.include_buy || 'true' }}"                >> $GITHUB_ENV
+          echo "INCLUDE_TURNING_UP=${{ github.event.inputs.include_turning_up || 'true' }}" >> $GITHUB_ENV
 
-      # 5. Uruchom screener full scan
       - name: Uruchom screener_all.py
         run: python scripts/screener_all.py
         env:
           PYTHONUNBUFFERED: '1'
 
-      # 6. Skopiuj wyniki do folderu docs/ (GitHub Pages serwuje z docs/)
-      #    Jeśli używasz gałęzi gh-pages lub folderu results_all/ – dostosuj ścieżki
-      - name: Przygotuj katalog docs/
+      # Kopiuj do results/ – stamtąd GitHub Pages serwuje stronę
+      - name: Kopiuj wyniki do results/
         run: |
-          mkdir -p docs
-          # Główny raport HTML – zastępuje poprzedni
-          cp results_all/index.html docs/index_all.html
-          # Pełny pakiet danych JSON + CSV
-          cp results_all/results.json  docs/results_all.json  2>/dev/null || true
-          cp results_all/strong.json   docs/strong_all.json   2>/dev/null || true
-          cp results_all/buy.json      docs/buy_all.json      2>/dev/null || true
-          cp results_all/turning.json  docs/turning_all.json  2>/dev/null || true
-          cp results_all/meta.json     docs/meta_all.json     2>/dev/null || true
-          cp results_all/results.csv   docs/results_all.csv   2>/dev/null || true
+          mkdir -p results
+          cp results_all/index.html   results/index_all.html
+          cp results_all/results.json results/results_all.json 2>/dev/null || true
+          cp results_all/strong.json  results/strong_all.json  2>/dev/null || true
+          cp results_all/buy.json     results/buy_all.json     2>/dev/null || true
+          cp results_all/turning.json results/turning_all.json 2>/dev/null || true
+          cp results_all/meta.json    results/meta_all.json    2>/dev/null || true
+          cp results_all/results.csv  results/results_all.csv  2>/dev/null || true
+          # Landing page ze static/
+          cp static/index.html results/index.html 2>/dev/null || true
 
-      # 7. Wyświetl podsumowanie w logach Actions
       - name: Podsumowanie skanu
         run: |
-          echo "========================================"
-          echo "FULL SCAN zakończony"
-          echo "========================================"
           python - <<'EOF'
           import json, os
           path = "results_all/meta.json"
@@ -108,18 +92,24 @@ jobs:
               print(f"Turning Up   : {m.get('results_turning','?')}")
               print(f"Czas skanu   : {m.get('elapsed_min','?')} min")
           else:
-              print("Brak pliku meta.json – skan mogl sie nie powiesc")
+              print("Brak pliku meta.json")
           EOF
 
-      # 8. Zatwierdź i wypchnij wyniki do repozytorium
       - name: Commit i push wynikow
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/ results_all/ || true
-          # Commit tylko jeśli są zmiany
+          git add results/ results_all/ || true
           git diff --cached --quiet || \
             git commit -m "chore: full scan SMI $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: results/
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
