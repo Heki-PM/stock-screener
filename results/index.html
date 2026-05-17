@@ -3,468 +3,323 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Stock Screener SMI - 17.05.2026 08:53</title>
+<title>Stock Screener SMI</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+
   :root {
-    --bg:#0b0d1a; --bg2:#11142a; --bg3:#181c35; --border:#252840;
-    --text:#d0d4e8; --muted:#555d7a; --accent:#7c9ef0;
-    --green:#3ecf8e; --red:#ff4560; --orange:#ff6b00; --yellow:#ffb800;
-    --purple:#c471ed;
+    --bg:      #080a14;
+    --bg2:     #0e1020;
+    --border:  #1c2040;
+    --text:    #c8cde8;
+    --muted:   #454a6a;
+    --accent:  #7c9ef0;
+    --green:   #3ecf8e;
+    --orange:  #ff6b00;
+    --yellow:  #ffb800;
+    --purple:  #c471ed;
+    --glow-o:  rgba(255,107,0,.18);
+    --glow-g:  rgba(62,207,142,.12);
   }
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-        background:var(--bg);color:var(--text);min-height:100vh}
-  .page{max-width:1600px;margin:0 auto;padding:2rem}
-  h1{font-size:1.5rem;font-weight:700;color:#fff;letter-spacing:-.3px}
-  h2{font-size:1.05rem;font-weight:600;color:#fff;margin-bottom:1rem}
-  .subtitle{font-size:.8rem;color:var(--muted);margin-top:.3rem}
 
-  .stats-bar{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0}
-  .stat{background:var(--bg2);border:1px solid var(--border);border-radius:8px;
-         padding:.6rem 1.1rem;min-width:110px}
-  .stat-val{font-size:1.4rem;font-weight:700;color:#fff}
-  .stat-val.green{color:var(--green)} .stat-val.orange{color:var(--orange)}
-  .stat-label{font-size:.72rem;color:var(--muted);margin-top:.1rem}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  .strategy-box{background:var(--bg2);border:1px solid #ff6b00;border-radius:10px;
-                 padding:1rem 1.4rem;margin-bottom:1.5rem;font-size:.82rem;line-height:1.7}
-  .strategy-box strong{color:var(--orange)}
-  .strategy-box ul{margin:.4rem 0 0 1.2rem;color:var(--text)}
+  body {
+    font-family: 'Syne', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    overflow-x: hidden;
+  }
 
-  .section{background:var(--bg2);border:1px solid var(--border);border-radius:12px;
-            padding:1.5rem;margin-bottom:1.5rem}
-  .section-strong  {border-color:#ff6b00;box-shadow:0 0 20px rgba(255,107,0,.08)}
-  .section-turning {border-color:#7b2ff7;box-shadow:0 0 20px rgba(196,113,237,.08)}
-  .section-header{display:flex;align-items:center;gap:.6rem;margin-bottom:1.2rem}
-  .section-icon{font-size:1.2rem}
+  /* ── Siatka tła ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(124,158,240,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124,158,240,.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
 
-  .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
-  .signal-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;
-                padding:1.2rem;position:relative;overflow:hidden}
-  .sc-ticker{font-size:1.1rem;font-weight:700;color:#fff;letter-spacing:-.3px}
-  .sc-name{font-size:.75rem;color:var(--muted);margin-top:.1rem;
-            white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
-  .sc-price{font-size:1.3rem;font-weight:700;color:var(--accent);margin:.7rem 0}
-  .sc-row{display:flex;justify-content:space-between;font-size:.78rem;
-           padding:.25rem 0;border-bottom:1px solid var(--border)}
-  .sc-row span:first-child{color:var(--muted)}
-  .sc-divider{height:1px;background:var(--border);margin:.5rem 0}
-  .sc-stoch{display:flex;gap:.5rem;margin-top:.7rem}
-  .sc-stoch-item{flex:1;background:var(--bg2);border-radius:6px;padding:.4rem .6rem;text-align:center}
-  .sc-stoch-label{font-size:.65rem;color:var(--muted)}
-  .sc-stoch-val{font-size:.95rem;font-weight:600;color:var(--text)}
-  .sc-stoch-val.green{color:var(--green)}
-  .empty{color:var(--muted);text-align:center;padding:2rem;font-size:.9rem}
+  /* ── Glow blobs ── */
+  .blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+    animation: drift 12s ease-in-out infinite alternate;
+  }
+  .blob-1 { width:380px;height:380px;background:rgba(255,107,0,.08); top:-80px;right:-60px; animation-delay:0s; }
+  .blob-2 { width:300px;height:300px;background:rgba(62,207,142,.06); bottom:-60px;left:-40px; animation-delay:-5s; }
+  .blob-3 { width:200px;height:200px;background:rgba(124,158,240,.07); top:50%;left:50%;transform:translate(-50%,-50%); animation-delay:-9s; }
 
-  .table-wrap{overflow-x:auto}
-  table{width:100%;border-collapse:collapse;font-size:.8rem}
-  th{background:var(--bg3);color:var(--muted);font-weight:600;text-align:left;
-      padding:.6rem 1rem;border-bottom:1px solid var(--border);white-space:nowrap}
-  td{padding:.55rem 1rem;border-bottom:1px solid rgba(37,40,64,.6);vertical-align:middle}
-  tr:hover td{background:rgba(255,255,255,.02)}
-  .num{text-align:right;font-variant-numeric:tabular-nums}
-  .name-col{max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .smi-col{color:var(--green)}
-  .ticker{font-weight:600;color:#fff;margin-right:.3rem}
+  @keyframes drift {
+    from { transform: translate(0,0) scale(1); }
+    to   { transform: translate(20px,15px) scale(1.08); }
+  }
 
-  .badge-strong{background:#3d1500;color:var(--orange);font-size:.68rem;font-weight:700;
-                 padding:.15rem .45rem;border-radius:3px;margin-left:.2rem}
-  .badge-turning{background:#1a0a2e;color:var(--purple);font-size:.68rem;font-weight:700;
-                  padding:.15rem .45rem;border-radius:3px;margin-left:.2rem}
-  .badge-usa{background:#0d1a2e;color:var(--accent);font-size:.72rem;
-              padding:.15rem .5rem;border-radius:4px;border:1px solid var(--border)}
-  .badge-eu {background:#1a1a0d;color:var(--yellow);font-size:.72rem;
-              padding:.15rem .5rem;border-radius:4px;border:1px solid var(--border)}
+  /* ── Wrapper ── */
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+  }
 
-  .zone-badge{font-size:.72rem;padding:.15rem .5rem;border-radius:4px;font-weight:500}
-  .zone-ob  {background:#3d0010;color:#ff4560}
-  .zone-os  {background:#0b2318;color:var(--green)}
-  .zone-bull{background:#0d1a2e;color:var(--accent)}
-  .zone-bear{background:#1a1505;color:#ffa040}
+  /* ── Badge ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    background: rgba(124,158,240,.08);
+    border: 1px solid rgba(124,158,240,.2);
+    border-radius: 20px;
+    padding: .3rem .9rem;
+    font-family: 'Space Mono', monospace;
+    font-size: .72rem;
+    color: var(--accent);
+    letter-spacing: .04em;
+    margin-bottom: 1.6rem;
+    animation: fadein .6s ease both;
+  }
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--green);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-  @media(max-width:900px){.page{padding:1rem} th,td{padding:.45rem .6rem}}
+  /* ── Tytuł ── */
+  h1 {
+    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -.03em;
+    color: #fff;
+    margin-bottom: .6rem;
+    animation: fadein .6s .1s ease both;
+  }
+  h1 span {
+    background: linear-gradient(90deg, var(--orange), var(--yellow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .sub {
+    font-size: .95rem;
+    color: var(--muted);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    animation: fadein .6s .2s ease both;
+  }
+  .sub code {
+    font-family: 'Space Mono', monospace;
+    font-size: .82rem;
+    color: var(--accent);
+    background: rgba(124,158,240,.08);
+    padding: .1rem .4rem;
+    border-radius: 4px;
+  }
+
+  /* ── Karty raportów ── */
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 2.5rem;
+    animation: fadein .6s .3s ease both;
+  }
+
+  .card {
+    position: relative;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem 1.5rem 1.6rem;
+    text-decoration: none;
+    color: var(--text);
+    overflow: hidden;
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    text-align: left;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity .25s ease;
+    border-radius: 16px;
+  }
+  .card:hover { transform: translateY(-4px); }
+
+  .card-main::before  { background: radial-gradient(circle at 30% 20%, var(--glow-o), transparent 65%); }
+  .card-full::before  { background: radial-gradient(circle at 30% 20%, var(--glow-g), transparent 65%); }
+  .card:hover::before { opacity: 1; }
+
+  .card-main  { border-color: rgba(255,107,0,.25); }
+  .card-full  { border-color: rgba(62,207,142,.2); }
+  .card-main:hover  { border-color: var(--orange); box-shadow: 0 8px 32px rgba(255,107,0,.12); }
+  .card-full:hover  { border-color: var(--green);  box-shadow: 0 8px 32px rgba(62,207,142,.1); }
+
+  /* pasek koloru na górze karty */
+  .card-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 16px 16px 0 0;
+  }
+  .card-main .card-bar { background: linear-gradient(90deg, var(--orange), var(--yellow)); }
+  .card-full .card-bar { background: linear-gradient(90deg, var(--green), var(--accent)); }
+
+  .card-icon { font-size: 1.8rem; margin-bottom: .9rem; display: block; }
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: .35rem;
+  }
+  .card-desc {
+    font-size: .8rem;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 1.1rem;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+  }
+  .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: .65rem;
+    padding: .2rem .55rem;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: .03em;
+  }
+  .tag-orange { background: rgba(255,107,0,.12); color: var(--orange); }
+  .tag-green  { background: rgba(62,207,142,.1);  color: var(--green); }
+  .tag-blue   { background: rgba(124,158,240,.1); color: var(--accent); }
+  .tag-purple { background: rgba(196,113,237,.1); color: var(--purple); }
+
+  .card-arrow {
+    position: absolute;
+    bottom: 1.4rem;
+    right: 1.4rem;
+    font-size: 1rem;
+    color: var(--muted);
+    transition: color .2s, transform .2s;
+  }
+  .card:hover .card-arrow { color: #fff; transform: translate(3px,-3px); }
+
+  /* ── Pasek info ── */
+  .info-bar {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    animation: fadein .6s .45s ease both;
+  }
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: .72rem;
+    color: var(--muted);
+  }
+  .info-item span:first-child { color: var(--accent); }
+
+  @keyframes fadein {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 560px) {
+    .cards { grid-template-columns: 1fr; }
+    h1 { font-size: 2rem; }
+  }
 </style>
 </head>
 <body>
-<div class="page">
-  <h1>Stock Screener &mdash; SMI Tygodniowy</h1>
-  <p class="subtitle">Wygenerowano: 17.05.2026 08:53 &nbsp;|&nbsp; Czas: 13.1 min &nbsp;|&nbsp; SMI(10,3,3)</p>
 
-  <div class="strategy-box">
-    <strong>&#9881; Aktywna strategia wejść:</strong>
-    <ul>
-      <li>Sygnały <strong>Strong BUY</strong> i <strong>Turning Up</strong> (bez zwykłego BUY)</li>
-      <li>Kurs akcji min. <strong>30% poniżej 52-tygodniowego szczytu</strong> &mdash; głęboka korekta (deep discount)</li>
-    </ul>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<div class="wrapper">
+
+  <div class="badge">
+    <div class="badge-dot"></div>
+    SMI(10,3,3) &nbsp;·&nbsp; Interwał tygodniowy
   </div>
 
-  <div class="stats-bar">
-    <div class="stat"><div class="stat-val">7061</div><div class="stat-label">Przeskanowano</div></div>
-    <div class="stat"><div class="stat-val">523</div><div class="stat-label">Sygnalow SMI</div></div>
-    <div class="stat"><div class="stat-val green">21</div><div class="stat-label">Po filtrach</div></div>
-    <div class="stat"><div class="stat-val orange">15</div><div class="stat-label">Strong BUY</div></div>
-    <div class="stat"><div class="stat-val purple">6</div><div class="stat-label">Turning Up</div></div>
-  </div>
-
-  <div class="section section-strong">
-    <div class="section-header"><span class="section-icon">&#9889;</span>
-      <h2>Strong BUY &mdash; 15 sygnalow</h2></div>
-    <p style="font-size:.8rem;color:var(--muted);margin-bottom:1rem">
-      Crossover SMI &gt; EMA ze strefy wyprzedania (&lt;&minus;40) &nbsp;&bull;&nbsp;
-      Kurs &ge; 30% poni&#380;ej 52W High &nbsp;&bull;&nbsp;
-      Sortowanie: najwi&#281;kszy discount najpierw
-    </p>
-    <div class="cards-grid"><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">RPD</div><div class="sc-name">RPD</div></div><span class="badge-usa">USA</span></div><div class="sc-price">6.5 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#00e599;font-weight:600">-74.9%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">434 M</span></div><div class="sc-row"><span>Wolumen avg</span><span>2.2M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">23.38</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">859.8 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.28</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-16.33</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-37.54</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">GLOB</div><div class="sc-name">GLOB</div></div><span class="badge-usa">USA</span></div><div class="sc-price">38.91 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#00e599;font-weight:600">-63.7%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">1.7 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>1.6M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">102.92</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">2454.9 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.64</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-61.54</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-62.87</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">CELH</div><div class="sc-name">CELH</div></div><span class="badge-usa">USA</span></div><div class="sc-price">30.16 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#00e599;font-weight:600">-54.8%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">7.7 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>7.8M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">108.0</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">2515.3 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.37</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-85.31</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-85.63</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">WDAY</div><div class="sc-name">Workday, Inc.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">125.01 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#00e599;font-weight:600">-54.5%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">31.2 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>5.4M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">693.0</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">9552.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.32</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-39.6</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-46.78</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">AGYS</div><div class="sc-name">AGYS</div></div><span class="badge-usa">USA</span></div><div class="sc-price">67.34 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#00e599;font-weight:600">-53.6%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">1.9 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>303K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">23.23</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">275.6 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.07</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-39.87</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-50.17</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">PDYN</div><div class="sc-name">PDYN</div></div><span class="badge-usa">USA</span></div><div class="sc-price">6.45 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#00e599;font-weight:600">-50.4%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">305 M</span></div><div class="sc-row"><span>Wolumen avg</span><span>2.4M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">10.04</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">5.2 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">9.22</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-49.21</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-50.28</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">CHKP</div><div class="sc-name">CHKP</div></div><span class="badge-usa">USA</span></div><div class="sc-price">124.03 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#ffb800;font-weight:600">-46.9%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">12.9 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>1.5M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">1056.9</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">2725.4 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">2.05</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-79.19</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-81.84</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">EBS</div><div class="sc-name">EBS</div></div><span class="badge-usa">USA</span></div><div class="sc-price">7.94 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#ffb800;font-weight:600">-43.5%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">410 M</span></div><div class="sc-row"><span>Wolumen avg</span><span>867K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">52.6</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">705.2 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">2.41</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-39.62</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-49.85</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">CALM</div><div class="sc-name">CALM</div></div><span class="badge-usa">USA</span></div><div class="sc-price">76.88 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#ffb800;font-weight:600">-39.2%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">3.6 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>879K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">1220.05</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">4261.9 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">5.42</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-58.16</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-58.18</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">TPB</div><div class="sc-name">TPB</div></div><span class="badge-usa">USA</span></div><div class="sc-price">89.56 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#ffb800;font-weight:600">-39.0%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">1.7 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>502K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">58.16</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">463.1 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">4.12</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-34.77</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-47.11</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">CDRE</div><div class="sc-name">CDRE</div></div><span class="badge-usa">USA</span></div><div class="sc-price">29.78 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#ffb800;font-weight:600">-38.9%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">1.3 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>427K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">44.14</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">610.3 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">2.54</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-73.58</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-75.99</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">RUN</div><div class="sc-name">RUN</div></div><span class="badge-usa">USA</span></div><div class="sc-price">13.99 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#ffb800;font-weight:600">-37.7%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">3.3 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>10.0M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">449.95</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">2957.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.27</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-26.26</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-39.37</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">AG</div><div class="sc-name">First Majestic Silver Corp.</div></div><span class="badge-usa">USA</span></div><div class="sc-price">20.42 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#ffb800;font-weight:600">-36.3%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>Basic Materials</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">10.1 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>18.5M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">0.59</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">1265.2 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">2.41</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-53.86</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-53.97</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">WLDN</div><div class="sc-name">WLDN</div></div><span class="badge-usa">USA</span></div><div class="sc-price">92.12 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#ffb800;font-weight:600">-32.8%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#ffa040">Bearish</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">1.4 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>394K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">52.56</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">681.6 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.56</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-22.56</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-44.42</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff6b00,#ffb800)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">PGR</div><div class="sc-name">PGR</div></div><span class="badge-usa">USA</span></div><div class="sc-price">199.73 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#ffb800;font-weight:600">STRONG BUY</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#ffb800;font-weight:600">-31.1%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">116.7 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>2.9M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">11308.0</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">87637.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">--</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-42.54</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-42.7</div></div></div></div></div>
-  </div>
-
-  <div class="section section-turning">
-    <div class="section-header"><span class="section-icon">&#128260;</span>
-      <h2>Turning Up &mdash; 6 sygnalow</h2></div>
-    <p style="font-size:.8rem;color:var(--muted);margin-bottom:1rem">
-      SMI osiagnal lokalny dolek i zmienia kierunek na rosnacy &mdash; jeszcze ponizej EMA.
-      Wczesny sygnal przed potencjalnym crossoverem.
-      <strong style="color:var(--purple)">delta</strong> = odleglosc SMI od EMA (im mniejsza, tym blizej crossovera).
-    </p>
-    <div class="cards-grid"><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">LI</div><div class="sc-name">LI</div></div><span class="badge-usa">USA</span></div><div class="sc-price">18.51 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#ffb800;font-weight:600">-42.2%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#4da6ff">Bullish</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">18.9 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>3.1M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">1124.44</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">112312.5 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.68</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">1.17</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">3.6</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">HPK</div><div class="sc-name">HPK</div></div><span class="badge-usa">USA</span></div><div class="sc-price">7.1 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#ffb800;font-weight:600">-40.8%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#4da6ff">Bullish</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">897 M</span></div><div class="sc-row"><span>Wolumen avg</span><span>1.0M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">18.96</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">863.4 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.1</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">6.15</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">7.38</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">WIT</div><div class="sc-name">WIT</div></div><span class="badge-usa">USA</span></div><div class="sc-price">1.89 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#ffb800;font-weight:600">-39.6%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">19.8 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>13.3M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">131354.0</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">890884.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">2.71</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-81.56</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-79.57</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">ABT</div><div class="sc-name">ABT</div></div><span class="badge-usa">USA</span></div><div class="sc-price">84.47 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#ffb800;font-weight:600">-39.3%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">147.1 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>12.0M</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">6524.0</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">44328.0 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">1.18</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-91.22</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-90.08</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">MMSI</div><div class="sc-name">MMSI</div></div><span class="badge-usa">USA</span></div><div class="sc-price">61.36 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#ffb800;font-weight:600">-38.7%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">3.7 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>827K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">128.49</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">1515.9 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">2.95</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-80.03</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-79.17</div></div></div></div><div class="signal-card"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2ff7,#c471ed)"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="sc-ticker">RLI</div><div class="sc-name">RLI</div></div><span class="badge-usa">USA</span></div><div class="sc-price">50.82 USD</div><div class="sc-row"><span>Sygnal</span><span style="color:#c471ed;font-weight:600">TURNING UP</span></div><div class="sc-row"><span>Discount vs 52W High</span><span style="color:#ffb800;font-weight:600">-34.2%</span></div><div class="sc-row"><span>Strefa SMI</span><span style="color:#00e599">OVERSOLD</span></div><div class="sc-row"><span>Sektor</span><span>--</span></div><div class="sc-row"><span>Market Cap</span><span style="color:var(--accent)">4.7 B</span></div><div class="sc-row"><span>Wolumen avg</span><span>788K</span></div><div class="sc-divider"></div><div class="sc-row"><span>EPS TTM</span><span style="color:var(--green)">403.34</span></div><div class="sc-row"><span>Sales TTM</span><span style="color:var(--green)">1882.4 M</span></div><div class="sc-row"><span>Quick Ratio</span><span style="color:var(--green)">--</span></div><div class="sc-stoch"><div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div><div class="sc-stoch-val green">-74.09</div></div><div class="sc-stoch-item"><div class="sc-stoch-label">SMI EMA</div><div class="sc-stoch-val">-70.44</div></div></div></div></div>
-  </div>
-
-  <div class="section">
-    <div class="section-header"><span class="section-icon">&#128203;</span>
-      <h2>Wszystkie wyniki &mdash; 21</h2></div>
-    <div class="table-wrap">
-    <table>
-      <thead><tr>
-        <th>Ticker</th><th>Nazwa</th><th>Rynek</th><th>Sektor</th>
-        <th class="num">Cena</th><th class="num">Discount 52W</th>
-        <th class="num">Cap</th><th class="num">Vol avg</th>
-        <th class="num">SMI (W)</th><th class="num">EMA (W)</th><th>Strefa</th>
-        <th class="num">EPS</th><th class="num">Sales</th><th class="num">QR</th>
-      </tr></thead>
-      <tbody><tr>
-              <td><span class="ticker">RPD</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">RPD</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">6.5 USD</td>
-              <td class="num" style="color:#00e599;font-weight:600">-74.9%</td>
-              <td class="num">434 M</td>
-              <td class="num">2.2M</td>
-              <td class="num smi-col">-16.33</td>
-              <td class="num">-37.54</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">23.38</td>
-              <td class="num">859.8 M</td>
-              <td class="num">1.28</td>
-            </tr><tr>
-              <td><span class="ticker">GLOB</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">GLOB</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">38.91 USD</td>
-              <td class="num" style="color:#00e599;font-weight:600">-63.7%</td>
-              <td class="num">1.7 B</td>
-              <td class="num">1.6M</td>
-              <td class="num smi-col">-61.54</td>
-              <td class="num">-62.87</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">102.92</td>
-              <td class="num">2454.9 M</td>
-              <td class="num">1.64</td>
-            </tr><tr>
-              <td><span class="ticker">CELH</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">CELH</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">30.16 USD</td>
-              <td class="num" style="color:#00e599;font-weight:600">-54.8%</td>
-              <td class="num">7.7 B</td>
-              <td class="num">7.8M</td>
-              <td class="num smi-col">-85.31</td>
-              <td class="num">-85.63</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">108.0</td>
-              <td class="num">2515.3 M</td>
-              <td class="num">1.37</td>
-            </tr><tr>
-              <td><span class="ticker">WDAY</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">Workday, Inc.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">125.01 USD</td>
-              <td class="num" style="color:#00e599;font-weight:600">-54.5%</td>
-              <td class="num">31.2 B</td>
-              <td class="num">5.4M</td>
-              <td class="num smi-col">-39.6</td>
-              <td class="num">-46.78</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">693.0</td>
-              <td class="num">9552.0 M</td>
-              <td class="num">1.32</td>
-            </tr><tr>
-              <td><span class="ticker">AGYS</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">AGYS</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">67.34 USD</td>
-              <td class="num" style="color:#00e599;font-weight:600">-53.6%</td>
-              <td class="num">1.9 B</td>
-              <td class="num">303K</td>
-              <td class="num smi-col">-39.87</td>
-              <td class="num">-50.17</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">23.23</td>
-              <td class="num">275.6 M</td>
-              <td class="num">1.07</td>
-            </tr><tr>
-              <td><span class="ticker">PDYN</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">PDYN</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">6.45 USD</td>
-              <td class="num" style="color:#00e599;font-weight:600">-50.4%</td>
-              <td class="num">305 M</td>
-              <td class="num">2.4M</td>
-              <td class="num smi-col">-49.21</td>
-              <td class="num">-50.28</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">10.04</td>
-              <td class="num">5.2 M</td>
-              <td class="num">9.22</td>
-            </tr><tr>
-              <td><span class="ticker">CHKP</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">CHKP</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">124.03 USD</td>
-              <td class="num" style="color:#ffb800;font-weight:600">-46.9%</td>
-              <td class="num">12.9 B</td>
-              <td class="num">1.5M</td>
-              <td class="num smi-col">-79.19</td>
-              <td class="num">-81.84</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">1056.9</td>
-              <td class="num">2725.4 M</td>
-              <td class="num">2.05</td>
-            </tr><tr>
-              <td><span class="ticker">EBS</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">EBS</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">7.94 USD</td>
-              <td class="num" style="color:#ffb800;font-weight:600">-43.5%</td>
-              <td class="num">410 M</td>
-              <td class="num">867K</td>
-              <td class="num smi-col">-39.62</td>
-              <td class="num">-49.85</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">52.6</td>
-              <td class="num">705.2 M</td>
-              <td class="num">2.41</td>
-            </tr><tr>
-              <td><span class="ticker">LI</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">LI</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">18.51 USD</td>
-              <td class="num" style="color:#ffb800;font-weight:600">-42.2%</td>
-              <td class="num">18.9 B</td>
-              <td class="num">3.1M</td>
-              <td class="num smi-col">1.17</td>
-              <td class="num">3.6</td>
-              <td><span class="zone-badge zone-bull">Bullish</span></td>
-              <td class="num">1124.44</td>
-              <td class="num">112312.5 M</td>
-              <td class="num">1.68</td>
-            </tr><tr>
-              <td><span class="ticker">HPK</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">HPK</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">7.1 USD</td>
-              <td class="num" style="color:#ffb800;font-weight:600">-40.8%</td>
-              <td class="num">897 M</td>
-              <td class="num">1.0M</td>
-              <td class="num smi-col">6.15</td>
-              <td class="num">7.38</td>
-              <td><span class="zone-badge zone-bull">Bullish</span></td>
-              <td class="num">18.96</td>
-              <td class="num">863.4 M</td>
-              <td class="num">1.1</td>
-            </tr><tr>
-              <td><span class="ticker">WIT</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">WIT</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">1.89 USD</td>
-              <td class="num" style="color:#ffb800;font-weight:600">-39.6%</td>
-              <td class="num">19.8 B</td>
-              <td class="num">13.3M</td>
-              <td class="num smi-col">-81.56</td>
-              <td class="num">-79.57</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">131354.0</td>
-              <td class="num">890884.0 M</td>
-              <td class="num">2.71</td>
-            </tr><tr>
-              <td><span class="ticker">ABT</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">ABT</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">84.47 USD</td>
-              <td class="num" style="color:#ffb800;font-weight:600">-39.3%</td>
-              <td class="num">147.1 B</td>
-              <td class="num">12.0M</td>
-              <td class="num smi-col">-91.22</td>
-              <td class="num">-90.08</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">6524.0</td>
-              <td class="num">44328.0 M</td>
-              <td class="num">1.18</td>
-            </tr><tr>
-              <td><span class="ticker">CALM</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">CALM</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">76.88 USD</td>
-              <td class="num" style="color:#ffb800;font-weight:600">-39.2%</td>
-              <td class="num">3.6 B</td>
-              <td class="num">879K</td>
-              <td class="num smi-col">-58.16</td>
-              <td class="num">-58.18</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">1220.05</td>
-              <td class="num">4261.9 M</td>
-              <td class="num">5.42</td>
-            </tr><tr>
-              <td><span class="ticker">TPB</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">TPB</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">89.56 USD</td>
-              <td class="num" style="color:#ffb800;font-weight:600">-39.0%</td>
-              <td class="num">1.7 B</td>
-              <td class="num">502K</td>
-              <td class="num smi-col">-34.77</td>
-              <td class="num">-47.11</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">58.16</td>
-              <td class="num">463.1 M</td>
-              <td class="num">4.12</td>
-            </tr><tr>
-              <td><span class="ticker">CDRE</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">CDRE</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">29.78 USD</td>
-              <td class="num" style="color:#ffb800;font-weight:600">-38.9%</td>
-              <td class="num">1.3 B</td>
-              <td class="num">427K</td>
-              <td class="num smi-col">-73.58</td>
-              <td class="num">-75.99</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">44.14</td>
-              <td class="num">610.3 M</td>
-              <td class="num">2.54</td>
-            </tr><tr>
-              <td><span class="ticker">MMSI</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">MMSI</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">61.36 USD</td>
-              <td class="num" style="color:#ffb800;font-weight:600">-38.7%</td>
-              <td class="num">3.7 B</td>
-              <td class="num">827K</td>
-              <td class="num smi-col">-80.03</td>
-              <td class="num">-79.17</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">128.49</td>
-              <td class="num">1515.9 M</td>
-              <td class="num">2.95</td>
-            </tr><tr>
-              <td><span class="ticker">RUN</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">RUN</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">13.99 USD</td>
-              <td class="num" style="color:#ffb800;font-weight:600">-37.7%</td>
-              <td class="num">3.3 B</td>
-              <td class="num">10.0M</td>
-              <td class="num smi-col">-26.26</td>
-              <td class="num">-39.37</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">449.95</td>
-              <td class="num">2957.0 M</td>
-              <td class="num">1.27</td>
-            </tr><tr>
-              <td><span class="ticker">AG</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">First Majestic Silver Corp.</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>Basic Materials</td>
-              <td class="num">20.42 USD</td>
-              <td class="num" style="color:#ffb800;font-weight:600">-36.3%</td>
-              <td class="num">10.1 B</td>
-              <td class="num">18.5M</td>
-              <td class="num smi-col">-53.86</td>
-              <td class="num">-53.97</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">0.59</td>
-              <td class="num">1265.2 M</td>
-              <td class="num">2.41</td>
-            </tr><tr>
-              <td><span class="ticker">RLI</span><span class="badge-turning">TURN</span></td>
-              <td class="name-col">RLI</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">50.82 USD</td>
-              <td class="num" style="color:#ffb800;font-weight:600">-34.2%</td>
-              <td class="num">4.7 B</td>
-              <td class="num">788K</td>
-              <td class="num smi-col">-74.09</td>
-              <td class="num">-70.44</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">403.34</td>
-              <td class="num">1882.4 M</td>
-              <td class="num">--</td>
-            </tr><tr>
-              <td><span class="ticker">WLDN</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">WLDN</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">92.12 USD</td>
-              <td class="num" style="color:#ffb800;font-weight:600">-32.8%</td>
-              <td class="num">1.4 B</td>
-              <td class="num">394K</td>
-              <td class="num smi-col">-22.56</td>
-              <td class="num">-44.42</td>
-              <td><span class="zone-badge zone-bear">Bearish</span></td>
-              <td class="num">52.56</td>
-              <td class="num">681.6 M</td>
-              <td class="num">1.56</td>
-            </tr><tr>
-              <td><span class="ticker">PGR</span><span class="badge-strong">STRONG</span></td>
-              <td class="name-col">PGR</td>
-              <td><span class="badge-usa">USA</span></td>
-              <td>--</td>
-              <td class="num">199.73 USD</td>
-              <td class="num" style="color:#ffb800;font-weight:600">-31.1%</td>
-              <td class="num">116.7 B</td>
-              <td class="num">2.9M</td>
-              <td class="num smi-col">-42.54</td>
-              <td class="num">-42.7</td>
-              <td><span class="zone-badge zone-os">OVERSOLD</span></td>
-              <td class="num">11308.0</td>
-              <td class="num">87637.0 M</td>
-              <td class="num">--</td>
-            </tr></tbody>
-    </table>
-    </div>
-  </div>
-
-  <p style="font-size:.75rem;color:var(--muted);text-align:center;margin-top:1rem">
-    Strong BUY = crossover SMI &gt; EMA ze strefy &lt;&minus;40 &nbsp;|&nbsp;
-    Discount 52W = odleglosc od rocznego szczytu (min. 30%)
-    <br>Fundamenty: Cap &gt; 200M | Vol &gt; 300,000 | EPS&gt;0 | Sales&gt;0 | QR&gt;1.0
+  <h1>Stock<br><span>Screener</span></h1>
+  <p class="sub">
+    Skanuje rynki USA i EU w poszukiwaniu sygnałów<br>
+    wskaźnika <code>Stochastic Momentum Index</code>
   </p>
+
+  <div class="cards">
+
+    <a href="screener.html" class="card card-main">
+      <div class="card-bar"></div>
+      <span class="card-icon">⚡</span>
+      <div class="card-title">Screener główny</div>
+      <div class="card-desc">
+        Sygnały Strong BUY i Turning Up.<br>
+        Pełne filtry fundamentalne i techniczne.
+      </div>
+      <div class="card-tags">
+        <span class="tag tag-orange">Strong BUY</span>
+        <span class="tag tag-purple">Turning Up</span>
+        <span class="tag tag-blue">Cap &gt;200M</span>
+        <span class="tag tag-blue">Discount &gt;30%</span>
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <a href="index_all.html" class="card card-full">
+      <div class="card-bar"></div>
+      <span class="card-icon">🔍</span>
+      <div class="card-title">Full Scan</div>
+      <div class="card-desc">
+        Wszystkie sygnały SMI bez filtrów.<br>
+        Tylko płynność: Cap &gt;200M, Vol &gt;300K.
+      </div>
+      <div class="card-tags">
+        <span class="tag tag-orange">Strong BUY</span>
+        <span class="tag tag-green">BUY</span>
+        <span class="tag tag-purple">Turning Up</span>
+        <span class="tag tag-blue">No filters</span>
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+  </div>
+
+  <div class="info-bar">
+    <div class="info-item"><span>◆</span> S&P 500 + NASDAQ + NYSE + AMEX</div>
+    <div class="info-item"><span>◆</span> DAX · CAC · FTSE · AEX · WIG + inne</div>
+    <div class="info-item"><span>◆</span> Aktualizacja: GitHub Actions</div>
+  </div>
+
 </div>
 </body>
 </html>
