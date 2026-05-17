@@ -1,3 +1,4 @@
+
 """
 Stock Screener – SMI Tygodniowy (FULL SCAN – bez filtrów fundamentalnych)
 Trzy typy sygnałów (tygodniowy interwał):
@@ -673,11 +674,23 @@ def generate_html(meta, results):
   .zone-bull{{background:#0d1a2e;color:var(--accent)}}
   .zone-bear{{background:#1a1505;color:#ffa040}}
 
+  .report-nav{{display:flex;gap:.6rem;margin-bottom:1.75rem;flex-wrap:wrap}}
+  .nav-link{{background:var(--bg2);border:1px solid var(--border);border-radius:8px;
+             padding:.45rem 1.1rem;font-size:.83rem;color:var(--muted);text-decoration:none;
+             transition:color .15s,border-color .15s,background .15s}}
+  .nav-link:hover{{color:#fff;border-color:var(--accent)}}
+  .nav-link-active{{color:#fff;border-color:var(--accent);background:var(--bg3);
+                    pointer-events:none}}
+
   @media(max-width:900px){{.page{{padding:1rem}} th,td{{padding:.45rem .6rem}}}}
 </style>
 </head>
 <body>
 <div class="page">
+  <nav class="report-nav">
+    <a href="index.html" class="nav-link">&#9889; Screener g&#322;&#243;wny</a>
+    <a href="index_all.html" class="nav-link nav-link-active">&#128270; Full Scan</a>
+  </nav>
   <h1>Stock Screener &mdash; SMI Tygodniowy <span style="font-size:.85rem;color:var(--green);font-weight:400">[FULL SCAN]</span></h1>
   <p class="subtitle">Wygenerowano: {dt} &nbsp;|&nbsp; Czas: {meta['elapsed_min']} min &nbsp;|&nbsp; SMI({SMI_LEN_K},{SMI_LEN_D},{SMI_LEN_EMA})</p>
 
