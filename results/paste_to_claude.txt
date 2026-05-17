@@ -7,7 +7,7 @@ Turning Up  = SMI osiągnął lokalne dno i odbija, jeszcze poniżej EMA (wczesn
 Filtr wejścia: dyskonto ≥ 30% vs 52-tygodniowego szczytu + EPS>0 + QR>1 + Cap>200M
 
 === METADANE SKANU ===
-Data:              2026-05-16
+Data:              2026-05-17
 Przeskanowano:     7061 spółek
 Sygnały SMI:       523
 Po wszystkich filtrach: 21 (Strong BUY: 15, Turning Up: 6)
@@ -17,7 +17,7 @@ Po wszystkich filtrach: 21 (Strong BUY: 15, Turning Up: 6)
   RPD    | RPD                          | --                   |      6.5 USD | dyskonto -74.9% | cap 434.4M | SMI -16.33 / EMA -37.54 | strefa Bearish      | EPS 23.38 | QR 1.28
   GLOB   | GLOB                         | --                   |    38.91 USD | dyskonto -63.7% | cap 1680.1M | SMI -61.54 / EMA -62.87 | strefa OVERSOLD     | EPS 102.92 | QR 1.64
   CELH   | CELH                         | --                   |    30.16 USD | dyskonto -54.8% | cap 7710.1M | SMI -85.31 / EMA -85.63 | strefa OVERSOLD     | EPS 108.0 | QR 1.37
-  WDAY   | WDAY                         | --                   |   125.01 USD | dyskonto -54.5% | cap 31213.2M | SMI -39.6 / EMA -46.78 | strefa Bearish      | EPS 693.0 | QR 1.32
+  WDAY   | Workday, Inc.                | --                   |   125.01 USD | dyskonto -54.5% | cap 31213.2M | SMI -39.6 / EMA -46.78 | strefa Bearish      | EPS 693.0 | QR 1.32
   AGYS   | AGYS                         | --                   |    67.34 USD | dyskonto -53.6% | cap 1892.8M | SMI -39.87 / EMA -50.17 | strefa Bearish      | EPS 23.23 | QR 1.07
   PDYN   | PDYN                         | --                   |     6.45 USD | dyskonto -50.4% | cap 304.7M | SMI -49.21 / EMA -50.28 | strefa OVERSOLD     | EPS 10.04 | QR 9.22
   CHKP   | CHKP                         | --                   |   124.03 USD | dyskonto -46.9% | cap 12902.6M | SMI -79.19 / EMA -81.84 | strefa OVERSOLD     | EPS 1056.9 | QR 2.05
@@ -26,7 +26,7 @@ Po wszystkich filtrach: 21 (Strong BUY: 15, Turning Up: 6)
   TPB    | TPB                          | --                   |    89.56 USD | dyskonto -39.0% | cap 1734.6M | SMI -34.77 / EMA -47.11 | strefa Bearish      | EPS 58.16 | QR 4.12
   CDRE   | CDRE                         | --                   |    29.78 USD | dyskonto -38.9% | cap 1274.5M | SMI -73.58 / EMA -75.99 | strefa OVERSOLD     | EPS 44.14 | QR 2.54
   RUN    | RUN                          | --                   |    13.99 USD | dyskonto -37.7% | cap 3337.3M | SMI -26.26 / EMA -39.37 | strefa Bearish      | EPS 449.95 | QR 1.27
-  AG     | AG                           | --                   |    20.42 USD | dyskonto -36.3% | cap 10082.8M | SMI -53.86 / EMA -53.97 | strefa OVERSOLD     | EPS 164.92 | QR 2.41
+  AG     | First Majestic Silver Corp.  | Basic Materials      |    20.42 USD | dyskonto -36.3% | cap 10082.8M | SMI -53.86 / EMA -53.97 | strefa OVERSOLD     | EPS 0.59 | QR 2.41
   WLDN   | WLDN                         | --                   |    92.12 USD | dyskonto -32.8% | cap 1392.0M | SMI -22.56 / EMA -44.42 | strefa Bearish      | EPS 52.56 | QR 1.56
   PGR    | PGR                          | --                   |   199.73 USD | dyskonto -31.1% | cap 116709.5M | SMI -42.54 / EMA -42.7 | strefa OVERSOLD     | EPS 11308.0 | QR None
 
