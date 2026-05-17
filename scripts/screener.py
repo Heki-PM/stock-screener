@@ -825,6 +825,158 @@ def generate_html_full(meta, results):
     print(f"  Raport full scan: {path}")
 
 # ══════════════════════════════════════════════════════════════
+#  HTML – STRONA STARTOWA (index.html)
+# ══════════════════════════════════════════════════════════════
+
+def generate_html_index(meta):
+    """Generuje results/index.html – strona startowa z linkami do obu raportów."""
+    dt  = datetime.fromisoformat(meta["generated_at"]).strftime("%d.%m.%Y %H:%M")
+    main_count = meta.get("main_total", 0)
+    full_count = meta.get("full_total", 0)
+
+    html = f"""<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stock Screener SMI</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+  :root {{
+    --bg:#080a14; --bg2:#0e1020; --border:#1c2040;
+    --text:#c8cde8; --muted:#454a6a; --accent:#7c9ef0;
+    --green:#3ecf8e; --orange:#ff6b00; --yellow:#ffb800; --purple:#c471ed;
+  }}
+  *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
+  body{{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);
+       min-height:100vh;display:flex;flex-direction:column;
+       align-items:center;justify-content:center;padding:2rem;overflow-x:hidden}}
+  body::before{{content:'';position:fixed;inset:0;
+    background-image:linear-gradient(rgba(124,158,240,.04) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(124,158,240,.04) 1px,transparent 1px);
+    background-size:40px 40px;pointer-events:none;z-index:0}}
+  .blob{{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;
+         animation:drift 12s ease-in-out infinite alternate}}
+  .blob-1{{width:380px;height:380px;background:rgba(255,107,0,.08);top:-80px;right:-60px}}
+  .blob-2{{width:300px;height:300px;background:rgba(62,207,142,.06);bottom:-60px;left:-40px;animation-delay:-5s}}
+  .blob-3{{width:200px;height:200px;background:rgba(124,158,240,.07);top:50%;left:50%;
+           transform:translate(-50%,-50%);animation-delay:-9s}}
+  @keyframes drift{{from{{transform:translate(0,0) scale(1)}}to{{transform:translate(20px,15px) scale(1.08)}}}}
+  .wrapper{{position:relative;z-index:1;text-align:center;max-width:700px;width:100%}}
+  .badge{{display:inline-flex;align-items:center;gap:.45rem;
+          background:rgba(124,158,240,.08);border:1px solid rgba(124,158,240,.2);
+          border-radius:20px;padding:.3rem .9rem;font-family:'Space Mono',monospace;
+          font-size:.72rem;color:var(--accent);letter-spacing:.04em;margin-bottom:1.6rem;
+          animation:fadein .6s ease both}}
+  .badge-dot{{width:6px;height:6px;background:var(--green);border-radius:50%;
+              box-shadow:0 0 6px var(--green);animation:pulse 2s ease-in-out infinite}}
+  @keyframes pulse{{0%,100%{{opacity:1}}50%{{opacity:.3}}}}
+  h1{{font-size:clamp(2.2rem,6vw,3.4rem);font-weight:800;line-height:1.05;
+      letter-spacing:-.03em;color:#fff;margin-bottom:.6rem;animation:fadein .6s .1s ease both}}
+  h1 span{{background:linear-gradient(90deg,var(--orange),var(--yellow));
+           -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}}
+  .sub{{font-size:.95rem;color:var(--muted);margin-bottom:3rem;line-height:1.6;animation:fadein .6s .2s ease both}}
+  .sub code{{font-family:'Space Mono',monospace;font-size:.82rem;color:var(--accent);
+             background:rgba(124,158,240,.08);padding:.1rem .4rem;border-radius:4px}}
+  .cards{{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;
+          margin-bottom:2.5rem;animation:fadein .6s .3s ease both}}
+  .card{{position:relative;background:var(--bg2);border:1px solid var(--border);
+         border-radius:16px;padding:1.8rem 1.5rem 1.6rem;text-decoration:none;
+         color:var(--text);overflow:hidden;transition:transform .2s,border-color .2s,box-shadow .2s;text-align:left}}
+  .card::before{{content:'';position:absolute;inset:0;opacity:0;transition:opacity .25s;border-radius:16px}}
+  .card:hover{{transform:translateY(-4px)}}
+  .card-main::before{{background:radial-gradient(circle at 30% 20%,rgba(255,107,0,.18),transparent 65%)}}
+  .card-full::before{{background:radial-gradient(circle at 30% 20%,rgba(62,207,142,.12),transparent 65%)}}
+  .card:hover::before{{opacity:1}}
+  .card-main{{border-color:rgba(255,107,0,.25)}}
+  .card-full{{border-color:rgba(62,207,142,.2)}}
+  .card-main:hover{{border-color:var(--orange);box-shadow:0 8px 32px rgba(255,107,0,.12)}}
+  .card-full:hover{{border-color:var(--green);box-shadow:0 8px 32px rgba(62,207,142,.1)}}
+  .card-bar{{position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0}}
+  .card-main .card-bar{{background:linear-gradient(90deg,var(--orange),var(--yellow))}}
+  .card-full .card-bar{{background:linear-gradient(90deg,var(--green),var(--accent))}}
+  .card-icon{{font-size:1.8rem;margin-bottom:.9rem;display:block}}
+  .card-title{{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:.35rem}}
+  .card-desc{{font-size:.8rem;color:var(--muted);line-height:1.55;margin-bottom:1.1rem}}
+  .card-count{{font-family:'Space Mono',monospace;font-size:.78rem;font-weight:700;
+               margin-bottom:.9rem}}
+  .card-main .card-count{{color:var(--orange)}}
+  .card-full .card-count{{color:var(--green)}}
+  .card-tags{{display:flex;flex-wrap:wrap;gap:.4rem}}
+  .tag{{font-family:'Space Mono',monospace;font-size:.65rem;padding:.2rem .55rem;
+        border-radius:4px;font-weight:700;letter-spacing:.03em}}
+  .tag-orange{{background:rgba(255,107,0,.12);color:var(--orange)}}
+  .tag-green {{background:rgba(62,207,142,.1);color:var(--green)}}
+  .tag-blue  {{background:rgba(124,158,240,.1);color:var(--accent)}}
+  .tag-purple{{background:rgba(196,113,237,.1);color:var(--purple)}}
+  .card-arrow{{position:absolute;bottom:1.4rem;right:1.4rem;font-size:1rem;
+               color:var(--muted);transition:color .2s,transform .2s}}
+  .card:hover .card-arrow{{color:#fff;transform:translate(3px,-3px)}}
+  .info-bar{{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;
+             animation:fadein .6s .45s ease both}}
+  .info-item{{display:flex;align-items:center;gap:.5rem;font-family:'Space Mono',monospace;
+              font-size:.72rem;color:var(--muted)}}
+  .info-item span:first-child{{color:var(--accent)}}
+  @keyframes fadein{{from{{opacity:0;transform:translateY(14px)}}to{{opacity:1;transform:translateY(0)}}}}
+  @media(max-width:560px){{.cards{{grid-template-columns:1fr}}h1{{font-size:2rem}}}}
+</style>
+</head>
+<body>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+<div class="wrapper">
+  <div class="badge"><div class="badge-dot"></div>SMI(10,3,3) &nbsp;&middot;&nbsp; Interwał tygodniowy</div>
+  <h1>Stock<br><span>Screener</span></h1>
+  <p class="sub">Skanuje rynki USA i EU w poszukiwaniu sygnałów<br>
+     wskaźnika <code>Stochastic Momentum Index</code><br>
+     <span style="font-size:.8rem">Ostatni skan: {dt}</span></p>
+  <div class="cards">
+    <a href="screener.html" class="card card-main">
+      <div class="card-bar"></div>
+      <span class="card-icon">&#9889;</span>
+      <div class="card-title">Screener główny</div>
+      <div class="card-desc">Strong BUY i Turning Up z pełnymi filtrami fundamentalnymi i technicznym.</div>
+      <div class="card-count">&#9662; {main_count} wynik&#243;w</div>
+      <div class="card-tags">
+        <span class="tag tag-orange">Strong BUY</span>
+        <span class="tag tag-purple">Turning Up</span>
+        <span class="tag tag-blue">EPS &gt; 0</span>
+        <span class="tag tag-blue">Discount &ge; 30%</span>
+      </div>
+      <div class="card-arrow">&#8599;</div>
+    </a>
+    <a href="index_all.html" class="card card-full">
+      <div class="card-bar"></div>
+      <span class="card-icon">&#128270;</span>
+      <div class="card-title">Full Scan</div>
+      <div class="card-desc">Wszystkie sygnały SMI bez filtrów fundamentalnych. Tylko płynność.</div>
+      <div class="card-count">&#9662; {full_count} wynik&#243;w</div>
+      <div class="card-tags">
+        <span class="tag tag-orange">Strong BUY</span>
+        <span class="tag tag-green">BUY</span>
+        <span class="tag tag-purple">Turning Up</span>
+        <span class="tag tag-blue">Cap &gt; 200M</span>
+      </div>
+      <div class="card-arrow">&#8599;</div>
+    </a>
+  </div>
+  <div class="info-bar">
+    <div class="info-item"><span>&#9670;</span> S&amp;P 500 + NASDAQ + NYSE + AMEX</div>
+    <div class="info-item"><span>&#9670;</span> DAX &middot; CAC &middot; FTSE &middot; AEX &middot; WIG + inne</div>
+    <div class="info-item"><span>&#9670;</span> Aktualizacja: GitHub Actions</div>
+  </div>
+</div>
+</body>
+</html>"""
+
+    path = f"{OUTPUT_DIR}/index.html"
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"  Strona startowa: {path}")
+
+
+# ══════════════════════════════════════════════════════════════
 #  GŁÓWNA PĘTLA
 # ══════════════════════════════════════════════════════════════
 
@@ -879,10 +1031,11 @@ def run_screener():
     if main_results:
         pd.DataFrame(main_results).to_csv(f"{OUTPUT_DIR}/results_main.csv", index=False)
 
-    # Generuj oba raporty HTML
+    # Generuj wszystkie trzy strony HTML
     print("\n[HTML] Generowanie raportow...")
     generate_html_main(meta, main_results)
     generate_html_full(meta, full_results)
+    generate_html_index(meta)
 
     print(f"\nCzas lacznie: {elapsed} min")
     print(f"Screener glowny : {len(main_results)} wynikow")
