@@ -71,7 +71,7 @@ jobs:
 
       # 5. Uruchom screener full scan
       - name: Uruchom screener_all.py
-        run: python screener_all.py
+        run: python scripts/screener_all.py
         env:
           PYTHONUNBUFFERED: '1'
 
