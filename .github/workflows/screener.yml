@@ -1,6 +1,7 @@
-name: Daily Stock Screener
+name: Stock Screener SMI
 on:
   schedule:
+    # 15:00 UTC = 17:00 CEST (lato) / 16:00 CET (zima)
     - cron: '0 15 * * 1-5'
   workflow_dispatch:
 
@@ -12,7 +13,7 @@ permissions:
 jobs:
   run-screener:
     runs-on: ubuntu-latest
-    # ── WYMAGANE przez actions/deploy-pages@v4 ──
+    timeout-minutes: 90
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -21,46 +22,64 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
 
       - name: Install dependencies
         run: pip install yfinance pandas numpy requests
 
-      - name: Run screener
+      - name: Run screener (oba raporty w jednym przebiegu)
         run: python scripts/screener.py
         env:
           PYTHONUNBUFFERED: "1"
 
       - name: Verify output
         run: |
-          if [ ! -f results/results.json ]; then
-            echo "BŁĄD: results/results.json nie został wygenerowany!"
-            exit 1
-          fi
-          COUNT=$(python3 -c "import json; d=json.load(open('results/results.json')); print(len(d))")
-          echo "✅ Wyników: ${COUNT}"
+          for f in results/screener.html results/index_all.html results/results.json; do
+            if [ ! -f "$f" ]; then
+              echo "BLAD: brak pliku $f"
+              exit 1
+            fi
+          done
+          FULL=$(python3 -c "import json; print(len(json.load(open('results/results.json'))))")
+          MAIN=$(python3 -c "import json; print(len(json.load(open('results/results_main.json'))))")
+          echo "✅ Full Scan: ${FULL} wynikow | Screener glowny: ${MAIN} wynikow"
 
       - name: Generate Claude.ai prompt file
-        run: python scripts/make_prompt.py
+        run: |
+          # Uruchom make_prompt.py jeśli istnieje
+          [ -f scripts/make_prompt.py ] && python scripts/make_prompt.py || true
 
       - name: Copy landing page to results/
         run: |
-          # Kopiuje stronę startową jeśli istnieje w static/
-          # Jeśli nie – pomija (nie przerywa workflow)
           cp static/index.html results/index.html \
             && echo "✅ Landing page skopiowana" \
             || echo "⚠️  static/index.html nie znaleziono – pomijam"
 
-      - name: Commit JSON results to repo
+      - name: Podsumowanie
+        run: |
+          python - <<'EOF'
+          import json, os
+          m = json.load(open("results/meta.json"))
+          print("=" * 50)
+          print(f"Przeskanowano  : {m.get('total_scanned','?')} spolek")
+          print(f"Sygnaly SMI    : {m.get('weekly_signals','?')}")
+          print(f"Screener glowny: {m.get('main_total','?')} wynikow")
+          print(f"Full Scan      : {m.get('full_total','?')} wynikow")
+          print(f"Czas skanu     : {m.get('elapsed_min','?')} min")
+          print("=" * 50)
+          EOF
+
+      - name: Commit wynikow do repo
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add results/
           git diff --staged --quiet || \
-            git commit -m "📊 Screener results $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git commit -m "📊 SMI scan $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push
 
       - name: Upload Pages artifact
