@@ -3,12 +3,10 @@ on:
   schedule:
     - cron: '0 15 * * 1-5'
   workflow_dispatch:
-
 permissions:
   contents: write
   pages: write
   id-token: write
-
 jobs:
   run-screener:
     runs-on: ubuntu-latest
@@ -16,7 +14,6 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -35,9 +32,22 @@ jobs:
         env:
           PYTHONUNBUFFERED: "1"
 
+      - name: Save dated copy of results
+        run: |
+          DATE=$(date -u +'%Y-%m-%d')
+          cp results/results_main.json results/results_main_${DATE}.json
+          echo "✅ Saved results_main_${DATE}.json"
+          # Usun pliki starsze niz 30 dni zeby repo nie uroslo za bardzo
+          find results/ -name 'results_main_*.json' \
+            ! -name "results_main_${DATE}.json" \
+            -mtime +30 -delete && echo "🗑️ Pruned old dated files" || true
+
       - name: Verify output
         run: |
-          for f in results/index.html results/screener.html results/index_all.html results/results.json; do
+          DATE=$(date -u +'%Y-%m-%d')
+          for f in results/index.html results/screener.html results/index_all.html \
+                   results/results.json results/results_main.json \
+                   results/results_main_${DATE}.json; do
             if [ ! -f "$f" ]; then
               echo "BLAD: brak pliku $f"
               exit 1
@@ -45,7 +55,7 @@ jobs:
           done
           FULL=$(python3 -c "import json; print(len(json.load(open('results/results.json'))))")
           MAIN=$(python3 -c "import json; print(len(json.load(open('results/results_main.json'))))")
-          echo "✅ Full Scan: ${FULL} | Screener glowny: ${MAIN}"
+          echo "✅ Full Scan: ${FULL} | Screener glowny: ${MAIN} | Dated file: OK"
 
       - name: Generate Claude prompt file
         run: |
