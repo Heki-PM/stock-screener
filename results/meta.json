@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-20T17:58:25.820892",
-  "elapsed_min": 5.4,
-  "total_scanned": 7084,
-  "weekly_signals": 681,
+  "generated_at": "2026-05-21T17:03:42.236955",
+  "elapsed_min": 11.2,
+  "total_scanned": 7097,
+  "weekly_signals": 743,
   "main_total": 35,
-  "full_total": 132,
+  "full_total": 144,
   "indicator": "SMI(10,3,3)"
 }
