@@ -1,7 +1,7 @@
 name: Stock Screener SMI
 on:
   schedule:
-    - cron: '0 15 * * 1-5'
+    - cron: '0 13 * * 1-5'
   workflow_dispatch:
 permissions:
   contents: write
