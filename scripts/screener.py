@@ -4,6 +4,7 @@ Jeden przebieg generuje dwa raporty:
 
   results/screener.html   – Screener główny (Strong BUY + Turning Up)
                             Filtry: Cap>200M | Vol>300K | EPS>0 | QR≥1.0 | Discount≥30%
+                                    ROIC>15% | Debt/Equity<1 | Gross Margin>30%
 
   results/index_all.html  – Full Scan (Strong BUY + BUY + Turning Up)
                             Filtry: tylko Cap>200M | Vol>300K
@@ -25,13 +26,15 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # ══════════════════════════════════════════════════════════════
 #  KONFIGURACJA
 # ══════════════════════════════════════════════════════════════
-# Wspólne filtry płynności (oba raporty)
 MIN_MARKET_CAP   = 200_000_000
 MIN_VOLUME       = 300_000
 
-# Dodatkowe filtry – tylko screener główny
+# Filtry screener główny
 MIN_QUICK        = 1.0
-MIN_DISCOUNT_52W = 0.30        # 30% poniżej 52W High
+MIN_DISCOUNT_52W = 0.30
+MIN_ROIC         = 0.15    # 15%
+MAX_DEBT_EQUITY  = 1.0     # < 1
+MIN_GROSS_MARGIN = 0.30    # 30%
 
 FUNDAMENTALS_WORKERS = 20
 DOWNLOAD_BATCH_SIZE  = 100
@@ -237,7 +240,7 @@ def bulk_download(tickers, period, interval):
     return result
 
 # ══════════════════════════════════════════════════════════════
-#  FAZA 1 – Tygodniowe sygnały SMI (wszystkie 3 typy)
+#  FAZA 1 – Tygodniowe sygnały SMI
 # ══════════════════════════════════════════════════════════════
 
 def phase1_weekly_signals(ticker_market_list):
@@ -267,8 +270,154 @@ def phase1_weekly_signals(ticker_market_list):
     return signals
 
 # ══════════════════════════════════════════════════════════════
-#  FAZA 2 – Dane meta + fundamenty (pobieranie raz, bez filtrowania)
+#  FAZA 2 – Dane meta + fundamenty
 # ══════════════════════════════════════════════════════════════
+
+def _calc_roic(tkr):
+    """
+    ROIC = NOPAT / Invested Capital
+    NOPAT  = Operating Income * (1 - tax_rate)
+    IC     = Total Assets - Current Liabilities - Cash
+    tax_rate domyślnie 21% jeśli brak danych
+    """
+    try:
+        fin = tkr.financials
+        bs  = tkr.balance_sheet
+        if fin is None or bs is None or fin.empty or bs.empty:
+            return None
+
+        # Operating Income (EBIT)
+        ebit = None
+        for label in ["Operating Income", "EBIT", "Earnings Before Interest And Taxes"]:
+            if label in fin.index:
+                v = fin.loc[label].dropna()
+                if len(v) >= 1:
+                    ebit = float(v.iloc[0])
+                break
+        if ebit is None:
+            return None
+
+        # Tax rate z rachunku zysków i strat
+        tax_rate = 0.21
+        try:
+            tax_prov, pretax = None, None
+            for lbl in ["Tax Provision", "Income Tax Expense"]:
+                if lbl in fin.index:
+                    v = fin.loc[lbl].dropna()
+                    if len(v) >= 1: tax_prov = float(v.iloc[0])
+                    break
+            for lbl in ["Pretax Income", "Income Before Tax"]:
+                if lbl in fin.index:
+                    v = fin.loc[lbl].dropna()
+                    if len(v) >= 1: pretax = float(v.iloc[0])
+                    break
+            if tax_prov is not None and pretax and pretax != 0:
+                tax_rate = max(0.0, min(0.5, tax_prov / pretax))
+        except Exception:
+            pass
+
+        nopat = ebit * (1 - tax_rate)
+
+        # Invested Capital = Total Assets - Current Liabilities - Cash
+        ta, cl, cash = None, 0.0, 0.0
+        for lbl in ["Total Assets"]:
+            if lbl in bs.index:
+                v = bs.loc[lbl].dropna()
+                if len(v) >= 1: ta = float(v.iloc[0])
+                break
+        for lbl in ["Current Liabilities", "Total Current Liabilities"]:
+            if lbl in bs.index:
+                v = bs.loc[lbl].dropna()
+                if len(v) >= 1: cl = float(v.iloc[0])
+                break
+        for lbl in ["Cash And Cash Equivalents", "Cash", "Cash Cash Equivalents And Short Term Investments"]:
+            if lbl in bs.index:
+                v = bs.loc[lbl].dropna()
+                if len(v) >= 1: cash = float(v.iloc[0])
+                break
+
+        if ta is None or ta == 0:
+            return None
+        ic = ta - cl - cash
+        if ic <= 0:
+            return None
+
+        return round(nopat / ic, 4)
+    except Exception:
+        return None
+
+
+def _calc_debt_equity(tkr):
+    """
+    Debt/Equity = Total Debt / Stockholders Equity
+    """
+    try:
+        bs = tkr.balance_sheet
+        if bs is None or bs.empty:
+            return None
+
+        debt, equity = None, None
+        for lbl in ["Total Debt", "Long Term Debt"]:
+            if lbl in bs.index:
+                v = bs.loc[lbl].dropna()
+                if len(v) >= 1: debt = float(v.iloc[0])
+                break
+        # Jeśli brak Total Debt – suma long i short term
+        if debt is None:
+            ltd, std = 0.0, 0.0
+            for lbl in ["Long Term Debt", "Long Term Debt And Capital Lease Obligation"]:
+                if lbl in bs.index:
+                    v = bs.loc[lbl].dropna()
+                    if len(v) >= 1: ltd = float(v.iloc[0])
+                    break
+            for lbl in ["Current Debt", "Short Term Debt", "Short Long Term Debt"]:
+                if lbl in bs.index:
+                    v = bs.loc[lbl].dropna()
+                    if len(v) >= 1: std = float(v.iloc[0])
+                    break
+            debt = ltd + std
+
+        for lbl in ["Stockholders Equity", "Total Stockholders Equity",
+                    "Common Stock Equity", "Total Equity Gross Minority Interest"]:
+            if lbl in bs.index:
+                v = bs.loc[lbl].dropna()
+                if len(v) >= 1: equity = float(v.iloc[0])
+                break
+
+        if equity is None or equity <= 0 or debt is None:
+            return None
+        return round(debt / equity, 3)
+    except Exception:
+        return None
+
+
+def _calc_gross_margin(tkr):
+    """
+    Gross Margin = Gross Profit / Revenue
+    """
+    try:
+        fin = tkr.financials
+        if fin is None or fin.empty:
+            return None
+
+        gp, rev = None, None
+        for lbl in ["Gross Profit"]:
+            if lbl in fin.index:
+                v = fin.loc[lbl].dropna()
+                if len(v) >= 1: gp = float(v.iloc[0])
+                break
+        for lbl in ["Total Revenue", "Operating Revenue"]:
+            if lbl in fin.index:
+                v = fin.loc[lbl].dropna()
+                if len(v) >= 1: rev = float(v.iloc[0])
+                break
+
+        if gp is None or rev is None or rev == 0:
+            return None
+        return round(gp / rev, 4)
+    except Exception:
+        return None
+
 
 def _collect_one(symbol, weekly_data):
     """Pobiera dane dla tickera. Zwraca None jeśli nie spełnia
@@ -306,8 +455,15 @@ def _collect_one(symbol, weekly_data):
         except Exception:
             pass
 
+        # Pobierz sprawozdania raz – używane przez QR, Sales, ROIC, D/E, GM
         try:
             fin = tkr.financials
+            bs  = tkr.balance_sheet
+        except Exception:
+            fin, bs = None, None
+
+        # Sales TTM
+        try:
             if fin is not None and not fin.empty:
                 for label in ["Total Revenue", "Operating Revenue"]:
                     if label in fin.index:
@@ -318,8 +474,8 @@ def _collect_one(symbol, weekly_data):
         except Exception:
             pass
 
+        # Quick Ratio
         try:
-            bs = tkr.balance_sheet
             if bs is not None and not bs.empty:
                 ca, inv, cl = None, 0.0, None
                 for label in ["Current Assets", "Total Current Assets"]:
@@ -342,6 +498,12 @@ def _collect_one(symbol, weekly_data):
         except Exception:
             pass
 
+        # ── NOWE METRYKI ──────────────────────────────────────
+        roic         = _calc_roic(tkr)
+        debt_equity  = _calc_debt_equity(tkr)
+        gross_margin = _calc_gross_margin(tkr)
+        # ──────────────────────────────────────────────────────
+
         return {
             "ticker":         symbol,
             "name":           name,
@@ -361,6 +523,9 @@ def _collect_one(symbol, weekly_data):
             "eps_ttm":        eps_ttm,
             "sales_ttm_mln":  sales,
             "quick_ratio":    qr,
+            "roic":           roic,
+            "debt_equity":    debt_equity,
+            "gross_margin":   gross_margin,
             "scanned_at":     datetime.now().isoformat(),
         }
     except Exception:
@@ -384,7 +549,6 @@ def phase2_collect(weekly_signals):
     print(f"      Zebrano danych: {len(results)}")
     return results
 
-
 # ══════════════════════════════════════════════════════════════
 #  FILTRY
 # ══════════════════════════════════════════════════════════════
@@ -400,13 +564,18 @@ def filter_main(r):
     disc = r.get("discount_52w")
     if disc is not None and disc < MIN_DISCOUNT_52W * 100:
         return False
+    # ── NOWE FILTRY ───────────────────────────────────────────
+    roic = r.get("roic")
+    if roic is not None and roic < MIN_ROIC:
+        return False
+    de = r.get("debt_equity")
+    if de is not None and de > MAX_DEBT_EQUITY:
+        return False
+    gm = r.get("gross_margin")
+    if gm is not None and gm < MIN_GROSS_MARGIN:
+        return False
+    # ─────────────────────────────────────────────────────────
     return True
-
-
-def filter_full(r):
-    """Filtry full scan: wszystkie sygnały, tylko płynność (już sprawdzona)."""
-    return True   # płynność filtrowana w _collect_one
-
 
 # ══════════════════════════════════════════════════════════════
 #  FORMATOWANIE
@@ -419,6 +588,9 @@ def fmt_cap(mln):
 def fmt_vol(k):
     if k is None: return "--"
     return f"{k/1000:.1f}M" if k >= 1000 else f"{k:.0f}K"
+
+def fmt_pct(v):
+    return f"{v*100:.1f}%" if v is not None else "--"
 
 def na(v, suffix=""):
     return f"{v}{suffix}" if v is not None else "--"
@@ -442,7 +614,6 @@ COMMON_CSS = """
   h2{font-size:1.05rem;font-weight:600;color:#fff;margin-bottom:1rem}
   .subtitle{font-size:.8rem;color:var(--muted);margin-top:.3rem}
 
-  /* Nawigacja */
   .report-nav{display:flex;gap:.6rem;margin-bottom:1.75rem;flex-wrap:wrap}
   .nav-link{background:var(--bg2);border:1px solid var(--border);border-radius:8px;
             padding:.45rem 1.1rem;font-size:.83rem;color:var(--muted);text-decoration:none;
@@ -471,12 +642,12 @@ COMMON_CSS = """
   .section-header{display:flex;align-items:center;gap:.6rem;margin-bottom:1.2rem}
   .section-icon{font-size:1.2rem}
 
-  .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+  .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
   .signal-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;
                padding:1.2rem;position:relative;overflow:hidden}
   .sc-ticker{font-size:1.1rem;font-weight:700;color:#fff;letter-spacing:-.3px}
   .sc-name{font-size:.75rem;color:var(--muted);margin-top:.1rem;
-           white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
+           white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
   .sc-price{font-size:1.3rem;font-weight:700;color:var(--accent);margin:.7rem 0}
   .sc-row{display:flex;justify-content:space-between;font-size:.78rem;
           padding:.25rem 0;border-bottom:1px solid var(--border)}
@@ -496,7 +667,7 @@ COMMON_CSS = """
   td{padding:.55rem 1rem;border-bottom:1px solid rgba(37,40,64,.6);vertical-align:middle}
   tr:hover td{background:rgba(255,255,255,.02)}
   .num{text-align:right;font-variant-numeric:tabular-nums}
-  .name-col{max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .name-col{max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .smi-col{color:var(--green)}
   .ticker{font-weight:600;color:#fff;margin-right:.3rem}
 
@@ -536,7 +707,16 @@ def _zone_badge(zone):
            "Bullish":"zone-bull","Bearish":"zone-bear"}.get(zone,"")
     return f'<span class="zone-badge {cls}">{zone}</span>'
 
-def render_cards(data):
+def _color_ok(val, ok):
+    """Zwraca kolor zielony/czerwony/szary w zależności czy warunek ok jest spełniony."""
+    if val is None: return "#888"
+    return "#3ecf8e" if ok else "#ff4560"
+
+def render_cards(data, show_quality=False):
+    """
+    show_quality=True  → dodaje sekcję ROIC / D/E / Gross Margin (screener główny)
+    show_quality=False → pomija (full scan)
+    """
     if not data:
         return "<div class='empty'>Brak sygnalow</div>"
     cards = ""
@@ -559,8 +739,28 @@ def render_cards(data):
 
         eps   = r.get("eps_ttm")
         qr    = r.get("quick_ratio")
-        eps_c = "#3ecf8e" if eps and eps > 0 else ("#ff4560" if eps is not None and eps < 0 else "#888")
-        qr_c  = "#3ecf8e" if qr  and qr  >= 1 else ("#ff4560" if qr  is not None else "#888")
+        eps_c = _color_ok(eps,  eps  is not None and eps  > 0)
+        qr_c  = _color_ok(qr,   qr   is not None and qr   >= 1.0)
+
+        # Nowe metryki
+        roic  = r.get("roic")
+        de    = r.get("debt_equity")
+        gm    = r.get("gross_margin")
+        roic_c = _color_ok(roic, roic is not None and roic >= MIN_ROIC)
+        de_c   = _color_ok(de,   de   is not None and de   <  MAX_DEBT_EQUITY)
+        gm_c   = _color_ok(gm,   gm   is not None and gm   >= MIN_GROSS_MARGIN)
+
+        quality_rows = ""
+        if show_quality:
+            quality_rows = (
+                f'<div class="sc-divider"></div>'
+                f'<div class="sc-row"><span>ROIC</span>'
+                f'<span style="color:{roic_c};font-weight:600">{fmt_pct(roic)}</span></div>'
+                f'<div class="sc-row"><span>Debt / Equity</span>'
+                f'<span style="color:{de_c};font-weight:600">{na(de)}</span></div>'
+                f'<div class="sc-row"><span>Gross Margin</span>'
+                f'<span style="color:{gm_c};font-weight:600">{fmt_pct(gm)}</span></div>'
+            )
 
         cards += (
             f'<div class="signal-card">'
@@ -587,6 +787,7 @@ def render_cards(data):
             f'<span>{na(r.get("sales_ttm_mln"))} M</span></div>'
             f'<div class="sc-row"><span>Quick Ratio</span>'
             f'<span style="color:{qr_c}">{na(qr)}</span></div>'
+            f'{quality_rows}'
             f'<div class="sc-stoch">'
             f'<div class="sc-stoch-item"><div class="sc-stoch-label">SMI tydz.</div>'
             f'<div class="sc-stoch-val green">{r["smi"]}</div></div>'
@@ -596,9 +797,10 @@ def render_cards(data):
         )
     return f'<div class="cards-grid">{cards}</div>'
 
-def render_table_rows(data):
+
+def render_table_rows(data, show_quality=False):
     if not data:
-        return "<tr><td colspan='14' style='text-align:center;color:#888;padding:2rem'>Brak wynikow</td></tr>"
+        return "<tr><td colspan='17' style='text-align:center;color:#888;padding:2rem'>Brak wynikow</td></tr>"
     data = sorted(data, key=lambda x: (
         {"Strong BUY":0,"BUY":1,"Turning Up":2}.get(x["signal"],9),
         -(x.get("discount_52w") or 0)
@@ -612,9 +814,25 @@ def render_table_rows(data):
         badge = ('<span class="badge-strong">STRONG</span>' if sig == "Strong BUY"
                  else '<span class="badge-buy">BUY</span>'    if sig == "BUY"
                  else '<span class="badge-turning">TURN</span>')
-        eps   = r.get("eps_ttm");  qr = r.get("quick_ratio")
-        eps_c = "#3ecf8e" if eps and eps > 0 else ("#ff4560" if eps is not None and eps < 0 else "inherit")
-        qr_c  = "#3ecf8e" if qr  and qr  >= 1 else ("#ff4560" if qr  is not None else "inherit")
+
+        eps  = r.get("eps_ttm");  qr = r.get("quick_ratio")
+        roic = r.get("roic");     de = r.get("debt_equity")
+        gm   = r.get("gross_margin")
+
+        eps_c  = "#3ecf8e" if eps  and eps  > 0    else ("#ff4560" if eps  is not None else "inherit")
+        qr_c   = "#3ecf8e" if qr   and qr   >= 1.0 else ("#ff4560" if qr   is not None else "inherit")
+        roic_c = "#3ecf8e" if roic and roic >= MIN_ROIC        else ("#ff4560" if roic is not None else "inherit")
+        de_c   = "#3ecf8e" if de   is not None and de < MAX_DEBT_EQUITY  else ("#ff4560" if de   is not None else "inherit")
+        gm_c   = "#3ecf8e" if gm   and gm   >= MIN_GROSS_MARGIN else ("#ff4560" if gm   is not None else "inherit")
+
+        quality_cols = ""
+        if show_quality:
+            quality_cols = (
+                f'<td class="num" style="color:{roic_c}">{fmt_pct(roic)}</td>'
+                f'<td class="num" style="color:{de_c}">{na(de)}</td>'
+                f'<td class="num" style="color:{gm_c}">{fmt_pct(gm)}</td>'
+            )
+
         html += f"""<tr>
           <td><span class="ticker">{r['ticker']}</span>{badge}</td>
           <td class="name-col">{r['name']}</td>
@@ -630,6 +848,7 @@ def render_table_rows(data):
           <td class="num" style="color:{eps_c}">{na(eps)}</td>
           <td class="num">{na(r.get('sales_ttm_mln'))} M</td>
           <td class="num" style="color:{qr_c}">{na(qr)}</td>
+          {quality_cols}
         </tr>"""
     return html
 
@@ -653,7 +872,8 @@ def generate_html_main(meta, results):
   .strategy-box{{background:var(--bg2);border:1px solid #ff6b00;border-radius:10px;
                 padding:1rem 1.4rem;font-size:.82rem;line-height:1.7}}
   .strategy-box strong{{color:var(--orange)}}
-  .strategy-box ul{{margin:.4rem 0 0 1.2rem}}
+  .strategy-box ul{{margin:.4rem 0 0 1.2rem;columns:2;gap:2rem}}
+  @media(max-width:600px){{.strategy-box ul{{columns:1}}}}
 </style>
 </head>
 <body>
@@ -668,11 +888,16 @@ def generate_html_main(meta, results):
   <p class="subtitle">Wygenerowano: {dt} &nbsp;|&nbsp; Czas: {meta['elapsed_min']} min &nbsp;|&nbsp; SMI({SMI_LEN_K},{SMI_LEN_D},{SMI_LEN_EMA})</p>
 
   <div class="strategy-box" style="margin:1.5rem 0">
-    <strong>&#9881; Aktywna strategia:</strong>
+    <strong>&#9881; Aktywna strategia &mdash; wszystkie warunki muszą być spełnione:</strong>
     <ul>
-      <li>Sygnaly <strong>Strong BUY</strong> i <strong>Turning Up</strong></li>
-      <li>Kurs min. <strong>{int(MIN_DISCOUNT_52W*100)}% ponizej 52W High</strong></li>
-      <li>EPS &gt; 0 &nbsp;|&nbsp; Quick Ratio &ge; {MIN_QUICK} &nbsp;|&nbsp; Cap &gt; {MIN_MARKET_CAP//1_000_000}M &nbsp;|&nbsp; Vol &gt; {MIN_VOLUME:,}</li>
+      <li>Sygnal: <strong>Strong BUY</strong> lub <strong>Turning Up</strong></li>
+      <li>Discount &ge; <strong>{int(MIN_DISCOUNT_52W*100)}%</strong> vs 52W High</li>
+      <li>EPS TTM &gt; <strong>0</strong></li>
+      <li>Quick Ratio &ge; <strong>{MIN_QUICK}</strong></li>
+      <li>ROIC &gt; <strong>{int(MIN_ROIC*100)}%</strong></li>
+      <li>Debt / Equity &lt; <strong>{MAX_DEBT_EQUITY}</strong></li>
+      <li>Gross Margin &gt; <strong>{int(MIN_GROSS_MARGIN*100)}%</strong></li>
+      <li>Cap &gt; <strong>{MIN_MARKET_CAP//1_000_000}M</strong> &nbsp;|&nbsp; Vol &gt; <strong>{MIN_VOLUME:,}</strong></li>
     </ul>
   </div>
 
@@ -690,7 +915,7 @@ def generate_html_main(meta, results):
     <p style="font-size:.8rem;color:var(--muted);margin-bottom:1rem">
       Crossover SMI &gt; EMA ze strefy wyprzedania (&lt;&minus;40)
     </p>
-    {render_cards(strong_res)}
+    {render_cards(strong_res, show_quality=True)}
   </div>
 
   <div class="section section-turning">
@@ -699,7 +924,7 @@ def generate_html_main(meta, results):
     <p style="font-size:.8rem;color:var(--muted);margin-bottom:1rem">
       SMI osiagnal lokalny dolek, zmienia kierunek &mdash; jeszcze ponizej EMA
     </p>
-    {render_cards(turning_res)}
+    {render_cards(turning_res, show_quality=True)}
   </div>
 
   <div class="section">
@@ -713,8 +938,9 @@ def generate_html_main(meta, results):
         <th class="num">Cap</th><th class="num">Vol avg</th>
         <th class="num">SMI (W)</th><th class="num">EMA (W)</th><th>Strefa</th>
         <th class="num">EPS</th><th class="num">Sales</th><th class="num">QR</th>
+        <th class="num">ROIC</th><th class="num">D/E</th><th class="num">Gr.Margin</th>
       </tr></thead>
-      <tbody>{render_table_rows(results)}</tbody>
+      <tbody>{render_table_rows(results, show_quality=True)}</tbody>
     </table>
     </div>
   </div>
@@ -763,7 +989,7 @@ def generate_html_full(meta, results):
   <div class="info-box" style="margin:1.5rem 0;padding:.9rem 1.4rem;font-size:.82rem;line-height:1.7;border-radius:10px">
     <strong>&#128270; Wszystkie sygnaly SMI</strong> (Strong BUY / BUY / Turning Up).
     Filtr tylko: <strong>Cap &gt; {MIN_MARKET_CAP//1_000_000}M</strong> i <strong>Vol &gt; {MIN_VOLUME:,}</strong>.
-    EPS i QR wyswietlane informacyjnie (kolor).
+    Pozostale metryki wyswietlane informacyjnie.
   </div>
 
   <div class="stats-bar">
@@ -778,7 +1004,7 @@ def generate_html_full(meta, results):
   <div class="section section-strong">
     <div class="section-header"><span class="section-icon">&#9889;</span>
       <h2>Strong BUY &mdash; {len(strong_res)}</h2></div>
-    {render_cards(strong_res)}
+    {render_cards(strong_res, show_quality=False)}
   </div>
 
   <div class="section section-buy">
@@ -787,13 +1013,13 @@ def generate_html_full(meta, results):
     <p style="font-size:.8rem;color:var(--muted);margin-bottom:1rem">
       Crossover SMI &gt; EMA ze strefy neutralnej lub byczej
     </p>
-    {render_cards(buy_res)}
+    {render_cards(buy_res, show_quality=False)}
   </div>
 
   <div class="section section-turning">
     <div class="section-header"><span class="section-icon">&#128260;</span>
       <h2>Turning Up &mdash; {len(turning_res)}</h2></div>
-    {render_cards(turning_res)}
+    {render_cards(turning_res, show_quality=False)}
   </div>
 
   <div class="section">
@@ -808,11 +1034,11 @@ def generate_html_full(meta, results):
         <th class="num">SMI (W)</th><th class="num">EMA (W)</th><th>Strefa</th>
         <th class="num">EPS*</th><th class="num">Sales</th><th class="num">QR*</th>
       </tr></thead>
-      <tbody>{render_table_rows(results)}</tbody>
+      <tbody>{render_table_rows(results, show_quality=False)}</tbody>
     </table>
     </div>
     <p style="font-size:.72rem;color:var(--muted);margin-top:.7rem">
-      * EPS/QR &mdash; dane informacyjne, nie filtruja wynikow.
+      * dane informacyjne, nie filtruja wynikow w Full Scan.
     </p>
   </div>
 </div>
@@ -825,12 +1051,11 @@ def generate_html_full(meta, results):
     print(f"  Raport full scan: {path}")
 
 # ══════════════════════════════════════════════════════════════
-#  HTML – STRONA STARTOWA (index.html)
+#  HTML – STRONA STARTOWA
 # ══════════════════════════════════════════════════════════════
 
 def generate_html_index(meta):
-    """Generuje results/index.html – strona startowa z linkami do obu raportów."""
-    dt  = datetime.fromisoformat(meta["generated_at"]).strftime("%d.%m.%Y %H:%M")
+    dt         = datetime.fromisoformat(meta["generated_at"]).strftime("%d.%m.%Y %H:%M")
     main_count = meta.get("main_total", 0)
     full_count = meta.get("full_total", 0)
 
@@ -897,9 +1122,8 @@ def generate_html_index(meta):
   .card-full .card-bar{{background:linear-gradient(90deg,var(--green),var(--accent))}}
   .card-icon{{font-size:1.8rem;margin-bottom:.9rem;display:block}}
   .card-title{{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:.35rem}}
-  .card-desc{{font-size:.8rem;color:var(--muted);line-height:1.55;margin-bottom:1.1rem}}
-  .card-count{{font-family:'Space Mono',monospace;font-size:.78rem;font-weight:700;
-               margin-bottom:.9rem}}
+  .card-desc{{font-size:.8rem;color:var(--muted);line-height:1.55;margin-bottom:.8rem}}
+  .card-count{{font-family:'Space Mono',monospace;font-size:.78rem;font-weight:700;margin-bottom:.9rem}}
   .card-main .card-count{{color:var(--orange)}}
   .card-full .card-count{{color:var(--green)}}
   .card-tags{{display:flex;flex-wrap:wrap;gap:.4rem}}
@@ -926,23 +1150,24 @@ def generate_html_index(meta):
 <div class="blob blob-2"></div>
 <div class="blob blob-3"></div>
 <div class="wrapper">
-  <div class="badge"><div class="badge-dot"></div>SMI(10,3,3) &nbsp;&middot;&nbsp; Interwał tygodniowy</div>
+  <div class="badge"><div class="badge-dot"></div>SMI(10,3,3) &nbsp;&middot;&nbsp; Interwal tygodniowy</div>
   <h1>Stock<br><span>Screener</span></h1>
-  <p class="sub">Skanuje rynki USA i EU w poszukiwaniu sygnałów<br>
-     wskaźnika <code>Stochastic Momentum Index</code><br>
+  <p class="sub">Skanuje rynki USA i EU w poszukiwaniu sygnalow<br>
+     wskaznika <code>Stochastic Momentum Index</code><br>
      <span style="font-size:.8rem">Ostatni skan: {dt}</span></p>
   <div class="cards">
     <a href="screener.html" class="card card-main">
       <div class="card-bar"></div>
       <span class="card-icon">&#9889;</span>
-      <div class="card-title">Screener główny</div>
-      <div class="card-desc">Strong BUY i Turning Up z pełnymi filtrami fundamentalnymi i technicznym.</div>
-      <div class="card-count">&#9662; {main_count} wynik&#243;w</div>
+      <div class="card-title">Screener glowny</div>
+      <div class="card-desc">Strong BUY i Turning Up z pelnym zestawem filtrow fundamentalnych.</div>
+      <div class="card-count">&#9662; {main_count} wynikow</div>
       <div class="card-tags">
         <span class="tag tag-orange">Strong BUY</span>
         <span class="tag tag-purple">Turning Up</span>
-        <span class="tag tag-blue">EPS &gt; 0</span>
-        <span class="tag tag-blue">Discount &ge; 30%</span>
+        <span class="tag tag-blue">ROIC &gt;15%</span>
+        <span class="tag tag-blue">D/E &lt;1</span>
+        <span class="tag tag-blue">GM &gt;30%</span>
       </div>
       <div class="card-arrow">&#8599;</div>
     </a>
@@ -950,13 +1175,13 @@ def generate_html_index(meta):
       <div class="card-bar"></div>
       <span class="card-icon">&#128270;</span>
       <div class="card-title">Full Scan</div>
-      <div class="card-desc">Wszystkie sygnały SMI bez filtrów fundamentalnych. Tylko płynność.</div>
-      <div class="card-count">&#9662; {full_count} wynik&#243;w</div>
+      <div class="card-desc">Wszystkie sygnaly SMI bez filtrow fundamentalnych. Tylko plynnosc.</div>
+      <div class="card-count">&#9662; {full_count} wynikow</div>
       <div class="card-tags">
         <span class="tag tag-orange">Strong BUY</span>
         <span class="tag tag-green">BUY</span>
         <span class="tag tag-purple">Turning Up</span>
-        <span class="tag tag-blue">Cap &gt; 200M</span>
+        <span class="tag tag-blue">Cap &gt;200M</span>
       </div>
       <div class="card-arrow">&#8599;</div>
     </a>
@@ -975,7 +1200,6 @@ def generate_html_index(meta):
         f.write(html)
     print(f"  Strona startowa: {path}")
 
-
 # ══════════════════════════════════════════════════════════════
 #  GŁÓWNA PĘTLA
 # ══════════════════════════════════════════════════════════════
@@ -987,7 +1211,7 @@ def run_screener():
     print("=" * 60)
     print(f"SCREENER START: {t0.strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"SMI({SMI_LEN_K},{SMI_LEN_D},{SMI_LEN_EMA}) | sygnal tygodniowy")
-    print(f"Generuje: screener.html + index_all.html")
+    print(f"Generuje: index.html + screener.html + index_all.html")
     print("=" * 60)
 
     print("\n[Tickery] Pobieranie list spolek...")
@@ -996,15 +1220,11 @@ def run_screener():
     ticker_market = [(t, "USA") for t in usa] + [(t, "EU") for t in eu]
     print(f"\nLacznie: {len(ticker_market)} ({len(usa)} USA, {len(eu)} EU)")
 
-    # Faza 1 – sygnały SMI (wszystkie 3 typy)
     weekly_signals = phase1_weekly_signals(ticker_market)
+    all_data       = phase2_collect(weekly_signals)
 
-    # Faza 2 – zbierz dane (raz, z filtrem płynności)
-    all_data = phase2_collect(weekly_signals)
-
-    # Filtrowanie do dwóch raportów
     main_results = [r for r in all_data if filter_main(r)]
-    full_results = all_data   # filter_full = True dla wszystkich
+    full_results = all_data
 
     elapsed = round((datetime.now() - t0).total_seconds() / 60, 1)
 
@@ -1018,11 +1238,10 @@ def run_screener():
         "indicator":     f"SMI({SMI_LEN_K},{SMI_LEN_D},{SMI_LEN_EMA})",
     }
 
-    # Zapis JSON / CSV
     for fname, data in [
-        ("results",     full_results),
-        ("results_main",main_results),
-        ("meta",        meta),
+        ("results",      full_results),
+        ("results_main", main_results),
+        ("meta",         meta),
     ]:
         with open(f"{OUTPUT_DIR}/{fname}.json", "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
@@ -1031,7 +1250,6 @@ def run_screener():
     if main_results:
         pd.DataFrame(main_results).to_csv(f"{OUTPUT_DIR}/results_main.csv", index=False)
 
-    # Generuj wszystkie trzy strony HTML
     print("\n[HTML] Generowanie raportow...")
     generate_html_main(meta, main_results)
     generate_html_full(meta, full_results)
