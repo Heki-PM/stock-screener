@@ -1,0 +1,15 @@
+### TradingView Watchlist – Screener główny
+### Wygenerowano: 2026-05-24 17:31 UTC
+### Liczba tickerow: 8
+### Format: EXCHANGE:TICKER  |  sygnał  |  discount 52W  |  sektor
+###
+### ── Strong BUY (5) ──
+SCZM  ### Strong BUY | -54.5% | Basic Materials
+CPRT  ### Strong BUY | -37.8% | Industrials
+ATRC  ### Strong BUY | -34.5% | --
+SPOT  ### Strong BUY | -33.8% | Communication Services
+ICFI  ### Strong BUY | -32.2% | Industrials
+### ── Turning Up (3) ──
+WING  ### Turning Up | -63.8% | Consumer Cyclical
+VNT  ### Turning Up | -38.5% | Technology
+LKQ  ### Turning Up | -33.7% | --
