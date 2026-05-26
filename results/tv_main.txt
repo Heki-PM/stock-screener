@@ -1,19 +1,20 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-05-25 16:01 UTC
-### Liczba tickerow: 12
+### Wygenerowano: 2026-05-26 16:54 UTC
+### Liczba tickerow: 13
 ### Format: EXCHANGE:TICKER  |  sygnał  |  discount 52W  |  sektor
 ###
-### ── Strong BUY (7) ──
-GSHD  ### Strong BUY | -63.1% | --
-SCZM  ### Strong BUY | -54.5% | Basic Materials
-NKE  ### Strong BUY | -44.3% | Consumer Cyclical
-SAP  ### Strong BUY | -43.8% | Technology
-ONON  ### Strong BUY | -35.0% | --
-G  ### Strong BUY | -34.4% | --
-GGAL  ### Strong BUY | -31.7% | Financial Services
-### ── Turning Up (5) ──
-NKLR  ### Turning Up | -70.6% | --
-LULU  ### Turning Up | -62.6% | --
-CDE  ### Turning Up | -36.5% | Basic Materials
-ESAB  ### Turning Up | -33.2% | --
-VYGR  ### Turning Up | -31.5% | --
+### ── Strong BUY (10) ──
+LX  ### Strong BUY | -71.5% | --
+WING  ### Strong BUY | -64.0% | --
+EU  ### Strong BUY | -62.0% | --
+TGLS  ### Strong BUY | -54.3% | --
+BMI  ### Strong BUY | -49.8% | Technology
+SUPV  ### Strong BUY | -48.0% | --
+RKT  ### Strong BUY | -42.3% | --
+AGBK  ### Strong BUY | -40.7% | Financial Services
+EURONEXT:RI  ### Strong BUY | -40.3% | --
+CDE  ### Strong BUY | -35.0% | Basic Materials
+### ── Turning Up (3) ──
+LMND  ### Turning Up | -41.4% | --
+ITRI  ### Turning Up | -40.7% | Technology
+LSE:EXPN  ### Turning Up | -37.1% | --
