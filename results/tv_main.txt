@@ -1,20 +1,16 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-05-26 16:54 UTC
-### Liczba tickerow: 13
+### Wygenerowano: 2026-05-27 16:47 UTC
+### Liczba tickerow: 9
 ### Format: EXCHANGE:TICKER  |  sygnał  |  discount 52W  |  sektor
 ###
-### ── Strong BUY (10) ──
-LX  ### Strong BUY | -71.5% | --
-WING  ### Strong BUY | -64.0% | --
-EU  ### Strong BUY | -62.0% | --
-TGLS  ### Strong BUY | -54.3% | --
-BMI  ### Strong BUY | -49.8% | Technology
-SUPV  ### Strong BUY | -48.0% | --
-RKT  ### Strong BUY | -42.3% | --
-AGBK  ### Strong BUY | -40.7% | Financial Services
-EURONEXT:RI  ### Strong BUY | -40.3% | --
-CDE  ### Strong BUY | -35.0% | Basic Materials
-### ── Turning Up (3) ──
-LMND  ### Turning Up | -41.4% | --
-ITRI  ### Turning Up | -40.7% | Technology
-LSE:EXPN  ### Turning Up | -37.1% | --
+### ── Strong BUY (3) ──
+WING  ### Strong BUY | -61.1% | --
+SUPV  ### Strong BUY | -38.3% | --
+DPZ  ### Strong BUY | -36.0% | --
+### ── Turning Up (6) ──
+TASK  ### Turning Up | -65.9% | --
+TIGR  ### Turning Up | -62.7% | --
+NMRA  ### Turning Up | -49.2% | --
+CRCT  ### Turning Up | -41.9% | --
+ITRI  ### Turning Up | -39.8% | --
+HLMN  ### Turning Up | -30.4% | --
