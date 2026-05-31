@@ -1,10 +1,21 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-05-29 16:46 UTC
-### Liczba tickerow: 4
+### Wygenerowano: 2026-05-31 09:35 UTC
+### Liczba tickerow: 14
 ### Format: EXCHANGE:TICKER  |  sygnał  |  discount 52W  |  sektor
 ###
-### ── Strong BUY (4) ──
-PHR  ### Strong BUY | -71.2% | --
-INTA  ### Strong BUY | -62.4% | --
-KROS  ### Strong BUY | -50.2% | --
-MATV  ### Strong BUY | -41.8% | --
+### ── Strong BUY (9) ──
+MAZE  ### Strong BUY | -50.7% | --
+KROS  ### Strong BUY | -50.1% | --
+AZTA  ### Strong BUY | -45.2% | --
+SOFI  ### Strong BUY | -44.3% | --
+ITRG  ### Strong BUY | -43.7% | --
+BTU  ### Strong BUY | -34.2% | --
+MAT  ### Strong BUY | -33.5% | --
+ESAB  ### Strong BUY | -32.7% | --
+PSEC  ### Strong BUY | -31.1% | --
+### ── Turning Up (5) ──
+EMBC  ### Turning Up | -78.3% | --
+TIGR  ### Turning Up | -62.1% | --
+TRX  ### Turning Up | -58.9% | --
+CTMX  ### Turning Up | -56.2% | --
+VNDA  ### Turning Up | -35.1% | --
