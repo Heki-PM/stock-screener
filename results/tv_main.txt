@@ -1,21 +1,17 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-05-31 09:35 UTC
-### Liczba tickerow: 14
+### Wygenerowano: 2026-06-01 17:50 UTC
+### Liczba tickerow: 10
 ### Format: EXCHANGE:TICKER  |  sygnał  |  discount 52W  |  sektor
 ###
-### ── Strong BUY (9) ──
-MAZE  ### Strong BUY | -50.7% | --
-KROS  ### Strong BUY | -50.1% | --
-AZTA  ### Strong BUY | -45.2% | --
-SOFI  ### Strong BUY | -44.3% | --
-ITRG  ### Strong BUY | -43.7% | --
-BTU  ### Strong BUY | -34.2% | --
-MAT  ### Strong BUY | -33.5% | --
-ESAB  ### Strong BUY | -32.7% | --
-PSEC  ### Strong BUY | -31.1% | --
-### ── Turning Up (5) ──
-EMBC  ### Turning Up | -78.3% | --
-TIGR  ### Turning Up | -62.1% | --
-TRX  ### Turning Up | -58.9% | --
-CTMX  ### Turning Up | -56.2% | --
-VNDA  ### Turning Up | -35.1% | --
+### ── Strong BUY (8) ──
+AVXL  ### Strong BUY | -78.3% | --
+UWMC  ### Strong BUY | -57.6% | --
+INFY  ### Strong BUY | -55.3% | --
+PEGA  ### Strong BUY | -44.3% | --
+RWAY  ### Strong BUY | -42.4% | --
+LMND  ### Strong BUY | -41.5% | --
+CHKP  ### Strong BUY | -41.1% | --
+PSEC  ### Strong BUY | -30.0% | --
+### ── Turning Up (2) ──
+ISSC  ### Turning Up | -44.3% | --
+PDD  ### Turning Up | -37.1% | --
