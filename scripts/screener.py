@@ -829,7 +829,7 @@ def render_cards(data, show_quality=False):
     cards = ""
     for r in sorted(data, key=lambda x: (
         {"Strong BUY":0,"BUY":1,"Turning Up":2}.get(x["signal"],9),
-        -(x.get("discount_52w") or 0)
+        -(x.get("tech_score") or 0)
     )):
         sig = r.get("signal","Strong BUY")
         tc, sl, sc = _signal_cfg(sig)
@@ -913,7 +913,7 @@ def render_table_rows(data, show_quality=False):
         return "<tr><td colspan='17' style='text-align:center;color:#888;padding:2rem'>Brak wynikow</td></tr>"
     data = sorted(data, key=lambda x: (
         {"Strong BUY":0,"BUY":1,"Turning Up":2}.get(x["signal"],9),
-        -(x.get("discount_52w") or 0)
+        -(x.get("tech_score") or 0)
     ))
     html = ""
     for r in data:
