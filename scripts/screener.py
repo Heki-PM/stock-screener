@@ -36,14 +36,61 @@ MIN_ROIC         = 0.15    # 15%
 MAX_DEBT_EQUITY  = 1.0     # < 1
 MIN_GROSS_MARGIN = 0.30    # 30%
 
+# ── O'Neil: dodatkowe filtry ──────────────────────────────────
+MAX_PRICE        = 150.0   # O'Neil: liderzy mogą kosztować dużo (poprzednio 50)
+VOL_CONFIRM_MULT = 1.4     # O'Neil: wolumen przy crossover ≥ 40% powyżej średniej
+RS_MIN_OUTPERFORM= 1.10    # O'Neil: RS — spółka bije swój indeks o min. 10% w 12M
+# Indeksy referencyjne do filtra kierunku rynku (litera M)
+MARKET_DIRECTION_USA = "SPY"   # S&P 500 ETF
+MARKET_DIRECTION_EU  = "VGK"   # Vanguard European ETF
+MARKET_SMA_PERIOD    = 200     # tygodnie? Nie — używamy danych tygodniowych → ~200 tygodni to za dużo
+                                # yfinance zwróci 2y tygodniowych → ~104 świece, więc używamy SMA50W
+MARKET_SMA_WEEKS     = 50      # 50-tygodniowa MA (odpowiednik 200-sesyjnej)
+# ─────────────────────────────────────────────────────────────
+
 FUNDAMENTALS_WORKERS = 20
 DOWNLOAD_BATCH_SIZE  = 100
 OUTPUT_DIR           = "results"
 SMI_LEN_K, SMI_LEN_D, SMI_LEN_EMA = 10, 3, 3
 
 # ══════════════════════════════════════════════════════════════
-#  POBIERANIE TICKERÓW
+#  O'NEIL – KIERUNEK RYNKU (litera M)
 # ══════════════════════════════════════════════════════════════
+
+def check_market_direction() -> dict:
+    """
+    O'Neil: 75% spółek idzie z trendem rynkowym.
+    Sprawdza czy SPY (USA) i VGK (EU) są powyżej SMA50W.
+    Zwraca słownik: {"USA": True/False, "EU": True/False, "usa_price": x,
+                     "usa_sma50w": x, "eu_price": x, "eu_sma50w": x}
+    W razie błędu pobierania — zakłada True (nie blokuje screenerа).
+    """
+    result = {"USA": True, "EU": True,
+              "usa_price": None, "usa_sma50w": None,
+              "eu_price":  None, "eu_sma50w":  None}
+    for key, ticker in [("USA", MARKET_DIRECTION_USA), ("EU", MARKET_DIRECTION_EU)]:
+        try:
+            df = yf.download(ticker, period="3y", interval="1wk",
+                             auto_adjust=True, progress=False)
+            if df is None or df.empty or len(df) < MARKET_SMA_WEEKS + 5:
+                print(f"  [Market Direction] {ticker}: brak danych — pomijam filtr")
+                continue
+            close   = df["Close"].dropna()
+            price   = float(close.iloc[-1])
+            sma50w  = float(close.rolling(MARKET_SMA_WEEKS).mean().iloc[-1])
+            above   = price > sma50w
+            result[key] = above
+            pk = key.lower()
+            result[f"{pk}_price"]  = round(price,  2)
+            result[f"{pk}_sma50w"] = round(sma50w, 2)
+            status = "✓ ABOVE SMA50W" if above else "✗ BELOW SMA50W"
+            print(f"  [Market Direction] {ticker}: {price:.2f} vs SMA50W {sma50w:.2f}  {status}")
+        except Exception as e:
+            print(f"  [Market Direction] {ticker}: blad ({e}) — pomijam filtr")
+    return result
+
+
+
 
 def get_sp500():
     try:
@@ -282,6 +329,22 @@ def phase1_weekly_signals(ticker_market_list):
     print(f"\n[1/2] Dane tygodniowe -- {len(tickers)} tickerow...")
     data = bulk_download(tickers, period="2y", interval="1wk")
     print(f"      Pobrano: {len(data)}")
+
+    # ── O'Neil: indeksy referencyjne do RS ───────────────────
+    index_returns = {}
+    for mkt, idx_ticker in [("USA", MARKET_DIRECTION_USA), ("EU", MARKET_DIRECTION_EU)]:
+        try:
+            df_idx = yf.download(idx_ticker, period="2y", interval="1wk",
+                                 auto_adjust=True, progress=False)
+            if df_idx is not None and not df_idx.empty and len(df_idx) >= 52:
+                c = df_idx["Close"].dropna()
+                # zwrot 12-miesięczny (ok. 52 tygodnie)
+                ret_52w = float(c.iloc[-1]) / float(c.iloc[-53]) - 1 if len(c) >= 53 else None
+                index_returns[mkt] = ret_52w
+        except Exception:
+            index_returns[mkt] = None
+    # ─────────────────────────────────────────────────────────
+
     signals = {}
     for ticker, df in data.items():
         try:
@@ -290,19 +353,50 @@ def phase1_weekly_signals(ticker_market_list):
             sig, s_val, e_val, zone = smi_weekly_signal(smi, smi_e)
             if sig is not None:
                 div_bull, div_desc = detect_bullish_divergence(df["Close"], smi)
+
+                # ── O'Neil: potwierdzenie wolumenu ────────────
+                vol_confirm = False
+                try:
+                    if "Volume" in df.columns:
+                        vol_series = df["Volume"].dropna()
+                        if len(vol_series) >= 52:
+                            avg_vol_50w = float(vol_series.iloc[-51:-1].mean())
+                            cur_vol     = float(vol_series.iloc[-1])
+                            vol_confirm = (avg_vol_50w > 0 and
+                                           cur_vol >= avg_vol_50w * VOL_CONFIRM_MULT)
+                except Exception:
+                    pass
+
+                # ── O'Neil: Relative Strength 12M ─────────────
+                rs_12m = None
+                try:
+                    close = df["Close"].dropna()
+                    if len(close) >= 53:
+                        stock_ret_52w = float(close.iloc[-1]) / float(close.iloc[-53]) - 1
+                        mkt = market_map[ticker]
+                        idx_ret = index_returns.get(mkt)
+                        if idx_ret is not None and idx_ret != -1:
+                            rs_12m = round(stock_ret_52w / (1 + idx_ret), 4)
+                except Exception:
+                    pass
+                # ─────────────────────────────────────────────
+
                 signals[ticker] = {
-                    "market": market_map[ticker],
-                    "smi": s_val, "smi_ema": e_val,
-                    "zone": zone, "signal": sig,
-                    "divergence_bull": div_bull,
-                    "divergence_desc": div_desc,
+                    "market":           market_map[ticker],
+                    "smi": s_val,       "smi_ema": e_val,
+                    "zone": zone,       "signal": sig,
+                    "divergence_bull":  div_bull,
+                    "divergence_desc":  div_desc,
+                    "vol_confirm":      vol_confirm,   # O'Neil
+                    "rs_12m":           rs_12m,        # O'Neil
                 }
         except Exception:
             pass
     s  = sum(1 for v in signals.values() if v["signal"] == "Strong BUY")
     b  = sum(1 for v in signals.values() if v["signal"] == "BUY")
     tu = sum(1 for v in signals.values() if v["signal"] == "Turning Up")
-    print(f"      Sygnaly: {len(signals)} (Strong BUY:{s}  BUY:{b}  Turning Up:{tu})")
+    vc = sum(1 for v in signals.values() if v.get("vol_confirm"))
+    print(f"      Sygnaly: {len(signals)} (Strong BUY:{s}  BUY:{b}  Turning Up:{tu}  Vol.potw.:{vc})")
     return signals
 
 # ══════════════════════════════════════════════════════════════
@@ -558,6 +652,8 @@ def _collect_one(symbol, weekly_data):
             "signal":         weekly_data["signal"],
             "divergence_bull": weekly_data.get("divergence_bull", False),
             "divergence_desc": weekly_data.get("divergence_desc", ""),
+            "vol_confirm":    weekly_data.get("vol_confirm", False),   # O'Neil
+            "rs_12m":         weekly_data.get("rs_12m", None),         # O'Neil
             "eps_ttm":        eps_ttm,
             "sales_ttm_mln":  sales,
             "quick_ratio":    qr,
@@ -599,6 +695,11 @@ def filter_main(r):
     """Filtry screener główny: Strong BUY / Turning Up + fundamenty + discount."""
     if r["signal"] not in ("Strong BUY", "Turning Up"):
         return False
+    # ── O'Neil: filtr ceny (maks 150 USD/EUR) ─────────────────
+    price = r.get("price")
+    if price is not None and price > MAX_PRICE:
+        return False
+    # ─────────────────────────────────────────────────────────
     if r.get("eps_ttm") is not None and r["eps_ttm"] < 0:
         return False
     if r.get("quick_ratio") is not None and r["quick_ratio"] < MIN_QUICK:
@@ -625,7 +726,7 @@ def filter_main(r):
 
 def calc_tech_score(sig: dict) -> int:
     """
-    Scoring techniczny 0–10.
+    Scoring techniczny 0–12 (rozszerzony o metryki O'Neila).
     Wyższy wynik = silniejszy sygnał wejścia.
     """
     score = 0
@@ -656,7 +757,15 @@ def calc_tech_score(sig: dict) -> int:
     gm   = sig.get("gross_margin")
     if roic is not None and roic >= MIN_ROIC:
         score += 1
-    return min(score, 10)
+    # ── O'Neil: potwierdzenie wolumenu (+1 pkt) ───────────────
+    if sig.get("vol_confirm"):
+        score += 1
+    # ── O'Neil: Relative Strength (+1 pkt) ───────────────────
+    rs = sig.get("rs_12m")
+    if rs is not None and rs >= RS_MIN_OUTPERFORM:
+        score += 1
+    # ─────────────────────────────────────────────────────────
+    return min(score, 12)
 
 
 # ══════════════════════════════════════════════════════════════
@@ -857,6 +966,14 @@ def render_cards(data, show_quality=False):
         de_c   = _color_ok(de,   de   is not None and de   <  MAX_DEBT_EQUITY)
         gm_c   = _color_ok(gm,   gm   is not None and gm   >= MIN_GROSS_MARGIN)
 
+        # O'Neil: potwierdzenie wolumenu i RS
+        vc   = r.get("vol_confirm", False)
+        rs12 = r.get("rs_12m")
+        vc_color  = "#3ecf8e" if vc else "#555d7a"
+        vc_text   = "✓ Vol potw." if vc else "Vol brak potw."
+        rs12_color = _color_ok(rs12, rs12 is not None and rs12 >= RS_MIN_OUTPERFORM)
+        rs12_str   = f"{rs12:.2f}×" if rs12 is not None else "--"
+
         quality_rows = ""
         if show_quality:
             quality_rows = (
@@ -867,6 +984,11 @@ def render_cards(data, show_quality=False):
                 f'<span style="color:{de_c};font-weight:600">{na(de)}</span></div>'
                 f'<div class="sc-row"><span>Gross Margin</span>'
                 f'<span style="color:{gm_c};font-weight:600">{fmt_pct(gm)}</span></div>'
+                f'<div class="sc-divider"></div>'
+                f'<div class="sc-row"><span>Wolumen W1</span>'
+                f'<span style="color:{vc_color};font-weight:600;font-size:.72rem">{vc_text}</span></div>'
+                f'<div class="sc-row"><span>RS 12M vs idx</span>'
+                f'<span style="color:{rs12_color};font-weight:600">{rs12_str}</span></div>'
             )
 
         cards += (
@@ -928,12 +1050,17 @@ def render_table_rows(data, show_quality=False):
         eps  = r.get("eps_ttm");  qr = r.get("quick_ratio")
         roic = r.get("roic");     de = r.get("debt_equity")
         gm   = r.get("gross_margin")
+        vc   = r.get("vol_confirm", False)
+        rs12 = r.get("rs_12m")
 
         eps_c  = "#3ecf8e" if eps  and eps  > 0    else ("#ff4560" if eps  is not None else "inherit")
         qr_c   = "#3ecf8e" if qr   and qr   >= 1.0 else ("#ff4560" if qr   is not None else "inherit")
         roic_c = "#3ecf8e" if roic and roic >= MIN_ROIC        else ("#ff4560" if roic is not None else "inherit")
         de_c   = "#3ecf8e" if de   is not None and de < MAX_DEBT_EQUITY  else ("#ff4560" if de   is not None else "inherit")
         gm_c   = "#3ecf8e" if gm   and gm   >= MIN_GROSS_MARGIN else ("#ff4560" if gm   is not None else "inherit")
+        vc_c   = "#3ecf8e" if vc else "#555d7a"
+        rs12_c = "#3ecf8e" if rs12 is not None and rs12 >= RS_MIN_OUTPERFORM else ("#ff4560" if rs12 is not None else "inherit")
+        rs12_str = f"{rs12:.2f}×" if rs12 is not None else "--"
 
         quality_cols = ""
         if show_quality:
@@ -941,6 +1068,8 @@ def render_table_rows(data, show_quality=False):
                 f'<td class="num" style="color:{roic_c}">{fmt_pct(roic)}</td>'
                 f'<td class="num" style="color:{de_c}">{na(de)}</td>'
                 f'<td class="num" style="color:{gm_c}">{fmt_pct(gm)}</td>'
+                f'<td class="num" style="color:{vc_c}">{"✓" if vc else "–"}</td>'
+                f'<td class="num" style="color:{rs12_c}">{rs12_str}</td>'
             )
 
         html += f"""<tr>
@@ -1049,6 +1178,7 @@ def generate_html_main(meta, results):
         <th class="num">SMI (W)</th><th class="num">EMA (W)</th><th>Strefa</th>
         <th class="num">EPS</th><th class="num">Sales</th><th class="num">QR</th>
         <th class="num">ROIC</th><th class="num">D/E</th><th class="num">Gr.Margin</th>
+        <th class="num">Vol.W</th><th class="num">RS 12M</th>
       </tr></thead>
       <tbody>{render_table_rows(results, show_quality=True)}</tbody>
     </table>
@@ -1168,6 +1298,27 @@ def generate_html_index(meta):
     dt         = datetime.fromisoformat(meta["generated_at"]).strftime("%d.%m.%Y %H:%M")
     main_count = meta.get("main_total", 0)
     full_count = meta.get("full_total", 0)
+    md         = meta.get("market_direction", {})
+
+    usa_above = md.get("usa_above_sma50w", True)
+    eu_above  = md.get("eu_above_sma50w",  True)
+    usa_price = md.get("usa_price")
+    usa_sma   = md.get("usa_sma50w")
+    eu_price  = md.get("eu_price")
+    eu_sma    = md.get("eu_sma50w")
+
+    def _trend_badge(above, price, sma, ticker):
+        color  = "#3ecf8e" if above else "#ff4560"
+        arrow  = "↑" if above else "↓"
+        label  = "TREND UP" if above else "TREND DOWN"
+        detail = f"{price:.0f} vs SMA50W {sma:.0f}" if price and sma else ""
+        return (f'<div style="display:flex;align-items:center;gap:.7rem;'
+                f'background:rgba(255,255,255,.03);border:1px solid {color}33;'
+                f'border-radius:8px;padding:.5rem 1rem;font-size:.78rem">'
+                f'<span style="font-family:monospace;color:{color};font-weight:700;font-size:1rem">{arrow}</span>'
+                f'<div><div style="color:#fff;font-weight:600">{ticker}</div>'
+                f'<div style="color:{color};font-size:.7rem">{label}</div>'
+                f'<div style="color:#555d7a;font-size:.67rem">{detail}</div></div></div>')
 
     html = f"""<!DOCTYPE html>
 <html lang="pl">
@@ -1265,6 +1416,10 @@ def generate_html_index(meta):
   <p class="sub">Skanuje rynki USA i EU w poszukiwaniu sygnalow<br>
      wskaznika <code>Stochastic Momentum Index</code><br>
      <span style="font-size:.8rem">Ostatni skan: {dt}</span></p>
+  <div style="display:flex;gap:.8rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap;animation:fadein .6s .25s ease both">
+    {_trend_badge(usa_above, usa_price, usa_sma, "SPY (USA)")}
+    {_trend_badge(eu_above,  eu_price,  eu_sma,  "VGK (EU)")}
+  </div>
   <div class="cards">
     <a href="screener.html" class="card card-main">
       <div class="card-bar"></div>
@@ -1414,6 +1569,17 @@ def run_screener():
     ticker_market = [(t, "USA") for t in usa] + [(t, "EU") for t in eu]
     print(f"\nLacznie: {len(ticker_market)} ({len(usa)} USA, {len(eu)} EU)")
 
+    # ── O'Neil: kierunek rynku (litera M) ────────────────────
+    print("\n[Market Direction] Sprawdzanie trendu rynkowego (O'Neil litera M)...")
+    market_dir = check_market_direction()
+    usa_trend = "TREND ↑" if market_dir["USA"] else "TREND ↓ (uwaga!)"
+    eu_trend  = "TREND ↑" if market_dir["EU"]  else "TREND ↓ (uwaga!)"
+    print(f"  USA ({MARKET_DIRECTION_USA}): {usa_trend}")
+    print(f"  EU  ({MARKET_DIRECTION_EU}):  {eu_trend}")
+    if not market_dir["USA"] and not market_dir["EU"]:
+        print("  ⚠  Oba rynki poniżej SMA50W — sygnały SMI mają niższą wiarygodność!")
+    # ─────────────────────────────────────────────────────────
+
     weekly_signals = phase1_weekly_signals(ticker_market)
     all_data       = phase2_collect(weekly_signals)
 
@@ -1430,6 +1596,14 @@ def run_screener():
         "main_total":    len(main_results),
         "full_total":    len(full_results),
         "indicator":     f"SMI({SMI_LEN_K},{SMI_LEN_D},{SMI_LEN_EMA})",
+        "market_direction": {                  # O'Neil
+            "usa_above_sma50w": market_dir["USA"],
+            "eu_above_sma50w":  market_dir["EU"],
+            "usa_price":        market_dir.get("usa_price"),
+            "usa_sma50w":       market_dir.get("usa_sma50w"),
+            "eu_price":         market_dir.get("eu_price"),
+            "eu_sma50w":        market_dir.get("eu_sma50w"),
+        },
     }
 
     for fname, data in [
