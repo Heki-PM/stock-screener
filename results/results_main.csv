@@ -1,7 +1,10 @@
-ticker,name,market,country,sector,price,currency,high_52w,discount_52w,market_cap_mln,volume_k,smi,smi_ema,zone,signal,divergence_bull,divergence_desc,eps_ttm,sales_ttm_mln,quick_ratio,roic,debt_equity,gross_margin,scanned_at,tech_score
-MNSO,MNSO,USA,--,--,12.95,USD,26.74,51.6,4034.4,480.9,-76.25,-77.55,OVERSOLD,Strong BUY,False,,,16994.0,1.55,0.4181,0.301,0.4494,2026-06-06T13:19:52.863215,7
-CHKP,CHKP,USA,--,--,135.82,USD,232.07,41.5,14129.1,1462.0,-21.9,-38.87,Bearish,Strong BUY,False,,,2725.4,2.05,0.2042,0.684,0.8672,2026-06-06T13:19:52.762690,6
-ISSC,Innovative Solutions and Suppor,USA,United States,Industrials,17.3,USD,30.94,44.1,309.5,608.2,-72.84,-71.22,OVERSOLD,Turning Up,False,,0.95,84.3,1.5,0.1872,0.374,0.4806,2026-06-06T13:19:55.071733,5
-GSHD,"Goosehead Insurance, Inc.",USA,United States,Financial Services,38.35,USD,112.96,66.0,907.8,458.4,-67.24,-66.89,OVERSOLD,Turning Up,False,,1.14,365.3,,0.1715,,,2026-06-06T13:19:55.320693,4
-CRCT,CRCT,USA,--,--,4.14,USD,7.33,43.5,869.0,527.5,-21.51,-18.58,Bearish,Turning Up,False,,,708.8,1.8,0.6595,0.034,0.5508,2026-06-06T13:19:45.765355,3
-RELX,RELX PLC PLC,USA,United Kingdom,Industrials,35.15,USD,54.37,35.4,61934.1,2979.2,-8.46,-6.92,Bearish,Turning Up,False,,1.5,,,,,,2026-06-06T13:19:57.677393,2
+ticker,name,market,country,sector,price,currency,high_52w,discount_52w,market_cap_mln,volume_k,smi,smi_ema,zone,signal,divergence_bull,divergence_desc,vol_confirm,rs_12m,eps_ttm,sales_ttm_mln,quick_ratio,roic,debt_equity,gross_margin,scanned_at,tech_score
+EMBC,Embecta Corp.,USA,United States,Healthcare,3.38,USD,15.55,78.3,200.5,1851.4,-84.3,-83.19,OVERSOLD,Turning Up,True,"div_bull (cena -63.4%, SMI +10.3)",True,,1.89,1080.4,1.73,0.3435,,0.6264,2026-06-07T12:51:52.119913,8
+PEGA,Pegasystems Inc.,USA,United States,Technology,34.71,USD,68.1,49.0,5800.6,2116.0,-58.76,-59.34,OVERSOLD,Strong BUY,False,,False,,1.85,1745.8,1.33,0.4172,0.096,0.7586,2026-06-07T12:51:54.487515,8
+MNSO,MINISO Group Holding Limited,USA,China,Consumer Cyclical,12.95,USD,26.74,51.6,4034.4,480.9,-76.25,-77.55,OVERSOLD,Strong BUY,False,,False,,1.03,16994.0,1.55,0.4181,0.301,0.4494,2026-06-07T12:52:00.327608,8
+MYGN,MYGN,USA,--,--,4.57,USD,8.59,46.8,431.6,1913.5,-40.25,-46.45,OVERSOLD,Strong BUY,True,"div_bull (cena -16.4%, SMI +21.3)",True,,,,,,,,2026-06-07T12:52:01.152978,8
+EXLS,"ExlService Holdings, Inc.",USA,United States,Technology,29.67,USD,48.54,38.9,4533.1,2356.6,-19.72,-19.67,Bearish,Turning Up,True,"div_bull (cena -6.1%, SMI +42.0)",True,,1.57,2087.7,2.56,0.2032,0.442,0.3837,2026-06-07T12:51:59.395654,7
+ZTS,Zoetis Inc.,USA,United States,Healthcare,79.44,USD,169.5,53.1,33303.5,5852.1,-76.46,-77.05,OVERSOLD,Strong BUY,False,,True,,6.1,9467.0,,,,0.7184,2026-06-07T12:52:01.097731,7
+MLCO,MLCO,USA,--,--,5.7,USD,10.15,43.8,2213.3,1711.1,-27.46,-37.48,Bearish,Strong BUY,True,"div_bull (cena -1.6%, SMI +17.0)",False,,,,,,,,2026-06-07T12:52:01.176218,6
+SMPL,SMPL,USA,--,--,11.94,USD,34.32,65.2,1105.3,2805.3,-38.66,-40.8,Bearish,Strong BUY,False,,False,,,1450.9,,,,0.3624,2026-06-07T12:52:04.503504,4
+CRCT,CRCT,USA,--,--,4.14,USD,7.33,43.5,869.0,527.5,-21.51,-18.58,Bearish,Turning Up,False,,False,,,708.8,1.8,0.6595,0.034,0.5508,2026-06-07T12:51:44.238107,3
