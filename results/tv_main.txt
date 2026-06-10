@@ -1,14 +1,15 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-09 13:53 UTC
-### Liczba tickerow: 7
+### Wygenerowano: 2026-06-10 14:35 UTC
+### Liczba tickerow: 8
 ### Format: EXCHANGE:TICKER  |  sygnał  |  discount 52W  |  sektor
 ###
-### ── Strong BUY (3) ──
-RYAN  ### Strong BUY | -53.3% | --
-ISSC  ### Strong BUY | -42.7% | --
-MZTI  ### Strong BUY | -42.5% | --
-### ── Turning Up (4) ──
-AIV  ### Turning Up | -66.6% | --
-ADMA  ### Turning Up | -63.1% | --
-JMIA  ### Turning Up | -50.3% | --
-RVLV  ### Turning Up | -35.4% | --
+### ── Strong BUY (5) ──
+ADMA  ### Strong BUY | -60.8% | --
+TMDX  ### Strong BUY | -51.5% | --
+ISSC  ### Strong BUY | -42.9% | --
+CALM  ### Strong BUY | -37.7% | --
+G  ### Strong BUY | -34.2% | --
+### ── Turning Up (3) ──
+ODD  ### Turning Up | -85.7% | --
+MKTX  ### Turning Up | -49.3% | --
+RVLV  ### Turning Up | -33.9% | --
