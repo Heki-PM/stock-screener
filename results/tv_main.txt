@@ -1,15 +1,12 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-10 14:35 UTC
-### Liczba tickerow: 8
+### Wygenerowano: 2026-06-11 14:56 UTC
+### Liczba tickerow: 5
 ### Format: EXCHANGE:TICKER  |  sygnał  |  discount 52W  |  sektor
 ###
-### ── Strong BUY (5) ──
-ADMA  ### Strong BUY | -60.8% | --
-TMDX  ### Strong BUY | -51.5% | --
-ISSC  ### Strong BUY | -42.9% | --
-CALM  ### Strong BUY | -37.7% | --
-G  ### Strong BUY | -34.2% | --
-### ── Turning Up (3) ──
-ODD  ### Turning Up | -85.7% | --
-MKTX  ### Turning Up | -49.3% | --
-RVLV  ### Turning Up | -33.9% | --
+### ── Strong BUY (1) ──
+G  ### Strong BUY | -35.0% | --
+### ── Turning Up (4) ──
+PICS  ### Turning Up | -50.7% | --
+MKTX  ### Turning Up | -49.2% | --
+LRMR  ### Turning Up | -44.6% | --
+RVLV  ### Turning Up | -36.4% | --
