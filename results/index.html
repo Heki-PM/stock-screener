@@ -1,37 +1,29 @@
 <!DOCTYPE html>
-<html lang="pl">
-<head>
-<meta charset="UTF-8">
+<html lang="pl"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Stock Screener SMI</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
-  :root {
-    --bg:#080a14; --bg2:#0e1020; --border:#1c2040;
-    --text:#c8cde8; --muted:#454a6a; --accent:#7c9ef0;
-    --green:#3ecf8e; --orange:#ff6b00; --yellow:#ffb800; --purple:#c471ed;
-  }
+  :root{--bg:#080a14;--bg2:#0e1020;--border:#1c2040;--text:#c8cde8;--muted:#454a6a;
+        --accent:#7c9ef0;--green:#3ecf8e;--orange:#ff6b00;--yellow:#ffb800;--purple:#c471ed}
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);
-       min-height:100vh;display:flex;flex-direction:column;
-       align-items:center;justify-content:center;padding:2rem;overflow-x:hidden}
+       min-height:100vh;display:flex;flex-direction:column;align-items:center;
+       justify-content:center;padding:2rem;overflow-x:hidden}
   body::before{content:'';position:fixed;inset:0;
     background-image:linear-gradient(rgba(124,158,240,.04) 1px,transparent 1px),
                      linear-gradient(90deg,rgba(124,158,240,.04) 1px,transparent 1px);
     background-size:40px 40px;pointer-events:none;z-index:0}
-  .blob{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;
-         animation:drift 12s ease-in-out infinite alternate}
+  .blob{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;animation:drift 12s ease-in-out infinite alternate}
   .blob-1{width:380px;height:380px;background:rgba(255,107,0,.08);top:-80px;right:-60px}
   .blob-2{width:300px;height:300px;background:rgba(62,207,142,.06);bottom:-60px;left:-40px;animation-delay:-5s}
-  .blob-3{width:200px;height:200px;background:rgba(124,158,240,.07);top:50%;left:50%;
-           transform:translate(-50%,-50%);animation-delay:-9s}
+  .blob-3{width:200px;height:200px;background:rgba(124,158,240,.07);top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:-9s}
   @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(20px,15px) scale(1.08)}}
   .wrapper{position:relative;z-index:1;text-align:center;max-width:700px;width:100%}
-  .badge{display:inline-flex;align-items:center;gap:.45rem;
-          background:rgba(124,158,240,.08);border:1px solid rgba(124,158,240,.2);
-          border-radius:20px;padding:.3rem .9rem;font-family:'Space Mono',monospace;
-          font-size:.72rem;color:var(--accent);letter-spacing:.04em;margin-bottom:1.6rem;
-          animation:fadein .6s ease both}
+  .badge{display:inline-flex;align-items:center;gap:.45rem;background:rgba(124,158,240,.08);
+          border:1px solid rgba(124,158,240,.2);border-radius:20px;padding:.3rem .9rem;
+          font-family:'Space Mono',monospace;font-size:.72rem;color:var(--accent);
+          letter-spacing:.04em;margin-bottom:1.6rem;animation:fadein .6s ease both}
   .badge-dot{width:6px;height:6px;background:var(--green);border-radius:50%;
               box-shadow:0 0 6px var(--green);animation:pulse 2s ease-in-out infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
@@ -42,8 +34,7 @@
   .sub{font-size:.95rem;color:var(--muted);margin-bottom:3rem;line-height:1.6;animation:fadein .6s .2s ease both}
   .sub code{font-family:'Space Mono',monospace;font-size:.82rem;color:var(--accent);
              background:rgba(124,158,240,.08);padding:.1rem .4rem;border-radius:4px}
-  .cards{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;
-          margin-bottom:2.5rem;animation:fadein .6s .3s ease both}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:2.5rem;animation:fadein .6s .3s ease both}
   .card{position:relative;background:var(--bg2);border:1px solid var(--border);
          border-radius:16px;padding:1.8rem 1.5rem 1.6rem;text-decoration:none;
          color:var(--text);overflow:hidden;transition:transform .2s,border-color .2s,box-shadow .2s;text-align:left}
@@ -52,8 +43,7 @@
   .card-main::before{background:radial-gradient(circle at 30% 20%,rgba(255,107,0,.18),transparent 65%)}
   .card-full::before{background:radial-gradient(circle at 30% 20%,rgba(62,207,142,.12),transparent 65%)}
   .card:hover::before{opacity:1}
-  .card-main{border-color:rgba(255,107,0,.25)}
-  .card-full{border-color:rgba(62,207,142,.2)}
+  .card-main{border-color:rgba(255,107,0,.25)} .card-full{border-color:rgba(62,207,142,.2)}
   .card-main:hover{border-color:var(--orange);box-shadow:0 8px 32px rgba(255,107,0,.12)}
   .card-full:hover{border-color:var(--green);box-shadow:0 8px 32px rgba(62,207,142,.1)}
   .card-bar{position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0}
@@ -63,70 +53,54 @@
   .card-title{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:.35rem}
   .card-desc{font-size:.8rem;color:var(--muted);line-height:1.55;margin-bottom:.8rem}
   .card-count{font-family:'Space Mono',monospace;font-size:.78rem;font-weight:700;margin-bottom:.9rem}
-  .card-main .card-count{color:var(--orange)}
-  .card-full .card-count{color:var(--green)}
+  .card-main .card-count{color:var(--orange)} .card-full .card-count{color:var(--green)}
   .card-tags{display:flex;flex-wrap:wrap;gap:.4rem}
-  .tag{font-family:'Space Mono',monospace;font-size:.65rem;padding:.2rem .55rem;
-        border-radius:4px;font-weight:700;letter-spacing:.03em}
+  .tag{font-family:'Space Mono',monospace;font-size:.65rem;padding:.2rem .55rem;border-radius:4px;font-weight:700;letter-spacing:.03em}
   .tag-orange{background:rgba(255,107,0,.12);color:var(--orange)}
   .tag-green {background:rgba(62,207,142,.1);color:var(--green)}
   .tag-blue  {background:rgba(124,158,240,.1);color:var(--accent)}
   .tag-purple{background:rgba(196,113,237,.1);color:var(--purple)}
-  .card-arrow{position:absolute;bottom:1.4rem;right:1.4rem;font-size:1rem;
-               color:var(--muted);transition:color .2s,transform .2s}
+  .card-arrow{position:absolute;bottom:1.4rem;right:1.4rem;font-size:1rem;color:var(--muted);transition:color .2s,transform .2s}
   .card:hover .card-arrow{color:#fff;transform:translate(3px,-3px)}
-  .info-bar{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;
-             animation:fadein .6s .45s ease both}
-  .info-item{display:flex;align-items:center;gap:.5rem;font-family:'Space Mono',monospace;
-              font-size:.72rem;color:var(--muted)}
+  .info-bar{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;animation:fadein .6s .45s ease both}
+  .info-item{display:flex;align-items:center;gap:.5rem;font-family:'Space Mono',monospace;font-size:.72rem;color:var(--muted)}
   .info-item span:first-child{color:var(--accent)}
   @keyframes fadein{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
   @media(max-width:560px){.cards{grid-template-columns:1fr}h1{font-size:2rem}}
-</style>
-</head>
-<body>
-<div class="blob blob-1"></div>
-<div class="blob blob-2"></div>
-<div class="blob blob-3"></div>
+</style></head><body>
+<div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
 <div class="wrapper">
   <div class="badge"><div class="badge-dot"></div>SMI(10,3,3) &nbsp;&middot;&nbsp; Interwal tygodniowy</div>
   <h1>Stock<br><span>Screener</span></h1>
   <p class="sub">Skanuje rynki USA i EU w poszukiwaniu sygnalow<br>
      wskaznika <code>Stochastic Momentum Index</code><br>
-     <span style="font-size:.8rem">Ostatni skan: 12.06.2026 14:23</span></p>
+     <span style="font-size:.8rem">Ostatni skan: 13.06.2026 15:10</span></p>
   <div style="display:flex;gap:.8rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap;animation:fadein .6s .25s ease both">
     <div style="display:flex;align-items:center;gap:.7rem;background:rgba(255,255,255,.03);border:1px solid #3ecf8e33;border-radius:8px;padding:.5rem 1rem;font-size:.78rem"><span style="font-family:monospace;color:#3ecf8e;font-weight:700;font-size:1rem">↑</span><div><div style="color:#fff;font-weight:600">SPY (USA)</div><div style="color:#3ecf8e;font-size:.7rem">TREND UP</div><div style="color:#555d7a;font-size:.67rem"></div></div></div>
     <div style="display:flex;align-items:center;gap:.7rem;background:rgba(255,255,255,.03);border:1px solid #3ecf8e33;border-radius:8px;padding:.5rem 1rem;font-size:.78rem"><span style="font-family:monospace;color:#3ecf8e;font-weight:700;font-size:1rem">↑</span><div><div style="color:#fff;font-weight:600">VGK (EU)</div><div style="color:#3ecf8e;font-size:.7rem">TREND UP</div><div style="color:#555d7a;font-size:.67rem"></div></div></div>
   </div>
   <div class="cards">
     <a href="screener.html" class="card card-main">
-      <div class="card-bar"></div>
-      <span class="card-icon">&#9889;</span>
+      <div class="card-bar"></div><span class="card-icon">&#9889;</span>
       <div class="card-title">Screener glowny</div>
       <div class="card-desc">Strong BUY i Turning Up z pelnym zestawem filtrow fundamentalnych.</div>
-      <div class="card-count">&#9662; 18 wynikow</div>
+      <div class="card-count">&#9662; 7 wynikow</div>
       <div class="card-tags">
-        <span class="tag tag-orange">Strong BUY</span>
-        <span class="tag tag-purple">Turning Up</span>
-        <span class="tag tag-blue">ROIC &gt;15%</span>
-        <span class="tag tag-blue">D/E &lt;1</span>
-        <span class="tag tag-blue">GM &gt;30%</span>
-      </div>
-      <div class="card-arrow">&#8599;</div>
+        <span class="tag tag-orange">Strong BUY</span><span class="tag tag-purple">Turning Up</span>
+        <span class="tag tag-blue">ROIC&gt;15%</span><span class="tag tag-blue">D/E&lt;1</span>
+        <span class="tag tag-green">Wyckoff W1</span>
+      </div><div class="card-arrow">&#8599;</div>
     </a>
     <a href="index_all.html" class="card card-full">
-      <div class="card-bar"></div>
-      <span class="card-icon">&#128270;</span>
+      <div class="card-bar"></div><span class="card-icon">&#128270;</span>
       <div class="card-title">Full Scan</div>
-      <div class="card-desc">Wszystkie sygnaly SMI bez filtrow fundamentalnych. Tylko plynnosc.</div>
-      <div class="card-count">&#9662; 192 wynikow</div>
+      <div class="card-desc">Wszystkie sygnaly SMI bez filtrow. Wyckoff jako kolumna informacyjna.</div>
+      <div class="card-count">&#9662; 242 wynikow</div>
       <div class="card-tags">
-        <span class="tag tag-orange">Strong BUY</span>
-        <span class="tag tag-green">BUY</span>
-        <span class="tag tag-purple">Turning Up</span>
-        <span class="tag tag-blue">Cap &gt;200M</span>
-      </div>
-      <div class="card-arrow">&#8599;</div>
+        <span class="tag tag-orange">Strong BUY</span><span class="tag tag-green">BUY</span>
+        <span class="tag tag-purple">Turning Up</span><span class="tag tag-blue">Cap&gt;200M</span>
+        <span class="tag tag-green">Wyckoff W1</span>
+      </div><div class="card-arrow">&#8599;</div>
     </a>
   </div>
   <div class="info-bar">
@@ -134,6 +108,4 @@
     <div class="info-item"><span>&#9670;</span> DAX &middot; CAC &middot; FTSE &middot; AEX &middot; WIG + inne</div>
     <div class="info-item"><span>&#9670;</span> Aktualizacja: GitHub Actions</div>
   </div>
-</div>
-</body>
-</html>
+</div></body></html>
