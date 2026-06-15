@@ -1,13 +1,23 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-13 15:10 UTC
-### Liczba tickerow: 7
+### Wygenerowano: 2026-06-15 16:29 UTC
+### Liczba tickerow: 17
 ###
-### ── Strong BUY (4) ──
-CAI  ### Strong BUY | -57.7% | W:A+AR | --
-CSTL  ### Strong BUY | -53.3% | W:– | --
-ARHS  ### Strong BUY | -44.8% | W:– | --
-CALM  ### Strong BUY | -38.2% | W:SC | --
-### ── Turning Up (3) ──
-ADMA  ### Turning Up | -60.8% | W:A+AR | --
-NMRA  ### Turning Up | -51.2% | W:⚠ Dist | --
-CG  ### Turning Up | -34.5% | W:– | --
+### ── Strong BUY (13) ──
+LCID  ### Strong BUY | -83.9% | W:– | --
+RBLX  ### Strong BUY | -69.7% | W:SC | --
+ADMA  ### Strong BUY | -60.1% | W:A+AR | --
+CRK  ### Strong BUY | -57.6% | W:– | --
+SCZM  ### Strong BUY | -56.8% | W:⚠ Dist | --
+BILI  ### Strong BUY | -50.7% | W:⚠ Dist | --
+NAVI  ### Strong BUY | -50.3% | W:– | --
+ZURA  ### Strong BUY | -49.7% | W:⚠ Dist | --
+HLNE  ### Strong BUY | -48.0% | W:SC | --
+NRDS  ### Strong BUY | -47.8% | W:– | --
+BMI  ### Strong BUY | -47.0% | W:Spring | --
+PSEC  ### Strong BUY | -32.7% | W:SOS | --
+CDE  ### Strong BUY | -32.5% | W:Spring | --
+### ── Turning Up (4) ──
+CRVS  ### Turning Up | -54.6% | W:⚠ Dist | --
+GRND  ### Turning Up | -47.8% | W:– | --
+CRNX  ### Turning Up | -39.3% | W:⚠ Dist | --
+JCAP  ### Turning Up | -30.9% | W:– | --
