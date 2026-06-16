@@ -1,12 +1,24 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-15 17:33 UTC
-### Liczba tickerow: 6
+### Wygenerowano: 2026-06-16 16:12 UTC
+### Liczba tickerow: 18
 ###
-### ── Strong BUY (5) ──
-TIGR  ### Strong BUY | -64.4% | W:A+AR | --
-BRO  ### Strong BUY | -46.4% | W:A+AR | Financial Services
-NU  ### Strong BUY | -35.2% | W:– | Financial Services
-RVLV  ### Strong BUY | -33.6% | W:Spring | Consumer Cyclical
-JKHY  ### Strong BUY | -31.6% | W:SC | Technology
-### ── Turning Up (1) ──
-ASM  ### Turning Up | -43.0% | W:SOS | Basic Materials
+### ── Strong BUY (12) ──
+GSHD  ### Strong BUY | -64.8% | W:Spring | Financial Services
+ADMA  ### Strong BUY | -58.2% | W:A+AR | --
+NRDS  ### Strong BUY | -48.0% | W:– | --
+BMI  ### Strong BUY | -46.0% | W:Spring | --
+GROY  ### Strong BUY | -43.6% | W:A+AR | --
+LMND  ### Strong BUY | -39.4% | W:⚠ Dist | --
+EXK  ### Strong BUY | -39.1% | W:– | --
+GFI  ### Strong BUY | -35.2% | W:– | --
+NU  ### Strong BUY | -33.5% | W:– | --
+RVLV  ### Strong BUY | -33.3% | W:Spring | Consumer Cyclical
+CDE  ### Strong BUY | -31.8% | W:Spring | --
+FSM  ### Strong BUY | -30.7% | W:– | --
+### ── Turning Up (6) ──
+LRMR  ### Turning Up | -46.3% | W:– | --
+PYPL  ### Turning Up | -45.6% | W:– | --
+ASM  ### Turning Up | -42.9% | W:SOS | --
+PHAT  ### Turning Up | -42.8% | W:– | --
+RKT  ### Turning Up | -42.5% | W:Spring | --
+TENX  ### Turning Up | -38.0% | W:⚠ Dist | --
