@@ -1,24 +1,19 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-16 16:12 UTC
-### Liczba tickerow: 18
+### Wygenerowano: 2026-06-17 14:38 UTC
+### Liczba tickerow: 13
 ###
-### ── Strong BUY (12) ──
-GSHD  ### Strong BUY | -64.8% | W:Spring | Financial Services
-ADMA  ### Strong BUY | -58.2% | W:A+AR | --
-NRDS  ### Strong BUY | -48.0% | W:– | --
-BMI  ### Strong BUY | -46.0% | W:Spring | --
-GROY  ### Strong BUY | -43.6% | W:A+AR | --
-LMND  ### Strong BUY | -39.4% | W:⚠ Dist | --
-EXK  ### Strong BUY | -39.1% | W:– | --
-GFI  ### Strong BUY | -35.2% | W:– | --
-NU  ### Strong BUY | -33.5% | W:– | --
-RVLV  ### Strong BUY | -33.3% | W:Spring | Consumer Cyclical
-CDE  ### Strong BUY | -31.8% | W:Spring | --
-FSM  ### Strong BUY | -30.7% | W:– | --
-### ── Turning Up (6) ──
-LRMR  ### Turning Up | -46.3% | W:– | --
-PYPL  ### Turning Up | -45.6% | W:– | --
-ASM  ### Turning Up | -42.9% | W:SOS | --
-PHAT  ### Turning Up | -42.8% | W:– | --
-RKT  ### Turning Up | -42.5% | W:Spring | --
-TENX  ### Turning Up | -38.0% | W:⚠ Dist | --
+### ── Strong BUY (10) ──
+NMRA  ### Strong BUY | -62.1% | W:⚠ Dist | --
+SCZM  ### Strong BUY | -53.2% | W:⚠ Dist | --
+NRDS  ### Strong BUY | -47.5% | W:⚠ Dist | Communication Services
+HLNE  ### Strong BUY | -46.4% | W:SC | --
+NKE  ### Strong BUY | -43.5% | W:Spring | Consumer Cyclical
+ORIC  ### Strong BUY | -42.0% | W:A+AR | --
+RKT  ### Strong BUY | -41.8% | W:Spring | --
+CION  ### Strong BUY | -36.2% | W:Spring | --
+ANF  ### Strong BUY | -33.3% | W:– | --
+RVLV  ### Strong BUY | -32.7% | W:Spring | Consumer Cyclical
+### ── Turning Up (3) ──
+GEVO  ### Turning Up | -50.3% | W:– | --
+PYPL  ### Turning Up | -44.6% | W:– | Financial Services
+JKHY  ### Turning Up | -32.8% | W:SC | Technology
