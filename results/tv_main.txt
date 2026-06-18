@@ -1,19 +1,17 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-17 14:38 UTC
-### Liczba tickerow: 13
+### Wygenerowano: 2026-06-18 14:24 UTC
+### Liczba tickerow: 11
 ###
-### ── Strong BUY (10) ──
-NMRA  ### Strong BUY | -62.1% | W:⚠ Dist | --
-SCZM  ### Strong BUY | -53.2% | W:⚠ Dist | --
-NRDS  ### Strong BUY | -47.5% | W:⚠ Dist | Communication Services
-HLNE  ### Strong BUY | -46.4% | W:SC | --
-NKE  ### Strong BUY | -43.5% | W:Spring | Consumer Cyclical
-ORIC  ### Strong BUY | -42.0% | W:A+AR | --
-RKT  ### Strong BUY | -41.8% | W:Spring | --
-CION  ### Strong BUY | -36.2% | W:Spring | --
-ANF  ### Strong BUY | -33.3% | W:– | --
-RVLV  ### Strong BUY | -32.7% | W:Spring | Consumer Cyclical
+### ── Strong BUY (8) ──
+NGEN  ### Strong BUY | -66.2% | W:⚠ Dist | --
+ADMA  ### Strong BUY | -58.5% | W:A+AR | Healthcare
+HLNE  ### Strong BUY | -48.7% | W:SC | --
+BMI  ### Strong BUY | -46.5% | W:Spring | --
+NKE  ### Strong BUY | -43.8% | W:Spring | Consumer Cyclical
+LMND  ### Strong BUY | -42.1% | W:– | --
+AQST  ### Strong BUY | -40.0% | W:⚠ Dist | --
+SITE  ### Strong BUY | -33.2% | W:SC | --
 ### ── Turning Up (3) ──
-GEVO  ### Turning Up | -50.3% | W:– | --
-PYPL  ### Turning Up | -44.6% | W:– | Financial Services
-JKHY  ### Turning Up | -32.8% | W:SC | Technology
+AVXL  ### Turning Up | -80.7% | W:– | --
+ASM  ### Turning Up | -43.2% | W:SOS | Basic Materials
+DFIN  ### Turning Up | -41.3% | W:Spring | --
