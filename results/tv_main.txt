@@ -1,17 +1,15 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-18 14:24 UTC
-### Liczba tickerow: 11
+### Wygenerowano: 2026-06-19 14:30 UTC
+### Liczba tickerow: 9
 ###
 ### ── Strong BUY (8) ──
-NGEN  ### Strong BUY | -66.2% | W:⚠ Dist | --
-ADMA  ### Strong BUY | -58.5% | W:A+AR | Healthcare
-HLNE  ### Strong BUY | -48.7% | W:SC | --
-BMI  ### Strong BUY | -46.5% | W:Spring | --
-NKE  ### Strong BUY | -43.8% | W:Spring | Consumer Cyclical
-LMND  ### Strong BUY | -42.1% | W:– | --
-AQST  ### Strong BUY | -40.0% | W:⚠ Dist | --
-SITE  ### Strong BUY | -33.2% | W:SC | --
-### ── Turning Up (3) ──
-AVXL  ### Turning Up | -80.7% | W:– | --
-ASM  ### Turning Up | -43.2% | W:SOS | Basic Materials
-DFIN  ### Turning Up | -41.3% | W:Spring | --
+BRBR  ### Strong BUY | -84.5% | W:– | --
+ADMA  ### Strong BUY | -59.4% | W:A+AR | --
+LXEO  ### Strong BUY | -55.1% | W:⚠ Dist | --
+KROS  ### Strong BUY | -52.8% | W:⚠ Dist | --
+HLNE  ### Strong BUY | -49.0% | W:SC | --
+LRMR  ### Strong BUY | -43.3% | W:– | --
+GFI  ### Strong BUY | -37.4% | W:– | --
+NU  ### Strong BUY | -33.0% | W:– | Financial Services
+### ── Turning Up (1) ──
+SCZM  ### Turning Up | -59.5% | W:⚠ Dist | Basic Materials
