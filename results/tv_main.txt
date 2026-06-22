@@ -1,15 +1,14 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-19 14:30 UTC
-### Liczba tickerow: 9
+### Wygenerowano: 2026-06-22 16:05 UTC
+### Liczba tickerow: 8
 ###
-### ── Strong BUY (8) ──
-BRBR  ### Strong BUY | -84.5% | W:– | --
-ADMA  ### Strong BUY | -59.4% | W:A+AR | --
-LXEO  ### Strong BUY | -55.1% | W:⚠ Dist | --
-KROS  ### Strong BUY | -52.8% | W:⚠ Dist | --
-HLNE  ### Strong BUY | -49.0% | W:SC | --
-LRMR  ### Strong BUY | -43.3% | W:– | --
-GFI  ### Strong BUY | -37.4% | W:– | --
-NU  ### Strong BUY | -33.0% | W:– | Financial Services
-### ── Turning Up (1) ──
-SCZM  ### Turning Up | -59.5% | W:⚠ Dist | Basic Materials
+### ── Strong BUY (5) ──
+AVXL  ### Strong BUY | -81.3% | W:– | --
+TIGR  ### Strong BUY | -64.5% | W:A+AR | --
+BFAM  ### Strong BUY | -50.4% | W:SC | --
+HLNE  ### Strong BUY | -49.1% | W:SC | --
+VNDA  ### Strong BUY | -40.2% | W:⚠ Dist | --
+### ── Turning Up (3) ──
+KMPR  ### Turning Up | -61.3% | W:A+AR | --
+FUTU  ### Turning Up | -49.7% | W:– | --
+IRWD  ### Turning Up | -35.5% | W:⚠ Dist | --
