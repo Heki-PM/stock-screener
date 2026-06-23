@@ -1,14 +1,21 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-22 16:05 UTC
-### Liczba tickerow: 8
+### Wygenerowano: 2026-06-23 13:56 UTC
+### Liczba tickerow: 15
 ###
-### ── Strong BUY (5) ──
+### ── Strong BUY (11) ──
 AVXL  ### Strong BUY | -81.3% | W:– | --
-TIGR  ### Strong BUY | -64.5% | W:A+AR | --
-BFAM  ### Strong BUY | -50.4% | W:SC | --
-HLNE  ### Strong BUY | -49.1% | W:SC | --
-VNDA  ### Strong BUY | -40.2% | W:⚠ Dist | --
-### ── Turning Up (3) ──
-KMPR  ### Turning Up | -61.3% | W:A+AR | --
-FUTU  ### Turning Up | -49.7% | W:– | --
-IRWD  ### Turning Up | -35.5% | W:⚠ Dist | --
+CAST  ### Strong BUY | -74.2% | W:– | --
+GSHD  ### Strong BUY | -61.6% | W:Spring | --
+INSM  ### Strong BUY | -52.6% | W:A+AR | --
+NRDS  ### Strong BUY | -48.3% | W:⚠ Dist | --
+BBOT  ### Strong BUY | -47.0% | W:⚠ Dist | --
+BWIN  ### Strong BUY | -46.1% | W:A+AR | --
+GIS  ### Strong BUY | -36.8% | W:– | --
+STTK  ### Strong BUY | -35.4% | W:– | --
+IRWD  ### Strong BUY | -33.7% | W:⚠ Dist | --
+TENX  ### Strong BUY | -31.7% | W:⚠ Dist | --
+### ── Turning Up (4) ──
+QTWO  ### Turning Up | -55.0% | W:A+AR | --
+PYPL  ### Turning Up | -47.1% | W:– | --
+PWP  ### Turning Up | -37.7% | W:– | --
+ALXO  ### Turning Up | -37.4% | W:⚠ Dist | --

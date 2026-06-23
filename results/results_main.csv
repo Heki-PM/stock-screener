@@ -1,9 +1,16 @@
 ticker,name,market,country,sector,price,currency,high_52w,discount_52w,market_cap_mln,volume_k,smi,smi_ema,zone,signal,divergence_bull,divergence_desc,vol_confirm,rs_12m,wyckoff_score,wyckoff_phase,wyckoff_dist,wyckoff_dsig,eps_ttm,sales_ttm_mln,quick_ratio,roic,debt_equity,gross_margin,scanned_at,tech_score
-HLNE,HLNE,USA,--,--,82.03,USD,161.13,49.1,3584.5,913.8,-67.37,-68.84,OVERSOLD,Strong BUY,True,"div_bull (cena -5.9%, SMI +0.9)",False,,1,A,False,[],,759.0,1.62,0.1707,0.389,0.6988,2026-06-22T16:05:01.253647,9
-TIGR,TIGR,USA,--,--,4.8,USD,13.55,64.5,858.7,4649.7,-56.1,-56.77,OVERSOLD,Strong BUY,False,,False,,2,A,False,['SOW: vol spadkowy 1.5x > wzrostowy'],,612.1,1.12,1.7118,0.2,0.6933,2026-06-22T16:05:01.329189,7
-AVXL,AVXL,USA,--,--,2.62,USD,13.99,81.3,242.8,1515.2,-70.21,-70.99,OVERSOLD,Strong BUY,False,,False,,0,–,False,[],,0.0,11.6,,0.0,,2026-06-22T16:05:11.420995,6
-BFAM,BFAM,USA,--,--,64.88,USD,130.76,50.4,3413.1,1158.5,-56.34,-56.96,OVERSOLD,Strong BUY,False,,False,,1,A,False,['SOW: vol spadkowy 1.7x > wzrostowy'],,,,,,,2026-06-22T16:05:11.876341,5
-FUTU,FUTU,USA,--,--,101.87,USD,202.53,49.7,14281.6,3407.7,-59.03,-58.08,OVERSOLD,Turning Up,False,,False,,0,–,False,[],,22846.9,1.19,0.3851,0.437,0.8712,2026-06-22T16:05:08.761923,4
-VNDA,VNDA,USA,--,--,5.94,USD,9.94,40.2,357.5,1282.2,-80.59,-80.89,OVERSOLD,Strong BUY,False,,False,,0,–,True,"['BC przy 8.25 (vol 6.4x)', 'UT High=7.05 Close=6.75 (vol 2.2x)']",,216.1,,,,0.9396,2026-06-22T16:05:11.588928,4
-IRWD,IRWD,USA,--,--,3.73,USD,5.78,35.5,614.0,2393.2,-41.58,-38.01,OVERSOLD,Turning Up,False,,False,,0,–,True,"['BC przy 4.27 (vol 6.5x)', 'UT High=2.23 Close=1.92 (vol 1.6x)', 'SOW: vol spadkowy 1.7x > wzrostowy']",,296.2,1.13,,,1.3864,2026-06-22T16:05:00.904556,2
-KMPR,KMPR,USA,--,--,25.31,USD,65.32,61.3,1490.1,1116.8,-59.2,-57.5,OVERSOLD,Turning Up,False,,False,,2,A,False,['SOW: vol spadkowy 1.7x > wzrostowy'],,,,,,,2026-06-22T16:05:11.836929,2
+GSHD,GSHD,USA,--,--,40.98,USD,106.84,61.6,970.0,471.6,-58.81,-63.31,OVERSOLD,Strong BUY,True,"div_bull (cena -15.1%, SMI +17.7)",False,,4,C,False,[],,365.3,,0.1715,,,2026-06-23T13:56:11.888992,9
+AVXL,AVXL,USA,--,--,2.62,USD,13.99,81.3,242.3,1488.6,-71.72,-71.75,OVERSOLD,Strong BUY,False,,False,,0,–,False,[],,0.0,11.6,,0.0,,2026-06-23T13:56:07.701172,6
+NRDS,NRDS,USA,--,--,8.4,USD,16.24,48.3,552.7,861.0,-47.68,-47.9,OVERSOLD,Strong BUY,False,,False,,0,–,True,"['UT High=14.84 Close=13.98 (vol 1.8x)', 'SOW: vol spadkowy 1.4x > wzrostowy']",,836.6,3.45,0.1595,0.04,0.9239,2026-06-23T13:56:12.261887,6
+BBOT,BBOT,USA,--,--,7.89,USD,14.87,47.0,631.6,419.4,-45.37,-45.47,OVERSOLD,Strong BUY,True,"div_bull (cena -8.8%, SMI +12.1)",False,,1,A,True,"['BC przy 13.19 (vol 2.9x)', 'UT High=14.78 Close=13.69 (vol 1.4x)']",,0.0,,,,,2026-06-23T13:56:26.735565,6
+TENX,TENX,USA,--,--,12.56,USD,18.38,31.7,333.2,682.9,-49.36,-54.31,OVERSOLD,Strong BUY,False,,False,,0,–,True,"['BC przy 16.05 (vol 3.4x)', 'UT High=9.91 Close=9.65 (vol 2.1x)']",,0.0,14.56,,0.005,,2026-06-23T13:56:26.162191,5
+INSM,INSM,USA,--,--,100.75,USD,212.75,52.6,21836.7,3649.7,-78.92,-80.51,OVERSOLD,Strong BUY,False,,False,,2,A,False,['UT High=209.77 Close=207.77 (vol 1.7x)'],,606.4,,,,0.7973,2026-06-23T13:56:26.771894,5
+IRWD,IRWD,USA,--,--,3.84,USD,5.78,33.7,631.3,2191.2,-39.88,-37.16,Bearish,Strong BUY,False,,False,,0,–,True,"['BC przy 4.27 (vol 6.5x)', 'UT High=2.23 Close=1.92 (vol 1.6x)', 'SOW: vol spadkowy 1.6x > wzrostowy']",,296.2,1.13,,,1.3864,2026-06-23T13:56:09.178629,4
+PYPL,PYPL,USA,--,--,42.04,USD,79.5,47.1,37079.4,15229.8,-68.17,-64.83,OVERSOLD,Turning Up,False,,False,,0,–,False,[],,33172.0,1.29,0.2071,0.493,0.4662,2026-06-23T13:56:10.001988,4
+CAST,CAST,USA,--,--,8.51,USD,33.0,74.2,351.6,8859.2,-13.53,-43.61,Bearish,Strong BUY,False,,False,,0,–,False,[],,0.5,,,,0.3365,2026-06-23T13:56:14.088008,4
+GIS,GIS,USA,--,--,34.26,USD,54.18,36.8,18283.9,9435.6,-26.89,-40.61,Bearish,Strong BUY,False,,False,,0,–,False,[],,,,,,,2026-06-23T13:56:26.797276,4
+BWIN,BWIN,USA,--,--,24.33,USD,45.16,46.1,2371.9,1603.7,-30.54,-47.2,Bearish,Strong BUY,False,,False,,2,A,False,[],,,,,,,2026-06-23T13:56:26.864763,4
+STTK,STTK,USA,--,--,5.38,USD,8.33,35.4,513.8,701.9,-37.57,-38.82,Bearish,Strong BUY,False,,False,,0,–,False,['UT High=6.31 Close=6.22 (vol 1.5x)'],,,,,,,2026-06-23T13:56:29.896677,4
+QTWO,QTWO,USA,--,--,43.46,USD,96.68,55.0,2720.6,799.0,-70.75,-66.54,OVERSOLD,Turning Up,False,,False,,2,A,False,[],,794.8,,,,0.5406,2026-06-23T13:56:29.709119,2
+PWP,PWP,USA,--,--,16.16,USD,25.92,37.7,1178.7,1152.9,-65.63,-61.92,OVERSOLD,Turning Up,False,,False,,0,–,False,['UT High=25.74 Close=21.32 (vol 1.6x)'],,,,,,,2026-06-23T13:56:29.862161,2
+ALXO,ALXO,USA,--,--,1.66,USD,2.66,37.4,224.0,1134.6,-42.74,-37.98,OVERSOLD,Turning Up,False,,False,,1,A,True,"['BC przy 2.45 (vol 2.1x)', 'UT High=2.66 Close=2.45 (vol 2.1x)', 'SOW: vol spadkowy 1.5x > wzrostowy']",,,,,,,2026-06-23T13:56:26.884075,1
