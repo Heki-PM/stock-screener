@@ -1,21 +1,14 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-23 13:56 UTC
-### Liczba tickerow: 15
+### Wygenerowano: 2026-06-24 13:34 UTC
+### Liczba tickerow: 8
 ###
-### ── Strong BUY (11) ──
-AVXL  ### Strong BUY | -81.3% | W:– | --
-CAST  ### Strong BUY | -74.2% | W:– | --
-GSHD  ### Strong BUY | -61.6% | W:Spring | --
-INSM  ### Strong BUY | -52.6% | W:A+AR | --
-NRDS  ### Strong BUY | -48.3% | W:⚠ Dist | --
-BBOT  ### Strong BUY | -47.0% | W:⚠ Dist | --
-BWIN  ### Strong BUY | -46.1% | W:A+AR | --
-GIS  ### Strong BUY | -36.8% | W:– | --
-STTK  ### Strong BUY | -35.4% | W:– | --
-IRWD  ### Strong BUY | -33.7% | W:⚠ Dist | --
-TENX  ### Strong BUY | -31.7% | W:⚠ Dist | --
-### ── Turning Up (4) ──
-QTWO  ### Turning Up | -55.0% | W:A+AR | --
-PYPL  ### Turning Up | -47.1% | W:– | --
-PWP  ### Turning Up | -37.7% | W:– | --
-ALXO  ### Turning Up | -37.4% | W:⚠ Dist | --
+### ── Strong BUY (7) ──
+CAST  ### Strong BUY | -74.0% | W:– | --
+GSHD  ### Strong BUY | -62.2% | W:Spring | --
+NMRA  ### Strong BUY | -57.4% | W:⚠ Dist | --
+LMND  ### Strong BUY | -41.9% | W:– | --
+ORIC  ### Strong BUY | -39.1% | W:A+AR | --
+IRWD  ### Strong BUY | -32.7% | W:⚠ Dist | --
+RVLV  ### Strong BUY | -32.1% | W:Spring | --
+### ── Turning Up (1) ──
+PSEC  ### Turning Up | -35.3% | W:SOS | --
