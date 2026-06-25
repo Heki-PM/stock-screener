@@ -1,14 +1,21 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-24 13:34 UTC
-### Liczba tickerow: 8
+### Wygenerowano: 2026-06-25 13:33 UTC
+### Liczba tickerow: 15
 ###
-### ── Strong BUY (7) ──
-CAST  ### Strong BUY | -74.0% | W:– | --
-GSHD  ### Strong BUY | -62.2% | W:Spring | --
-NMRA  ### Strong BUY | -57.4% | W:⚠ Dist | --
-LMND  ### Strong BUY | -41.9% | W:– | --
-ORIC  ### Strong BUY | -39.1% | W:A+AR | --
-IRWD  ### Strong BUY | -32.7% | W:⚠ Dist | --
-RVLV  ### Strong BUY | -32.1% | W:Spring | --
-### ── Turning Up (1) ──
-PSEC  ### Turning Up | -35.3% | W:SOS | --
+### ── Strong BUY (8) ──
+VITL  ### Strong BUY | -79.3% | W:A+AR | --
+CAST  ### Strong BUY | -75.6% | W:– | --
+NRDS  ### Strong BUY | -47.4% | W:⚠ Dist | --
+RKT  ### Strong BUY | -37.7% | W:Spring | --
+HDB  ### Strong BUY | -36.2% | W:– | --
+JKHY  ### Strong BUY | -34.9% | W:SC | --
+LKQ  ### Strong BUY | -32.9% | W:– | --
+TENX  ### Strong BUY | -30.3% | W:⚠ Dist | --
+### ── Turning Up (7) ──
+DOCS  ### Turning Up | -73.2% | W:SC | --
+LU  ### Turning Up | -72.8% | W:– | --
+HUYA  ### Turning Up | -55.0% | W:⚠ Dist | --
+QTWO  ### Turning Up | -54.2% | W:A+AR | --
+MATV  ### Turning Up | -48.0% | W:A+AR | --
+PYPL  ### Turning Up | -46.5% | W:– | --
+ITRI  ### Turning Up | -42.3% | W:⚠ Dist | --
