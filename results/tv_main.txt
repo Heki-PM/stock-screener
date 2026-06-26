@@ -1,21 +1,10 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-25 13:33 UTC
-### Liczba tickerow: 15
+### Wygenerowano: 2026-06-26 13:24 UTC
+### Liczba tickerow: 4
 ###
-### ── Strong BUY (8) ──
-VITL  ### Strong BUY | -79.3% | W:A+AR | --
-CAST  ### Strong BUY | -75.6% | W:– | --
-NRDS  ### Strong BUY | -47.4% | W:⚠ Dist | --
-RKT  ### Strong BUY | -37.7% | W:Spring | --
-HDB  ### Strong BUY | -36.2% | W:– | --
-JKHY  ### Strong BUY | -34.9% | W:SC | --
-LKQ  ### Strong BUY | -32.9% | W:– | --
-TENX  ### Strong BUY | -30.3% | W:⚠ Dist | --
-### ── Turning Up (7) ──
-DOCS  ### Turning Up | -73.2% | W:SC | --
-LU  ### Turning Up | -72.8% | W:– | --
-HUYA  ### Turning Up | -55.0% | W:⚠ Dist | --
-QTWO  ### Turning Up | -54.2% | W:A+AR | --
-MATV  ### Turning Up | -48.0% | W:A+AR | --
-PYPL  ### Turning Up | -46.5% | W:– | --
-ITRI  ### Turning Up | -42.3% | W:⚠ Dist | --
+### ── Strong BUY (3) ──
+VITL  ### Strong BUY | -79.9% | W:A+AR | Consumer Defensive
+NRDS  ### Strong BUY | -47.6% | W:⚠ Dist | Communication Services
+JKHY  ### Strong BUY | -33.4% | W:SC | Technology
+### ── Turning Up (1) ──
+FUTU  ### Turning Up | -51.6% | W:– | Financial Services
