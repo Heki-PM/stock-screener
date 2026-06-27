@@ -1,172 +1,180 @@
 ### TradingView Watchlist – Full Scan
-### Wygenerowano: 2026-06-26 13:24 UTC
-### Liczba tickerow: 165
+### Wygenerowano: 2026-06-27 09:24 UTC
+### Liczba tickerow: 173
 ###
-### ── Strong BUY (53) ──
-VITL  ### Strong BUY | -79.9% | W:A+AR | Consumer Defensive
-CAST  ### Strong BUY | -73.6% | W:– | Communication Services
-PTLO  ### Strong BUY | -64.4% | W:– | Consumer Cyclical
-ATEC  ### Strong BUY | -62.1% | W:SC | Healthcare
-GOTU  ### Strong BUY | -57.8% | W:– | Consumer Defensive
-COUR  ### Strong BUY | -57.5% | W:Spring | Consumer Defensive
-ALLO  ### Strong BUY | -53.8% | W:⚠ Dist | Healthcare
-SANA  ### Strong BUY | -50.2% | W:⚠ Dist | Healthcare
-NRDS  ### Strong BUY | -47.6% | W:⚠ Dist | Communication Services
-ALEC  ### Strong BUY | -45.6% | W:SOS | Healthcare
-IRTC  ### Strong BUY | -45.3% | W:SC | Healthcare
-BWIN  ### Strong BUY | -45.0% | W:A+AR | Financial Services
-RKT  ### Strong BUY | -39.3% | W:Spring | Financial Services
-IBRX  ### Strong BUY | -37.3% | W:SOS | --
-JKHY  ### Strong BUY | -33.4% | W:SC | Technology
-ABT  ### Strong BUY | -32.2% | W:– | Healthcare
-ULTA  ### Strong BUY | -32.1% | W:A+AR | --
-UBER  ### Strong BUY | -29.2% | W:– | Technology
-RVLV  ### Strong BUY | -28.1% | W:Spring | Consumer Cyclical
-VERA  ### Strong BUY | -27.7% | W:– | Healthcare
-GMAB  ### Strong BUY | -26.2% | W:SOS | Healthcare
-AOS  ### Strong BUY | -25.3% | W:– | Industrials
-ALLE  ### Strong BUY | -25.2% | W:– | Industrials
-TARS  ### Strong BUY | -24.5% | W:– | Healthcare
-CNX  ### Strong BUY | -22.9% | W:– | Energy
-VIV  ### Strong BUY | -22.5% | W:– | Communication Services
-TIMB  ### Strong BUY | -22.3% | W:– | Communication Services
-NSSC  ### Strong BUY | -22.2% | W:⚠ Dist | Industrials
-EMBJ  ### Strong BUY | -22.2% | W:– | Industrials
-VVR  ### Strong BUY | -21.9% | W:SC | Financial Services
-CARG  ### Strong BUY | -21.3% | W:– | Consumer Cyclical
-VLTO  ### Strong BUY | -20.1% | W:– | Industrials
-PRAA  ### Strong BUY | -19.4% | W:⚠ Dist | Financial Services
-IR  ### Strong BUY | -19.1% | W:⚠ Dist | Industrials
-STZ  ### Strong BUY | -18.9% | W:– | Consumer Defensive
-ATMU  ### Strong BUY | -18.5% | W:⚠ Dist | Consumer Cyclical
-SLDE  ### Strong BUY | -18.5% | W:⚠ Dist | Financial Services
-PCVX  ### Strong BUY | -17.4% | W:– | Healthcare
-GMED  ### Strong BUY | -16.5% | W:– | Healthcare
-IMMX  ### Strong BUY | -16.3% | W:⚠ Dist | Healthcare
-AQN  ### Strong BUY | -16.2% | W:– | Utilities
-BLCO  ### Strong BUY | -15.9% | W:A+AR | Healthcare
-VIR  ### Strong BUY | -15.3% | W:⚠ Dist | Healthcare
-ORI  ### Strong BUY | -14.4% | W:– | Financial Services
-AWK  ### Strong BUY | -12.1% | W:– | Utilities
-NEE  ### Strong BUY | -11.2% | W:SC | Utilities
-WTRG  ### Strong BUY | -10.5% | W:– | Utilities
-ATO  ### Strong BUY | -9.8% | W:Faza B | Utilities
-MTG  ### Strong BUY | -8.7% | W:SC | Financial Services
-PPL  ### Strong BUY | -7.8% | W:– | Utilities
-CCXI  ### Strong BUY | -7.8% | W:– | Financial Services
-SRE  ### Strong BUY | -7.5% | W:Spring | Utilities
-CTVA  ### Strong BUY | -4.7% | W:SC | Basic Materials
-### ── BUY (65) ──
-CNCK  ### BUY | -76.5% | W:⚠ Dist | Financial Services
-SABR  ### BUY | -46.9% | W:– | Technology
-DNA  ### BUY | -45.6% | W:– | Healthcare
-PHAT  ### BUY | -43.5% | W:– | Healthcare
-TWI  ### BUY | -32.5% | W:– | Industrials
-CRSP  ### BUY | -31.2% | W:– | Healthcare
-REZI  ### BUY | -28.6% | W:– | Industrials
-IQV  ### BUY | -24.5% | W:A+AR | Healthcare
-TBBK  ### BUY | -24.2% | W:Spring | Financial Services
-IKT  ### BUY | -17.3% | W:⚠ Dist | --
-WSO  ### BUY | -16.7% | W:– | Industrials
-BEPC  ### BUY | -16.7% | W:– | Utilities
-GLUE  ### BUY | -15.9% | W:– | Healthcare
-BF-B  ### BUY | -13.3% | W:⚠ Dist | Consumer Defensive
-ACHC  ### BUY | -13.1% | W:– | Healthcare
-PAYS  ### BUY | -13.1% | W:A+AR | Technology
-NGG  ### BUY | -11.9% | W:– | Utilities
-FERG  ### BUY | -11.4% | W:A+AR | Industrials
-WRBY  ### BUY | -11.3% | W:⚠ Dist | Healthcare
-HIO  ### BUY | -10.6% | W:– | Financial Services
-OABI  ### BUY | -10.0% | W:SC | --
-LXRX  ### BUY | -9.5% | W:– | Healthcare
-KYIV  ### BUY | -9.1% | W:⚠ Dist | Communication Services
-WAT  ### BUY | -9.0% | W:SC | Healthcare
-MGNX  ### BUY | -8.3% | W:– | Healthcare
-AHR  ### BUY | -6.9% | W:SOS | Real Estate
-FDMT  ### BUY | -6.6% | W:A+AR | Healthcare
-APPS  ### BUY | -5.9% | W:⚠ Dist | --
-SXT  ### BUY | -5.8% | W:– | Basic Materials
-LTC  ### BUY | -5.8% | W:– | Real Estate
-BRKR  ### BUY | -5.7% | W:Spring | Healthcare
-BKH  ### BUY | -5.6% | W:⚠ Dist | Utilities
-CLH  ### BUY | -5.5% | W:SC | --
-AMD  ### BUY | -5.4% | W:SOS | Technology
-SPNT  ### BUY | -5.2% | W:– | Financial Services
-NWE  ### BUY | -5.0% | W:– | Utilities
-ORKA  ### BUY | -4.8% | W:⚠ Dist | Healthcare
-UCB  ### BUY | -4.7% | W:Spring | Financial Services
-RDN  ### BUY | -4.7% | W:SOS | Financial Services
-ZWS  ### BUY | -4.6% | W:– | Industrials
-SOLS  ### BUY | -4.3% | W:– | Basic Materials
-INCY  ### BUY | -4.2% | W:– | Healthcare
-ETN  ### BUY | -3.9% | W:SC | Industrials
-RCUS  ### BUY | -3.8% | W:⚠ Dist | Healthcare
-PANW  ### BUY | -3.3% | W:– | --
-ABCL  ### BUY | -2.9% | W:– | Healthcare
-ILMN  ### BUY | -2.8% | W:A+AR | Healthcare
-IRM  ### BUY | -2.7% | W:A+AR | Real Estate
-ETR  ### BUY | -2.6% | W:– | Utilities
-NESR  ### BUY | -2.6% | W:⚠ Dist | Energy
-NI  ### BUY | -2.4% | W:– | Utilities
-TRGP  ### BUY | -2.3% | W:– | Energy
-MO  ### BUY | -1.8% | W:– | Consumer Defensive
-TRP  ### BUY | -1.8% | W:– | Energy
-FTNT  ### BUY | -1.3% | W:– | Technology
-GLW  ### BUY | -1.1% | W:⚠ Dist | Technology
-NNN  ### BUY | -1.1% | W:Spring | Real Estate
-AEE  ### BUY | -0.9% | W:– | Utilities
-PSTL  ### BUY | -0.6% | W:⚠ Dist | Real Estate
-LILA  ### BUY | -0.6% | W:– | --
-TT  ### BUY | -0.5% | W:– | Industrials
-SPG  ### BUY | -0.4% | W:– | Real Estate
-GNRC  ### BUY | -0.4% | W:– | Industrials
-WELL  ### BUY | -0.3% | W:– | Real Estate
-TFSL  ### BUY | -0.1% | W:– | Financial Services
-### ── Turning Up (47) ──
-CMPX  ### Turning Up | -69.9% | W:– | Healthcare
-IMRX  ### Turning Up | -55.1% | W:SC | Healthcare
-AORT  ### Turning Up | -53.0% | W:SC | Healthcare
-FUTU  ### Turning Up | -51.6% | W:– | Financial Services
-UTZ  ### Turning Up | -50.8% | W:– | Consumer Defensive
-TCOM  ### Turning Up | -48.7% | W:SC | Consumer Cyclical
-NAUT  ### Turning Up | -47.3% | W:⚠ Dist | --
-OIS  ### Turning Up | -45.2% | W:⚠ Dist | Energy
-MQ  ### Turning Up | -43.9% | W:– | Technology
-EIKN  ### Turning Up | -43.4% | W:– | Healthcare
-VNDA  ### Turning Up | -41.1% | W:⚠ Dist | Healthcare
-LCII  ### Turning Up | -40.0% | W:A+AR | Consumer Cyclical
-ARDT  ### Turning Up | -39.5% | W:A+AR | Healthcare
-BHC  ### Turning Up | -39.2% | W:– | Healthcare
-PWP  ### Turning Up | -37.8% | W:– | Financial Services
-PSEC  ### Turning Up | -35.1% | W:SOS | Financial Services
-ATAI  ### Turning Up | -32.1% | W:⚠ Dist | Healthcare
-WU  ### Turning Up | -29.9% | W:A+AR | Financial Services
-ASLE  ### Turning Up | -29.3% | W:– | --
-OPRT  ### Turning Up | -28.1% | W:A+AR | Financial Services
-CTRI  ### Turning Up | -25.9% | W:⚠ Dist | Utilities
-AR  ### Turning Up | -24.6% | W:– | Energy
-EQT  ### Turning Up | -24.3% | W:– | Energy
-HE  ### Turning Up | -23.6% | W:– | Utilities
-LNG  ### Turning Up | -21.9% | W:– | Energy
-STE  ### Turning Up | -21.8% | W:SC | Healthcare
-AXIA  ### Turning Up | -21.6% | W:A+AR | Utilities
-SBS  ### Turning Up | -21.3% | W:– | Utilities
-BKV  ### Turning Up | -21.2% | W:SOS | Energy
-ZYME  ### Turning Up | -20.1% | W:⚠ Dist | Healthcare
-ELPC  ### Turning Up | -14.7% | W:⚠ Dist | Utilities
-SBRA  ### Turning Up | -9.3% | W:– | Real Estate
-O  ### Turning Up | -8.7% | W:– | Real Estate
-MTZ  ### Turning Up | -8.6% | W:– | --
-LINC  ### Turning Up | -8.4% | W:SC | Consumer Defensive
-COHR  ### Turning Up | -7.4% | W:⚠ Dist | Technology
-EG  ### Turning Up | -6.9% | W:Spring | Financial Services
-FMNB  ### Turning Up | -6.5% | W:A+AR | Financial Services
-DK  ### Turning Up | -6.3% | W:A+AR | Energy
-SWX  ### Turning Up | -5.7% | W:⚠ Dist | Utilities
-MDU  ### Turning Up | -5.6% | W:– | Utilities
-CYRX  ### Turning Up | -5.1% | W:⚠ Dist | Industrials
-FLEX  ### Turning Up | -3.3% | W:⚠ Dist | Technology
-NJR  ### Turning Up | -3.2% | W:– | Utilities
-FR  ### Turning Up | -2.4% | W:Spring | Real Estate
-OII  ### Turning Up | -2.1% | W:– | Energy
-XMAX  ### Turning Up | -2.0% | W:⚠ Dist | Consumer Cyclical
+### ── Strong BUY (65) ──
+AIIO  ### Strong BUY | -92.2% | W:⚠ Dist | --
+AVXL  ### Strong BUY | -81.3% | W:– | --
+TNXP  ### Strong BUY | -81.1% | W:– | --
+EMBC  ### Strong BUY | -77.6% | W:A+AR | --
+BLKB  ### Strong BUY | -61.0% | W:A+AR | --
+COUR  ### Strong BUY | -57.7% | W:Spring | --
+GSHD  ### Strong BUY | -56.1% | W:Spring | --
+WAY  ### Strong BUY | -52.0% | W:– | --
+XNET  ### Strong BUY | -51.4% | W:– | --
+UTZ  ### Strong BUY | -47.4% | W:– | --
+PFSI  ### Strong BUY | -46.3% | W:A+AR | --
+PYPL  ### Strong BUY | -44.3% | W:– | --
+LMND  ### Strong BUY | -41.1% | W:– | --
+DFIN  ### Strong BUY | -38.8% | W:Spring | --
+POOL  ### Strong BUY | -38.7% | W:– | --
+KRUS  ### Strong BUY | -38.4% | W:Spring | --
+IIIV  ### Strong BUY | -37.3% | W:Spring | --
+ORIC  ### Strong BUY | -36.2% | W:A+AR | --
+PATK  ### Strong BUY | -35.8% | W:SC | --
+MKC  ### Strong BUY | -34.6% | W:– | --
+HELP  ### Strong BUY | -34.1% | W:A+AR | --
+ERAS  ### Strong BUY | -34.1% | W:⚠ Dist | --
+ABT  ### Strong BUY | -31.5% | W:– | --
+NU  ### Strong BUY | -30.6% | W:– | --
+AZO  ### Strong BUY | -28.7% | W:– | --
+IRWD  ### Strong BUY | -28.5% | W:⚠ Dist | --
+ASLE  ### Strong BUY | -28.2% | W:– | --
+TPL  ### Strong BUY | -27.7% | W:– | --
+IIIN  ### Strong BUY | -26.7% | W:A+AR | --
+GXO  ### Strong BUY | -24.9% | W:A+AR | --
+CHDN  ### Strong BUY | -24.9% | W:– | --
+VERA  ### Strong BUY | -24.2% | W:– | --
+ALLE  ### Strong BUY | -23.7% | W:– | --
+ANNX  ### Strong BUY | -23.7% | W:⚠ Dist | --
+REGN  ### Strong BUY | -22.9% | W:– | --
+EQT  ### Strong BUY | -22.8% | W:– | --
+VIV  ### Strong BUY | -22.1% | W:– | --
+PMT  ### Strong BUY | -22.0% | W:– | --
+TIMB  ### Strong BUY | -21.9% | W:– | --
+VVR  ### Strong BUY | -21.9% | W:SC | --
+NX  ### Strong BUY | -21.8% | W:Faza B | --
+TYRA  ### Strong BUY | -21.6% | W:⚠ Dist | --
+NRG  ### Strong BUY | -21.4% | W:– | --
+RNA  ### Strong BUY | -21.3% | W:– | --
+CBRE  ### Strong BUY | -21.2% | W:Spring | --
+GILD  ### Strong BUY | -18.7% | W:– | --
+ROAD  ### Strong BUY | -18.6% | W:– | --
+VLTO  ### Strong BUY | -18.5% | W:– | --
+HLN  ### Strong BUY | -18.1% | W:– | --
+CARG  ### Strong BUY | -16.2% | W:– | --
+AQN  ### Strong BUY | -15.3% | W:– | --
+SR  ### Strong BUY | -15.2% | W:– | --
+GMED  ### Strong BUY | -14.9% | W:– | --
+ITUB  ### Strong BUY | -14.3% | W:A+AR | --
+IMMX  ### Strong BUY | -14.0% | W:⚠ Dist | --
+JLL  ### Strong BUY | -13.2% | W:Spring | --
+PCVX  ### Strong BUY | -13.0% | W:– | --
+INMD  ### Strong BUY | -12.6% | W:Spring | --
+SLDE  ### Strong BUY | -12.0% | W:⚠ Dist | --
+IMXI  ### Strong BUY | -10.7% | W:⚠ Dist | --
+AWK  ### Strong BUY | -10.3% | W:– | --
+BALL  ### Strong BUY | -9.5% | W:– | --
+PCRX  ### Strong BUY | -8.7% | W:– | --
+MTG  ### Strong BUY | -7.1% | W:SC | --
+XENE  ### Strong BUY | -6.6% | W:– | --
+### ── BUY (62) ──
+DOCS  ### BUY | -72.7% | W:SC | --
+HCKT  ### BUY | -56.7% | W:A+AR | --
+RXRX  ### BUY | -51.0% | W:– | --
+SABR  ### BUY | -43.5% | W:– | --
+DNA  ### BUY | -41.7% | W:– | --
+JBGS  ### BUY | -38.3% | W:SOS | --
+MELI  ### BUY | -36.7% | W:A+AR | --
+EIKN  ### BUY | -34.2% | W:– | --
+CRSP  ### BUY | -30.0% | W:– | --
+BDN  ### BUY | -29.2% | W:– | --
+CTKB  ### BUY | -27.5% | W:⚠ Dist | --
+GSBD  ### BUY | -21.3% | W:Spring | --
+MSA  ### BUY | -18.4% | W:– | --
+CBLL  ### BUY | -17.9% | W:SOS | --
+PBF  ### BUY | -17.4% | W:– | --
+ANIP  ### BUY | -15.1% | W:– | --
+RMAX  ### BUY | -15.1% | W:– | --
+ALSN  ### BUY | -12.9% | W:SC | --
+SION  ### BUY | -12.9% | W:⚠ Dist | --
+NGG  ### BUY | -12.3% | W:– | --
+ACHC  ### BUY | -9.2% | W:– | --
+BMY  ### BUY | -8.5% | W:– | --
+AFG  ### BUY | -7.2% | W:– | --
+LINC  ### BUY | -6.7% | W:SC | --
+COLD  ### BUY | -6.7% | W:– | --
+WRBY  ### BUY | -5.7% | W:⚠ Dist | --
+GLW  ### BUY | -4.1% | W:⚠ Dist | --
+EG  ### BUY | -3.5% | W:SOS | --
+FTV  ### BUY | -3.0% | W:Faza B | --
+SNDA  ### BUY | -3.0% | W:⚠ Dist | --
+JAN  ### BUY | -2.9% | W:– | --
+FLYW  ### BUY | -2.8% | W:SC | --
+OHI  ### BUY | -2.6% | W:– | --
+TRGP  ### BUY | -2.6% | W:– | --
+ACHV  ### BUY | -2.3% | W:⚠ Dist | --
+VTR  ### BUY | -2.2% | W:– | --
+DKS  ### BUY | -2.1% | W:Spring | --
+CUZ  ### BUY | -2.0% | W:Spring | --
+KGS  ### BUY | -1.8% | W:Spring | --
+FROG  ### BUY | -1.8% | W:– | --
+KO  ### BUY | -1.7% | W:– | --
+LAMR  ### BUY | -1.6% | W:– | --
+LLYVK  ### BUY | -1.5% | W:A+AR | --
+NAC  ### BUY | -1.5% | W:– | --
+DTM  ### BUY | -1.4% | W:Spring | --
+APPS  ### BUY | -1.3% | W:⚠ Dist | --
+MO  ### BUY | -1.0% | W:– | --
+GNW  ### BUY | -1.0% | W:– | --
+DCOM  ### BUY | -1.0% | W:⚠ Dist | --
+ACT  ### BUY | -0.9% | W:SOS | --
+SRRK  ### BUY | -0.8% | W:– | --
+ETON  ### BUY | -0.8% | W:⚠ Dist | --
+KIM  ### BUY | -0.7% | W:– | --
+TFSL  ### BUY | -0.6% | W:– | --
+AEP  ### BUY | -0.5% | W:– | --
+WELL  ### BUY | -0.5% | W:– | --
+HG  ### BUY | -0.5% | W:– | --
+NESR  ### BUY | -0.4% | W:⚠ Dist | --
+ABCL  ### BUY | -0.3% | W:– | --
+DNP  ### BUY | -0.3% | W:– | --
+AEE  ### BUY | -0.0% | W:– | --
+IDA  ### BUY | -0.0% | W:SC | --
+### ── Turning Up (46) ──
+LDI  ### Turning Up | -76.2% | W:Spring | --
+GETY  ### Turning Up | -71.0% | W:⚠ Dist | --
+UWMC  ### Turning Up | -69.5% | W:SC | --
+TRX  ### Turning Up | -69.3% | W:⚠ Dist | --
+Z  ### Turning Up | -66.8% | W:Spring | --
+ALT  ### Turning Up | -56.2% | W:⚠ Dist | --
+HUYA  ### Turning Up | -54.0% | W:⚠ Dist | --
+AORT  ### Turning Up | -51.1% | W:SC | --
+LZ  ### Turning Up | -51.0% | W:SC | --
+GRPN  ### Turning Up | -47.5% | W:⚠ Dist | --
+PDD  ### Turning Up | -45.1% | W:– | --
+NFLX  ### Turning Up | -45.0% | W:– | --
+PAYP  ### Turning Up | -42.3% | W:– | --
+TRMB  ### Turning Up | -42.1% | W:– | --
+GTN  ### Turning Up | -41.0% | W:– | --
+RERE  ### Turning Up | -40.3% | W:– | --
+EBS  ### Turning Up | -39.3% | W:– | --
+CPRT  ### Turning Up | -39.0% | W:– | --
+BILL  ### Turning Up | -37.9% | W:– | --
+BGS  ### Turning Up | -35.1% | W:– | --
+DMRA  ### Turning Up | -33.8% | W:⚠ Dist | --
+DLB  ### Turning Up | -30.5% | W:– | --
+AVIR  ### Turning Up | -30.4% | W:Spring | --
+TRU  ### Turning Up | -29.2% | W:Spring | --
+PLTK  ### Turning Up | -24.2% | W:Spring | --
+XPRO  ### Turning Up | -23.8% | W:– | --
+GPN  ### Turning Up | -23.0% | W:– | --
+CARS  ### Turning Up | -23.0% | W:Faza B | --
+HAS  ### Turning Up | -20.2% | W:– | --
+CVSA  ### Turning Up | -18.4% | W:SOS | --
+CRON  ### Turning Up | -18.1% | W:– | --
+ARLP  ### Turning Up | -16.9% | W:Spring | --
+ELPC  ### Turning Up | -14.1% | W:⚠ Dist | --
+PRAX  ### Turning Up | -10.6% | W:A+AR | --
+RELY  ### Turning Up | -10.2% | W:– | --
+AYA  ### Turning Up | -10.0% | W:SOS | --
+ABEV  ### Turning Up | -6.4% | W:– | --
+OUT  ### Turning Up | -4.9% | W:– | --
+SBUX  ### Turning Up | -3.9% | W:– | --
+PPLI  ### Turning Up | -3.4% | W:⚠ Dist | --
+MPLT  ### Turning Up | -3.2% | W:– | --
+CNC  ### Turning Up | -1.2% | W:– | --
+EQR  ### Turning Up | -0.9% | W:– | --
+RPRX  ### Turning Up | -0.5% | W:– | --
+ATEX  ### Turning Up | -0.4% | W:⚠ Dist | --
+DEA  ### Turning Up | -0.2% | W:– | --

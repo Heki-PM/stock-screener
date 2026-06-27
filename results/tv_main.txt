@@ -1,10 +1,4 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-26 13:24 UTC
-### Liczba tickerow: 4
+### Wygenerowano: 2026-06-27 09:24 UTC
+### Liczba tickerow: 0
 ###
-### ── Strong BUY (3) ──
-VITL  ### Strong BUY | -79.9% | W:A+AR | Consumer Defensive
-NRDS  ### Strong BUY | -47.6% | W:⚠ Dist | Communication Services
-JKHY  ### Strong BUY | -33.4% | W:SC | Technology
-### ── Turning Up (1) ──
-FUTU  ### Turning Up | -51.6% | W:– | Financial Services
