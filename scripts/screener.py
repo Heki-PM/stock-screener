@@ -849,12 +849,9 @@ def phase2_collect(weekly_signals):
 
 def filter_main(r):
     """
-    Filtr screener głównego. Zasada: brak danych = odrzucenie.
-    Wcześniej None przepuszczało każdy warunek – było to źródłem fałszywych
-    trafień (spółki bez danych EPS lub QR lądowały na liście).
-
-    FIX 2: wszystkie kluczowe wskaźniki muszą być dostępne i spełniać próg.
-    FIX 6: eps <= 0 odrzucany (break-even = brak zysku).
+    Filtr screener głównego.
+    Zasada: brak danych (None) = przepuszczamy, tylko jawnie zła wartość = odrzucamy.
+    FIX 6: eps <= 0 odrzucany (break-even nie liczy się jako zysk).
     """
     if r["signal"] not in ("Strong BUY", "Turning Up"):
         return False
@@ -864,34 +861,34 @@ def filter_main(r):
     if price is not None and price > MAX_PRICE:
         return False
 
-    # FIX 2 + FIX 6 – EPS: wymagane, musi być dodatnie (>0, nie >=0)
+    # FIX 6 – EPS: jeśli dostępne, musi być dodatnie (>0, nie >=0)
     eps = r.get("eps_ttm")
-    if eps is None or eps <= 0:
+    if eps is not None and eps <= 0:
         return False
 
-    # FIX 2 – Quick Ratio: wymagane, musi spełniać próg
+    # Quick Ratio: jeśli dostępne, musi spełniać próg
     qr = r.get("quick_ratio")
-    if qr is None or qr < MIN_QUICK:
+    if qr is not None and qr < MIN_QUICK:
         return False
 
-    # Dyskonto: wymagane, musi spełniać próg
+    # Dyskonto: jeśli dostępne, musi spełniać próg
     disc = r.get("discount_52w")
-    if disc is None or disc < MIN_DISCOUNT_52W * 100:
+    if disc is not None and disc < MIN_DISCOUNT_52W * 100:
         return False
 
-    # FIX 2 – ROIC: wymagane, musi spełniać próg
+    # ROIC: jeśli dostępne, musi spełniać próg
     roic = r.get("roic")
-    if roic is None or roic < MIN_ROIC:
+    if roic is not None and roic < MIN_ROIC:
         return False
 
-    # FIX 2 – Debt/Equity: wymagane, musi być poniżej progu
+    # Debt/Equity: jeśli dostępne, musi być poniżej progu
     de = r.get("debt_equity")
-    if de is None or de > MAX_DEBT_EQUITY:
+    if de is not None and de > MAX_DEBT_EQUITY:
         return False
 
-    # FIX 2 – Gross Margin: wymagane, musi spełniać próg
+    # Gross Margin: jeśli dostępne, musi spełniać próg
     gm = r.get("gross_margin")
-    if gm is None or gm < MIN_GROSS_MARGIN:
+    if gm is not None and gm < MIN_GROSS_MARGIN:
         return False
 
     return True
