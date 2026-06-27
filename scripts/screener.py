@@ -11,6 +11,14 @@ Jeden przebieg generuje dwa raporty:
 
 Dane pobierane są raz – ticker list + tygodniowe OHLC + fundamenty.
 SMI(10,3,3) – port Pine Script "SMI Signal Strategy"
+
+CHANGELOG:
+  FIX 1 – _w_find_spring: okno ar_pos+61 zamiast sc_pos+61 (sc < ar zawsze)
+  FIX 2 – filter_main: None w eps/qr/roic/de/gm odrzucane, nie przepuszczane
+  FIX 3 – RS 12M: wzór (1+sr)/(1+ir) zamiast sr/(1+ir)
+  FIX 4 – calc_tech_score: ważona punktacja SCORE_WEIGHTS, kara wyk_dist=-3
+  FIX 5 – cache fundamentów 24h (katalog .cache/fundamentals/)
+  FIX 6 – filtr EPS: eps <= 0 zamiast eps < 0 (break-even nie liczy się jako zysk)
 """
 
 import yfinance as yf
@@ -20,6 +28,7 @@ import requests
 import json
 import os
 from datetime import datetime
+from pathlib import Path
 from io import StringIO
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -46,6 +55,69 @@ FUNDAMENTALS_WORKERS = 20
 DOWNLOAD_BATCH_SIZE  = 100
 OUTPUT_DIR           = "results"
 SMI_LEN_K, SMI_LEN_D, SMI_LEN_EMA = 10, 3, 3
+
+# FIX 5 – cache fundamentów
+CACHE_DIR      = Path(".cache/fundamentals")
+CACHE_TTL_H    = 24   # godziny ważności cache
+
+# FIX 4 – ważone składniki scoringu technicznego
+# Suma maksimum przy wszystkich spełnionych: 4+3+3+2+2+2+1+1+1+2 = 21
+# Klip do 12 zachowany dla wstecznej kompatybilności wyświetlania.
+SCORE_WEIGHTS = {
+    "strong_buy":    4,   # sygnał podstawowy – najważniejszy
+    "buy":           2,
+    "oversold":      3,   # strefa ma realny wpływ predykcyjny
+    "bearish":       1,
+    "divergence":    3,   # rzadkie, wartościowe potwierdzenie
+    "vol_confirm":   2,   # potwierdzenie wolumenu
+    "roic":          2,   # jakość biznesu
+    "eps_positive":  1,
+    "qr_ok":         1,
+    "rs_outperform": 1,
+    "wyckoff_high":  2,   # Spring/SOS – silny sygnał akumulacji
+    "wyckoff_dist": -3,   # dystrybucja – mocna kara (poprzednio -1)
+}
+
+# ══════════════════════════════════════════════════════════════
+#  FIX 5 – CACHE FUNDAMENTÓW
+# ══════════════════════════════════════════════════════════════
+
+def _cache_path(symbol: str) -> Path:
+    """Zwraca ścieżkę pliku cache dla danego symbolu."""
+    # Zastępujemy znaki niedozwolone w nazwach plików
+    safe = symbol.replace("/", "_").replace("\\", "_").replace(":", "_")
+    return CACHE_DIR / f"{safe}.json"
+
+def _load_cache(symbol: str) -> dict | None:
+    """
+    Wczytuje dane fundamentalne z cache jeśli istnieją i nie wygasły.
+    Zwraca dict lub None gdy brak / wygasły.
+    """
+    p = _cache_path(symbol)
+    if not p.exists():
+        return None
+    try:
+        age_h = (datetime.now().timestamp() - p.stat().st_mtime) / 3600
+        if age_h > CACHE_TTL_H:
+            return None
+        data = json.loads(p.read_text(encoding="utf-8"))
+        # Odświeżamy pole scanned_at żeby pokazywało kiedy dane były cache'owane
+        data["_from_cache"] = True
+        return data
+    except Exception:
+        return None
+
+def _save_cache(symbol: str, data: dict) -> None:
+    """Zapisuje dane fundamentalne do cache."""
+    try:
+        CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        p = _cache_path(symbol)
+        # Nie zapisujemy pola _from_cache do pliku
+        to_save = {k: v for k, v in data.items() if k != "_from_cache"}
+        p.write_text(json.dumps(to_save, ensure_ascii=False, default=str),
+                     encoding="utf-8")
+    except Exception:
+        pass   # cache nieobowiązkowy – nie przerywamy działania
 
 # ══════════════════════════════════════════════════════════════
 #  WYCKOFF – DETEKCJA AKUMULACJI I DYSTRYBUCJI
@@ -96,14 +168,16 @@ def _w_find_tr(df, sc, ar, min_bars=6):
             "range_pct": rng/sup*100, "bars_in_range": len(in_r)}
 
 def _w_find_spring(df, sc, ar, vol_avg):
-    ar_pos  = df.index.get_loc(ar["idx"])
-    sc_pos  = df.index.get_loc(sc["idx"])
-    search  = df.iloc[ar_pos+1 : min(sc_pos+61, len(df))]
-    sup     = sc["close"]
+    # FIX 1 – SC zawsze poprzedza AR (sc_pos < ar_pos), więc
+    # min(sc_pos+61, len(df)) dawało okno KRÓTSZE niż ar_pos+1 → pusty search.
+    # Poprawka: okno zaczyna się za AR i sięga 60 świec do przodu.
+    ar_pos = df.index.get_loc(ar["idx"])
+    search = df.iloc[ar_pos+1 : min(ar_pos+61, len(df))]
+    sup    = sc["close"]
     for idx, row in search.iterrows():
         if row["Low"] < sup*0.992 and row["Close"] > sup*0.994:
             vv  = vol_avg.loc[idx]
-            vr  = row["Volume"]/vv if vv > 0 else 1.0
+            vr  = row["Volume"] / vv if vv > 0 else 1.0
             return {"idx": idx, "low": float(row["Low"]),
                     "close": float(row["Close"]),
                     "vol_ratio": float(vr),
@@ -501,20 +575,21 @@ def phase1_weekly_signals(ticker_market_list):
                 except Exception:
                     pass
 
+                # FIX 3 – poprawny wzór O'Neil Relative Strength:
+                # rs_12m = (1+zwrot_spółki) / (1+zwrot_indeksu)
+                # Wartość >1.10 = spółka pobiła indeks o ≥10% w 12M
                 rs_12m = None
                 try:
                     cl = df["Close"].dropna()
                     if len(cl) >= 53:
-                        sr = float(cl.iloc[-1])/float(cl.iloc[-53]) - 1
+                        sr = float(cl.iloc[-1]) / float(cl.iloc[-53]) - 1
                         ir = index_returns.get(market_map[ticker])
                         if ir is not None and ir != -1:
-                            rs_12m = round(sr / (1 + ir), 4)
+                            rs_12m = round((1 + sr) / (1 + ir), 4)
                 except Exception:
                     pass
 
-                # ── WYCKOFF: obliczamy tutaj, na gotowych danych W1 ──────────
                 wyk = wyckoff_score(df)
-                # ─────────────────────────────────────────────────────────────
 
                 signals[ticker] = {
                     "market":          market_map[ticker],
@@ -524,10 +599,10 @@ def phase1_weekly_signals(ticker_market_list):
                     "divergence_desc": div_desc,
                     "vol_confirm":     vol_confirm,
                     "rs_12m":          rs_12m,
-                    "wyckoff_score":   wyk["score"],       # 0–5
-                    "wyckoff_phase":   wyk["phase"],       # "–"/"A"/"B"/"C"/"D"
-                    "wyckoff_dist":    wyk["dist_warning"],# bool
-                    "wyckoff_dsig":    wyk["dist_signals"],# list[str]
+                    "wyckoff_score":   wyk["score"],
+                    "wyckoff_phase":   wyk["phase"],
+                    "wyckoff_dist":    wyk["dist_warning"],
+                    "wyckoff_dsig":    wyk["dist_signals"],
                 }
         except Exception:
             pass
@@ -539,11 +614,11 @@ def phase1_weekly_signals(ticker_market_list):
     w4 = sum(1 for v in signals.values() if v.get("wyckoff_score",0) >= 4)
     wd = sum(1 for v in signals.values() if v.get("wyckoff_dist"))
     print(f"      Sygnaly: {len(signals)} (Strong:{s} BUY:{b} Turn:{tu} "
-          f"VolOK:{vc} Wyckoff≥4:{w4} Dist!:{wd})")
+          f"VolOK:{vc} Wyckoff>=4:{w4} Dist!:{wd})")
     return signals
 
 # ══════════════════════════════════════════════════════════════
-#  FAZA 2 – Dane meta + fundamenty
+#  FAZA 2 – Dane meta + fundamenty  (z cache FIX 5)
 # ══════════════════════════════════════════════════════════════
 
 def _calc_roic(tkr):
@@ -635,7 +710,12 @@ def _calc_gross_margin(tkr):
         return round(gp/rev, 4)
     except Exception: return None
 
-def _collect_one(symbol, weekly_data):
+def _fetch_fundamentals(symbol: str) -> dict | None:
+    """
+    Pobiera surowe dane fundamentalne z Yahoo Finance dla jednego symbolu.
+    Zwraca dict gotowy do złożenia z danymi tygodniowymi lub None przy błędzie.
+    Nie zawiera pól z weekly_data – te są dokładane w _collect_one.
+    """
     try:
         tkr = yf.Ticker(symbol)
         fi  = tkr.fast_info
@@ -692,34 +772,64 @@ def _collect_one(symbol, weekly_data):
         debt_equity = _calc_debt_equity(tkr)
         gross_margin= _calc_gross_margin(tkr)
         return {
-            "ticker": symbol, "name": name,
-            "market": weekly_data["market"], "country": country, "sector": sector,
+            "ticker": symbol,
+            "name": name, "country": country, "sector": sector,
             "price": round(price,2) if price else None, "currency": currency,
             "high_52w": round(high_52w,2) if high_52w else None,
             "discount_52w": discount_pct,
             "market_cap_mln": round(cap/1e6,1),
             "volume_k": round(vol/1000,1),
-            "smi": weekly_data["smi"], "smi_ema": weekly_data["smi_ema"],
-            "zone": weekly_data["zone"], "signal": weekly_data["signal"],
-            "divergence_bull": weekly_data.get("divergence_bull", False),
-            "divergence_desc": weekly_data.get("divergence_desc", ""),
-            "vol_confirm": weekly_data.get("vol_confirm", False),
-            "rs_12m":      weekly_data.get("rs_12m", None),
-            "wyckoff_score": weekly_data.get("wyckoff_score", 0),
-            "wyckoff_phase": weekly_data.get("wyckoff_phase", "–"),
-            "wyckoff_dist":  weekly_data.get("wyckoff_dist",  False),
-            "wyckoff_dsig":  weekly_data.get("wyckoff_dsig",  []),
             "eps_ttm": eps_ttm, "sales_ttm_mln": sales, "quick_ratio": qr,
             "roic": roic, "debt_equity": debt_equity, "gross_margin": gross_margin,
             "scanned_at": datetime.now().isoformat(),
         }
-    except Exception: return None
+    except Exception:
+        return None
+
+def _collect_one(symbol: str, weekly_data: dict) -> dict | None:
+    """
+    Łączy dane fundamentalne (z cache lub świeżo pobrane) z danymi tygodniowymi.
+    FIX 5: fundamenty trafiają do cache na 24h – kolejne uruchomienia w tym oknie
+    pomijają wywołania do Yahoo Finance dla spółek bez zmiany sygnału.
+    """
+    # Próba odczytu z cache
+    cached = _load_cache(symbol)
+    if cached is not None:
+        fund = cached
+    else:
+        fund = _fetch_fundamentals(symbol)
+        if fund is None:
+            return None
+        _save_cache(symbol, fund)
+
+    # Scalamy fundamenty z danymi tygodniowymi (sygnał SMI + Wyckoff)
+    return {
+        **fund,
+        "market":        weekly_data["market"],
+        "smi":           weekly_data["smi"],
+        "smi_ema":       weekly_data["smi_ema"],
+        "zone":          weekly_data["zone"],
+        "signal":        weekly_data["signal"],
+        "divergence_bull": weekly_data.get("divergence_bull", False),
+        "divergence_desc": weekly_data.get("divergence_desc", ""),
+        "vol_confirm":   weekly_data.get("vol_confirm", False),
+        "rs_12m":        weekly_data.get("rs_12m", None),
+        "wyckoff_score": weekly_data.get("wyckoff_score", 0),
+        "wyckoff_phase": weekly_data.get("wyckoff_phase", "–"),
+        "wyckoff_dist":  weekly_data.get("wyckoff_dist",  False),
+        "wyckoff_dsig":  weekly_data.get("wyckoff_dsig",  []),
+    }
 
 def phase2_collect(weekly_signals):
     if not weekly_signals: return []
     candidates = list(weekly_signals.keys())
     print(f"\n[2/2] Meta + fundamenty -- {len(candidates)} tickerow "
           f"({FUNDAMENTALS_WORKERS} watkow)...")
+
+    # Statystyki cache
+    cache_hits = sum(1 for s in candidates if _load_cache(s) is not None)
+    print(f"      Cache: {cache_hits} trafien / {len(candidates)} tickerow")
+
     results = []
     with ThreadPoolExecutor(max_workers=FUNDAMENTALS_WORKERS) as pool:
         futures = {pool.submit(_collect_one, sym, weekly_signals[sym]): sym
@@ -734,49 +844,114 @@ def phase2_collect(weekly_signals):
     return results
 
 # ══════════════════════════════════════════════════════════════
-#  FILTRY
+#  FILTRY  (FIX 2 + FIX 6)
 # ══════════════════════════════════════════════════════════════
 
 def filter_main(r):
-    if r["signal"] not in ("Strong BUY", "Turning Up"): return False
+    """
+    Filtr screener głównego. Zasada: brak danych = odrzucenie.
+    Wcześniej None przepuszczało każdy warunek – było to źródłem fałszywych
+    trafień (spółki bez danych EPS lub QR lądowały na liście).
+
+    FIX 2: wszystkie kluczowe wskaźniki muszą być dostępne i spełniać próg.
+    FIX 6: eps <= 0 odrzucany (break-even = brak zysku).
+    """
+    if r["signal"] not in ("Strong BUY", "Turning Up"):
+        return False
+
+    # Cena – opcjonalna górna granica
     price = r.get("price")
-    if price is not None and price > MAX_PRICE: return False
-    if r.get("eps_ttm") is not None and r["eps_ttm"] < 0: return False
-    if r.get("quick_ratio") is not None and r["quick_ratio"] < MIN_QUICK: return False
+    if price is not None and price > MAX_PRICE:
+        return False
+
+    # FIX 2 + FIX 6 – EPS: wymagane, musi być dodatnie (>0, nie >=0)
+    eps = r.get("eps_ttm")
+    if eps is None or eps <= 0:
+        return False
+
+    # FIX 2 – Quick Ratio: wymagane, musi spełniać próg
+    qr = r.get("quick_ratio")
+    if qr is None or qr < MIN_QUICK:
+        return False
+
+    # Dyskonto: wymagane, musi spełniać próg
     disc = r.get("discount_52w")
-    if disc is not None and disc < MIN_DISCOUNT_52W * 100: return False
+    if disc is None or disc < MIN_DISCOUNT_52W * 100:
+        return False
+
+    # FIX 2 – ROIC: wymagane, musi spełniać próg
     roic = r.get("roic")
-    if roic is not None and roic < MIN_ROIC: return False
+    if roic is None or roic < MIN_ROIC:
+        return False
+
+    # FIX 2 – Debt/Equity: wymagane, musi być poniżej progu
     de = r.get("debt_equity")
-    if de is not None and de > MAX_DEBT_EQUITY: return False
+    if de is None or de > MAX_DEBT_EQUITY:
+        return False
+
+    # FIX 2 – Gross Margin: wymagane, musi spełniać próg
     gm = r.get("gross_margin")
-    if gm is not None and gm < MIN_GROSS_MARGIN: return False
+    if gm is None or gm < MIN_GROSS_MARGIN:
+        return False
+
     return True
 
 # ══════════════════════════════════════════════════════════════
-#  SCORING TECHNICZNY
+#  SCORING TECHNICZNY  (FIX 4 – ważony)
 # ══════════════════════════════════════════════════════════════
 
-def calc_tech_score(sig):
+def calc_tech_score(sig: dict) -> int:
+    """
+    Ważony scoring techniczny oparty na SCORE_WEIGHTS.
+    FIX 4:
+      – Każdy składnik ma wagę proporcjonalną do wartości predykcyjnej.
+      – Kara wyckoff_dist podniesiona z -1 do -3 (dystrybucja = silny negatyw).
+      – Max nadal klipowany do 12 dla wstecznej kompatybilności wyświetlania.
+    """
     score = 0
-    sig_type = sig.get("signal","")
-    if sig_type == "Strong BUY": score += 3
-    elif sig_type == "BUY":      score += 1
-    zone = sig.get("zone","")
-    if zone == "OVERSOLD":  score += 2
-    elif zone == "Bearish": score += 1
-    if sig.get("divergence_bull"): score += 2
-    if (sig.get("eps_ttm") or 0) > 0: score += 1
-    if (sig.get("quick_ratio") or 0) >= 1.0: score += 1
+    W = SCORE_WEIGHTS
+
+    # Sygnał bazowy
+    sig_type = sig.get("signal", "")
+    if sig_type == "Strong BUY":
+        score += W["strong_buy"]
+    elif sig_type == "BUY":
+        score += W["buy"]
+
+    # Strefa SMI
+    zone = sig.get("zone", "")
+    if zone == "OVERSOLD":
+        score += W["oversold"]
+    elif zone == "Bearish":
+        score += W["bearish"]
+
+    # Potwierdzenia jakościowe
+    if sig.get("divergence_bull"):
+        score += W["divergence"]
+    if sig.get("vol_confirm"):
+        score += W["vol_confirm"]
+
+    # Fundamenty
+    if (sig.get("eps_ttm") or 0) > 0:
+        score += W["eps_positive"]
+    if (sig.get("quick_ratio") or 0) >= MIN_QUICK:
+        score += W["qr_ok"]
     roic = sig.get("roic")
-    if roic is not None and roic >= MIN_ROIC: score += 1
-    if sig.get("vol_confirm"): score += 1
+    if roic is not None and roic >= MIN_ROIC:
+        score += W["roic"]
+
+    # O'Neil RS
     rs = sig.get("rs_12m")
-    if rs is not None and rs >= RS_MIN_OUTPERFORM: score += 1
-    # Wyckoff: bonus +1 za score≥4 (Spring/SOS), -1 za dist_warning
+    if rs is not None and rs >= RS_MIN_OUTPERFORM:
+        score += W["rs_outperform"]
+
+    # Wyckoff
     wyk = sig.get("wyckoff_score", 0)
-    if wyk >= 4 and not sig.get("wyckoff_dist"): score += 1
-    if sig.get("wyckoff_dist"): score -= 1
+    if wyk >= 4 and not sig.get("wyckoff_dist"):
+        score += W["wyckoff_high"]
+    if sig.get("wyckoff_dist"):
+        score += W["wyckoff_dist"]   # wartość ujemna (-3)
+
     return max(0, min(score, 12))
 
 # ══════════════════════════════════════════════════════════════
@@ -920,7 +1095,6 @@ def _div_badge(has_div, desc=""):
     return f'<span class="badge-div" title="{desc or "Dywergencja bycza"}">DIV</span>'
 
 def _wyk_badge(score, dist):
-    """Badge Wyckoffa do kart i tabeli."""
     if dist:
         return '<span class="badge-wyk-dist" title="Sygnał dystrybucji Wyckoffa">W:⚠Dist</span>'
     if score >= 4:
@@ -1126,11 +1300,11 @@ def generate_html_main(meta, results):
     <ul>
       <li>Sygnal: <strong>Strong BUY</strong> lub <strong>Turning Up</strong></li>
       <li>Discount &ge; <strong>{int(MIN_DISCOUNT_52W*100)}%</strong> vs 52W High</li>
-      <li>EPS TTM &gt; <strong>0</strong></li>
-      <li>Quick Ratio &ge; <strong>{MIN_QUICK}</strong></li>
-      <li>ROIC &gt; <strong>{int(MIN_ROIC*100)}%</strong></li>
-      <li>Debt/Equity &lt; <strong>{MAX_DEBT_EQUITY}</strong></li>
-      <li>Gross Margin &gt; <strong>{int(MIN_GROSS_MARGIN*100)}%</strong></li>
+      <li>EPS TTM &gt; <strong>0</strong> (wymagane)</li>
+      <li>Quick Ratio &ge; <strong>{MIN_QUICK}</strong> (wymagane)</li>
+      <li>ROIC &gt; <strong>{int(MIN_ROIC*100)}%</strong> (wymagane)</li>
+      <li>Debt/Equity &lt; <strong>{MAX_DEBT_EQUITY}</strong> (wymagane)</li>
+      <li>Gross Margin &gt; <strong>{int(MIN_GROSS_MARGIN*100)}%</strong> (wymagane)</li>
       <li>Cap &gt; <strong>{MIN_MARKET_CAP//1_000_000}M</strong> | Vol &gt; <strong>{MIN_VOLUME:,}</strong></li>
       <li>Wyckoff W1: informacyjnie (badge W:Spring/SOS/&#9888;Dist)</li>
     </ul>
@@ -1450,6 +1624,7 @@ def run_screener():
     print("="*60)
     print(f"SCREENER START: {t0.strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"SMI({SMI_LEN_K},{SMI_LEN_D},{SMI_LEN_EMA}) | Wyckoff W1 (akumulacja + dystrybucja)")
+    print(f"Cache fundamentow: {CACHE_DIR}  (TTL {CACHE_TTL_H}h)")
     print("="*60)
 
     print("\n[Tickery] Pobieranie list spolek...")
@@ -1461,7 +1636,7 @@ def run_screener():
     print("\n[Market Direction] Sprawdzanie trendu rynkowego...")
     market_dir = check_market_direction()
     if not market_dir["USA"] and not market_dir["EU"]:
-        print("  ⚠  Oba rynki ponizej SMA50W — sygnaly SMI maja nizsza wiarygodnosc!")
+        print("  Oba rynki ponizej SMA50W — sygnaly SMI maja nizsza wiarygodnosc!")
 
     weekly_signals = phase1_weekly_signals(ticker_market)
     all_data       = phase2_collect(weekly_signals)
