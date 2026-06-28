@@ -694,6 +694,77 @@ def _calc_debt_equity(tkr):
         return round(debt/equity, 3)
     except Exception: return None
 
+def _calc_eps_growth(tkr):
+    """
+    Oblicza dynamikę EPS z danych kwartalnych Yahoo Finance.
+    Zwraca dict z kluczami:
+      eps_q0      – EPS ostatniego kwartału
+      eps_q1      – EPS poprzedniego kwartału  (QoQ)
+      eps_q4      – EPS tego samego kwartału rok temu (YoY)
+      eps_qoq     – wzrost QoQ w % (None jeśli niemożliwy do obliczenia)
+      eps_yoy     – wzrost YoY w % (None jeśli niemożliwy do obliczenia)
+    Wszystkie wartości None gdy dane niedostępne.
+    """
+    empty = {"eps_q0": None, "eps_q1": None, "eps_q4": None,
+             "eps_qoq": None, "eps_yoy": None}
+    try:
+        qfin = tkr.quarterly_financials
+        if qfin is None or qfin.empty:
+            return empty
+
+        # Szukamy wiersza z EPS (diluted lub basic)
+        eps_row = None
+        for label in ["Diluted EPS", "Basic EPS",
+                      "Diluted Normalized EPS", "Basic Normalized EPS"]:
+            if label in qfin.index:
+                eps_row = qfin.loc[label].dropna()
+                break
+
+        # Fallback: Net Income / Diluted Average Shares
+        if eps_row is None or len(eps_row) < 2:
+            ni_row  = None
+            shr_row = None
+            for l in ["Net Income", "Net Income Common Stockholders"]:
+                if l in qfin.index:
+                    ni_row = qfin.loc[l].dropna(); break
+            for l in ["Diluted Average Shares", "Average Dilution Earnings"]:
+                if l in qfin.index:
+                    shr_row = qfin.loc[l].dropna(); break
+            if ni_row is not None and shr_row is not None and len(ni_row) >= 2:
+                common = ni_row.index.intersection(shr_row.index)
+                if len(common) >= 2:
+                    ni  = ni_row[common]
+                    shr = shr_row[common].replace(0, float("nan"))
+                    eps_row = (ni / shr).dropna()
+
+        if eps_row is None or len(eps_row) < 2:
+            return empty
+
+        # Kolumny są posortowane od najnowszego do najstarszego
+        eps_row = eps_row.sort_index(ascending=False)
+        vals    = [float(v) for v in eps_row.values]
+
+        q0 = vals[0] if len(vals) > 0 else None   # ostatni kwartał
+        q1 = vals[1] if len(vals) > 1 else None   # poprzedni kwartał
+        q4 = vals[4] if len(vals) > 4 else None   # ten sam kwartał rok temu
+
+        def _pct(new, old):
+            if new is None or old is None: return None
+            if old == 0:
+                return None   # dzielenie przez 0 – brak sensu
+            return round((new - old) / abs(old) * 100, 1)
+
+        return {
+            "eps_q0":  round(q0, 4) if q0 is not None else None,
+            "eps_q1":  round(q1, 4) if q1 is not None else None,
+            "eps_q4":  round(q4, 4) if q4 is not None else None,
+            "eps_qoq": _pct(q0, q1),
+            "eps_yoy": _pct(q0, q4),
+        }
+    except Exception:
+        return empty
+
+
 def _calc_gross_margin(tkr):
     try:
         fin = tkr.financials
@@ -771,6 +842,7 @@ def _fetch_fundamentals(symbol: str) -> dict | None:
         roic        = _calc_roic(tkr)
         debt_equity = _calc_debt_equity(tkr)
         gross_margin= _calc_gross_margin(tkr)
+        eps_growth  = _calc_eps_growth(tkr)
         return {
             "ticker": symbol,
             "name": name, "country": country, "sector": sector,
@@ -781,6 +853,11 @@ def _fetch_fundamentals(symbol: str) -> dict | None:
             "volume_k": round(vol/1000,1),
             "eps_ttm": eps_ttm, "sales_ttm_mln": sales, "quick_ratio": qr,
             "roic": roic, "debt_equity": debt_equity, "gross_margin": gross_margin,
+            "eps_q0":  eps_growth["eps_q0"],
+            "eps_q1":  eps_growth["eps_q1"],
+            "eps_q4":  eps_growth["eps_q4"],
+            "eps_qoq": eps_growth["eps_qoq"],
+            "eps_yoy": eps_growth["eps_yoy"],
             "scanned_at": datetime.now().isoformat(),
         }
     except Exception:
@@ -1106,6 +1183,48 @@ def _color_ok(val, ok):
     if val is None: return "#888"
     return "#3ecf8e" if ok else "#ff4560"
 
+def _eps_growth_rows(r):
+    """
+    Generuje 1–2 wiersze sc-row z dynamiką EPS do kart HTML.
+    Wyświetla QoQ i YoY z kolorowaniem: zielony ≥0%, czerwony <0%.
+    """
+    qoq = r.get("eps_qoq")
+    yoy = r.get("eps_yoy")
+    if qoq is None and yoy is None:
+        return ""
+
+    def _fmt(val):
+        if val is None:
+            return '<span style="color:#555d7a">--</span>'
+        color = "#3ecf8e" if val >= 0 else "#ff4560"
+        sign  = "+" if val > 0 else ""
+        return f'<span style="color:{color};font-weight:600">{sign}{val}%</span>'
+
+    rows = ""
+    if qoq is not None:
+        rows += (f'<div class="sc-row"><span>EPS QoQ</span>{_fmt(qoq)}</div>')
+    if yoy is not None:
+        rows += (f'<div class="sc-row"><span>EPS YoY</span>{_fmt(yoy)}</div>')
+    return rows
+
+
+def _eps_growth_cells(r):
+    """
+    Generuje dwie komórki <td> z dynamiką EPS do tabeli HTML.
+    """
+    qoq = r.get("eps_qoq")
+    yoy = r.get("eps_yoy")
+
+    def _td(val):
+        if val is None:
+            return '<td class="num" style="color:#555d7a">--</td>'
+        color = "#3ecf8e" if val >= 0 else "#ff4560"
+        sign  = "+" if val > 0 else ""
+        return f'<td class="num" style="color:{color};font-weight:600">{sign}{val}%</td>'
+
+    return _td(qoq) + _td(yoy)
+
+
 def render_cards(data, show_quality=False):
     if not data:
         return "<div class='empty'>Brak sygnalow</div>"
@@ -1188,6 +1307,7 @@ def render_cards(data, show_quality=False):
             f'<div class="sc-row"><span>EPS TTM</span>'
             f'<span style="color:{_color_ok(r.get("eps_ttm"), (r.get("eps_ttm") or 0) > 0)}">'
             f'{na(r.get("eps_ttm"))}</span></div>'
+            f'{_eps_growth_rows(r)}'
             f'<div class="sc-row"><span>Sales TTM</span>'
             f'<span>{na(r.get("sales_ttm_mln"))} M</span></div>'
             f'<div class="sc-row"><span>Quick Ratio</span>'
@@ -1258,6 +1378,7 @@ def render_table_rows(data, show_quality=False):
           <td class="num">{r['smi_ema']}</td>
           <td>{_zone_badge(r['zone'])}</td>
           <td class="num" style="color:{eps_c}">{na(eps)}</td>
+          {_eps_growth_cells(r)}
           <td class="num">{na(r.get('sales_ttm_mln'))} M</td>
           <td class="num" style="color:{qr_c}">{na(qr)}</td>
           <td class="num" style="background:{wyk_bg};color:{wyk_fc};font-weight:600;text-align:center">{wyk_label}</td>
@@ -1332,7 +1453,7 @@ def generate_html_main(meta, results):
         <th class="num">Cena</th><th class="num">Discount</th>
         <th class="num">Cap</th><th class="num">Vol</th>
         <th class="num">SMI W</th><th class="num">EMA W</th><th>Strefa</th>
-        <th class="num">EPS</th><th class="num">Sales</th><th class="num">QR</th>
+        <th class="num">EPS</th><th class="num">QoQ</th><th class="num">YoY</th><th class="num">Sales</th><th class="num">QR</th>
         <th class="num">Wyckoff</th>
         <th class="num">ROIC</th><th class="num">D/E</th><th class="num">GM</th>
         <th class="num">Vol.W</th><th class="num">RS 12M</th>
@@ -1408,7 +1529,7 @@ def generate_html_full(meta, results):
         <th class="num">Cena</th><th class="num">Discount</th>
         <th class="num">Cap</th><th class="num">Vol</th>
         <th class="num">SMI W</th><th class="num">EMA W</th><th>Strefa</th>
-        <th class="num">EPS*</th><th class="num">Sales</th><th class="num">QR*</th>
+        <th class="num">EPS*</th><th class="num">QoQ*</th><th class="num">YoY*</th><th class="num">Sales</th><th class="num">QR*</th>
         <th class="num">Wyckoff</th>
       </tr></thead>
       <tbody>{render_table_rows(results, show_quality=False)}</tbody>
