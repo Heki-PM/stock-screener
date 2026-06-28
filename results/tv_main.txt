@@ -1,24 +1,19 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-28 07:41 UTC
-### Liczba tickerow: 18
+### Wygenerowano: 2026-06-28 08:03 UTC
+### Liczba tickerow: 13
 ###
-### ── Strong BUY (11) ──
-VITL  ### Strong BUY | -78.9% | W:A+AR | --
-GSHD  ### Strong BUY | -56.1% | W:Spring | --
-NMRA  ### Strong BUY | -55.1% | W:⚠ Dist | --
-LULU  ### Strong BUY | -53.4% | W:⚠ Dist | --
-KROS  ### Strong BUY | -51.3% | W:⚠ Dist | --
-SMRT  ### Strong BUY | -44.5% | W:A+AR | --
-VTEX  ### Strong BUY | -40.8% | W:A+AR | --
-CRNX  ### Strong BUY | -36.7% | W:SOS | --
-HDB  ### Strong BUY | -35.3% | W:– | --
-XETR:BEI  ### Strong BUY | -33.2% | W:SC | --
-FDP  ### Strong BUY | -33.0% | W:SC | --
-### ── Turning Up (7) ──
-BMBL  ### Turning Up | -64.8% | W:– | --
-PRIM  ### Turning Up | -54.7% | W:⚠ Dist | --
-AORT  ### Turning Up | -51.1% | W:SC | --
-PDD  ### Turning Up | -45.1% | W:– | --
-LCII  ### Turning Up | -40.0% | W:A+AR | --
-CPRT  ### Turning Up | -39.0% | W:– | --
-YELP  ### Turning Up | -33.3% | W:– | --
+### ── Strong BUY (8) ──
+EMBC  ### Strong BUY | -77.6% | W:A+AR | Healthcare
+KMPR  ### Strong BUY | -58.7% | W:A+AR | Financial Services
+GSHD  ### Strong BUY | -56.1% | W:Spring | Financial Services
+LULU  ### Strong BUY | -53.4% | W:A+AR | Consumer Cyclical
+PYPL  ### Strong BUY | -44.3% | W:– | Financial Services
+ITRI  ### Strong BUY | -40.9% | W:– | Technology
+NU  ### Strong BUY | -30.6% | W:– | Financial Services
+JKHY  ### Strong BUY | -30.2% | W:SC | Technology
+### ── Turning Up (5) ──
+PDD  ### Turning Up | -45.1% | W:– | Consumer Cyclical
+YALA  ### Turning Up | -40.8% | W:Spring | Technology
+CPRT  ### Turning Up | -39.0% | W:– | Industrials
+YELP  ### Turning Up | -33.3% | W:– | Communication Services
+TSLX  ### Turning Up | -32.9% | W:Spring | Financial Services
