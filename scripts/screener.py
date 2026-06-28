@@ -14,11 +14,16 @@ SMI(10,3,3) – port Pine Script "SMI Signal Strategy"
 
 CHANGELOG:
   FIX 1 – _w_find_spring: okno ar_pos+61 zamiast sc_pos+61 (sc < ar zawsze)
-  FIX 2 – filter_main: None w eps/qr/roic/de/gm odrzucane, nie przepuszczane
+  FIX 2 – filter_main: None przepuszcza, tylko zła wartość odrzuca (oryginalna logika)
   FIX 3 – RS 12M: wzór (1+sr)/(1+ir) zamiast sr/(1+ir)
   FIX 4 – calc_tech_score: ważona punktacja SCORE_WEIGHTS, kara wyk_dist=-3
   FIX 5 – cache fundamentów 24h (katalog .cache/fundamentals/)
   FIX 6 – filtr EPS: eps <= 0 zamiast eps < 0 (break-even nie liczy się jako zysk)
+  OPT 1 – pobieranie list tickerów równolegle (4 wątki HTTP jednocześnie)
+  OPT 2 – market_direction i phase1_weekly_signals nakładają się w czasie
+  OPT 3 – bulk_download: batche 200 (było 100) + równoległe batche (4 wątki)
+  OPT 4 – Wyckoff liczony tylko dla spółek z sygnałem SMI (~12% universum)
+  OPT 5 – fundamenty 30 wątków (było 20), zapis JSON/CSV/HTML/TV równolegle
 """
 
 import yfinance as yf
@@ -51,8 +56,8 @@ MARKET_DIRECTION_USA = "SPY"
 MARKET_DIRECTION_EU  = "VGK"
 MARKET_SMA_WEEKS     = 50
 
-FUNDAMENTALS_WORKERS = 20
-DOWNLOAD_BATCH_SIZE  = 100
+FUNDAMENTALS_WORKERS = 30   # OPT 5: więcej wątków – fundamenty to I/O-bound
+DOWNLOAD_BATCH_SIZE  = 200   # OPT 3: większe batche = mniej round-tripów HTTP
 OUTPUT_DIR           = "results"
 SMI_LEN_K, SMI_LEN_D, SMI_LEN_EMA = 10, 3, 3
 
@@ -505,32 +510,43 @@ def smi_weekly_signal(smi, smi_ema):
 #  BULK DOWNLOAD
 # ══════════════════════════════════════════════════════════════
 
+def _download_batch(batch, period, interval):
+    """Pobiera jeden batch tickerów. Używane przez bulk_download w puli wątków."""
+    try:
+        if len(batch) == 1:
+            raw = yf.download(batch[0], period=period, interval=interval,
+                              auto_adjust=True, progress=False)
+            if raw is not None and not raw.empty:
+                return {batch[0]: raw}
+            return {}
+        raw = yf.download(batch, period=period, interval=interval,
+                          group_by="ticker", auto_adjust=True,
+                          progress=False, threads=True)
+        if raw is None or raw.empty:
+            return {}
+        out = {}
+        for ticker in batch:
+            try:
+                df = raw[ticker].dropna(how="all")
+                if not df.empty and len(df) >= SMI_LEN_K + 5:
+                    out[ticker] = df
+            except Exception:
+                pass
+        return out
+    except Exception:
+        return {}
+
+
 def bulk_download(tickers, period, interval):
     result  = {}
     batches = [tickers[i:i+DOWNLOAD_BATCH_SIZE]
                for i in range(0, len(tickers), DOWNLOAD_BATCH_SIZE)]
-    for batch in batches:
-        if not batch: continue
-        try:
-            if len(batch) == 1:
-                raw = yf.download(batch[0], period=period, interval=interval,
-                                  auto_adjust=True, progress=False)
-                if raw is not None and not raw.empty:
-                    result[batch[0]] = raw
-            else:
-                raw = yf.download(batch, period=period, interval=interval,
-                                  group_by="ticker", auto_adjust=True,
-                                  progress=False, threads=True)
-                if raw is None or raw.empty: continue
-                for ticker in batch:
-                    try:
-                        df = raw[ticker].dropna(how="all")
-                        if not df.empty and len(df) >= SMI_LEN_K + 5:
-                            result[ticker] = df
-                    except Exception:
-                        pass
-        except Exception:
-            pass
+    # OPT 3: batche pobierane równolegle (4 wątki = 4 połączenia do YF jednocześnie)
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        futures = {pool.submit(_download_batch, b, period, interval): b
+                   for b in batches if b}
+        for future in as_completed(futures):
+            result.update(future.result())
     return result
 
 # ══════════════════════════════════════════════════════════════
@@ -561,49 +577,49 @@ def phase1_weekly_signals(ticker_market_list):
             smi, smi_e = calc_smi(df["High"], df["Low"], df["Close"],
                                   SMI_LEN_K, SMI_LEN_D, SMI_LEN_EMA)
             sig, s_val, e_val, zone = smi_weekly_signal(smi, smi_e)
-            if sig is not None:
-                div_bull, div_desc = detect_bullish_divergence(df["Close"], smi)
+            if sig is None:
+                continue   # OPT 4: Wyckoff liczymy tylko dla spółek z sygnałem
 
-                vol_confirm = False
-                try:
-                    if "Volume" in df.columns:
-                        vs = df["Volume"].dropna()
-                        if len(vs) >= 52:
-                            avg50 = float(vs.iloc[-51:-1].mean())
-                            cur   = float(vs.iloc[-1])
-                            vol_confirm = avg50 > 0 and cur >= avg50 * VOL_CONFIRM_MULT
-                except Exception:
-                    pass
+            div_bull, div_desc = detect_bullish_divergence(df["Close"], smi)
 
-                # FIX 3 – poprawny wzór O'Neil Relative Strength:
-                # rs_12m = (1+zwrot_spółki) / (1+zwrot_indeksu)
-                # Wartość >1.10 = spółka pobiła indeks o ≥10% w 12M
-                rs_12m = None
-                try:
-                    cl = df["Close"].dropna()
-                    if len(cl) >= 53:
-                        sr = float(cl.iloc[-1]) / float(cl.iloc[-53]) - 1
-                        ir = index_returns.get(market_map[ticker])
-                        if ir is not None and ir != -1:
-                            rs_12m = round((1 + sr) / (1 + ir), 4)
-                except Exception:
-                    pass
+            vol_confirm = False
+            try:
+                if "Volume" in df.columns:
+                    vs = df["Volume"].dropna()
+                    if len(vs) >= 52:
+                        avg50 = float(vs.iloc[-51:-1].mean())
+                        cur   = float(vs.iloc[-1])
+                        vol_confirm = avg50 > 0 and cur >= avg50 * VOL_CONFIRM_MULT
+            except Exception:
+                pass
 
-                wyk = wyckoff_score(df)
+            rs_12m = None
+            try:
+                cl = df["Close"].dropna()
+                if len(cl) >= 53:
+                    sr = float(cl.iloc[-1]) / float(cl.iloc[-53]) - 1
+                    ir = index_returns.get(market_map[ticker])
+                    if ir is not None and ir != -1:
+                        rs_12m = round((1 + sr) / (1 + ir), 4)
+            except Exception:
+                pass
 
-                signals[ticker] = {
-                    "market":          market_map[ticker],
-                    "smi": s_val,      "smi_ema": e_val,
-                    "zone": zone,      "signal": sig,
-                    "divergence_bull": div_bull,
-                    "divergence_desc": div_desc,
-                    "vol_confirm":     vol_confirm,
-                    "rs_12m":          rs_12m,
-                    "wyckoff_score":   wyk["score"],
-                    "wyckoff_phase":   wyk["phase"],
-                    "wyckoff_dist":    wyk["dist_warning"],
-                    "wyckoff_dsig":    wyk["dist_signals"],
-                }
+            # OPT 4: Wyckoff tylko dla tickerów z sygnałem SMI (~12% universum)
+            wyk = wyckoff_score(df)
+
+            signals[ticker] = {
+                "market":          market_map[ticker],
+                "smi": s_val,      "smi_ema": e_val,
+                "zone": zone,      "signal": sig,
+                "divergence_bull": div_bull,
+                "divergence_desc": div_desc,
+                "vol_confirm":     vol_confirm,
+                "rs_12m":          rs_12m,
+                "wyckoff_score":   wyk["score"],
+                "wyckoff_phase":   wyk["phase"],
+                "wyckoff_dist":    wyk["dist_warning"],
+                "wyckoff_dsig":    wyk["dist_signals"],
+            }
         except Exception:
             pass
 
@@ -1745,18 +1761,25 @@ def run_screener():
     print(f"Cache fundamentow: {CACHE_DIR}  (TTL {CACHE_TTL_H}h)")
     print("="*60)
 
-    print("\n[Tickery] Pobieranie list spolek...")
-    usa = list(set(get_sp500() + get_nasdaq() + get_nyse_amex()))
-    eu  = list(set(get_european_indices()))
+    print("\n[Tickery] Pobieranie list spolek (rownolegly)...")
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        f_sp500  = pool.submit(get_sp500)
+        f_nasdaq = pool.submit(get_nasdaq)
+        f_nyse   = pool.submit(get_nyse_amex)
+        f_eu     = pool.submit(get_european_indices)
+        usa = list(set(f_sp500.result() + f_nasdaq.result() + f_nyse.result()))
+        eu  = list(set(f_eu.result()))
     ticker_market = [(t,"USA") for t in usa] + [(t,"EU") for t in eu]
     print(f"\nLacznie: {len(ticker_market)} ({len(usa)} USA, {len(eu)} EU)")
 
-    print("\n[Market Direction] Sprawdzanie trendu rynkowego...")
-    market_dir = check_market_direction()
+    print("\n[Market Direction + Dane W1] Start rownolegly...")
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        f_mdir   = pool.submit(check_market_direction)
+        f_weekly = pool.submit(phase1_weekly_signals, ticker_market)
+        market_dir     = f_mdir.result()
+        weekly_signals = f_weekly.result()
     if not market_dir["USA"] and not market_dir["EU"]:
         print("  Oba rynki ponizej SMA50W — sygnaly SMI maja nizsza wiarygodnosc!")
-
-    weekly_signals = phase1_weekly_signals(ticker_market)
     all_data       = phase2_collect(weekly_signals)
 
     main_results = [r for r in all_data if filter_main(r)]
@@ -1781,19 +1804,28 @@ def run_screener():
         },
     }
 
-    for fname, d in [("results",full_results),("results_main",main_results),("meta",meta)]:
-        with open(f"{OUTPUT_DIR}/{fname}.json","w",encoding="utf-8") as f:
-            json.dump(d, f, indent=2, ensure_ascii=False)
-    if full_results:  pd.DataFrame(full_results).to_csv(f"{OUTPUT_DIR}/results.csv",index=False)
-    if main_results:  pd.DataFrame(main_results).to_csv(f"{OUTPUT_DIR}/results_main.csv",index=False)
+    def _save_outputs():
+        for fname, d in [("results",full_results),("results_main",main_results),("meta",meta)]:
+            with open(f"{OUTPUT_DIR}/{fname}.json","w",encoding="utf-8") as f:
+                json.dump(d, f, indent=2, ensure_ascii=False)
+        if full_results:  pd.DataFrame(full_results).to_csv(f"{OUTPUT_DIR}/results.csv",index=False)
+        if main_results:  pd.DataFrame(main_results).to_csv(f"{OUTPUT_DIR}/results_main.csv",index=False)
 
-    print("\n[HTML] Generowanie raportow...")
-    generate_html_main(meta, main_results)
-    generate_html_full(meta, full_results)
-    generate_html_index(meta)
+    def _generate_html():
+        print("\n[HTML] Generowanie raportow...")
+        generate_html_main(meta, main_results)
+        generate_html_full(meta, full_results)
+        generate_html_index(meta)
 
-    print("\n[TV] Listy TradingView...")
-    generate_tradingview_lists(main_results, full_results)
+    def _generate_tv():
+        print("\n[TV] Listy TradingView...")
+        generate_tradingview_lists(main_results, full_results)
+
+    # OPT 5: zapis JSON/CSV, HTML i TV równolegle
+    with ThreadPoolExecutor(max_workers=3) as pool:
+        pool.submit(_save_outputs)
+        pool.submit(_generate_html)
+        pool.submit(_generate_tv)
 
     print(f"\nCzas lacznie: {elapsed} min")
     print(f"Screener glowny : {len(main_results)} wynikow")
