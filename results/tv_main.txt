@@ -1,19 +1,26 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-28 08:03 UTC
-### Liczba tickerow: 13
+### Wygenerowano: 2026-06-29 15:00 UTC
+### Liczba tickerow: 20
 ###
-### ── Strong BUY (8) ──
-EMBC  ### Strong BUY | -77.6% | W:A+AR | Healthcare
-KMPR  ### Strong BUY | -58.7% | W:A+AR | Financial Services
-GSHD  ### Strong BUY | -56.1% | W:Spring | Financial Services
-LULU  ### Strong BUY | -53.4% | W:A+AR | Consumer Cyclical
-PYPL  ### Strong BUY | -44.3% | W:– | Financial Services
-ITRI  ### Strong BUY | -40.9% | W:– | Technology
-NU  ### Strong BUY | -30.6% | W:– | Financial Services
-JKHY  ### Strong BUY | -30.2% | W:SC | Technology
-### ── Turning Up (5) ──
-PDD  ### Turning Up | -45.1% | W:– | Consumer Cyclical
-YALA  ### Turning Up | -40.8% | W:Spring | Technology
-CPRT  ### Turning Up | -39.0% | W:– | Industrials
-YELP  ### Turning Up | -33.3% | W:– | Communication Services
-TSLX  ### Turning Up | -32.9% | W:Spring | Financial Services
+### ── Strong BUY (14) ──
+TTD  ### Strong BUY | -79.1% | W:A+AR | Communication Services
+UPWK  ### Strong BUY | -63.7% | W:A+AR | --
+EPAM  ### Strong BUY | -63.6% | W:– | --
+MNSO  ### Strong BUY | -55.0% | W:– | Consumer Cyclical
+QTWO  ### Strong BUY | -49.6% | W:A+AR | --
+MAZE  ### Strong BUY | -47.3% | W:⚠ Dist | --
+PFSI  ### Strong BUY | -46.4% | W:A+AR | --
+PDD  ### Strong BUY | -45.2% | W:– | Consumer Cyclical
+AGBK  ### Strong BUY | -40.3% | W:– | Financial Services
+YALA  ### Strong BUY | -40.1% | W:Spring | Technology
+BILL  ### Strong BUY | -36.8% | W:– | --
+ORIC  ### Strong BUY | -34.8% | W:A+AR | --
+EEFT  ### Strong BUY | -33.6% | W:SC | Technology
+YELP  ### Strong BUY | -31.7% | W:– | Communication Services
+### ── Turning Up (6) ──
+PEGA  ### Turning Up | -54.8% | W:SC | Technology
+GWRE  ### Turning Up | -54.5% | W:Spring | Technology
+NMAX  ### Turning Up | -51.1% | W:⚠ Dist | --
+GDRX  ### Turning Up | -50.7% | W:⚠ Dist | Healthcare
+FSCO  ### Turning Up | -35.8% | W:– | --
+RWT  ### Turning Up | -31.1% | W:Faza B | --
