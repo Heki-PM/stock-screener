@@ -1,12 +1,12 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-30 11:51 UTC
+### Wygenerowano: 2026-06-30 13:17 UTC
 ### Liczba tickerow: 6
 ###
 ### ── Strong BUY (3) ──
-UPWK  ### Strong BUY | -63.6% | W:A+AR | Communication Services
-AGBK  ### Strong BUY | -41.3% | W:– | Financial Services
-YALA  ### Strong BUY | -39.5% | W:Spring | Technology
+FUBO  ### Strong BUY | -83.3% | W:– | --
+PDD  ### Strong BUY | -45.1% | W:– | Consumer Cyclical
+RLX  ### Strong BUY | -33.8% | W:SC | Consumer Defensive
 ### ── Turning Up (3) ──
-MOMO  ### Turning Up | -36.9% | W:A+AR | --
+PD  ### Turning Up | -47.9% | W:SC | Technology
 FSCO  ### Turning Up | -35.6% | W:– | Financial Services
-IHRT  ### Turning Up | -31.6% | W:⚠ Dist | --
+JBS  ### Turning Up | -34.5% | W:– | --
