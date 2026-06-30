@@ -1527,6 +1527,14 @@ def render_cards(data, show_quality=False):
                 f'{wyk_row}'
             )
 
+        monthly_risk_html = ""
+        if r.get("m_risk_warning"):
+            monthly_risk_html = (
+                '<div style="margin:.5rem 0">'
+                + _monthly_risk_badge(r.get("m_risk_warning", False), r.get("m_zone", "--"))
+                + '</div>'
+            )
+
         cards += (
             f'<div class="signal-card">'
             f'<div style="position:absolute;top:0;left:0;right:0;height:3px;background:{tc}"></div>'
@@ -1540,7 +1548,7 @@ def render_cards(data, show_quality=False):
             f'</div>'
             f'<div class="sc-name">{r["name"]}</div></div>'
             f'<span class="badge-{mc}">{r["market"]}</span></div>'
-            f'{("<div style=\'margin:.5rem 0\'>" + _monthly_risk_badge(r.get("m_risk_warning", False), r.get("m_zone", "--")) + "</div>") if r.get("m_risk_warning") else ""}'
+            f'{monthly_risk_html}'
             f'<div class="sc-price">{na(r["price"])} {r["currency"]}</div>'
             f'<div class="sc-row"><span>Sygnal</span>'
             f'<span style="color:{sc};font-weight:600">{sl}</span></div>'
