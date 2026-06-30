@@ -24,6 +24,9 @@ CHANGELOG:
   OPT 3 – bulk_download: batche 200 (było 100) + równoległe batche (4 wątki)
   OPT 4 – Wyckoff liczony tylko dla spółek z sygnałem SMI (~12% universum)
   OPT 5 – fundamenty 30 wątków (było 20), zapis JSON/CSV/HTML/TV równolegle
+  D1 LEAD – pomiar wyprzedzenia SMI dziennego vs tygodniowego + sekcja Early Signal
+  MTF SCORE – Multi-TimeFrame Score 0-5 łączący D1+W1+Monthly (tylko finalna lista)
+  MONTHLY RISK – ostrzeżenie gdy SMI miesięczny przeczy sygnałowi W1 (Faza 3)
 """
 
 import yfinance as yf
@@ -82,6 +85,10 @@ SCORE_WEIGHTS = {
     "wyckoff_high":  2,   # Spring/SOS – silny sygnał akumulacji
     "wyckoff_dist": -3,   # dystrybucja – mocna kara (poprzednio -1)
 }
+
+# MTF (Multi-TimeFrame) Score – punkty 3/4: skala 0-5
+# Liczony tylko dla finalnej listy (po filter_main), bo wymaga danych Monthly.
+MTF_SCORE_MAX = 5
 
 # ══════════════════════════════════════════════════════════════
 #  FIX 5 – CACHE FUNDAMENTÓW
@@ -578,9 +585,84 @@ def calc_d1_lead(df_daily, w1_signal_zone, lookback_days=60):
 
     return out
 
-# ══════════════════════════════════════════════════════════════
-#  BULK DOWNLOAD
-# ══════════════════════════════════════════════════════════════
+
+def calc_monthly_zone(df_monthly):
+    """
+    Liczy SMI(10,3,3) na danych miesięcznych i zwraca strefę + czy trend
+    jest zgodny z kierunkiem byczym (SMI >= EMA, czyli momentum rosnące).
+    Monthly służy jako filtr głównego trendu – nie blokuje sygnałów,
+    tylko ostrzega gdy W1 sugeruje wejście wbrew trendowi nadrzędnemu.
+
+    Zwraca dict:
+      m_zone        – strefa SMI miesięcznego ("--" gdy brak danych)
+      m_bullish     – bool, SMI >= EMA na Monthly (momentum rosnące)
+      m_risk_warning– bool, Monthly wyraźnie Bearish mimo sygnału W1
+    """
+    out = {"m_zone": "--", "m_bullish": False, "m_risk_warning": False}
+    req = {"High", "Low", "Close"}
+    if df_monthly is None or len(df_monthly) < SMI_LEN_K + 4 or not req.issubset(df_monthly.columns):
+        return out
+    try:
+        smi_m, smi_m_ema = calc_smi(df_monthly["High"], df_monthly["Low"], df_monthly["Close"],
+                                     SMI_LEN_K, SMI_LEN_D, SMI_LEN_EMA)
+        if len(smi_m) < 2:
+            return out
+        s0 = float(smi_m.iloc[-1])
+        e0 = float(smi_m_ema.iloc[-1])
+        if np.isnan(s0) or np.isnan(e0):
+            return out
+        if   s0 >= 40:  out["m_zone"] = "OVERBOUGHT"
+        elif s0 <= -40: out["m_zone"] = "OVERSOLD"
+        elif s0 > 0:    out["m_zone"] = "Bullish"
+        else:           out["m_zone"] = "Bearish"
+        out["m_bullish"] = s0 >= e0
+        # Ryzyko: Monthly wyraźnie Bearish (SMI poniżej EMA i w strefie ujemnej)
+        out["m_risk_warning"] = (not out["m_bullish"]) and out["m_zone"] in ("Bearish", "OVERSOLD") and s0 < -10
+    except Exception:
+        pass
+    return out
+
+
+def calc_mtf_score(r):
+    """
+    Multi-TimeFrame Score (0-5) – łączy zgodność trendu D1, W1, Monthly
+    w jedną liczbę. Wymaga, by w `r` znajdowały się już pola:
+      smi, smi_ema (W1), d1_zone_now, d1_signal_now, m_zone, m_bullish.
+
+    Punktacja:
+      +1  SMI(D1) w strefie Bullish/OVERSOLD-wychodzącej (momentum dzienne rosnące)
+      +1  SMI(W1) >= EMA(W1)  (tydzień potwierdza kierunek)
+      +1  SMI(Monthly) >= EMA(Monthly)  (miesiąc potwierdza kierunek)
+      +1  bonus: strefa W1 == OVERSOLD (wejście z dyskontem, nie pościg)
+      +1  bonus: D1 i Monthly zgodne kierunkowo (oba bycze lub oba w OVERSOLD wychodzącym)
+    """
+    score = 0
+
+    d1_zone = r.get("d1_zone_now", "--")
+    d1_ok   = d1_zone in ("Bullish", "OVERSOLD")
+    if d1_ok:
+        score += 1
+
+    w1_smi  = r.get("smi")
+    w1_ema  = r.get("smi_ema")
+    w1_ok   = (w1_smi is not None and w1_ema is not None and w1_smi >= w1_ema)
+    if w1_ok:
+        score += 1
+
+    m_bullish = r.get("m_bullish", False)
+    if m_bullish:
+        score += 1
+
+    if r.get("zone") == "OVERSOLD":
+        score += 1
+
+    m_zone = r.get("m_zone", "--")
+    if d1_ok and m_zone in ("Bullish", "OVERSOLD"):
+        score += 1
+
+    return min(score, MTF_SCORE_MAX)
+
+
 
 def _download_batch(batch, period, interval):
     """Pobiera jeden batch tickerów. Używane przez bulk_download w puli wątków."""
@@ -1265,6 +1347,14 @@ COMMON_CSS = """
                      padding:.12rem .4rem;border-radius:3px;margin-left:.3rem}
   .badge-early      {background:#2e1a00;color:#ffb800;font-size:.68rem;font-weight:700;
                      padding:.15rem .5rem;border-radius:4px}
+  .badge-mtf-high   {background:#0a2e10;color:#3ecf8e;font-size:.68rem;font-weight:700;
+                     padding:.15rem .45rem;border-radius:3px;margin-left:.3rem}
+  .badge-mtf-mid    {background:#0d1a2e;color:#7c9ef0;font-size:.68rem;font-weight:700;
+                     padding:.15rem .45rem;border-radius:3px;margin-left:.3rem}
+  .badge-mtf-low    {background:#1a1505;color:#ffa040;font-size:.68rem;font-weight:700;
+                     padding:.15rem .45rem;border-radius:3px;margin-left:.3rem}
+  .badge-m-risk     {background:#3d0010;color:#ff4560;font-size:.7rem;font-weight:700;
+                     padding:.18rem .55rem;border-radius:4px;border:1px solid #ff456066}
   @media(max-width:900px){.page{padding:1rem} th,td{padding:.45rem .6rem}}
 """
 
@@ -1317,6 +1407,23 @@ def _d1_badge(days_ago, early):
     if days_ago > 0:
         return f'<span class="badge-d1-lead" title="Dni od crossover na D1">D1: -{days_ago}d</span>'
     return ""
+
+def _mtf_badge(score):
+    """Badge MTF Score (0-5) – zgodność trendu D1/W1/Monthly."""
+    if score is None:
+        return ""
+    cls = "badge-mtf-high" if score >= 4 else "badge-mtf-mid" if score >= 2 else "badge-mtf-low"
+    return f'<span class="{cls}" title="Multi-TimeFrame Score (D1+W1+Monthly)">MTF&#9670;{score}</span>'
+
+def _monthly_risk_badge(risk_warning, m_zone):
+    """
+    Ostrzeżenie wizualne gdy Monthly jest wyraźnie Bearish mimo sygnału W1.
+    Zwraca pusty string gdy brak ryzyka (żeby nie zaśmiecać kart bez powodu).
+    """
+    if not risk_warning:
+        return ""
+    return (f'<span class="badge-m-risk" title="SMI miesieczny w trendzie spadkowym - '
+            f'sygnal W1 moze byc przedwczesny">&#9888; Monthly {m_zone}</span>')
 
 def _color_ok(val, ok):
     if val is None: return "#888"
@@ -1429,9 +1536,11 @@ def render_cards(data, show_quality=False):
             f'{_div_badge(r.get("divergence_bull"),r.get("divergence_desc",""))}'
             f'{_wyk_badge(wyk_s, wyk_d)}'
             f'{_d1_badge(r.get("d1_last_cross_days_ago"), r.get("early_signal", False))}'
+            f'{_mtf_badge(r.get("mtf_score"))}'
             f'</div>'
             f'<div class="sc-name">{r["name"]}</div></div>'
             f'<span class="badge-{mc}">{r["market"]}</span></div>'
+            f'{("<div style=\'margin:.5rem 0\'>" + _monthly_risk_badge(r.get("m_risk_warning", False), r.get("m_zone", "--")) + "</div>") if r.get("m_risk_warning") else ""}'
             f'<div class="sc-price">{na(r["price"])} {r["currency"]}</div>'
             f'<div class="sc-row"><span>Sygnal</span>'
             f'<span style="color:{sc};font-weight:600">{sl}</span></div>'
@@ -1497,16 +1606,20 @@ def render_table_rows(data, show_quality=False):
             vc_c  ="#3ecf8e" if vc else "#555d7a"
             rs12_c=_color_ok(rs12,rs12 is not None and rs12>=RS_MIN_OUTPERFORM)
             rs12_s=f"{rs12:.2f}×" if rs12 is not None else "--"
+            m_zone = r.get("m_zone", "--")
+            m_risk = r.get("m_risk_warning", False)
+            m_c    = "#ff4560" if m_risk else "#3ecf8e" if r.get("m_bullish") else "#7c9ef0"
             quality_cols = (
                 f'<td class="num" style="color:{roic_c}">{fmt_pct(roic)}</td>'
                 f'<td class="num" style="color:{de_c}">{na(de)}</td>'
                 f'<td class="num" style="color:{gm_c}">{fmt_pct(gm)}</td>'
                 f'<td class="num" style="color:{vc_c}">{"✓" if vc else "–"}</td>'
                 f'<td class="num" style="color:{rs12_c}">{rs12_s}</td>'
+                f'<td class="num" style="color:{m_c};font-weight:600">{m_zone}{" ⚠" if m_risk else ""}</td>'
             )
 
         html += f"""<tr>
-          <td><span class="ticker">{r['ticker']}</span>{badge}{_score_badge(r.get('tech_score'))}{_div_badge(r.get('divergence_bull'),r.get('divergence_desc',''))}{_d1_badge(r.get('d1_last_cross_days_ago'), r.get('early_signal', False))}</td>
+          <td><span class="ticker">{r['ticker']}</span>{badge}{_score_badge(r.get('tech_score'))}{_div_badge(r.get('divergence_bull'),r.get('divergence_desc',''))}{_d1_badge(r.get('d1_last_cross_days_ago'), r.get('early_signal', False))}{_mtf_badge(r.get('mtf_score'))}</td>
           <td class="name-col">{r['name']}</td>
           <td><span class="badge-{'usa' if r['market']=='USA' else 'eu'}">{r['market']}</span></td>
           <td>{r['sector']}</td>
@@ -1569,6 +1682,8 @@ def generate_html_main(meta, results):
       <li>Cap &gt; <strong>{MIN_MARKET_CAP//1_000_000}M</strong> | Vol &gt; <strong>{MIN_VOLUME:,}</strong></li>
       <li>Wyckoff W1: informacyjnie (badge W:Spring/SOS/&#9888;Dist)</li>
       <li>D1 Lead: informacyjnie (badge &#9889;D1 wczesniej / D1:-Xd)</li>
+      <li>MTF Score: informacyjnie 0-5 (badge MTF&#9670;X, zgodnosc D1+W1+Monthly)</li>
+      <li>Monthly Risk: ostrzezenie gdy trend miesieczny przeczy sygnalowi W1</li>
     </ul>
   </div>
   <div class="stats-bar">
@@ -1578,6 +1693,8 @@ def generate_html_main(meta, results):
     <div class="stat"><div class="stat-val orange">{len(strong_res)}</div><div class="stat-label">Strong BUY</div></div>
     <div class="stat"><div class="stat-val purple">{len(turning_res)}</div><div class="stat-label">Turning Up</div></div>
     <div class="stat"><div class="stat-val" style="color:#ffb800">{len(early_res)}</div><div class="stat-label">Early Signal D1</div></div>
+    <div class="stat"><div class="stat-val green">{meta.get('mtf_high_count', 0)}</div><div class="stat-label">MTF Score&ge;4</div></div>
+    <div class="stat"><div class="stat-val" style="color:#ff4560">{meta.get('monthly_risk_count', 0)}</div><div class="stat-label">Monthly Risk</div></div>
   </div>
   <div class="section section-early">
     <div class="section-header"><span class="section-icon">&#9889;</span>
@@ -1610,7 +1727,7 @@ def generate_html_main(meta, results):
         <th class="num">EPS</th><th class="num">QoQ</th><th class="num">YoY</th><th class="num">Sales</th><th class="num">QR</th>
         <th class="num">Wyckoff</th>
         <th class="num">ROIC</th><th class="num">D/E</th><th class="num">GM</th>
-        <th class="num">Vol.W</th><th class="num">RS 12M</th>
+        <th class="num">Vol.W</th><th class="num">RS 12M</th><th class="num">Monthly</th>
       </tr></thead>
       <tbody>{render_table_rows(results, show_quality=True)}</tbody>
     </table></div>
@@ -1923,6 +2040,37 @@ def run_screener():
     main_results = [r for r in all_data if filter_main(r)]
     full_results = all_data
 
+    # ── FAZA 3: Monthly SMI + MTF Score (tylko dla finalnej listy main_results) ──
+    mtf_high_count = 0
+    monthly_risk_count = 0
+    if main_results:
+        print(f"\n[3/3] SMI miesieczny (Monthly) + MTF Score -- "
+              f"{len(main_results)} tickerow (finalna lista)...")
+        m_tickers = [r["ticker"] for r in main_results]
+        monthly_data = bulk_download(m_tickers, period="10y", interval="1mo")
+        print(f"      Pobrano Monthly: {len(monthly_data)}")
+
+        for r in main_results:
+            df_m = monthly_data.get(r["ticker"])
+            m_info = calc_monthly_zone(df_m)
+            r["m_zone"]         = m_info["m_zone"]
+            r["m_bullish"]      = m_info["m_bullish"]
+            r["m_risk_warning"] = m_info["m_risk_warning"]
+            r["mtf_score"]      = calc_mtf_score(r)
+            if r["mtf_score"] >= 4:
+                mtf_high_count += 1
+            if r["m_risk_warning"]:
+                monthly_risk_count += 1
+
+        print(f"      MTF Score>=4: {mtf_high_count} spolek | "
+              f"Monthly Risk Warning: {monthly_risk_count} spolek")
+    # full_results nie dostaje Monthly/MTF (informacyjne tylko na liście głównej)
+    for r in full_results:
+        r.setdefault("m_zone", "--")
+        r.setdefault("m_bullish", False)
+        r.setdefault("m_risk_warning", False)
+        r.setdefault("mtf_score", None)
+
     elapsed = round((datetime.now()-t0).total_seconds()/60, 1)
     meta = {
         "generated_at":   datetime.now().isoformat(),
@@ -1931,6 +2079,8 @@ def run_screener():
         "weekly_signals": len(weekly_signals),
         "main_total":     len(main_results),
         "full_total":     len(full_results),
+        "mtf_high_count":     mtf_high_count,
+        "monthly_risk_count": monthly_risk_count,
         "indicator":      f"SMI({SMI_LEN_K},{SMI_LEN_D},{SMI_LEN_EMA})",
         "market_direction": {
             "usa_above_sma50w": market_dir["USA"],
