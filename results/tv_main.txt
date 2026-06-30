@@ -1,26 +1,14 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-29 15:00 UTC
-### Liczba tickerow: 20
+### Wygenerowano: 2026-06-30 05:37 UTC
+### Liczba tickerow: 8
 ###
-### ── Strong BUY (14) ──
-TTD  ### Strong BUY | -79.1% | W:A+AR | Communication Services
-UPWK  ### Strong BUY | -63.7% | W:A+AR | --
-EPAM  ### Strong BUY | -63.6% | W:– | --
-MNSO  ### Strong BUY | -55.0% | W:– | Consumer Cyclical
-QTWO  ### Strong BUY | -49.6% | W:A+AR | --
-MAZE  ### Strong BUY | -47.3% | W:⚠ Dist | --
-PFSI  ### Strong BUY | -46.4% | W:A+AR | --
-PDD  ### Strong BUY | -45.2% | W:– | Consumer Cyclical
-AGBK  ### Strong BUY | -40.3% | W:– | Financial Services
-YALA  ### Strong BUY | -40.1% | W:Spring | Technology
-BILL  ### Strong BUY | -36.8% | W:– | --
-ORIC  ### Strong BUY | -34.8% | W:A+AR | --
-EEFT  ### Strong BUY | -33.6% | W:SC | Technology
-YELP  ### Strong BUY | -31.7% | W:– | Communication Services
-### ── Turning Up (6) ──
-PEGA  ### Turning Up | -54.8% | W:SC | Technology
-GWRE  ### Turning Up | -54.5% | W:Spring | Technology
-NMAX  ### Turning Up | -51.1% | W:⚠ Dist | --
-GDRX  ### Turning Up | -50.7% | W:⚠ Dist | Healthcare
-FSCO  ### Turning Up | -35.8% | W:– | --
-RWT  ### Turning Up | -31.1% | W:Faza B | --
+### ── Strong BUY (5) ──
+MNSO  ### Strong BUY | -55.3% | W:– | Consumer Cyclical
+GSHD  ### Strong BUY | -55.1% | W:Spring | Financial Services
+PDD  ### Strong BUY | -45.1% | W:– | Consumer Cyclical
+AGBK  ### Strong BUY | -41.3% | W:– | Financial Services
+YALA  ### Strong BUY | -39.5% | W:Spring | Technology
+### ── Turning Up (3) ──
+TTD  ### Turning Up | -79.6% | W:A+AR | Communication Services
+EPAM  ### Turning Up | -64.0% | W:– | --
+FSCO  ### Turning Up | -35.6% | W:– | Financial Services
