@@ -506,6 +506,78 @@ def smi_weekly_signal(smi, smi_ema):
         return "Turning Up", round(s0,2), round(e0,2), zone
     return None, round(s0,2), round(e0,2), zone
 
+
+def _smi_cross_mask(smi, smi_ema):
+    """
+    Zwraca boolowską maskę (pandas Series) wskazującą bary, w których
+    nastąpił crossover SMI w górę (cross_up lub exit_os) – ten sam
+    warunek co w smi_weekly_signal, ale liczony dla całej serii naraz.
+    Używane do przeszukiwania historii D1 wstecz w poszukiwaniu daty sygnału.
+    """
+    s  = smi
+    e  = smi_ema
+    s_prev = s.shift(1)
+    e_prev = e.shift(1)
+    cross_up = (s_prev < e_prev) & (s >= e)
+    exit_os  = (s_prev < -40) & (s >= -40)
+    return (cross_up | exit_os).fillna(False)
+
+
+def calc_d1_lead(df_daily, w1_signal_zone, lookback_days=60):
+    """
+    Liczy SMI(10,3,3) na danych dziennych i szuka najnowszego crossovera
+    w oknie `lookback_days` wstecz. Zwraca dict z informacją o wyprzedzeniu
+    sygnału dziennego względem sygnału tygodniowego.
+
+    Zwraca:
+      d1_signal_now   – czy SMI D1 sygnalizuje crossover w *ostatniej* sesji
+      d1_zone_now     – aktualna strefa SMI na D1
+      d1_last_cross_days_ago – ile sesji D1 temu był ostatni crossover (None jeśli brak w oknie)
+      early_signal    – True gdy D1 sygnalizuje teraz, a W1 jeszcze nie (zone W1 nie jest OVERSOLD/Bullish z crossover)
+    """
+    out = {
+        "d1_signal_now": False,
+        "d1_zone_now": "--",
+        "d1_last_cross_days_ago": None,
+        "early_signal": False,
+    }
+    req = {"High", "Low", "Close"}
+    if df_daily is None or len(df_daily) < SMI_LEN_K + 10 or not req.issubset(df_daily.columns):
+        return out
+
+    try:
+        smi_d, smi_d_ema = calc_smi(df_daily["High"], df_daily["Low"], df_daily["Close"],
+                                     SMI_LEN_K, SMI_LEN_D, SMI_LEN_EMA)
+        if len(smi_d) < 4:
+            return out
+
+        s0 = float(smi_d.iloc[-1])
+        if not np.isnan(s0):
+            if   s0 >= 40:  out["d1_zone_now"] = "OVERBOUGHT"
+            elif s0 <= -40: out["d1_zone_now"] = "OVERSOLD"
+            elif s0 > 0:    out["d1_zone_now"] = "Bullish"
+            else:           out["d1_zone_now"] = "Bearish"
+
+        mask = _smi_cross_mask(smi_d, smi_d_ema)
+        recent = mask.iloc[-lookback_days:] if len(mask) > lookback_days else mask
+        out["d1_signal_now"] = bool(recent.iloc[-1]) if len(recent) else False
+
+        true_idx = recent[recent].index
+        if len(true_idx) > 0:
+            last_cross_pos_in_recent = recent.index.get_loc(true_idx[-1])
+            days_ago = len(recent) - 1 - last_cross_pos_in_recent
+            out["d1_last_cross_days_ago"] = int(days_ago)
+
+        # Early Signal: D1 sygnalizuje teraz, ale strefa W1 nadal Bearish/OVERBOUGHT
+        # (czyli W1 jeszcze nie potwierdził tego samego ruchu)
+        if out["d1_signal_now"] and w1_signal_zone not in ("OVERSOLD", "Bullish"):
+            out["early_signal"] = True
+
+    except Exception:
+        pass
+
+    return out
+
 # ══════════════════════════════════════════════════════════════
 #  BULK DOWNLOAD
 # ══════════════════════════════════════════════════════════════
@@ -631,6 +703,35 @@ def phase1_weekly_signals(ticker_market_list):
     wd = sum(1 for v in signals.values() if v.get("wyckoff_dist"))
     print(f"      Sygnaly: {len(signals)} (Strong:{s} BUY:{b} Turn:{tu} "
           f"VolOK:{vc} Wyckoff>=4:{w4} Dist!:{wd})")
+
+    # ── D1 LEAD: dla spółek z sygnałem W1 sprawdzamy wyprzedzenie SMI dziennego ──
+    if signals:
+        print(f"\n[1b/2] SMI dzienny (D1) -- {len(signals)} tickerow z sygnalem W1...")
+        d1_data = bulk_download(list(signals.keys()), period="6mo", interval="1d")
+        print(f"      Pobrano D1: {len(d1_data)}")
+
+        early_count = 0
+        lead_days_sum, lead_days_n = 0, 0
+        for ticker, sig_data in signals.items():
+            df_d = d1_data.get(ticker)
+            lead = calc_d1_lead(df_d, sig_data["zone"]) if df_d is not None else {
+                "d1_signal_now": False, "d1_zone_now": "--",
+                "d1_last_cross_days_ago": None, "early_signal": False,
+            }
+            sig_data["d1_signal_now"]          = lead["d1_signal_now"]
+            sig_data["d1_zone_now"]            = lead["d1_zone_now"]
+            sig_data["d1_last_cross_days_ago"] = lead["d1_last_cross_days_ago"]
+            sig_data["early_signal"]           = lead["early_signal"]
+            if lead["early_signal"]:
+                early_count += 1
+            if lead["d1_last_cross_days_ago"] is not None:
+                lead_days_sum += lead["d1_last_cross_days_ago"]
+                lead_days_n   += 1
+
+        avg_lead = round(lead_days_sum / lead_days_n, 1) if lead_days_n else None
+        print(f"      D1 Early Signal: {early_count} spolek | "
+              f"Srednie wyprzedzenie D1: {avg_lead if avg_lead is not None else '--'} sesji")
+
     return signals
 
 # ══════════════════════════════════════════════════════════════
@@ -911,6 +1012,10 @@ def _collect_one(symbol: str, weekly_data: dict) -> dict | None:
         "wyckoff_phase": weekly_data.get("wyckoff_phase", "–"),
         "wyckoff_dist":  weekly_data.get("wyckoff_dist",  False),
         "wyckoff_dsig":  weekly_data.get("wyckoff_dsig",  []),
+        "d1_signal_now":          weekly_data.get("d1_signal_now", False),
+        "d1_zone_now":            weekly_data.get("d1_zone_now", "--"),
+        "d1_last_cross_days_ago": weekly_data.get("d1_last_cross_days_ago", None),
+        "early_signal":           weekly_data.get("early_signal", False),
     }
 
 def phase2_collect(weekly_signals):
@@ -1156,6 +1261,10 @@ COMMON_CSS = """
                      padding:.12rem .4rem;border-radius:3px;margin-left:.3rem}
   .badge-wyk-mid    {background:#0d1a2e;color:#7c9ef0;font-size:.65rem;font-weight:700;
                      padding:.12rem .4rem;border-radius:3px;margin-left:.3rem}
+  .badge-d1-lead    {background:#1a2e0a;color:#9be564;font-size:.65rem;font-weight:700;
+                     padding:.12rem .4rem;border-radius:3px;margin-left:.3rem}
+  .badge-early      {background:#2e1a00;color:#ffb800;font-size:.68rem;font-weight:700;
+                     padding:.15rem .5rem;border-radius:4px}
   @media(max-width:900px){.page{padding:1rem} th,td{padding:.45rem .6rem}}
 """
 
@@ -1193,6 +1302,20 @@ def _wyk_badge(score, dist):
     if score >= 2:
         labels = {2:"A+AR", 3:"FazaB"}
         return f'<span class="badge-wyk-mid" title="Wyckoff faza A/B">W:{labels.get(score,score)}</span>'
+    return ""
+
+def _d1_badge(days_ago, early):
+    """
+    Badge pokazujący wyprzedzenie SMI dziennego względem tygodniowego.
+    `days_ago` to liczba sesji D1 od ostatniego crossovera D1.
+    `early` oznacza że D1 sygnalizuje teraz, a W1 jeszcze nie potwierdził.
+    """
+    if days_ago is None:
+        return ""
+    if early:
+        return f'<span class="badge-early" title="SMI dzienny wyprzedza tygodniowy">⚡ D1 wczesniej o {days_ago}d</span>'
+    if days_ago > 0:
+        return f'<span class="badge-d1-lead" title="Dni od crossover na D1">D1: -{days_ago}d</span>'
     return ""
 
 def _color_ok(val, ok):
@@ -1305,6 +1428,7 @@ def render_cards(data, show_quality=False):
             f'{_score_badge(r.get("tech_score"))}'
             f'{_div_badge(r.get("divergence_bull"),r.get("divergence_desc",""))}'
             f'{_wyk_badge(wyk_s, wyk_d)}'
+            f'{_d1_badge(r.get("d1_last_cross_days_ago"), r.get("early_signal", False))}'
             f'</div>'
             f'<div class="sc-name">{r["name"]}</div></div>'
             f'<span class="badge-{mc}">{r["market"]}</span></div>'
@@ -1382,7 +1506,7 @@ def render_table_rows(data, show_quality=False):
             )
 
         html += f"""<tr>
-          <td><span class="ticker">{r['ticker']}</span>{badge}{_score_badge(r.get('tech_score'))}{_div_badge(r.get('divergence_bull'),r.get('divergence_desc',''))}</td>
+          <td><span class="ticker">{r['ticker']}</span>{badge}{_score_badge(r.get('tech_score'))}{_div_badge(r.get('divergence_bull'),r.get('divergence_desc',''))}{_d1_badge(r.get('d1_last_cross_days_ago'), r.get('early_signal', False))}</td>
           <td class="name-col">{r['name']}</td>
           <td><span class="badge-{'usa' if r['market']=='USA' else 'eu'}">{r['market']}</span></td>
           <td>{r['sector']}</td>
@@ -1410,6 +1534,7 @@ def generate_html_main(meta, results):
     dt = datetime.fromisoformat(meta["generated_at"]).strftime("%d.%m.%Y %H:%M")
     strong_res  = [r for r in results if r["signal"] == "Strong BUY"]
     turning_res = [r for r in results if r["signal"] == "Turning Up"]
+    early_res   = [r for r in results if r.get("early_signal")]
     html = f"""<!DOCTYPE html>
 <html lang="pl"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -1420,6 +1545,8 @@ def generate_html_main(meta, results):
   .strategy-box strong{{color:var(--orange)}}
   .strategy-box ul{{margin:.4rem 0 0 1.2rem;columns:2;gap:2rem}}
   @media(max-width:600px){{.strategy-box ul{{columns:1}}}}
+  .section-early{{border-color:#ffb800;box-shadow:0 0 20px rgba(255,184,0,.1)}}
+  .early-note{{font-size:.78rem;color:var(--muted);margin-bottom:1rem;line-height:1.6}}
 </style></head><body>
 <div class="page">
   <nav class="report-nav">
@@ -1441,6 +1568,7 @@ def generate_html_main(meta, results):
       <li>Gross Margin &gt; <strong>{int(MIN_GROSS_MARGIN*100)}%</strong> (wymagane)</li>
       <li>Cap &gt; <strong>{MIN_MARKET_CAP//1_000_000}M</strong> | Vol &gt; <strong>{MIN_VOLUME:,}</strong></li>
       <li>Wyckoff W1: informacyjnie (badge W:Spring/SOS/&#9888;Dist)</li>
+      <li>D1 Lead: informacyjnie (badge &#9889;D1 wczesniej / D1:-Xd)</li>
     </ul>
   </div>
   <div class="stats-bar">
@@ -1449,6 +1577,16 @@ def generate_html_main(meta, results):
     <div class="stat"><div class="stat-val green">{meta['main_total']}</div><div class="stat-label">Po filtrach</div></div>
     <div class="stat"><div class="stat-val orange">{len(strong_res)}</div><div class="stat-label">Strong BUY</div></div>
     <div class="stat"><div class="stat-val purple">{len(turning_res)}</div><div class="stat-label">Turning Up</div></div>
+    <div class="stat"><div class="stat-val" style="color:#ffb800">{len(early_res)}</div><div class="stat-label">Early Signal D1</div></div>
+  </div>
+  <div class="section section-early">
+    <div class="section-header"><span class="section-icon">&#9889;</span>
+      <h2>Early Signal D1 &mdash; {len(early_res)} sygnalow</h2></div>
+    <p class="early-note">Sp&oacute;&#322;ki, gdzie SMI dzienny ju&#380; pokaza&#322; crossover w g&oacute;r&#281;,
+      ale SMI tygodniowy jeszcze go nie potwierdzi&#322; (strefa W1 nadal Bearish/OVERBOUGHT).
+      To wczesne ostrze&#380;enie &mdash; sygna&#322; W1 mo&#380;e pojawi&#263; si&#281; za kilka tygodni,
+      je&#347;li ruch na D1 si&#281; utrzyma. Brak filtr&oacute;w fundamentalnych w tej sekcji.</p>
+    {render_cards(early_res, show_quality=False)}
   </div>
   <div class="section section-strong">
     <div class="section-header"><span class="section-icon">&#9889;</span>
