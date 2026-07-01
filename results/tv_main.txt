@@ -1,6 +1,22 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-07-01 09:22 UTC
-### Liczba tickerow: 1
+### Wygenerowano: 2026-07-01 13:46 UTC
+### Liczba tickerow: 16
 ###
-### ── Strong BUY (1) ──
-YELP  ### Strong BUY | -31.0% | W:– | MTF:1/5 | Communication Services
+### ── Strong BUY (10) ──
+IVVD  ### Strong BUY | -71.9% | W:⚠ Dist | MTF:2/5 M:RISK | --
+ZG  ### Strong BUY | -64.9% | W:SC | MTF:2/5 M:RISK | --
+IQ  ### Strong BUY | -63.2% | W:SOS | MTF:4/5 M:RISK | --
+TRI  ### Strong BUY | -61.7% | W:Spring | MTF:4/5 M:RISK | --
+COTY  ### Strong BUY | -59.1% | W:A+AR | MTF:5/5 | --
+COUR  ### Strong BUY | -57.5% | W:Spring | MTF:3/5 M:RISK | --
+LDOS  ### Strong BUY | -48.7% | W:– | MTF:4/5 M:RISK | --
+CALX  ### Strong BUY | -47.3% | W:– | MTF:2/5 M:RISK | --
+KYTX  ### Strong BUY | -35.6% | W:⚠ Dist | MTF:2/5 | --
+LSE:TW  ### Strong BUY | -33.5% | W:SC | MTF:3/5 M:RISK | --
+### ── Turning Up (6) ──
+DJT  ### Turning Up | -62.9% | W:A+AR | MTF:1/5 M:RISK | --
+KTOS  ### Turning Up | -61.8% | W:⚠ Dist | MTF:3/5 M:RISK | --
+ZS  ### Turning Up | -57.1% | W:A+AR | MTF:1/5 M:RISK | --
+BCYC  ### Turning Up | -53.6% | W:A+AR | MTF:3/5 M:RISK | --
+GDS  ### Turning Up | -35.6% | W:A+AR | MTF:2/5 M:RISK | --
+REZI  ### Turning Up | -30.4% | W:– | MTF:0/5 M:RISK | --
