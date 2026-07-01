@@ -1,12 +1,6 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-06-30 13:17 UTC
-### Liczba tickerow: 6
+### Wygenerowano: 2026-07-01 09:22 UTC
+### Liczba tickerow: 1
 ###
-### ── Strong BUY (3) ──
-FUBO  ### Strong BUY | -83.3% | W:– | --
-PDD  ### Strong BUY | -45.1% | W:– | Consumer Cyclical
-RLX  ### Strong BUY | -33.8% | W:SC | Consumer Defensive
-### ── Turning Up (3) ──
-PD  ### Turning Up | -47.9% | W:SC | Technology
-FSCO  ### Turning Up | -35.6% | W:– | Financial Services
-JBS  ### Turning Up | -34.5% | W:– | --
+### ── Strong BUY (1) ──
+YELP  ### Strong BUY | -31.0% | W:– | MTF:1/5 | Communication Services
