@@ -2103,6 +2103,78 @@ def run_screener():
         r.setdefault("mtf_score", None)
 
     elapsed = round((datetime.now()-t0).total_seconds()/60, 1)
+    medef run_screener():
+    t0 = datetime.now()
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    print("="*60)
+    print(f"SCREENER START: {t0.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"SMI({SMI_LEN_K},{SMI_LEN_D},{SMI_LEN_EMA}) | Wyckoff W1 (akumulacja + dystrybucja)")
+    print(f"Cache fundamentow: {CACHE_DIR}  (TTL {CACHE_TTL_H}h)")
+    print("="*60)
+
+    print("\n[Tickery] Pobieranie list spolek (rownolegly)...")
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        f_sp500  = pool.submit(get_sp500)
+        f_nasdaq = pool.submit(get_nasdaq)
+        f_nyse   = pool.submit(get_nyse_amex)
+        f_eu     = pool.submit(get_european_indices)
+        usa = list(set(f_sp500.result() + f_nasdaq.result() + f_nyse.result()))
+        eu  = list(set(f_eu.result()))
+    ticker_market = [(t,"USA") for t in usa] + [(t,"EU") for t in eu]
+    print(f"\nLacznie: {len(ticker_market)} ({len(usa)} USA, {len(eu)} EU)")
+
+    print("\n[Market Direction + Dane W1] Start rownolegly...")
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        f_mdir   = pool.submit(check_market_direction)
+        f_weekly = pool.submit(phase1_weekly_signals, ticker_market)
+        market_dir     = f_mdir.result()
+        weekly_signals = f_weekly.result()
+    if not market_dir["USA"] and not market_dir["EU"]:
+        print("  Oba rynki ponizej SMA50W — sygnaly SMI maja nizsza wiarygodnosc!")
+    all_data       = phase2_collect(weekly_signals)
+
+    main_results = [r for r in all_data if filter_main(r)]
+    full_results = all_data
+
+    # ── FAZA 3: Monthly SMI + MTF Score (tylko dla finalnej listy main_results) ──
+    mtf_high_count = 0
+    monthly_risk_count = 0
+    if main_results:
+        print(f"\n[3/3] SMI miesieczny (Monthly) + MTF Score -- "
+              f"{len(main_results)} tickerow (finalna lista)...")
+        m_tickers = [r["ticker"] for r in main_results]
+        monthly_data = bulk_download(m_tickers, period="10y", interval="1mo")
+        print(f"      Pobrano Monthly: {len(monthly_data)}")
+
+        for r in main_results:
+            df_m = monthly_data.get(r["ticker"])
+            m_info = calc_monthly_zone(df_m)
+            r["m_zone"]         = m_info["m_zone"]
+            r["m_bullish"]      = m_info["m_bullish"]
+            r["m_risk_warning"] = m_info["m_risk_warning"]
+            r["mtf_score"]      = calc_mtf_score(r)
+            if r["mtf_score"] >= 4:
+                mtf_high_count += 1
+            if r["m_risk_warning"]:
+                monthly_risk_count += 1
+
+        main_results.sort(
+            key=lambda x: (
+                {"Strong BUY": 0, "Turning Up": 1}.get(x.get("signal", ""), 2),
+                -(x.get("tech_score", 0) * 2 + (x.get("mtf_score") or 0)),
+            )
+        )
+        print(f"      MTF Score>=4: {mtf_high_count} spolek | "
+              f"Monthly Risk Warning: {monthly_risk_count} spolek | "
+              f"Posortowano po tech_score*2 + mtf_score")
+    # full_results nie dostaje Monthly/MTF (informacyjne tylko na liście głównej)
+    for r in full_results:
+        r.setdefault("m_zone", "--")
+        r.setdefault("m_bullish", False)
+        r.setdefault("m_risk_warning", False)
+        r.setdefault("mtf_score", None)
+
+    elapsed = round((datetime.now()-t0).total_seconds()/60, 1)
     meta = {
         "generated_at":   datetime.now().isoformat(),
         "elapsed_min":    elapsed,
@@ -2127,4 +2199,36 @@ def run_screener():
         for fname, d in [("results",full_results),("results_main",main_results),("meta",meta)]:
             with open(f"{OUTPUT_DIR}/{fname}.json","w",encoding="utf-8") as f:
                 json.dump(d, f, indent=2, ensure_ascii=False)
-        if full_results:  pd.D
+        if full_results:  pd.DataFrame(full_results).to_csv(f"{OUTPUT_DIR}/results.csv",index=False)
+        if main_results:  pd.DataFrame(main_results).to_csv(f"{OUTPUT_DIR}/results_main.csv",index=False)
+
+    def _generate_html():
+        print("\n[HTML] Generowanie raportow...")
+        generate_html_main(meta, main_results)
+        generate_html_full(meta, full_results)
+        generate_html_index(meta)
+
+    def _generate_tv():
+        print("\n[TV] Listy TradingView...")
+        generate_tradingview_lists(main_results, full_results)
+
+    # OPT 5: zapis JSON/CSV, HTML i TV równolegle
+    # WAŻNE: .result() na każdym future jest konieczne — bez tego wyjątki
+    # rzucone w wątkach są całkowicie połykane i proces "kończy się sukcesem"
+    # mimo że nic nie zostało zapisane. To był realny bug (patrz: incydent
+    # z 30-sekundowym runem i pustymi wynikami).
+    with ThreadPoolExecutor(max_workers=3) as pool:
+        f_save = pool.submit(_save_outputs)
+        f_html = pool.submit(_generate_html)
+        f_tv   = pool.submit(_generate_tv)
+        f_save.result()
+        f_html.result()
+        f_tv.result()
+
+    print(f"\nCzas lacznie: {elapsed} min")
+    print(f"Screener glowny : {len(main_results)} wynikow")
+    print(f"Full Scan       : {len(full_results)} wynikow")
+    return main_results, full_results
+
+if __name__ == "__main__":
+    run_screener()
