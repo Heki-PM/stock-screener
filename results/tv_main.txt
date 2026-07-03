@@ -1,18 +1,14 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-07-02 13:12 UTC
-### Liczba tickerow: 12
+### Wygenerowano: 2026-07-03 13:12 UTC
+### Liczba tickerow: 9
 ###
-### ── Strong BUY (6) ──
-TASK  ### Strong BUY | -72.6% | W:SC | MTF:4/5 M:RISK | Technology
-DXC  ### Strong BUY | -42.0% | W:A+AR | MTF:4/5 M:RISK | Technology
-AGBK  ### Strong BUY | -41.1% | W:– | MTF:2/5 | Financial Services
-RERE  ### Strong BUY | -36.9% | W:– | MTF:3/5 M:RISK | --
-VIPS  ### Strong BUY | -35.7% | W:– | MTF:2/5 M:RISK | Consumer Cyclical
-PALI  ### Strong BUY | -31.1% | W:⚠ Dist | MTF:5/5 | Healthcare
-### ── Turning Up (6) ──
-GOGO  ### Turning Up | -79.4% | W:SC | MTF:3/5 M:RISK | --
-NMG  ### Turning Up | -74.8% | W:⚠ Dist | MTF:1/5 M:RISK | --
-FUTU  ### Turning Up | -50.7% | W:– | MTF:1/5 M:RISK | Financial Services
-PSFE  ### Turning Up | -47.5% | W:– | MTF:2/5 | --
-PLTR  ### Turning Up | -39.4% | W:– | MTF:1/5 M:RISK | --
-ARLO  ### Turning Up | -32.0% | W:– | MTF:2/5 M:RISK | --
+### ── Strong BUY (9) ──
+TTD  ### Strong BUY | -79.1% | W:A+AR | MTF:4/5 M:RISK | --
+UPWK  ### Strong BUY | -59.9% | W:A+AR | MTF:2/5 M:RISK | --
+ZLAB  ### Strong BUY | -53.6% | W:– | MTF:3/5 | --
+NICE  ### Strong BUY | -44.7% | W:Spring | MTF:3/5 | --
+PSFE  ### Strong BUY | -44.0% | W:– | MTF:3/5 | --
+AGBK  ### Strong BUY | -41.8% | W:– | MTF:2/5 | --
+OPCH  ### Strong BUY | -40.5% | W:Faza B | MTF:1/5 M:RISK | --
+CPRT  ### Strong BUY | -40.1% | W:– | MTF:2/5 M:RISK | --
+ALKT  ### Strong BUY | -38.4% | W:Spring | MTF:2/5 | --
