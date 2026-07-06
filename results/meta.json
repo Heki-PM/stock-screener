@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-07-06T14:39:15.669982",
-  "elapsed_min": 7.6,
+  "generated_at": "2026-07-06T14:55:01.331550",
+  "elapsed_min": 8.5,
   "total_scanned": 7143,
   "weekly_signals": 917,
-  "main_total": 19,
-  "full_total": 276,
-  "mtf_high_count": 1,
+  "main_total": 20,
+  "full_total": 291,
+  "mtf_high_count": 2,
   "monthly_risk_count": 12,
   "indicator": "SMI(10,3,3)",
   "market_direction": {
