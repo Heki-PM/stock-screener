@@ -1,14 +1,25 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-07-03 13:12 UTC
-### Liczba tickerow: 9
+### Wygenerowano: 2026-07-06 14:39 UTC
+### Liczba tickerow: 19
 ###
-### ── Strong BUY (9) ──
-TTD  ### Strong BUY | -79.1% | W:A+AR | MTF:4/5 M:RISK | --
-UPWK  ### Strong BUY | -59.9% | W:A+AR | MTF:2/5 M:RISK | --
-ZLAB  ### Strong BUY | -53.6% | W:– | MTF:3/5 | --
-NICE  ### Strong BUY | -44.7% | W:Spring | MTF:3/5 | --
-PSFE  ### Strong BUY | -44.0% | W:– | MTF:3/5 | --
-AGBK  ### Strong BUY | -41.8% | W:– | MTF:2/5 | --
-OPCH  ### Strong BUY | -40.5% | W:Faza B | MTF:1/5 M:RISK | --
-CPRT  ### Strong BUY | -40.1% | W:– | MTF:2/5 M:RISK | --
-ALKT  ### Strong BUY | -38.4% | W:Spring | MTF:2/5 | --
+### ── Strong BUY (10) ──
+BRBR  ### Strong BUY | -77.9% | W:– | MTF:2/5 | Consumer Defensive
+INFY  ### Strong BUY | -63.8% | W:A+AR | MTF:2/5 M:RISK | Technology
+FIGR  ### Strong BUY | -56.7% | W:– | MTF:2/5 | Financial Services
+ADMA  ### Strong BUY | -56.1% | W:A+AR | MTF:3/5 M:RISK | Healthcare
+PYPL  ### Strong BUY | -44.3% | W:– | MTF:1/5 M:RISK | Financial Services
+ISSC  ### Strong BUY | -39.4% | W:⚠ Dist | MTF:1/5 | Industrials
+PLTR  ### Strong BUY | -36.8% | W:– | MTF:3/5 M:RISK | Technology
+IAG  ### Strong BUY | -33.3% | W:– | MTF:1/5 | Basic Materials
+HLI  ### Strong BUY | -32.4% | W:– | MTF:4/5 M:RISK | Financial Services
+DFIN  ### Strong BUY | -30.7% | W:– | MTF:1/5 M:RISK | Technology
+### ── Turning Up (9) ──
+XXI  ### Turning Up | -86.9% | W:SC | MTF:1/5 M:RISK | Financial Services
+DUOL  ### Turning Up | -72.8% | W:A+AR | MTF:1/5 | Technology
+ACN  ### Turning Up | -55.9% | W:SC | MTF:1/5 M:RISK | Technology
+FUTU  ### Turning Up | -51.8% | W:– | MTF:1/5 M:RISK | Financial Services
+EQX  ### Turning Up | -46.5% | W:– | MTF:1/5 M:RISK | --
+PAYC  ### Turning Up | -45.3% | W:Spring | MTF:1/5 | Technology
+EXLS  ### Turning Up | -42.9% | W:Spring | MTF:1/5 M:RISK | Technology
+CRMD  ### Turning Up | -41.8% | W:Spring | MTF:3/5 | Healthcare
+ARLO  ### Turning Up | -34.0% | W:– | MTF:2/5 M:RISK | Industrials
