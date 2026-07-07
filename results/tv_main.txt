@@ -1,26 +1,31 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-07-06 14:55 UTC
-### Liczba tickerow: 20
+### Wygenerowano: 2026-07-07 13:32 UTC
+### Liczba tickerow: 25
 ###
-### ── Strong BUY (11) ──
-BRBR  ### Strong BUY | -78.1% | W:– | MTF:2/5 | Consumer Defensive
-REAX  ### Strong BUY | -61.7% | W:– | MTF:2/5 | --
-UPWK  ### Strong BUY | -61.2% | W:A+AR | MTF:1/5 M:RISK | Communication Services
-FIGR  ### Strong BUY | -57.1% | W:– | MTF:2/5 | Financial Services
-PYPL  ### Strong BUY | -44.1% | W:– | MTF:1/5 M:RISK | Financial Services
-ITRI  ### Strong BUY | -39.6% | W:⚠ Dist | MTF:3/5 M:RISK | Technology
-ISSC  ### Strong BUY | -39.5% | W:⚠ Dist | MTF:1/5 | Industrials
-PLTR  ### Strong BUY | -37.1% | W:– | MTF:3/5 M:RISK | Technology
-IAG  ### Strong BUY | -33.3% | W:– | MTF:1/5 | Basic Materials
-HLI  ### Strong BUY | -32.4% | W:– | MTF:4/5 M:RISK | Financial Services
-DFIN  ### Strong BUY | -30.6% | W:– | MTF:1/5 M:RISK | Technology
-### ── Turning Up (9) ──
-XXI  ### Turning Up | -86.8% | W:SC | MTF:1/5 M:RISK | Financial Services
-ACN  ### Turning Up | -55.8% | W:SC | MTF:1/5 M:RISK | Technology
-FUTU  ### Turning Up | -51.7% | W:– | MTF:1/5 M:RISK | Financial Services
-CNDT  ### Turning Up | -47.8% | W:– | MTF:4/5 | --
-LRN  ### Turning Up | -47.3% | W:A+AR | MTF:3/5 | Consumer Defensive
-PAYC  ### Turning Up | -45.1% | W:Spring | MTF:1/5 | Technology
-EXLS  ### Turning Up | -43.0% | W:Spring | MTF:1/5 M:RISK | Technology
-G  ### Turning Up | -40.8% | W:SC | MTF:1/5 M:RISK | Technology
-ARLO  ### Turning Up | -33.2% | W:– | MTF:2/5 M:RISK | Industrials
+### ── Strong BUY (13) ──
+TRON  ### Strong BUY | -87.3% | W:⚠ Dist | MTF:5/5 | --
+BRBR  ### Strong BUY | -76.8% | W:– | MTF:2/5 | Consumer Defensive
+UPWK  ### Strong BUY | -60.3% | W:A+AR | MTF:1/5 M:RISK | Communication Services
+TRI  ### Strong BUY | -58.1% | W:Spring | MTF:2/5 | --
+FIGR  ### Strong BUY | -57.2% | W:– | MTF:2/5 | Financial Services
+ADMA  ### Strong BUY | -55.0% | W:A+AR | MTF:1/5 M:RISK | --
+NIQ  ### Strong BUY | -49.7% | W:– | MTF:1/5 | --
+IMRX  ### Strong BUY | -48.5% | W:SC | MTF:1/5 M:RISK | --
+PYPL  ### Strong BUY | -42.3% | W:– | MTF:1/5 M:RISK | Financial Services
+ISSC  ### Strong BUY | -39.8% | W:⚠ Dist | MTF:1/5 | Industrials
+PLTR  ### Strong BUY | -35.3% | W:– | MTF:1/5 M:RISK | Technology
+IAG  ### Strong BUY | -33.8% | W:– | MTF:1/5 | Basic Materials
+HLI  ### Strong BUY | -33.1% | W:– | MTF:4/5 M:RISK | Financial Services
+### ── Turning Up (12) ──
+XXI  ### Turning Up | -86.6% | W:SC | MTF:3/5 M:RISK | --
+MNDY  ### Turning Up | -73.1% | W:Spring | MTF:1/5 | Technology
+TIGR  ### Turning Up | -65.6% | W:A+AR | MTF:1/5 M:RISK | Financial Services
+ACN  ### Turning Up | -54.1% | W:SC | MTF:3/5 M:RISK | Technology
+FUTU  ### Turning Up | -52.0% | W:– | MTF:1/5 M:RISK | Financial Services
+LRN  ### Turning Up | -46.7% | W:A+AR | MTF:1/5 | Consumer Defensive
+XETR:SAP  ### Turning Up | -46.4% | W:SC | MTF:1/5 M:RISK | Technology
+EURONEXT:DSY  ### Turning Up | -43.5% | W:– | MTF:1/5 | Technology
+PAYC  ### Turning Up | -42.5% | W:Spring | MTF:1/5 | Technology
+EXLS  ### Turning Up | -40.4% | W:Spring | MTF:3/5 M:RISK | Technology
+TPG  ### Turning Up | -39.5% | W:Spring | MTF:2/5 M:RISK | --
+G  ### Turning Up | -38.8% | W:SC | MTF:3/5 M:RISK | Technology
