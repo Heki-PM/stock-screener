@@ -1,20 +1,11 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-07-08 12:33 UTC
-### Liczba tickerow: 14
+### Wygenerowano: 2026-07-09 13:58 UTC
+### Liczba tickerow: 5
 ###
-### ── Strong BUY (8) ──
-BLSH  ### Strong BUY | -78.2% | W:– | MTF:3/5 | --
-DOX  ### Strong BUY | -43.6% | W:SC | MTF:2/5 M:RISK | --
-PYPL  ### Strong BUY | -42.6% | W:– | MTF:1/5 M:RISK | --
-ITRI  ### Strong BUY | -40.5% | W:⚠ Dist | MTF:3/5 M:RISK | --
-SIX:ADEN  ### Strong BUY | -39.9% | W:– | MTF:2/5 M:RISK | --
-G  ### Strong BUY | -38.9% | W:SC | MTF:4/5 M:RISK | --
-HLI  ### Strong BUY | -34.3% | W:– | MTF:4/5 M:RISK | --
-DFIN  ### Strong BUY | -32.0% | W:– | MTF:1/5 M:RISK | --
-### ── Turning Up (6) ──
-BUR  ### Turning Up | -71.5% | W:SC | MTF:1/5 M:RISK | --
-OXLC  ### Turning Up | -57.5% | W:SC | MTF:1/5 | --
-BABA  ### Turning Up | -49.1% | W:– | MTF:1/5 M:RISK | --
-KC  ### Turning Up | -49.0% | W:⚠ Dist | MTF:1/5 M:RISK | --
-BHC  ### Turning Up | -43.5% | W:– | MTF:3/5 M:RISK | --
-INR  ### Turning Up | -35.1% | W:⚠ Dist | MTF:2/5 M:RISK | --
+### ── Strong BUY (2) ──
+BRBR  ### Strong BUY | -79.7% | W:– | MTF:2/5 | Consumer Defensive
+OLMA  ### Strong BUY | -65.8% | W:– | MTF:1/5 M:RISK | --
+### ── Turning Up (3) ──
+MNDY  ### Turning Up | -74.3% | W:Spring | MTF:1/5 | Technology
+PAYC  ### Turning Up | -45.6% | W:Spring | MTF:1/5 | Technology
+EXLS  ### Turning Up | -42.4% | W:Spring | MTF:3/5 M:RISK | Technology
