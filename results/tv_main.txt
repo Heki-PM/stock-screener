@@ -1,11 +1,10 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-07-09 13:58 UTC
-### Liczba tickerow: 5
+### Wygenerowano: 2026-07-10 13:22 UTC
+### Liczba tickerow: 4
 ###
-### ── Strong BUY (2) ──
-BRBR  ### Strong BUY | -79.7% | W:– | MTF:2/5 | Consumer Defensive
-OLMA  ### Strong BUY | -65.8% | W:– | MTF:1/5 M:RISK | --
-### ── Turning Up (3) ──
-MNDY  ### Turning Up | -74.3% | W:Spring | MTF:1/5 | Technology
-PAYC  ### Turning Up | -45.6% | W:Spring | MTF:1/5 | Technology
-EXLS  ### Turning Up | -42.4% | W:Spring | MTF:3/5 M:RISK | Technology
+### ── Strong BUY (3) ──
+CLB  ### Strong BUY | -46.0% | W:A+AR | MTF:2/5 M:RISK | --
+ITRI  ### Strong BUY | -40.1% | W:⚠ Dist | MTF:3/5 M:RISK | --
+NOG  ### Strong BUY | -39.7% | W:– | MTF:4/5 M:RISK | --
+### ── Turning Up (1) ──
+OXLC  ### Turning Up | -56.6% | W:A+AR | MTF:1/5 | --
