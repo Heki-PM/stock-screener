@@ -1,10 +1,19 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-07-10 13:22 UTC
-### Liczba tickerow: 4
+### Wygenerowano: 2026-07-13 13:45 UTC
+### Liczba tickerow: 13
 ###
-### ── Strong BUY (3) ──
-CLB  ### Strong BUY | -46.0% | W:A+AR | MTF:2/5 M:RISK | --
-ITRI  ### Strong BUY | -40.1% | W:⚠ Dist | MTF:3/5 M:RISK | --
-NOG  ### Strong BUY | -39.7% | W:– | MTF:4/5 M:RISK | --
-### ── Turning Up (1) ──
-OXLC  ### Turning Up | -56.6% | W:A+AR | MTF:1/5 | --
+### ── Strong BUY (9) ──
+BME:SOL  ### Strong BUY | -88.8% | W:A+AR | MTF:1/5 M:RISK | --
+ZTS  ### Strong BUY | -52.5% | W:– | MTF:4/5 M:RISK | --
+FUTU  ### Strong BUY | -52.2% | W:– | MTF:2/5 M:RISK | Financial Services
+CTSH  ### Strong BUY | -49.2% | W:– | MTF:2/5 M:RISK | --
+LULU  ### Strong BUY | -48.5% | W:⚠ Dist | MTF:2/5 | Consumer Cyclical
+LAB  ### Strong BUY | -46.1% | W:⚠ Dist | MTF:1/5 M:RISK | --
+PTC  ### Strong BUY | -42.7% | W:– | MTF:1/5 M:RISK | Technology
+EXLS  ### Strong BUY | -40.8% | W:Spring | MTF:2/5 M:RISK | Technology
+PDD  ### Strong BUY | -39.1% | W:– | MTF:1/5 M:RISK | Consumer Cyclical
+### ── Turning Up (4) ──
+SHOE  ### Turning Up | -40.3% | W:– | MTF:3/5 M:RISK | --
+TU  ### Turning Up | -36.6% | W:– | MTF:1/5 M:RISK | --
+PTON  ### Turning Up | -34.9% | W:SC | MTF:1/5 | Consumer Cyclical
+BKE  ### Turning Up | -30.4% | W:– | MTF:1/5 M:RISK | Consumer Cyclical
