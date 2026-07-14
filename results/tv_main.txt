@@ -1,19 +1,24 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-07-13 13:45 UTC
-### Liczba tickerow: 13
+### Wygenerowano: 2026-07-14 12:25 UTC
+### Liczba tickerow: 18
 ###
-### ── Strong BUY (9) ──
-BME:SOL  ### Strong BUY | -88.8% | W:A+AR | MTF:1/5 M:RISK | --
-ZTS  ### Strong BUY | -52.5% | W:– | MTF:4/5 M:RISK | --
-FUTU  ### Strong BUY | -52.2% | W:– | MTF:2/5 M:RISK | Financial Services
-CTSH  ### Strong BUY | -49.2% | W:– | MTF:2/5 M:RISK | --
-LULU  ### Strong BUY | -48.5% | W:⚠ Dist | MTF:2/5 | Consumer Cyclical
-LAB  ### Strong BUY | -46.1% | W:⚠ Dist | MTF:1/5 M:RISK | --
-PTC  ### Strong BUY | -42.7% | W:– | MTF:1/5 M:RISK | Technology
-EXLS  ### Strong BUY | -40.8% | W:Spring | MTF:2/5 M:RISK | Technology
-PDD  ### Strong BUY | -39.1% | W:– | MTF:1/5 M:RISK | Consumer Cyclical
+### ── Strong BUY (14) ──
+EFOR  ### Strong BUY | -69.9% | W:A+AR | MTF:2/5 M:RISK | --
+TIGR  ### Strong BUY | -66.1% | W:A+AR | MTF:4/5 M:RISK | --
+IQ  ### Strong BUY | -60.2% | W:SOS | MTF:1/5 M:RISK | --
+PTLO  ### Strong BUY | -59.8% | W:– | MTF:2/5 | --
+ZTS  ### Strong BUY | -53.0% | W:– | MTF:4/5 M:RISK | --
+ACN  ### Strong BUY | -52.4% | W:SC | MTF:2/5 M:RISK | --
+FUTU  ### Strong BUY | -52.4% | W:– | MTF:2/5 M:RISK | --
+GEVO  ### Strong BUY | -49.8% | W:– | MTF:3/5 M:RISK | --
+HLNE  ### Strong BUY | -49.7% | W:SC | MTF:1/5 M:RISK | --
+PTC  ### Strong BUY | -42.9% | W:– | MTF:1/5 M:RISK | --
+EXLS  ### Strong BUY | -39.5% | W:Spring | MTF:1/5 M:RISK | --
+EURONEXT:REN  ### Strong BUY | -39.5% | W:– | MTF:2/5 | --
+ARLO  ### Strong BUY | -34.3% | W:– | MTF:2/5 M:RISK | --
+CELC  ### Strong BUY | -31.3% | W:A+AR | MTF:2/5 | --
 ### ── Turning Up (4) ──
-SHOE  ### Turning Up | -40.3% | W:– | MTF:3/5 M:RISK | --
-TU  ### Turning Up | -36.6% | W:– | MTF:1/5 M:RISK | --
-PTON  ### Turning Up | -34.9% | W:SC | MTF:1/5 | Consumer Cyclical
-BKE  ### Turning Up | -30.4% | W:– | MTF:1/5 M:RISK | Consumer Cyclical
+CCOI  ### Turning Up | -76.2% | W:A+AR | MTF:1/5 M:RISK | --
+LI  ### Turning Up | -62.0% | W:⚠ Dist | MTF:1/5 M:RISK | --
+PNNT  ### Turning Up | -54.6% | W:A+AR | MTF:1/5 M:RISK | --
+BHC  ### Turning Up | -44.2% | W:– | MTF:3/5 M:RISK | --
