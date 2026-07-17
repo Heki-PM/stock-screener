@@ -1,24 +1,15 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-07-16 12:34 UTC
-### Liczba tickerow: 18
+### Wygenerowano: 2026-07-17 12:27 UTC
+### Liczba tickerow: 9
 ###
-### ── Strong BUY (15) ──
-UPB  ### Strong BUY | -78.4% | W:– | MTF:3/5 M:RISK | --
-TASK  ### Strong BUY | -67.5% | W:SC | MTF:2/5 | --
-GLOB  ### Strong BUY | -66.1% | W:A+AR | MTF:5/5 | --
-TIGR  ### Strong BUY | -65.2% | W:A+AR | MTF:4/5 M:RISK | --
-PTLO  ### Strong BUY | -61.2% | W:– | MTF:2/5 | --
-ACN  ### Strong BUY | -52.9% | W:SC | MTF:2/5 M:RISK | --
-HLNE  ### Strong BUY | -46.8% | W:SC | MTF:1/5 M:RISK | --
-PTC  ### Strong BUY | -43.7% | W:– | MTF:1/5 M:RISK | --
-EXLS  ### Strong BUY | -41.5% | W:Spring | MTF:2/5 M:RISK | --
-MAT  ### Strong BUY | -38.3% | W:– | MTF:4/5 M:RISK | --
-RELX  ### Strong BUY | -38.0% | W:– | MTF:2/5 | --
-ARLO  ### Strong BUY | -35.6% | W:– | MTF:2/5 M:RISK | --
-PSEC  ### Strong BUY | -35.1% | W:SOS | MTF:1/5 M:RISK | --
-JBS  ### Strong BUY | -35.1% | W:– | MTF:2/5 | --
-TSLX  ### Strong BUY | -30.8% | W:Spring | MTF:3/5 M:RISK | --
-### ── Turning Up (3) ──
-XXI  ### Turning Up | -84.7% | W:SC | MTF:1/5 M:RISK | --
-FIZZ  ### Turning Up | -35.5% | W:– | MTF:3/5 | --
-CE  ### Turning Up | -33.2% | W:SOS | MTF:2/5 | --
+### ── Strong BUY (7) ──
+GLOB  ### Strong BUY | -65.9% | W:A+AR | MTF:5/5 | --
+ACN  ### Strong BUY | -50.3% | W:SC | MTF:2/5 M:RISK | --
+EXLS  ### Strong BUY | -39.1% | W:Spring | MTF:1/5 M:RISK | --
+G  ### Strong BUY | -35.8% | W:SC | MTF:1/5 M:RISK | Technology
+PLTR  ### Strong BUY | -35.2% | W:– | MTF:1/5 M:RISK | Technology
+ARLO  ### Strong BUY | -34.4% | W:– | MTF:2/5 M:RISK | --
+RYAM  ### Strong BUY | -31.2% | W:⚠ Dist | MTF:4/5 | --
+### ── Turning Up (2) ──
+OWL  ### Turning Up | -54.2% | W:SC | MTF:1/5 | Financial Services
+BKE  ### Turning Up | -30.8% | W:– | MTF:2/5 M:RISK | --
