@@ -1,18 +1,4 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-07-20 13:20 UTC
-### Liczba tickerow: 12
+### Wygenerowano: 2026-07-21 12:31 UTC
+### Liczba tickerow: 0
 ###
-### ── Strong BUY (10) ──
-BETR  ### Strong BUY | -75.1% | W:⚠ Dist | MTF:4/5 M:RISK | --
-TIGR  ### Strong BUY | -66.0% | W:A+AR | MTF:4/5 M:RISK | --
-ABR  ### Strong BUY | -58.8% | W:Spring | MTF:2/5 M:RISK | --
-GEVO  ### Strong BUY | -45.1% | W:– | MTF:3/5 M:RISK | --
-MZTI  ### Strong BUY | -43.9% | W:SC | MTF:3/5 M:RISK | --
-AGEN  ### Strong BUY | -42.4% | W:⚠ Dist | MTF:2/5 | --
-EXLS  ### Strong BUY | -40.2% | W:Spring | MTF:1/5 M:RISK | Technology
-PDD  ### Strong BUY | -39.6% | W:– | MTF:1/5 M:RISK | Consumer Cyclical
-NKTR  ### Strong BUY | -37.4% | W:Spring | MTF:1/5 | --
-GOOS  ### Strong BUY | -36.4% | W:Spring | MTF:2/5 M:RISK | --
-### ── Turning Up (2) ──
-FIGS  ### Turning Up | -41.0% | W:– | MTF:1/5 | --
-FIZZ  ### Turning Up | -35.1% | W:– | MTF:1/5 | --
