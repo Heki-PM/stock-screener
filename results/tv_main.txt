@@ -1,4 +1,18 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-07-21 12:31 UTC
-### Liczba tickerow: 0
+### Wygenerowano: 2026-07-22 13:01 UTC
+### Liczba tickerow: 12
 ###
+### ── Strong BUY (4) ──
+TASK  ### Strong BUY | -68.2% | W:SC | MTF:1/5 M:RISK | --
+MAT  ### Strong BUY | -36.8% | W:– | MTF:1/5 M:RISK | --
+HLI  ### Strong BUY | -34.0% | W:– | MTF:3/5 M:RISK | --
+BKE  ### Strong BUY | -30.9% | W:– | MTF:3/5 M:RISK | --
+### ── Turning Up (8) ──
+SCZM  ### Turning Up | -62.8% | W:SOS | MTF:1/5 M:RISK | --
+ECC  ### Turning Up | -52.3% | W:SC | MTF:0/5 M:RISK | --
+ASM  ### Turning Up | -49.5% | W:SOS | MTF:1/5 M:RISK | --
+SWMR  ### Turning Up | -44.6% | W:– | MTF:1/5 | --
+PLAB  ### Turning Up | -44.0% | W:⚠ Dist | MTF:2/5 | Technology
+NUAI  ### Turning Up | -37.4% | W:– | MTF:3/5 | --
+WPM  ### Turning Up | -33.7% | W:– | MTF:2/5 M:RISK | Basic Materials
+B  ### Turning Up | -33.5% | W:– | MTF:1/5 | --
