@@ -1,13 +1,15 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-07-24 12:32 UTC
-### Liczba tickerow: 7
+### Wygenerowano: 2026-07-27 13:52 UTC
+### Liczba tickerow: 9
 ###
-### ── Strong BUY (4) ──
-AVXL  ### Strong BUY | -80.6% | W:– | MTF:2/5 M:RISK | --
-TASK  ### Strong BUY | -70.9% | W:⚠ Dist | MTF:3/5 M:RISK | Technology
-CHRS  ### Strong BUY | -45.3% | W:⚠ Dist | MTF:3/5 M:RISK | --
-BKE  ### Strong BUY | -31.9% | W:– | MTF:3/5 M:RISK | Consumer Cyclical
-### ── Turning Up (3) ──
-SCZM  ### Turning Up | -64.3% | W:SOS | MTF:3/5 M:RISK | Basic Materials
-PLAB  ### Turning Up | -44.7% | W:⚠ Dist | MTF:1/5 | Technology
-WPM  ### Turning Up | -33.6% | W:– | MTF:2/5 M:RISK | Basic Materials
+### ── Strong BUY (3) ──
+SCZM  ### Strong BUY | -63.4% | W:⚠ Dist | MTF:4/5 M:RISK | Basic Materials
+FSM  ### Strong BUY | -37.7% | W:– | MTF:3/5 M:RISK | Basic Materials
+B  ### Strong BUY | -31.5% | W:– | MTF:2/5 | Basic Materials
+### ── Turning Up (6) ──
+XXI  ### Turning Up | -84.8% | W:SC | MTF:1/5 M:RISK | Financial Services
+ITRG  ### Turning Up | -55.4% | W:A+AR | MTF:1/5 M:RISK | Basic Materials
+GFI  ### Turning Up | -46.6% | W:– | MTF:1/5 M:RISK | Basic Materials
+CDE  ### Turning Up | -44.4% | W:A+AR | MTF:1/5 M:RISK | Basic Materials
+AU  ### Turning Up | -37.2% | W:SC | MTF:3/5 | Basic Materials
+NEM  ### Turning Up | -30.2% | W:– | MTF:3/5 | Basic Materials
