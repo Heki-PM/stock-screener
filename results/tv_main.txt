@@ -1,15 +1,16 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-07-27 13:52 UTC
-### Liczba tickerow: 9
+### Wygenerowano: 2026-07-28 13:06 UTC
+### Liczba tickerow: 10
 ###
-### ── Strong BUY (3) ──
-SCZM  ### Strong BUY | -63.4% | W:⚠ Dist | MTF:4/5 M:RISK | Basic Materials
-FSM  ### Strong BUY | -37.7% | W:– | MTF:3/5 M:RISK | Basic Materials
-B  ### Strong BUY | -31.5% | W:– | MTF:2/5 | Basic Materials
-### ── Turning Up (6) ──
-XXI  ### Turning Up | -84.8% | W:SC | MTF:1/5 M:RISK | Financial Services
-ITRG  ### Turning Up | -55.4% | W:A+AR | MTF:1/5 M:RISK | Basic Materials
-GFI  ### Turning Up | -46.6% | W:– | MTF:1/5 M:RISK | Basic Materials
-CDE  ### Turning Up | -44.4% | W:A+AR | MTF:1/5 M:RISK | Basic Materials
-AU  ### Turning Up | -37.2% | W:SC | MTF:3/5 | Basic Materials
-NEM  ### Turning Up | -30.2% | W:– | MTF:3/5 | Basic Materials
+### ── Strong BUY (5) ──
+INFY  ### Strong BUY | -61.0% | W:A+AR | MTF:3/5 M:RISK | Technology
+SBSW  ### Strong BUY | -59.8% | W:– | MTF:4/5 M:RISK | --
+LULU  ### Strong BUY | -47.9% | W:A+AR | MTF:2/5 | Consumer Cyclical
+KGC  ### Strong BUY | -38.8% | W:– | MTF:3/5 M:RISK | Basic Materials
+B  ### Strong BUY | -31.7% | W:– | MTF:2/5 | Basic Materials
+### ── Turning Up (5) ──
+MNDY  ### Turning Up | -72.0% | W:Spring | MTF:1/5 | Technology
+EVGO  ### Turning Up | -69.9% | W:– | MTF:3/5 M:RISK | --
+USAS  ### Turning Up | -61.2% | W:Spring | MTF:2/5 M:RISK | --
+LRN  ### Turning Up | -47.4% | W:A+AR | MTF:1/5 | Consumer Defensive
+CBIO  ### Turning Up | -38.2% | W:⚠ Dist | MTF:4/5 | --
