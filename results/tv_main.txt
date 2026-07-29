@@ -1,16 +1,16 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-07-28 13:06 UTC
+### Wygenerowano: 2026-07-29 13:12 UTC
 ### Liczba tickerow: 10
 ###
-### ── Strong BUY (5) ──
-INFY  ### Strong BUY | -61.0% | W:A+AR | MTF:3/5 M:RISK | Technology
-SBSW  ### Strong BUY | -59.8% | W:– | MTF:4/5 M:RISK | --
-LULU  ### Strong BUY | -47.9% | W:A+AR | MTF:2/5 | Consumer Cyclical
-KGC  ### Strong BUY | -38.8% | W:– | MTF:3/5 M:RISK | Basic Materials
-B  ### Strong BUY | -31.7% | W:– | MTF:2/5 | Basic Materials
-### ── Turning Up (5) ──
-MNDY  ### Turning Up | -72.0% | W:Spring | MTF:1/5 | Technology
-EVGO  ### Turning Up | -69.9% | W:– | MTF:3/5 M:RISK | --
-USAS  ### Turning Up | -61.2% | W:Spring | MTF:2/5 M:RISK | --
-LRN  ### Turning Up | -47.4% | W:A+AR | MTF:1/5 | Consumer Defensive
-CBIO  ### Turning Up | -38.2% | W:⚠ Dist | MTF:4/5 | --
+### ── Strong BUY (4) ──
+BUR  ### Strong BUY | -69.2% | W:SC | MTF:4/5 M:RISK | --
+MNSO  ### Strong BUY | -53.2% | W:– | MTF:1/5 M:RISK | --
+OGC  ### Strong BUY | -44.4% | W:⚠ Dist | MTF:3/5 | --
+LIFE  ### Strong BUY | -42.2% | W:– | MTF:1/5 | --
+### ── Turning Up (6) ──
+EH  ### Turning Up | -74.1% | W:– | MTF:3/5 M:RISK | --
+CHA  ### Turning Up | -51.3% | W:– | MTF:3/5 | --
+SNAP  ### Turning Up | -51.2% | W:Spring | MTF:1/5 M:RISK | --
+VGZ  ### Turning Up | -46.3% | W:⚠ Dist | MTF:2/5 | --
+ERO  ### Turning Up | -35.7% | W:SC | MTF:3/5 | --
+XETR:VOW3  ### Turning Up | -31.5% | W:– | MTF:3/5 M:RISK | --
