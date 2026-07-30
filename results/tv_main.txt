@@ -1,16 +1,12 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-07-29 13:12 UTC
-### Liczba tickerow: 10
+### Wygenerowano: 2026-07-30 13:00 UTC
+### Liczba tickerow: 6
 ###
-### ── Strong BUY (4) ──
-BUR  ### Strong BUY | -69.2% | W:SC | MTF:4/5 M:RISK | --
-MNSO  ### Strong BUY | -53.2% | W:– | MTF:1/5 M:RISK | --
-OGC  ### Strong BUY | -44.4% | W:⚠ Dist | MTF:3/5 | --
-LIFE  ### Strong BUY | -42.2% | W:– | MTF:1/5 | --
-### ── Turning Up (6) ──
-EH  ### Turning Up | -74.1% | W:– | MTF:3/5 M:RISK | --
-CHA  ### Turning Up | -51.3% | W:– | MTF:3/5 | --
-SNAP  ### Turning Up | -51.2% | W:Spring | MTF:1/5 M:RISK | --
-VGZ  ### Turning Up | -46.3% | W:⚠ Dist | MTF:2/5 | --
-ERO  ### Turning Up | -35.7% | W:SC | MTF:3/5 | --
-XETR:VOW3  ### Turning Up | -31.5% | W:– | MTF:3/5 M:RISK | --
+### ── Strong BUY (3) ──
+SCZM  ### Strong BUY | -64.2% | W:SOS | MTF:4/5 M:RISK | Basic Materials
+FISV  ### Strong BUY | -60.7% | W:Spring | MTF:2/5 | --
+CPRT  ### Strong BUY | -38.5% | W:– | MTF:3/5 | Industrials
+### ── Turning Up (3) ──
+RBBN  ### Turning Up | -48.3% | W:– | MTF:4/5 | --
+VGZ  ### Turning Up | -45.4% | W:⚠ Dist | MTF:2/5 | --
+WIT  ### Turning Up | -36.2% | W:– | MTF:4/5 | --
