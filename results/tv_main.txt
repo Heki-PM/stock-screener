@@ -1,23 +1,17 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-07-31 13:09 UTC
-### Liczba tickerow: 17
+### Wygenerowano: 2026-08-03 13:50 UTC
+### Liczba tickerow: 11
 ###
-### ── Strong BUY (11) ──
-BUR  ### Strong BUY | -70.2% | W:SC | MTF:4/5 M:RISK | --
-LU  ### Strong BUY | -65.2% | W:– | MTF:1/5 M:RISK | --
-SCZM  ### Strong BUY | -61.6% | W:SOS | MTF:4/5 M:RISK | --
-INFY  ### Strong BUY | -60.2% | W:A+AR | MTF:1/5 M:RISK | --
-GFI  ### Strong BUY | -45.6% | W:– | MTF:3/5 M:RISK | --
-CPRT  ### Strong BUY | -41.0% | W:– | MTF:3/5 | --
-XETR:BMW  ### Strong BUY | -39.3% | W:– | MTF:2/5 M:RISK | --
-TTGT  ### Strong BUY | -39.1% | W:SC | MTF:3/5 | --
-PAAS  ### Strong BUY | -37.1% | W:– | MTF:4/5 | --
-FSM  ### Strong BUY | -36.7% | W:– | MTF:3/5 M:RISK | --
-AU  ### Strong BUY | -36.2% | W:SC | MTF:4/5 | --
-### ── Turning Up (6) ──
-ABTC  ### Turning Up | -97.3% | W:SOS | MTF:1/5 M:RISK | --
-ALVO  ### Turning Up | -61.4% | W:SC | MTF:4/5 | --
-ITRG  ### Turning Up | -55.6% | W:A+AR | MTF:1/5 M:RISK | --
-TCPC  ### Turning Up | -55.4% | W:– | MTF:3/5 M:RISK | --
-BTU  ### Turning Up | -48.0% | W:– | MTF:1/5 M:RISK | --
-HSLV  ### Turning Up | -37.0% | W:– | MTF:1/5 | --
+### ── Strong BUY (7) ──
+MSTR  ### Strong BUY | -77.4% | W:A+AR | MTF:2/5 M:RISK | --
+BUR  ### Strong BUY | -70.5% | W:SC | MTF:4/5 M:RISK | --
+SIGA  ### Strong BUY | -66.0% | W:– | MTF:2/5 M:RISK | --
+PDYN  ### Strong BUY | -50.7% | W:– | MTF:4/5 M:RISK | --
+FUTU  ### Strong BUY | -48.3% | W:– | MTF:3/5 M:RISK | --
+PLAB  ### Strong BUY | -46.4% | W:⚠ Dist | MTF:3/5 M:RISK | --
+UROY  ### Strong BUY | -37.8% | W:– | MTF:1/5 M:RISK | --
+### ── Turning Up (4) ──
+DXYZ  ### Turning Up | -68.4% | W:⚠ Dist | MTF:1/5 M:RISK | --
+ALMU  ### Turning Up | -48.3% | W:⚠ Dist | MTF:2/5 M:RISK | --
+ACVA  ### Turning Up | -46.1% | W:SC | MTF:2/5 | --
+RILY  ### Turning Up | -35.3% | W:– | MTF:3/5 | --
