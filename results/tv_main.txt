@@ -1,17 +1,24 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-03 13:50 UTC
-### Liczba tickerow: 11
+### Wygenerowano: 2026-08-04 13:14 UTC
+### Liczba tickerow: 18
 ###
 ### ── Strong BUY (7) ──
-MSTR  ### Strong BUY | -77.4% | W:A+AR | MTF:2/5 M:RISK | --
-BUR  ### Strong BUY | -70.5% | W:SC | MTF:4/5 M:RISK | --
-SIGA  ### Strong BUY | -66.0% | W:– | MTF:2/5 M:RISK | --
-PDYN  ### Strong BUY | -50.7% | W:– | MTF:4/5 M:RISK | --
-FUTU  ### Strong BUY | -48.3% | W:– | MTF:3/5 M:RISK | --
-PLAB  ### Strong BUY | -46.4% | W:⚠ Dist | MTF:3/5 M:RISK | --
-UROY  ### Strong BUY | -37.8% | W:– | MTF:1/5 M:RISK | --
-### ── Turning Up (4) ──
-DXYZ  ### Turning Up | -68.4% | W:⚠ Dist | MTF:1/5 M:RISK | --
-ALMU  ### Turning Up | -48.3% | W:⚠ Dist | MTF:2/5 M:RISK | --
-ACVA  ### Turning Up | -46.1% | W:SC | MTF:2/5 | --
-RILY  ### Turning Up | -35.3% | W:– | MTF:3/5 | --
+EMBC  ### Strong BUY | -76.1% | W:A+AR | MTF:1/5 M:RISK | --
+AVXL  ### Strong BUY | -74.8% | W:– | MTF:1/5 M:RISK | --
+LWLG  ### Strong BUY | -63.5% | W:⚠ Dist | MTF:2/5 M:RISK | --
+CWH  ### Strong BUY | -63.4% | W:– | MTF:4/5 M:RISK | --
+ALB  ### Strong BUY | -46.3% | W:A+AR | MTF:2/5 | --
+AU  ### Strong BUY | -36.8% | W:SC | MTF:2/5 M:RISK | --
+CNM  ### Strong BUY | -31.9% | W:– | MTF:4/5 M:RISK | Industrials
+### ── Turning Up (11) ──
+SLDP  ### Turning Up | -76.0% | W:⚠ Dist | MTF:3/5 M:RISK | --
+RVI  ### Turning Up | -64.7% | W:– | MTF:1/5 | Financial Services
+PSKY  ### Turning Up | -60.6% | W:– | MTF:3/5 M:RISK | --
+UEC  ### Turning Up | -51.0% | W:– | MTF:3/5 M:RISK | --
+LAR  ### Turning Up | -48.3% | W:– | MTF:1/5 | --
+NUAI  ### Turning Up | -46.0% | W:– | MTF:1/5 | --
+CDE  ### Turning Up | -44.0% | W:⚠ Dist | MTF:1/5 M:RISK | --
+IAG  ### Turning Up | -40.7% | W:– | MTF:1/5 M:RISK | --
+KGC  ### Turning Up | -40.1% | W:– | MTF:1/5 M:RISK | Basic Materials
+WULF  ### Turning Up | -36.9% | W:SOS | MTF:1/5 | --
+CXDO  ### Turning Up | -35.7% | W:⚠ Dist | MTF:1/5 M:RISK | --
