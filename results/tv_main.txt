@@ -1,24 +1,12 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-04 13:14 UTC
-### Liczba tickerow: 18
+### Wygenerowano: 2026-08-05 13:07 UTC
+### Liczba tickerow: 6
 ###
-### ── Strong BUY (7) ──
-EMBC  ### Strong BUY | -76.1% | W:A+AR | MTF:1/5 M:RISK | --
-AVXL  ### Strong BUY | -74.8% | W:– | MTF:1/5 M:RISK | --
-LWLG  ### Strong BUY | -63.5% | W:⚠ Dist | MTF:2/5 M:RISK | --
-CWH  ### Strong BUY | -63.4% | W:– | MTF:4/5 M:RISK | --
-ALB  ### Strong BUY | -46.3% | W:A+AR | MTF:2/5 | --
-AU  ### Strong BUY | -36.8% | W:SC | MTF:2/5 M:RISK | --
-CNM  ### Strong BUY | -31.9% | W:– | MTF:4/5 M:RISK | Industrials
-### ── Turning Up (11) ──
-SLDP  ### Turning Up | -76.0% | W:⚠ Dist | MTF:3/5 M:RISK | --
-RVI  ### Turning Up | -64.7% | W:– | MTF:1/5 | Financial Services
-PSKY  ### Turning Up | -60.6% | W:– | MTF:3/5 M:RISK | --
-UEC  ### Turning Up | -51.0% | W:– | MTF:3/5 M:RISK | --
-LAR  ### Turning Up | -48.3% | W:– | MTF:1/5 | --
-NUAI  ### Turning Up | -46.0% | W:– | MTF:1/5 | --
-CDE  ### Turning Up | -44.0% | W:⚠ Dist | MTF:1/5 M:RISK | --
-IAG  ### Turning Up | -40.7% | W:– | MTF:1/5 M:RISK | --
-KGC  ### Turning Up | -40.1% | W:– | MTF:1/5 M:RISK | Basic Materials
-WULF  ### Turning Up | -36.9% | W:SOS | MTF:1/5 | --
-CXDO  ### Turning Up | -35.7% | W:⚠ Dist | MTF:1/5 M:RISK | --
+### ── Strong BUY (2) ──
+SMR  ### Strong BUY | -83.5% | W:– | MTF:2/5 M:RISK | --
+EMBC  ### Strong BUY | -75.4% | W:A+AR | MTF:1/5 M:RISK | --
+### ── Turning Up (4) ──
+TOYO  ### Turning Up | -68.7% | W:⚠ Dist | MTF:3/5 M:RISK | --
+FIGR  ### Turning Up | -64.6% | W:– | MTF:2/5 | Financial Services
+BKSY  ### Turning Up | -51.9% | W:– | MTF:1/5 M:RISK | --
+ASM  ### Turning Up | -50.7% | W:SOS | MTF:1/5 M:RISK | --
