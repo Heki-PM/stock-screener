@@ -1,12 +1,17 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-05 13:07 UTC
-### Liczba tickerow: 6
+### Wygenerowano: 2026-08-06 13:11 UTC
+### Liczba tickerow: 11
 ###
-### ── Strong BUY (2) ──
-SMR  ### Strong BUY | -83.5% | W:– | MTF:2/5 M:RISK | --
-EMBC  ### Strong BUY | -75.4% | W:A+AR | MTF:1/5 M:RISK | --
-### ── Turning Up (4) ──
-TOYO  ### Turning Up | -68.7% | W:⚠ Dist | MTF:3/5 M:RISK | --
-FIGR  ### Turning Up | -64.6% | W:– | MTF:2/5 | Financial Services
-BKSY  ### Turning Up | -51.9% | W:– | MTF:1/5 M:RISK | --
-ASM  ### Turning Up | -50.7% | W:SOS | MTF:1/5 M:RISK | --
+### ── Strong BUY (9) ──
+TIGR  ### Strong BUY | -64.5% | W:A+AR | MTF:1/5 M:RISK | Financial Services
+SCZM  ### Strong BUY | -54.9% | W:SOS | MTF:1/5 M:RISK | Basic Materials
+PEGA  ### Strong BUY | -53.3% | W:SC | MTF:1/5 M:RISK | Technology
+ASM  ### Strong BUY | -46.0% | W:SOS | MTF:2/5 M:RISK | Basic Materials
+CDE  ### Strong BUY | -37.2% | W:A+AR | MTF:2/5 M:RISK | Basic Materials
+UROY  ### Strong BUY | -35.5% | W:– | MTF:1/5 M:RISK | --
+KGC  ### Strong BUY | -34.3% | W:– | MTF:3/5 M:RISK | Basic Materials
+AU  ### Strong BUY | -31.4% | W:A+AR | MTF:2/5 | Basic Materials
+FSM  ### Strong BUY | -30.7% | W:– | MTF:1/5 M:RISK | Basic Materials
+### ── Turning Up (2) ──
+DXYZ  ### Turning Up | -67.2% | W:⚠ Dist | MTF:3/5 M:RISK | Financial Services
+TPB  ### Turning Up | -43.0% | W:⚠ Dist | MTF:2/5 M:RISK | Consumer Defensive
