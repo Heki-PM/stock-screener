@@ -1,16 +1,22 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-06 13:46 UTC
-### Liczba tickerow: 10
+### Wygenerowano: 2026-08-07 11:57 UTC
+### Liczba tickerow: 16
 ###
-### ── Strong BUY (7) ──
-TIGR  ### Strong BUY | -64.6% | W:A+AR | MTF:1/5 M:RISK | Financial Services
-SCZM  ### Strong BUY | -54.8% | W:SOS | MTF:1/5 M:RISK | Basic Materials
-CRK  ### Strong BUY | -53.1% | W:– | MTF:1/5 M:RISK | --
-FUTU  ### Strong BUY | -47.2% | W:– | MTF:1/5 M:RISK | Financial Services
-PLAB  ### Strong BUY | -43.3% | W:⚠ Dist | MTF:2/5 M:RISK | Technology
-KGC  ### Strong BUY | -34.0% | W:– | MTF:2/5 M:RISK | Basic Materials
-UROY  ### Strong BUY | -33.4% | W:– | MTF:1/5 M:RISK | Energy
-### ── Turning Up (3) ──
-SOFI  ### Turning Up | -44.3% | W:– | MTF:0/5 M:RISK | Financial Services
-TPB  ### Turning Up | -41.9% | W:⚠ Dist | MTF:0/5 M:RISK | Consumer Defensive
-NXT  ### Turning Up | -40.0% | W:– | MTF:1/5 | Technology
+### ── Strong BUY (9) ──
+SLI  ### Strong BUY | -64.5% | W:– | MTF:4/5 M:RISK | --
+FIGR  ### Strong BUY | -63.3% | W:– | MTF:2/5 | Financial Services
+ZG  ### Strong BUY | -62.6% | W:SC | MTF:1/5 M:RISK | Communication Services
+PEGA  ### Strong BUY | -53.5% | W:SC | MTF:1/5 M:RISK | Technology
+PATK  ### Strong BUY | -41.7% | W:SC | MTF:4/5 M:RISK | --
+GFI  ### Strong BUY | -39.4% | W:– | MTF:2/5 M:RISK | Basic Materials
+MUX  ### Strong BUY | -38.5% | W:A+AR | MTF:3/5 M:RISK | --
+IAG  ### Strong BUY | -35.5% | W:– | MTF:2/5 | Basic Materials
+CNM  ### Strong BUY | -32.3% | W:– | MTF:2/5 M:RISK | --
+### ── Turning Up (7) ──
+METC  ### Turning Up | -83.4% | W:Spring | MTF:3/5 M:RISK | --
+BBAI  ### Turning Up | -67.9% | W:SC | MTF:3/5 M:RISK | --
+DXYZ  ### Turning Up | -65.4% | W:⚠ Dist | MTF:3/5 M:RISK | Financial Services
+RVI  ### Turning Up | -64.6% | W:– | MTF:2/5 | Financial Services
+VUZI  ### Turning Up | -54.1% | W:SC | MTF:1/5 M:RISK | --
+ASTS  ### Turning Up | -49.7% | W:– | MTF:1/5 M:RISK | --
+AA  ### Turning Up | -43.7% | W:– | MTF:1/5 | --
