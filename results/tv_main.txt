@@ -1,20 +1,24 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-08 08:53 UTC
-### Liczba tickerow: 14
+### Wygenerowano: 2026-08-08 22:10 UTC
+### Liczba tickerow: 18
 ###
-### ── Strong BUY (13) ──
-CRML  ### Strong BUY | -77.4% | W:SOS | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-EMBC  ### Strong BUY | -71.6% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:100.0 | --
-EH  ### Strong BUY | -71.6% | W:– | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-LU  ### Strong BUY | -67.2% | W:– | MTF:4/5 | Fuzzy:83.4 | --
-TMQ  ### Strong BUY | -66.3% | W:– | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-UAMY  ### Strong BUY | -65.2% | W:SC | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-SHMD  ### Strong BUY | -55.7% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-ITRG  ### Strong BUY | -47.2% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:82.8 | --
-PDYN  ### Strong BUY | -44.2% | W:– | MTF:2/5 M:RISK | Fuzzy:97.3 | --
-AGI  ### Strong BUY | -40.2% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:84.8* | --
-RWAY  ### Strong BUY | -38.6% | W:– | MTF:2/5 | Fuzzy:61.1 | --
-BKV  ### Strong BUY | -25.4% | W:SOS | MTF:2/5 | Fuzzy:67.3* | --
-FSM  ### Strong BUY | -25.0% | W:– | MTF:1/5 M:RISK | Fuzzy:72.4* | --
-### ── Turning Up (1) ──
-QNC  ### Turning Up | -49.8% | W:– | MTF:2/5 | Fuzzy:100.0 | --
+### ── Strong BUY (15) ──
+AVXL  ### Strong BUY | -71.5% | W:– | MTF:1/5 | Fuzzy:100.0 | --
+LAC  ### Strong BUY | -69.3% | W:– | MTF:2/5 | Fuzzy:100.0 | --
+TIGR  ### Strong BUY | -64.5% | W:A+AR | MTF:1/5 | Fuzzy:100.0 | --
+FIGR  ### Strong BUY | -63.3% | W:– | MTF:3/5 | Fuzzy:95.1 | --
+TMC  ### Strong BUY | -59.7% | W:– | MTF:2/5 | Fuzzy:100.0 | --
+SNDL  ### Strong BUY | -57.4% | W:– | MTF:3/5 | Fuzzy:100.0 | --
+GILT  ### Strong BUY | -46.3% | W:– | MTF:3/5 | Fuzzy:70.7* | --
+NUAI  ### Strong BUY | -44.1% | W:– | MTF:1/5 | Fuzzy:97.0 | --
+PLAB  ### Strong BUY | -41.7% | W:⚠ Dist | MTF:2/5 | Fuzzy:73.7 | --
+GLIBK  ### Strong BUY | -41.7% | W:A+AR | MTF:1/5 | Fuzzy:89.0 | --
+OLED  ### Strong BUY | -40.5% | W:A+AR | MTF:1/5 | Fuzzy:83.0* | --
+REI  ### Strong BUY | -35.0% | W:⚠ Dist | MTF:2/5 | Fuzzy:66.7 | --
+BIDU  ### Strong BUY | -33.6% | W:SOS | MTF:3/5 | Fuzzy:62.0 | --
+NN  ### Strong BUY | -33.2% | W:A+AR | MTF:2/5 | Fuzzy:60.7 | --
+CNM  ### Strong BUY | -30.7% | W:– | MTF:2/5 | Fuzzy:61.9 | --
+### ── Turning Up (3) ──
+CWH  ### Turning Up | -65.5% | W:– | MTF:2/5 | Fuzzy:100.0 | --
+NVTS  ### Turning Up | -59.4% | W:⚠ Dist | MTF:1/5 | Fuzzy:100.0 | --
+WOLF  ### Turning Up | -59.3% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | --
