@@ -94,6 +94,37 @@ SCORE_WEIGHTS = {
 # Liczony tylko dla finalnej listy (po filter_main), bo wymaga danych Monthly.
 MTF_SCORE_MAX = 5
 
+# FUZZY – dodatkowy filtr oparty o logikę rozmytą (fuzzy logic).
+# Zamiast twardych progów AND (wszystko-albo-nic jak w filter_main), każda
+# metryka dostaje stopień przynależności 0-1 do "dobra", a fuzzy_score to
+# ich ważona suma (0-100). Gdy spółka nie spełnia dokładnie JEDNEGO z pięciu
+# twardych progów jakościowych (Quick Ratio, Discount 52W, ROIC, Debt/Equity,
+# Gross Margin), ale fuzzy_score >= MIN_FUZZY_SCORE, i tak trafia do screenera
+# głównego – bo pojedyncze, niewielkie niedociągnięcie jest z nawiązką
+# rekompensowane siłą pozostałych metryk. Ustaw ENABLE_FUZZY_FILTER = False,
+# żeby wrócić do czysto binarnego filter_main.
+ENABLE_FUZZY_FILTER = True
+MIN_FUZZY_SCORE      = 65     # próg 0-100 dla łącznej oceny rozmytej
+# Sama wysoka łączna ocena to za mało – gdyby jeden wskaźnik był katastrofalnie
+# zły (np. ROIC=2%), pozostałe idealne metryki i tak podciągnęłyby fuzzy_score
+# powyżej progu. Dlatego rescue wymaga DODATKOWO, żeby stopień przynależności
+# SAMEJ zawodzącej metryki był >= MIN_FUZZY_METRIC_DEGREE – to odróżnia
+# "prawie spełnia" (degree ~0.5) od "bardzo daleko od progu" (degree ~0).
+MIN_FUZZY_METRIC_DEGREE = 0.30
+
+# Wagi składników fuzzy_score – muszą sumować się do 1.0.
+# Pięć pierwszych odpowiada dokładnie pięciu twardym progom filter_main
+# (stąd wyższe wagi), RS 12M i EPS QoQ to mniejszy bonus/kara za momentum.
+FUZZY_WEIGHTS = {
+    "discount_52w": 0.20,
+    "roic":         0.20,
+    "debt_equity":  0.15,
+    "gross_margin": 0.20,
+    "quick_ratio":  0.15,
+    "rs_12m":       0.05,
+    "eps_qoq":      0.05,
+}
+
 # ══════════════════════════════════════════════════════════════
 #  FIX 5 – CACHE FUNDAMENTÓW
 # ══════════════════════════════════════════════════════════════
@@ -1123,8 +1154,17 @@ def phase2_collect(weekly_signals):
             if r: results.append(r)
     print(f"      Zebrano danych: {len(results)}")
     for r in results:
-        r["tech_score"] = calc_tech_score(r)
+        r["tech_score"]   = calc_tech_score(r)
+        r["fuzzy_score"]  = calc_fuzzy_score(r)
+        r["fuzzy_rescue"] = _fuzzy_rescue_check(r) if ENABLE_FUZZY_FILTER else False
     results.sort(key=lambda x: x.get("tech_score",0), reverse=True)
+
+    fuzzy_vals = [r["fuzzy_score"] for r in results if r.get("fuzzy_score") is not None]
+    rescued    = sum(1 for r in results if r.get("fuzzy_rescue"))
+    if fuzzy_vals:
+        print(f"      Fuzzy Score: srednia {sum(fuzzy_vals)/len(fuzzy_vals):.1f} | "
+              f"zakres {min(fuzzy_vals):.1f}-{max(fuzzy_vals):.1f} | "
+              f"rescue >= {MIN_FUZZY_SCORE}: {rescued} spolek")
     return results
 
 # ══════════════════════════════════════════════════════════════
@@ -1136,6 +1176,10 @@ def filter_main(r):
     Filtr screener głównego.
     Zasada: brak danych (None) = przepuszczamy, tylko jawnie zła wartość = odrzucamy.
     FIX 6: eps <= 0 odrzucany (break-even nie liczy się jako zysk).
+    FUZZY: gdy klasyczna ścieżka (wszystkie 5 progów jakościowych spełnione)
+    zawodzi na dokładnie jednym progu, dopuszczamy spółkę przez fuzzy rescue
+    (patrz sekcja LOGIKA ROZMYTA) zamiast twardego odrzutu. Wymaga wcześniej
+    policzonego r["fuzzy_rescue"] w phase2_collect.
     """
     if r["signal"] not in ("Strong BUY", "Turning Up"):
         return False
@@ -1146,36 +1190,19 @@ def filter_main(r):
         return False
 
     # FIX 6 – EPS: jeśli dostępne, musi być dodatnie (>0, nie >=0)
+    # EPS nie wchodzi do fuzzy rescue – brak zysku jest twardym dyskwalifikatorem.
     eps = r.get("eps_ttm")
     if eps is not None and eps <= 0:
         return False
 
-    # Quick Ratio: jeśli dostępne, musi spełniać próg
-    qr = r.get("quick_ratio")
-    if qr is not None and qr < MIN_QUICK:
-        return False
+    # Pięć progów jakościowych (Quick Ratio, Discount, ROIC, Debt/Equity,
+    # Gross Margin) – klasyczna ścieżka wymaga spełnienia wszystkich naraz.
+    if all(_hard_quality_checks(r).values()):
+        return True
 
-    # Dyskonto: jeśli dostępne, musi spełniać próg
-    disc = r.get("discount_52w")
-    if disc is not None and disc < MIN_DISCOUNT_52W * 100:
-        return False
-
-    # ROIC: jeśli dostępne, musi spełniać próg
-    roic = r.get("roic")
-    if roic is not None and roic < MIN_ROIC:
-        return False
-
-    # Debt/Equity: jeśli dostępne, musi być poniżej progu
-    de = r.get("debt_equity")
-    if de is not None and de > MAX_DEBT_EQUITY:
-        return False
-
-    # Gross Margin: jeśli dostępne, musi spełniać próg
-    gm = r.get("gross_margin")
-    if gm is not None and gm < MIN_GROSS_MARGIN:
-        return False
-
-    return True
+    # FUZZY RESCUE: dokładnie jeden z powyższych progów zawiódł, ale łączna
+    # ocena rozmyta (fuzzy_score) jest mimo to wysoka -> wpuszczamy spółkę.
+    return bool(r.get("fuzzy_rescue"))
 
 # ══════════════════════════════════════════════════════════════
 #  SCORING TECHNICZNY  (FIX 4 – ważony)
@@ -1241,6 +1268,127 @@ def calc_tech_score(sig: dict) -> int:
         score += W["wyckoff_dist"]   # wartość ujemna (-3)
 
     return max(0, min(score, 12))
+
+# ══════════════════════════════════════════════════════════════
+#  LOGIKA ROZMYTA (FUZZY) – dodatkowy filtr
+# ══════════════════════════════════════════════════════════════
+#
+# filter_main() ocenia jakość fundamentalną pięcioma twardymi progami AND:
+# spółka ze wskaźnikiem 0.1 punktu procentowego pod progiem (np. ROIC=14.9%
+# zamiast wymaganych 15%) jest odrzucana identycznie jak spółka z ROIC=2%.
+# Fuzzy nie zastępuje tej logiki – dokłada do niej ścieżkę ratunkową: gdy
+# zawodzi dokładnie JEDEN z pięciu progów, liczymy ciągłą ocenę jakości
+# (fuzzy_score, 0-100) opartą na stopniach przynależności zamiast 0/1,
+# i wpuszczamy spółkę mimo to, jeśli fuzzy_score >= MIN_FUZZY_SCORE.
+
+def _fuzzy_high(x, low, high):
+    """
+    Rosnąca funkcja przynależności (shoulder): 0 dla x<=low, 1 dla x>=high,
+    liniowo pomiędzy. Używana tam, gdzie "wyżej = lepiej" (ROIC, Gross
+    Margin, Discount, Quick Ratio, RS 12M, EPS QoQ). Zwraca None -> 0.0.
+    """
+    if x is None:
+        return 0.0
+    if x <= low:
+        return 0.0
+    if x >= high:
+        return 1.0
+    return (x - low) / (high - low)
+
+def _fuzzy_low(x, low, high):
+    """
+    Malejąca funkcja przynależności (shoulder): 1 dla x<=low, 0 dla x>=high,
+    liniowo pomiędzy. Używana tam, gdzie "niżej = lepiej" (Debt/Equity).
+    """
+    if x is None:
+        return 0.0
+    if x <= low:
+        return 1.0
+    if x >= high:
+        return 0.0
+    return (high - x) / (high - low)
+
+# Zakresy (kierunek, low, high) dla każdej metryki wchodzącej do fuzzy_score.
+# "high" = rosnąca funkcja przynależności (wyżej = lepiej), "low" = malejąca
+# (niżej = lepiej, tylko Debt/Equity). Progi rozstawione WOKÓŁ twardego progu
+# z filter_main (np. ROIC: twardy próg 15%, fuzzy rośnie od 5% do 25%) –
+# spółka dokładnie na progu dostaje ok. 0.5 przynależności, a nie 0 albo 1.
+_FUZZY_RANGES = {
+    "discount_52w": ("high", 15,   45),
+    "roic":         ("high", 0.05, 0.25),
+    "debt_equity":  ("low",  0.3,  1.8),
+    "gross_margin": ("high", 0.15, 0.50),
+    "quick_ratio":  ("high", 0.5,  1.5),
+    "rs_12m":       ("high", 0.9,  1.3),
+    "eps_qoq":      ("high", -10,  25),
+}
+
+def _fuzzy_degree(key: str, value) -> float:
+    """Stopień przynależności [0,1] jednej metryki wg jej wpisu w _FUZZY_RANGES."""
+    direction, low, high = _FUZZY_RANGES[key]
+    fn = _fuzzy_high if direction == "high" else _fuzzy_low
+    return fn(value, low, high)
+
+def calc_fuzzy_score(r: dict) -> float | None:
+    """
+    Rozmyta (fuzzy logic) ocena jakości fundamentalnej spółki, skala 0-100.
+    Każda metryka ma stopień przynależności w [0,1] do "dobra"; wynik to
+    ważona suma tych stopni (wagi: FUZZY_WEIGHTS), znormalizowana po
+    metrykach faktycznie dostępnych (brak danych = pomijamy, nie karzemy –
+    spójnie z filozofią filter_main).
+    Zwraca None, gdy nie ma żadnych danych do oceny.
+    """
+    total_w, total_score = 0.0, 0.0
+    for key, w in FUZZY_WEIGHTS.items():
+        raw = r.get(key)
+        if raw is None:
+            continue
+        total_w     += w
+        total_score += w * _fuzzy_degree(key, raw)
+    if total_w == 0:
+        return None
+    return round((total_score / total_w) * 100, 1)
+
+def _hard_quality_checks(r: dict) -> dict:
+    """
+    Te same pięć twardych progów co w filter_main, w formie dict
+    {nazwa: czy_spelnia}. Brak danych (None) = warunek spełniony (spójne
+    z resztą filter_main: przepuszczamy, nie karzemy za brak danych).
+    Używane zarówno przez filter_main, jak i przez _fuzzy_rescue_check.
+    """
+    return {
+        "quick_ratio":  r.get("quick_ratio")  is None or r.get("quick_ratio")  >= MIN_QUICK,
+        "discount_52w": r.get("discount_52w") is None or r.get("discount_52w") >= MIN_DISCOUNT_52W * 100,
+        "roic":         r.get("roic")         is None or r.get("roic")         >= MIN_ROIC,
+        "debt_equity":  r.get("debt_equity")  is None or r.get("debt_equity")  <= MAX_DEBT_EQUITY,
+        "gross_margin": r.get("gross_margin") is None or r.get("gross_margin") >= MIN_GROSS_MARGIN,
+    }
+
+def _fuzzy_rescue_check(r: dict) -> bool:
+    """
+    FUZZY RESCUE – dwa warunki muszą być spełnione naraz:
+      1. Dokładnie JEDEN z pięciu twardych progów jakościowych zawodzi
+         (zero lub 2+ zawodzących progów -> brak ratunku; fuzzy ma łagodzić
+         pojedyncze niedociągnięcie, a nie zastępować filtr jako całość).
+      2. Ta konkretna zawodząca metryka jest sama w sobie "blisko" progu
+         (stopień przynależności >= MIN_FUZZY_METRIC_DEGREE), ORAZ łączna
+         ocena rozmyta całej spółki (fuzzy_score) >= MIN_FUZZY_SCORE.
+    Warunek 2 zapobiega sytuacji, w której jedna katastrofalnie zła metryka
+    (np. ROIC=2% zamiast wymaganych 15%) zostaje "ukryta" przez resztę
+    idealnych wskaźników i i tak przechodzi próg łącznej oceny.
+    Wymaga, by r["fuzzy_score"] było już policzone (patrz phase2_collect).
+    """
+    failed = [k for k, ok in _hard_quality_checks(r).items() if not ok]
+    if len(failed) != 1:
+        return False
+
+    failing_key = failed[0]
+    metric_degree = _fuzzy_degree(failing_key, r.get(failing_key))
+    if metric_degree < MIN_FUZZY_METRIC_DEGREE:
+        return False   # zawodząca metryka jest daleko od progu – to nie "near miss"
+
+    fuzzy = r.get("fuzzy_score")
+    return fuzzy is not None and fuzzy >= MIN_FUZZY_SCORE
 
 # ══════════════════════════════════════════════════════════════
 #  FORMATOWANIE
@@ -1366,6 +1514,14 @@ COMMON_CSS = """
                      padding:.15rem .45rem;border-radius:3px;margin-left:.3rem}
   .badge-m-risk     {background:#3d0010;color:#ff4560;font-size:.7rem;font-weight:700;
                      padding:.18rem .55rem;border-radius:4px;border:1px solid #ff456066}
+  .badge-fuzzy-high {background:#0a2e10;color:#3ecf8e;font-size:.68rem;font-weight:700;
+                     padding:.15rem .45rem;border-radius:3px;margin-left:.3rem}
+  .badge-fuzzy-mid  {background:#0d1a2e;color:#7c9ef0;font-size:.68rem;font-weight:700;
+                     padding:.15rem .45rem;border-radius:3px;margin-left:.3rem}
+  .badge-fuzzy-low  {background:#1a1505;color:#ffa040;font-size:.68rem;font-weight:700;
+                     padding:.15rem .45rem;border-radius:3px;margin-left:.3rem}
+  .badge-fuzzy-rescue{background:#2e0a2e;color:#e29bff;font-size:.68rem;font-weight:700;
+                     padding:.15rem .5rem;border-radius:4px;border:1px solid #c471ed66;margin-left:.3rem}
   @media(max-width:900px){.page{padding:1rem} th,td{padding:.45rem .6rem}}
 """
 
@@ -1435,6 +1591,21 @@ def _monthly_risk_badge(risk_warning, m_zone):
         return ""
     return (f'<span class="badge-m-risk" title="SMI miesieczny w trendzie spadkowym - '
             f'sygnal W1 moze byc przedwczesny">&#9888; Monthly {m_zone}</span>')
+
+def _fuzzy_badge(score, rescued=False):
+    """
+    Badge wyniku logiki rozmytej (Fuzzy Score, 0-100).
+    Gdy `rescued`=True, spółka trafiła do screenera głównego mimo
+    niespełnienia jednego twardego progu jakościowego – właśnie dzięki
+    wystarczająco wysokiej ocenie rozmytej (patrz filter_main).
+    """
+    if score is None:
+        return ""
+    if rescued:
+        title = "Fuzzy rescue: 1 twardy prog niespelniony, ale wysoka jakosc laczna"
+        return f'<span class="badge-fuzzy-rescue" title="{title}">&#128302; Fuzzy {score}</span>'
+    cls = "badge-fuzzy-high" if score >= 70 else "badge-fuzzy-mid" if score >= 45 else "badge-fuzzy-low"
+    return f'<span class="{cls}" title="Fuzzy Score - ciagla ocena jakosci fundamentalnej">Fuzzy {score}</span>'
 
 def _color_ok(val, ok):
     if val is None: return "#888"
@@ -1556,6 +1727,7 @@ def render_cards(data, show_quality=False):
             f'{_wyk_badge(wyk_s, wyk_d)}'
             f'{_d1_badge(r.get("d1_last_cross_days_ago"), r.get("early_signal", False))}'
             f'{_mtf_badge(r.get("mtf_score"))}'
+            f'{_fuzzy_badge(r.get("fuzzy_score"), r.get("fuzzy_rescue", False))}'
             f'</div>'
             f'<div class="sc-name">{r["name"]}</div></div>'
             f'<span class="badge-{mc}">{r["market"]}</span></div>'
@@ -1638,7 +1810,7 @@ def render_table_rows(data, show_quality=False):
             )
 
         html += f"""<tr>
-          <td><span class="ticker">{r['ticker']}</span>{badge}{_score_badge(r.get('tech_score'))}{_div_badge(r.get('divergence_bull'),r.get('divergence_desc',''))}{_d1_badge(r.get('d1_last_cross_days_ago'), r.get('early_signal', False))}{_mtf_badge(r.get('mtf_score'))}</td>
+          <td><span class="ticker">{r['ticker']}</span>{badge}{_score_badge(r.get('tech_score'))}{_div_badge(r.get('divergence_bull'),r.get('divergence_desc',''))}{_d1_badge(r.get('d1_last_cross_days_ago'), r.get('early_signal', False))}{_mtf_badge(r.get('mtf_score'))}{_fuzzy_badge(r.get('fuzzy_score'), r.get('fuzzy_rescue', False))}</td>
           <td class="name-col">{r['name']}</td>
           <td><span class="badge-{'usa' if r['market']=='USA' else 'eu'}">{r['market']}</span></td>
           <td>{r['sector']}</td>
@@ -1703,6 +1875,8 @@ def generate_html_main(meta, results):
       <li>D1 Lead: informacyjnie (badge &#9889;D1 wczesniej / D1:-Xd)</li>
       <li>MTF Score: informacyjnie 0-5 (badge MTF&#9670;X, zgodnosc D1+W1+Monthly)</li>
       <li>Monthly Risk: ostrzezenie gdy trend miesieczny przeczy sygnalowi W1</li>
+      <li>Fuzzy: dodatkowa &#347;cie&#380;ka rozmyta &mdash; ratuje sp&oacute;&#322;k&#281; z 1 niespe&#322;nionym
+          twardym progiem, gdy &#322;&#261;czna jako&#347;&#263; (Fuzzy Score) &#8805; {MIN_FUZZY_SCORE}/100</li>
     </ul>
   </div>
   <div class="stats-bar">
@@ -1714,6 +1888,7 @@ def generate_html_main(meta, results):
     <div class="stat"><div class="stat-val" style="color:#ffb800">{len(early_res)}</div><div class="stat-label">Early Signal D1</div></div>
     <div class="stat"><div class="stat-val green">{meta.get('mtf_high_count', 0)}</div><div class="stat-label">MTF Score&ge;4</div></div>
     <div class="stat"><div class="stat-val" style="color:#ff4560">{meta.get('monthly_risk_count', 0)}</div><div class="stat-label">Monthly Risk</div></div>
+    <div class="stat"><div class="stat-val" style="color:#e29bff">{meta.get('fuzzy_rescue_count', 0)}</div><div class="stat-label">Fuzzy Rescue</div></div>
   </div>
   <div class="section section-early">
     <div class="section-header"><span class="section-icon">&#9889;</span>
@@ -2017,8 +2192,11 @@ def generate_tradingview_lists(main_results, full_results):
                 mtf   = r.get("mtf_score")
                 mtf_s = f"MTF:{mtf}/5" if mtf is not None else "MTF:--"
                 mrisk = " M:RISK" if r.get("m_risk_warning") else ""
+                fuzzy = r.get("fuzzy_score")
+                fuzzy_s = f"Fuzzy:{fuzzy}" if fuzzy is not None else "Fuzzy:--"
+                fuzzy_s += "*" if r.get("fuzzy_rescue") else ""
                 lines.append(
-                    f"{tv}  ### {r['signal']} | {disc} | W:{wyk_l} | {mtf_s}{mrisk} | {r.get('sector','--')}"
+                    f"{tv}  ### {r['signal']} | {disc} | W:{wyk_l} | {mtf_s}{mrisk} | {fuzzy_s} | {r.get('sector','--')}"
                 )
         path = f"{OUTPUT_DIR}/{filename}"
         with open(path,"w",encoding="utf-8") as f: f.write("\n".join(lines)+"\n")
@@ -2063,6 +2241,10 @@ def run_screener():
 
     main_results = [r for r in all_data if filter_main(r)]
     full_results = all_data
+    fuzzy_rescue_count = sum(1 for r in main_results if r.get("fuzzy_rescue"))
+    if fuzzy_rescue_count:
+        print(f"  Fuzzy rescue: {fuzzy_rescue_count} spolek w screenerze glownym dzieki "
+              f"logice rozmytej (1 niespelniony twardy prog, fuzzy_score >= {MIN_FUZZY_SCORE})")
 
     # ── FAZA 3: Monthly SMI + MTF Score (tylko dla finalnej listy main_results) ──
     mtf_high_count = 0
@@ -2112,6 +2294,7 @@ def run_screener():
         "full_total":     len(full_results),
         "mtf_high_count":     mtf_high_count,
         "monthly_risk_count": monthly_risk_count,
+        "fuzzy_rescue_count": fuzzy_rescue_count,
         "indicator":      f"SMI({SMI_LEN_K},{SMI_LEN_D},{SMI_LEN_EMA})",
         "market_direction": {
             "usa_above_sma50w": market_dir["USA"],
