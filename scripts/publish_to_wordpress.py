@@ -3,9 +3,7 @@ publish_to_wordpress.py
 
 Wysyla najnowsze wyniki screenera na strone zhelektro.pl przez endpoint MCP
 wtyczki Easy MCP AI (ten sam mechanizm, ktorego Claude uzywa do zarzadzania
-ta strona). Omija to problem z Application Passwords, ktorych nie udalo sie
-odblokowac (prawdopodobnie is_ssl() na hostingu zwraca false za proxy/LiteSpeed
--- to wymagaloby zmian w konfiguracji serwera, do ktorej nie masz latwego dostepu).
+ta strona).
 
 WYMAGANA ZMIENNA SRODOWISKOWA (ustaw jako GitHub Secret):
   WP_API_TOKEN  - token z: wp-admin -> Easy MCP AI -> API Tokens -> Create New Token
@@ -13,22 +11,19 @@ WYMAGANA ZMIENNA SRODOWISKOWA (ustaw jako GitHub Secret):
                   -> Allowed Tools: zostaw puste, albo ogranicz do "wp_get_page,wp_update_page"
                   -> skopiuj wartosc zaczynajaca sie od "wpmcp_" (pokazana tylko raz!)
 
-PODLACZENIE DO screener.py:
-  from publish_to_wordpress import publish_results
+PODLACZENIE (w scripts/screener.py, na koncu if __name__ == "__main__":):
 
-  results = [
-      {"ticker": "AGI", "price": 33.15, "smi": -65.89, "strefa": "OVERSOLD",
-       "sygnal": "Strong BUY", "tech": 11},
-      ...
-  ]
-  publish_results(results)
+  if __name__ == "__main__":
+      main_results, full_results = run_screener()
+      try:
+          from publish_to_wordpress import publish_results
+          publish_results(main_results)
+      except Exception as e:
+          print(f"[WordPress] Publikacja nie powiodla sie: {e}")
 
-Dostosuj klucze slownika do rzeczywistej struktury danych w Twoim screener.py.
-
-UWAGA: ta implementacja mowi standardowym protokolem MCP (JSON-RPC przez HTTP)
-zgodnie z dokumentacja Easy MCP AI. Nie mam mozliwosci przetestowac jej na
-Twoim koncie/tokenie -- jesli pierwszy przebieg w GitHub Actions sie wysypie,
-log pokaze pelna tresc odpowiedzi serwera, co powinno wystarczyc do poprawki.
+main_results jest juz posortowany przez screener.py (Strong BUY / Turning Up
+najpierw, potem po tech_score*2+mtf_score malejaco) -- ten skrypt NIE sortuje
+ponownie, tylko bierze pierwsze 2 rekordy jako TOP2.
 """
 
 import os
@@ -50,6 +45,12 @@ SIGNAL_COLORS = {
     "Strong BUY": ("#35D07F", "#163325"),
     "BUY": ("#3DDAD7", "#163333"),
     "Turning Up": ("#FFB020", "#3A2E10"),
+    "Bearish": ("#FF8A3D", "#3A2418"),
+}
+
+ZONE_COLORS = {
+    "OVERSOLD": ("#35D07F", "#163325"),
+    "OVERBOUGHT": ("#FF8A3D", "#3A2418"),
     "Bearish": ("#FF8A3D", "#3A2418"),
 }
 
@@ -111,11 +112,11 @@ class MCPClient:
         return result
 
 
-def _signal_badge(sygnal):
-    color, bg = SIGNAL_COLORS.get(sygnal, ("#8A93A0", "#1d222a"))
+def _badge(text, colors, default=("#8A93A0", "#1d222a")):
+    color, bg = colors.get(text, default)
     return (
         f'<span style="background:{bg};color:{color};padding:2px 8px;'
-        f'border-radius:4px;font-size:12px;font-weight:600;">{sygnal}</span>'
+        f'border-radius:4px;font-size:12px;font-weight:600;">{text}</span>'
     )
 
 
@@ -128,7 +129,7 @@ def _build_top2_html(top2):
             <span style="font-family:ui-monospace,'SF Mono',Consolas,monospace;font-weight:600;font-size:15px;">{r['ticker']}</span>
             <span style="font-family:ui-monospace,'SF Mono',Consolas,monospace;">${r['price']:.2f}</span>
           </div>
-          <div style="margin-top:6px;">{_signal_badge(r['sygnal'])}</div>
+          <div style="margin-top:6px;">{_badge(r['signal'], SIGNAL_COLORS)}</div>
         </div>''')
     return "\n".join(cards)
 
@@ -141,9 +142,9 @@ def _build_table_html(results):
           <td style="padding:10px 8px;font-family:ui-monospace,'SF Mono',Consolas,monospace;font-weight:600;">{r['ticker']}</td>
           <td style="padding:10px 8px;text-align:right;font-family:ui-monospace,'SF Mono',Consolas,monospace;">${r['price']:.2f}</td>
           <td style="padding:10px 8px;text-align:right;font-family:ui-monospace,'SF Mono',Consolas,monospace;">{r['smi']:.2f}</td>
-          <td style="padding:10px 8px;">{r['strefa']}</td>
-          <td style="padding:10px 8px;">{_signal_badge(r['sygnal'])}</td>
-          <td style="padding:10px 8px;text-align:right;font-family:ui-monospace,'SF Mono',Consolas,monospace;">{r['tech']}</td>
+          <td style="padding:10px 8px;">{_badge(r['zone'], ZONE_COLORS)}</td>
+          <td style="padding:10px 8px;">{_badge(r['signal'], SIGNAL_COLORS)}</td>
+          <td style="padding:10px 8px;text-align:right;font-family:ui-monospace,'SF Mono',Consolas,monospace;">{r['tech_score']}</td>
         </tr>''')
     return (
         '<table style="width:100%;border-collapse:collapse;font-size:14px;">'
@@ -168,12 +169,14 @@ def _replace_between_markers(content, marker, new_html):
     return pattern.sub(rf"\1\n{new_html}\n\3", content)
 
 
-def publish_results(results):
-    """results: lista slownikow z kluczami ticker, price, smi, strefa, sygnal, tech."""
-    client = MCPClient(MCP_URL, WP_API_TOKEN)
+def publish_results(main_results):
+    """main_results: lista wynikow zwrocona przez run_screener() (juz posortowana)."""
+    if not main_results:
+        print("[WordPress] Brak wynikow do publikacji -- pomijam.")
+        return
 
-    ranked = sorted(results, key=lambda r: r["tech"], reverse=True)
-    top2 = ranked[:2]
+    top2 = main_results[:2]
+    client = MCPClient(MCP_URL, WP_API_TOKEN)
 
     homepage = client.call_tool("wp_get_page", {"page_id": PAGE_ID_HOMEPAGE})
     new_homepage_content = _replace_between_markers(
@@ -185,18 +188,18 @@ def publish_results(results):
 
     results_page = client.call_tool("wp_get_page", {"page_id": PAGE_ID_RESULTS})
     new_results_content = _replace_between_markers(
-        results_page["content"], "TABLE", _build_table_html(ranked)
+        results_page["content"], "TABLE", _build_table_html(main_results)
     )
     client.call_tool("wp_update_page", {
         "page_id": PAGE_ID_RESULTS, "content": new_results_content,
     })
 
-    print(f"Zaktualizowano strone glowna (TOP {len(top2)}) i pelna tabele ({len(ranked)} wierszy).")
+    print(f"[WordPress] Zaktualizowano strone glowna (TOP {len(top2)}) i pelna tabele ({len(main_results)} wierszy).")
 
 
 if __name__ == "__main__":
     example = [
-        {"ticker": "AGI", "price": 33.15, "smi": -65.89, "strefa": "OVERSOLD", "sygnal": "Strong BUY", "tech": 11},
-        {"ticker": "ITRG", "price": 2.57, "smi": -50.48, "strefa": "OVERSOLD", "sygnal": "Strong BUY", "tech": 11},
+        {"ticker": "AGI", "price": 33.15, "smi": -65.89, "zone": "OVERSOLD", "signal": "Strong BUY", "tech_score": 11},
+        {"ticker": "ITRG", "price": 2.57, "smi": -50.48, "zone": "OVERSOLD", "signal": "Strong BUY", "tech_score": 11},
     ]
     publish_results(example)
