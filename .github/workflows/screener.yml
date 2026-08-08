@@ -31,6 +31,7 @@ jobs:
         run: python scripts/screener.py
         env:
           PYTHONUNBUFFERED: "1"
+          WP_API_TOKEN: ${{ secrets.WP_API_TOKEN }}
 
       - name: Save dated copy of results
         run: |
