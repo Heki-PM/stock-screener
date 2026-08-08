@@ -1,22 +1,20 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-07 11:57 UTC
-### Liczba tickerow: 16
+### Wygenerowano: 2026-08-08 08:53 UTC
+### Liczba tickerow: 14
 ###
-### ── Strong BUY (9) ──
-SLI  ### Strong BUY | -64.5% | W:– | MTF:4/5 M:RISK | --
-FIGR  ### Strong BUY | -63.3% | W:– | MTF:2/5 | Financial Services
-ZG  ### Strong BUY | -62.6% | W:SC | MTF:1/5 M:RISK | Communication Services
-PEGA  ### Strong BUY | -53.5% | W:SC | MTF:1/5 M:RISK | Technology
-PATK  ### Strong BUY | -41.7% | W:SC | MTF:4/5 M:RISK | --
-GFI  ### Strong BUY | -39.4% | W:– | MTF:2/5 M:RISK | Basic Materials
-MUX  ### Strong BUY | -38.5% | W:A+AR | MTF:3/5 M:RISK | --
-IAG  ### Strong BUY | -35.5% | W:– | MTF:2/5 | Basic Materials
-CNM  ### Strong BUY | -32.3% | W:– | MTF:2/5 M:RISK | --
-### ── Turning Up (7) ──
-METC  ### Turning Up | -83.4% | W:Spring | MTF:3/5 M:RISK | --
-BBAI  ### Turning Up | -67.9% | W:SC | MTF:3/5 M:RISK | --
-DXYZ  ### Turning Up | -65.4% | W:⚠ Dist | MTF:3/5 M:RISK | Financial Services
-RVI  ### Turning Up | -64.6% | W:– | MTF:2/5 | Financial Services
-VUZI  ### Turning Up | -54.1% | W:SC | MTF:1/5 M:RISK | --
-ASTS  ### Turning Up | -49.7% | W:– | MTF:1/5 M:RISK | --
-AA  ### Turning Up | -43.7% | W:– | MTF:1/5 | --
+### ── Strong BUY (13) ──
+CRML  ### Strong BUY | -77.4% | W:SOS | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+EMBC  ### Strong BUY | -71.6% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:100.0 | --
+EH  ### Strong BUY | -71.6% | W:– | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+LU  ### Strong BUY | -67.2% | W:– | MTF:4/5 | Fuzzy:83.4 | --
+TMQ  ### Strong BUY | -66.3% | W:– | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+UAMY  ### Strong BUY | -65.2% | W:SC | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+SHMD  ### Strong BUY | -55.7% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+ITRG  ### Strong BUY | -47.2% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:82.8 | --
+PDYN  ### Strong BUY | -44.2% | W:– | MTF:2/5 M:RISK | Fuzzy:97.3 | --
+AGI  ### Strong BUY | -40.2% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:84.8* | --
+RWAY  ### Strong BUY | -38.6% | W:– | MTF:2/5 | Fuzzy:61.1 | --
+BKV  ### Strong BUY | -25.4% | W:SOS | MTF:2/5 | Fuzzy:67.3* | --
+FSM  ### Strong BUY | -25.0% | W:– | MTF:1/5 M:RISK | Fuzzy:72.4* | --
+### ── Turning Up (1) ──
+QNC  ### Turning Up | -49.8% | W:– | MTF:2/5 | Fuzzy:100.0 | --
