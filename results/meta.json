@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-08-09T10:35:12.953954",
-  "elapsed_min": 7.2,
+  "generated_at": "2026-08-09T15:12:52.322652",
+  "elapsed_min": 12.6,
   "total_scanned": 7114,
   "weekly_signals": 1896,
   "main_total": 18,
-  "full_total": 400,
+  "full_total": 909,
   "mtf_high_count": 0,
-  "monthly_risk_count": 10,
-  "fuzzy_rescue_count": 8,
+  "monthly_risk_count": 14,
+  "fuzzy_rescue_count": 0,
   "indicator": "SMI(10,3,3)",
   "market_direction": {
     "usa_above_sma50w": true,
