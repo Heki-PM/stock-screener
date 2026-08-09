@@ -1,14 +1,24 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-08 22:22 UTC
-### Liczba tickerow: 8
+### Wygenerowano: 2026-08-09 10:35 UTC
+### Liczba tickerow: 18
 ###
-### ── Strong BUY (6) ──
-GEMI  ### Strong BUY | -91.1% | W:– | MTF:2/5 | Fuzzy:100.0 | --
-AVXL  ### Strong BUY | -71.5% | W:– | MTF:2/5 | Fuzzy:100.0 | --
+### ── Strong BUY (13) ──
+TIGR  ### Strong BUY | -64.5% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:88.7 | Financial Services
+SCZM  ### Strong BUY | -52.4% | W:SOS | MTF:1/5 M:RISK | Fuzzy:76.7 | Basic Materials
 PEGA  ### Strong BUY | -51.9% | W:SC | MTF:1/5 M:RISK | Fuzzy:92.1 | Technology
+HL  ### Strong BUY | -50.7% | W:Spring | MTF:2/5 M:RISK | Fuzzy:82.2* | Basic Materials
+PLAB  ### Strong BUY | -41.7% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:77.7 | --
+OLED  ### Strong BUY | -40.5% | W:A+AR | MTF:2/5 | Fuzzy:83.0* | Technology
 AGI  ### Strong BUY | -40.2% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:84.8* | Basic Materials
-WLDN  ### Strong BUY | -37.1% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:70.0* | Industrials
-ERIC  ### Strong BUY | -26.3% | W:– | MTF:2/5 | Fuzzy:71.1* | Technology
-### ── Turning Up (2) ──
-VELO  ### Turning Up | -55.4% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | --
-RMBS  ### Turning Up | -41.7% | W:SOS | MTF:2/5 M:RISK | Fuzzy:87.5 | Technology
+RWAY  ### Strong BUY | -38.6% | W:– | MTF:2/5 | Fuzzy:73.6 | Financial Services
+IAG  ### Strong BUY | -26.3% | W:– | MTF:1/5 | Fuzzy:66.3* | Basic Materials
+BKE  ### Strong BUY | -25.5% | W:– | MTF:1/5 M:RISK | Fuzzy:70.9* | Consumer Cyclical
+AU  ### Strong BUY | -25.5% | W:A+AR | MTF:1/5 | Fuzzy:80.6* | Basic Materials
+FSM  ### Strong BUY | -25.0% | W:– | MTF:1/5 M:RISK | Fuzzy:72.0* | Basic Materials
+UROY  ### Strong BUY | -24.8% | W:– | MTF:1/5 M:RISK | Fuzzy:68.9* | Energy
+### ── Turning Up (5) ──
+DXYZ  ### Turning Up | -64.5% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | Financial Services
+RVI  ### Turning Up | -63.6% | W:– | MTF:2/5 | Fuzzy:100.0 | Financial Services
+AESI  ### Turning Up | -44.0% | W:SC | MTF:1/5 | Fuzzy:97.3 | --
+IONS  ### Turning Up | -34.8% | W:⚠ Dist | MTF:2/5 | Fuzzy:66.0 | --
+ASPN  ### Turning Up | -33.1% | W:⚠ Dist | MTF:2/5 | Fuzzy:55.9 | --
