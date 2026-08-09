@@ -35,23 +35,22 @@ import requests
 MCP_URL = "https://zhelektro.pl/wp-json/easy-mcp-ai/v1/mcp"
 WP_API_TOKEN = os.environ["WP_API_TOKEN"]
 
-# 328 = "Strona glowna (projekt)" -- zmien na 20, gdy strona glowna zostanie podmieniona
-PAGE_ID_HOMEPAGE = 328
+PAGE_ID_HOMEPAGE = 20  # strona glowna jest juz zamieniona
 PAGE_ID_RESULTS = 330
 
 _id_counter = itertools.count(1)
 
 SIGNAL_COLORS = {
-    "Strong BUY": ("#35D07F", "#163325"),
-    "BUY": ("#3DDAD7", "#163333"),
-    "Turning Up": ("#FFB020", "#3A2E10"),
-    "Bearish": ("#FF8A3D", "#3A2418"),
+    "Strong BUY": ("#067647", "#ECFDF3"),
+    "BUY": ("#175CD3", "#EFF8FF"),
+    "Turning Up": ("#B54708", "#FFFAEB"),
+    "Bearish": ("#B42318", "#FEF3F2"),
 }
 
 ZONE_COLORS = {
-    "OVERSOLD": ("#35D07F", "#163325"),
-    "OVERBOUGHT": ("#FF8A3D", "#3A2418"),
-    "Bearish": ("#FF8A3D", "#3A2418"),
+    "OVERSOLD": ("#067647", "#ECFDF3"),
+    "OVERBOUGHT": ("#B42318", "#FEF3F2"),
+    "Bearish": ("#B42318", "#FEF3F2"),
 }
 
 
@@ -112,7 +111,7 @@ class MCPClient:
         return result
 
 
-def _badge(text, colors, default=("#8A93A0", "#1d222a")):
+def _badge(text, colors, default=("#667085", "#F8F9FB")):
     color, bg = colors.get(text, default)
     return (
         f'<span style="background:{bg};color:{color};padding:2px 8px;'
@@ -122,12 +121,12 @@ def _badge(text, colors, default=("#8A93A0", "#1d222a")):
 
 def _build_top2_html(top2):
     cards = []
-    for r in top2:
+    for i, r in enumerate(top2, start=1):
         cards.append(f'''
-        <div style="background:#161A20;border:1px solid #2A3038;border-radius:8px;padding:14px 16px;margin-bottom:10px;">
+        <div style="background:#F8F9FB;border:1px solid #E4E7EC;border-radius:8px;padding:14px 16px;margin-bottom:10px;">
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-family:ui-monospace,'SF Mono',Consolas,monospace;font-weight:600;font-size:15px;">{r['ticker']}</span>
-            <span style="font-family:ui-monospace,'SF Mono',Consolas,monospace;">${r['price']:.2f}</span>
+            <span style="font-family:ui-monospace,'SF Mono',Consolas,monospace;font-weight:600;font-size:15px;color:#101828;">{i}. {r['ticker']}</span>
+            <span style="font-family:ui-monospace,'SF Mono',Consolas,monospace;color:#101828;">${r['price']:.2f}</span>
           </div>
           <div style="margin-top:6px;">{_badge(r['signal'], SIGNAL_COLORS)}</div>
         </div>''')
@@ -138,7 +137,7 @@ def _build_table_html(results):
     rows = []
     for r in results:
         rows.append(f'''
-        <tr style="border-bottom:1px solid #1d222a;">
+        <tr style="border-bottom:1px solid #EDEFF2;">
           <td style="padding:10px 8px;font-family:ui-monospace,'SF Mono',Consolas,monospace;font-weight:600;">{r['ticker']}</td>
           <td style="padding:10px 8px;text-align:right;font-family:ui-monospace,'SF Mono',Consolas,monospace;">${r['price']:.2f}</td>
           <td style="padding:10px 8px;text-align:right;font-family:ui-monospace,'SF Mono',Consolas,monospace;">{r['smi']:.2f}</td>
@@ -148,13 +147,13 @@ def _build_table_html(results):
         </tr>''')
     return (
         '<table style="width:100%;border-collapse:collapse;font-size:14px;">'
-        '<thead><tr style="border-bottom:1px solid #2A3038;">'
-        '<th style="text-align:left;padding:10px 8px;color:#8A93A0;">Ticker</th>'
-        '<th style="text-align:right;padding:10px 8px;color:#8A93A0;">Cena</th>'
-        '<th style="text-align:right;padding:10px 8px;color:#8A93A0;">SMI</th>'
-        '<th style="text-align:left;padding:10px 8px;color:#8A93A0;">Strefa</th>'
-        '<th style="text-align:left;padding:10px 8px;color:#8A93A0;">Sygnal</th>'
-        '<th style="text-align:right;padding:10px 8px;color:#8A93A0;">Tech</th>'
+        '<thead><tr style="border-bottom:1px solid #E4E7EC;">'
+        '<th style="text-align:left;padding:10px 8px;color:#667085;">Ticker</th>'
+        '<th style="text-align:right;padding:10px 8px;color:#667085;">Cena</th>'
+        '<th style="text-align:right;padding:10px 8px;color:#667085;">SMI</th>'
+        '<th style="text-align:left;padding:10px 8px;color:#667085;">Strefa</th>'
+        '<th style="text-align:left;padding:10px 8px;color:#667085;">Sygnal</th>'
+        '<th style="text-align:right;padding:10px 8px;color:#667085;">Tech</th>'
         '</tr></thead><tbody>' + "\n".join(rows) + '</tbody></table>'
     )
 
