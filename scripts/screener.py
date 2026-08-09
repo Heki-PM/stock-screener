@@ -103,7 +103,7 @@ MTF_SCORE_MAX = 5
 # głównego – bo pojedyncze, niewielkie niedociągnięcie jest z nawiązką
 # rekompensowane siłą pozostałych metryk. Ustaw ENABLE_FUZZY_FILTER = False,
 # żeby wrócić do czysto binarnego filter_main.
-ENABLE_FUZZY_FILTER = False
+ENABLE_FUZZY_FILTER = True
 MIN_FUZZY_SCORE      = 65     # próg 0-100 dla łącznej oceny rozmytej
 # Sama wysoka łączna ocena to za mało – gdyby jeden wskaźnik był katastrofalnie
 # zły (np. ROIC=2%), pozostałe idealne metryki i tak podciągnęłyby fuzzy_score
