@@ -1,16 +1,24 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-10 06:43 UTC
-### Liczba tickerow: 10
+### Wygenerowano: 2026-08-10 12:01 UTC
+### Liczba tickerow: 18
 ###
-### ── Strong BUY (7) ──
-NKLR  ### Strong BUY | -73.8% | W:– | MTF:2/5 | Fuzzy:100.0 | --
-SERV  ### Strong BUY | -72.7% | W:– | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-LCTX  ### Strong BUY | -47.4% | W:– | MTF:4/5 M:RISK | Fuzzy:100.0 | --
-FUTU  ### Strong BUY | -46.2% | W:– | MTF:3/5 M:RISK | Fuzzy:88.4 | Financial Services
-RWAY  ### Strong BUY | -38.6% | W:– | MTF:2/5 | Fuzzy:73.6 | Financial Services
-GFI  ### Strong BUY | -33.8% | W:– | MTF:1/5 M:RISK | Fuzzy:62.7 | --
-BKV  ### Strong BUY | -25.4% | W:SOS | MTF:2/5 | Fuzzy:67.3* | Energy
-### ── Turning Up (3) ──
-RBBN  ### Turning Up | -49.5% | W:– | MTF:1/5 M:RISK | Fuzzy:100.0 | --
-ESAB  ### Turning Up | -33.2% | W:SOS | MTF:3/5 M:RISK | Fuzzy:60.7 | --
+### ── Strong BUY (10) ──
+TIGR  ### Strong BUY | -64.5% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:88.7 | Financial Services
+SCZM  ### Strong BUY | -52.4% | W:SOS | MTF:1/5 M:RISK | Fuzzy:76.7 | Basic Materials
+PEGA  ### Strong BUY | -51.9% | W:SC | MTF:1/5 M:RISK | Fuzzy:92.1 | Technology
+HL  ### Strong BUY | -50.7% | W:Spring | MTF:2/5 M:RISK | Fuzzy:82.2* | Basic Materials
+FINV  ### Strong BUY | -50.0% | W:Spring | MTF:3/5 | Fuzzy:84.8* | Financial Services
+ASM  ### Strong BUY | -42.6% | W:SOS | MTF:2/5 M:RISK | Fuzzy:87.4 | Basic Materials
+PLAB  ### Strong BUY | -41.7% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:73.7 | Technology
+OLED  ### Strong BUY | -40.5% | W:A+AR | MTF:2/5 | Fuzzy:83.0* | Technology
+GFI  ### Strong BUY | -33.8% | W:– | MTF:1/5 M:RISK | Fuzzy:88.0 | Basic Materials
+UROY  ### Strong BUY | -24.8% | W:– | MTF:1/5 M:RISK | Fuzzy:68.9* | Energy
+### ── Turning Up (8) ──
+RVI  ### Turning Up | -63.6% | W:– | MTF:2/5 | Fuzzy:100.0 | Financial Services
+CC  ### Turning Up | -45.1% | W:SOS | MTF:2/5 | Fuzzy:100.0 | --
+SOFI  ### Turning Up | -43.8% | W:– | MTF:0/5 M:RISK | Fuzzy:89.1 | Financial Services
+RMBS  ### Turning Up | -41.7% | W:SOS | MTF:2/5 M:RISK | Fuzzy:87.5 | Technology
+RILY  ### Turning Up | -36.1% | W:– | MTF:3/5 | Fuzzy:70.3 | --
+DNUT  ### Turning Up | -34.6% | W:– | MTF:1/5 M:RISK | Fuzzy:65.3 | --
 CRSP  ### Turning Up | -31.8% | W:– | MTF:1/5 M:RISK | Fuzzy:56.0 | --
+LPTH  ### Turning Up | -31.0% | W:⚠ Dist | MTF:1/5 | Fuzzy:53.3 | --
