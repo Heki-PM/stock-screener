@@ -2343,8 +2343,3 @@ def run_screener():
 
 if __name__ == "__main__":
     main_results, full_results = run_screener()
-    try:
-        from publish_to_wordpress import publish_results
-        publish_results(main_results)
-    except Exception as e:
-        print(f"[WordPress] Publikacja nie powiodla sie: {e}")
