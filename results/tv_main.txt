@@ -1,11 +1,13 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-11 11:58 UTC
-### Liczba tickerow: 6
+### Wygenerowano: 2026-08-12 11:59 UTC
+### Liczba tickerow: 7
 ###
 ### ── Strong BUY (6) ──
-METC  ### Strong BUY | -82.4% | W:Spring | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-BUR  ### Strong BUY | -69.7% | W:SC | MTF:1/5 M:RISK | Fuzzy:85.6 | --
-PSIX  ### Strong BUY | -64.1% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:79.5* | --
-WOLF  ### Strong BUY | -63.7% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | --
-PNNT  ### Strong BUY | -50.7% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:100.0 | --
-ITRG  ### Strong BUY | -45.8% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:82.8 | --
+VUZI  ### Strong BUY | -53.0% | W:SC | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+NG  ### Strong BUY | -46.7% | W:– | MTF:1/5 M:RISK | Fuzzy:100.0 | --
+NFLX  ### Strong BUY | -41.0% | W:– | MTF:1/5 M:RISK | Fuzzy:83.6 | --
+ALEC  ### Strong BUY | -38.5% | W:SOS | MTF:1/5 M:RISK | Fuzzy:78.3 | --
+ASM  ### Strong BUY | -38.4% | W:SOS | MTF:1/5 M:RISK | Fuzzy:89.0 | --
+SEI  ### Strong BUY | -31.8% | W:A+AR | MTF:2/5 | Fuzzy:56.0 | --
+### ── Turning Up (1) ──
+NTLA  ### Turning Up | -57.5% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:100.0 | --
