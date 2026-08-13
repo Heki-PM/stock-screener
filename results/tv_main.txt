@@ -1,13 +1,24 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-12 11:59 UTC
-### Liczba tickerow: 7
+### Wygenerowano: 2026-08-13 12:00 UTC
+### Liczba tickerow: 18
 ###
-### ── Strong BUY (6) ──
-VUZI  ### Strong BUY | -53.0% | W:SC | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-NG  ### Strong BUY | -46.7% | W:– | MTF:1/5 M:RISK | Fuzzy:100.0 | --
-NFLX  ### Strong BUY | -41.0% | W:– | MTF:1/5 M:RISK | Fuzzy:83.6 | --
-ALEC  ### Strong BUY | -38.5% | W:SOS | MTF:1/5 M:RISK | Fuzzy:78.3 | --
-ASM  ### Strong BUY | -38.4% | W:SOS | MTF:1/5 M:RISK | Fuzzy:89.0 | --
-SEI  ### Strong BUY | -31.8% | W:A+AR | MTF:2/5 | Fuzzy:56.0 | --
-### ── Turning Up (1) ──
-NTLA  ### Turning Up | -57.5% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:100.0 | --
+### ── Strong BUY (15) ──
+TLRY  ### Strong BUY | -79.8% | W:– | MTF:1/5 M:RISK | Fuzzy:96.1 | --
+BUR  ### Strong BUY | -69.0% | W:SC | MTF:1/5 M:RISK | Fuzzy:85.6 | --
+CSGP  ### Strong BUY | -66.8% | W:SC | MTF:2/5 | Fuzzy:100.0 | Real Estate
+RVI  ### Strong BUY | -63.0% | W:– | MTF:2/5 | Fuzzy:100.0 | --
+USAS  ### Strong BUY | -50.6% | W:Spring | MTF:1/5 M:RISK | Fuzzy:100.0 | --
+DKNG  ### Strong BUY | -47.7% | W:Faza B | MTF:2/5 | Fuzzy:100.0 | --
+AXTI  ### Strong BUY | -45.2% | W:⚠ Dist | MTF:1/5 | Fuzzy:100.0 | --
+AQST  ### Strong BUY | -44.0% | W:⚠ Dist | MTF:4/5 M:RISK | Fuzzy:98.9 | --
+NRGV  ### Strong BUY | -41.0% | W:A+AR | MTF:2/5 | Fuzzy:86.7 | --
+VFS  ### Strong BUY | -41.0% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:86.7 | --
+HNRG  ### Strong BUY | -36.2% | W:⚠ Dist | MTF:4/5 M:RISK | Fuzzy:70.7 | --
+ONDS  ### Strong BUY | -36.1% | W:SOS | MTF:1/5 | Fuzzy:70.3 | --
+AZ  ### Strong BUY | -35.0% | W:A+AR | MTF:2/5 | Fuzzy:53.3 | --
+FBRT  ### Strong BUY | -32.0% | W:– | MTF:3/5 M:RISK | Fuzzy:56.7 | --
+KGC  ### Strong BUY | -29.7% | W:– | MTF:1/5 M:RISK | Fuzzy:83.7* | --
+### ── Turning Up (3) ──
+BCAR  ### Turning Up | -50.8% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | --
+RKT  ### Turning Up | -42.3% | W:Spring | MTF:2/5 M:RISK | Fuzzy:73.5 | --
+PURR  ### Turning Up | -41.9% | W:⚠ Dist | MTF:2/5 | Fuzzy:89.7 | --
