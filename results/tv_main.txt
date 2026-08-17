@@ -1,9 +1,12 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-14 11:58 UTC
-### Liczba tickerow: 4
+### Wygenerowano: 2026-08-17 11:42 UTC
+### Liczba tickerow: 6
 ###
 ### ── Strong BUY (4) ──
-FIGR  ### Strong BUY | -59.1% | W:– | MTF:1/5 | Fuzzy:95.1 | Financial Services
-PCT  ### Strong BUY | -54.8% | W:– | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-WLDN  ### Strong BUY | -38.2% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:76.1* | Industrials
-NXT  ### Strong BUY | -35.9% | W:– | MTF:2/5 | Fuzzy:80.9 | Technology
+FIGR  ### Strong BUY | -59.7% | W:– | MTF:1/5 | Fuzzy:95.1 | --
+HL  ### Strong BUY | -46.2% | W:Spring | MTF:1/5 M:RISK | Fuzzy:82.2* | --
+ITRG  ### Strong BUY | -42.9% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:81.3 | --
+WLDN  ### Strong BUY | -36.9% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:75.2* | --
+### ── Turning Up (2) ──
+EDIT  ### Turning Up | -37.8% | W:⚠ Dist | MTF:1/5 | Fuzzy:84.7 | --
+NVAX  ### Turning Up | -32.7% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:83.5 | --
