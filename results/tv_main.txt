@@ -1,9 +1,11 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-18 11:41 UTC
-### Liczba tickerow: 4
+### Wygenerowano: 2026-08-19 11:38 UTC
+### Liczba tickerow: 5
 ###
-### ── Strong BUY (4) ──
-BCAR  ### Strong BUY | -47.9% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | --
-PLAB  ### Strong BUY | -40.0% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:72.5 | Technology
-AGI  ### Strong BUY | -38.7% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:83.7* | --
-NVAX  ### Strong BUY | -32.6% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:83.4 | --
+### ── Strong BUY (2) ──
+CXDO  ### Strong BUY | -41.4% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:84.9* | --
+PKX  ### Strong BUY | -38.3% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:77.7 | --
+### ── Turning Up (3) ──
+LRN  ### Turning Up | -51.1% | W:A+AR | MTF:2/5 | Fuzzy:86.9 | Consumer Defensive
+PURR  ### Turning Up | -38.0% | W:⚠ Dist | MTF:1/5 | Fuzzy:81.3 | Financial Services
+ALLT  ### Turning Up | -34.0% | W:– | MTF:0/5 M:RISK | Fuzzy:63.3 | Technology
