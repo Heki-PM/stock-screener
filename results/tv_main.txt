@@ -1,16 +1,9 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-21 11:44 UTC
-### Liczba tickerow: 10
+### Wygenerowano: 2026-08-24 11:42 UTC
+### Liczba tickerow: 4
 ###
-### ── Strong BUY (7) ──
-CRMD  ### Strong BUY | -45.0% | W:Spring | MTF:3/5 | Fuzzy:99.3 | --
-CBIO  ### Strong BUY | -40.8% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:86.9 | --
-SSYS  ### Strong BUY | -38.6% | W:– | MTF:1/5 M:RISK | Fuzzy:78.7 | --
-NEXT  ### Strong BUY | -37.9% | W:⚠ Dist | MTF:3/5 | Fuzzy:76.3 | --
-LZM  ### Strong BUY | -36.6% | W:SOS | MTF:2/5 M:RISK | Fuzzy:72.0 | --
-HLIT  ### Strong BUY | -30.0% | W:⚠ Dist | MTF:1/5 | Fuzzy:72.8 | --
-NVAX  ### Strong BUY | -29.7% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:81.0* | --
-### ── Turning Up (3) ──
-HQ  ### Turning Up | -61.3% | W:– | MTF:1/5 | Fuzzy:100.0 | --
-LRN  ### Turning Up | -50.9% | W:A+AR | MTF:4/5 | Fuzzy:86.9 | --
-COCO  ### Turning Up | -24.1% | W:Spring | MTF:3/5 | Fuzzy:77.2* | --
+### ── Strong BUY (4) ──
+XXI  ### Strong BUY | -74.7% | W:SC | MTF:2/5 | Fuzzy:100.0 | Consumer Defensive
+SIGA  ### Strong BUY | -67.8% | W:– | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+AQST  ### Strong BUY | -38.3% | W:Spring | MTF:1/5 M:RISK | Fuzzy:92.6 | --
+AGI  ### Strong BUY | -31.7% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:78.8* | --
