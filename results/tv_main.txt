@@ -1,9 +1,18 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-24 11:42 UTC
-### Liczba tickerow: 4
+### Wygenerowano: 2026-08-25 11:41 UTC
+### Liczba tickerow: 12
 ###
-### ── Strong BUY (4) ──
-XXI  ### Strong BUY | -74.7% | W:SC | MTF:2/5 | Fuzzy:100.0 | Consumer Defensive
-SIGA  ### Strong BUY | -67.8% | W:– | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-AQST  ### Strong BUY | -38.3% | W:Spring | MTF:1/5 M:RISK | Fuzzy:92.6 | --
-AGI  ### Strong BUY | -31.7% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:78.8* | --
+### ── Strong BUY (8) ──
+EBS  ### Strong BUY | -63.2% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+BMBL  ### Strong BUY | -61.1% | W:– | MTF:4/5 M:RISK | Fuzzy:83.3* | --
+DXYZ  ### Strong BUY | -55.5% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | --
+CHA  ### Strong BUY | -52.9% | W:– | MTF:3/5 | Fuzzy:100.0 | --
+LRN  ### Strong BUY | -50.3% | W:A+AR | MTF:3/5 | Fuzzy:82.5 | --
+SGML  ### Strong BUY | -50.1% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | --
+URG  ### Strong BUY | -39.1% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:80.3 | --
+NVAX  ### Strong BUY | -26.0% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:77.9* | --
+### ── Turning Up (4) ──
+RBBN  ### Turning Up | -51.9% | W:– | MTF:3/5 M:RISK | Fuzzy:100.0 | --
+TIMB  ### Turning Up | -35.6% | W:– | MTF:1/5 M:RISK | Fuzzy:69.6* | --
+OFRM  ### Turning Up | -34.2% | W:– | MTF:1/5 | Fuzzy:64.0 | --
+BDN  ### Turning Up | -31.3% | W:– | MTF:1/5 | Fuzzy:54.3 | --
