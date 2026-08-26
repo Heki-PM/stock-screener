@@ -1,18 +1,19 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-25 11:41 UTC
-### Liczba tickerow: 12
+### Wygenerowano: 2026-08-26 11:45 UTC
+### Liczba tickerow: 13
 ###
-### ── Strong BUY (8) ──
-EBS  ### Strong BUY | -63.2% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-BMBL  ### Strong BUY | -61.1% | W:– | MTF:4/5 M:RISK | Fuzzy:83.3* | --
-DXYZ  ### Strong BUY | -55.5% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | --
-CHA  ### Strong BUY | -52.9% | W:– | MTF:3/5 | Fuzzy:100.0 | --
-LRN  ### Strong BUY | -50.3% | W:A+AR | MTF:3/5 | Fuzzy:82.5 | --
-SGML  ### Strong BUY | -50.1% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | --
-URG  ### Strong BUY | -39.1% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:80.3 | --
-NVAX  ### Strong BUY | -26.0% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:77.9* | --
+### ── Strong BUY (9) ──
+QBTS  ### Strong BUY | -58.6% | W:– | MTF:1/5 M:RISK | Fuzzy:100.0 | --
+STLA  ### Strong BUY | -57.0% | W:Spring | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+JMIA  ### Strong BUY | -53.5% | W:– | MTF:1/5 M:RISK | Fuzzy:82.2 | --
+DXYZ  ### Strong BUY | -52.4% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | --
+LRN  ### Strong BUY | -50.0% | W:A+AR | MTF:3/5 | Fuzzy:86.9 | --
+LEGN  ### Strong BUY | -43.2% | W:– | MTF:3/5 | Fuzzy:94.0 | --
+VYGR  ### Strong BUY | -37.3% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:74.3 | --
+CNM  ### Strong BUY | -34.4% | W:– | MTF:3/5 M:RISK | Fuzzy:64.7 | --
+DNUT  ### Strong BUY | -30.3% | W:– | MTF:1/5 M:RISK | Fuzzy:51.0 | --
 ### ── Turning Up (4) ──
-RBBN  ### Turning Up | -51.9% | W:– | MTF:3/5 M:RISK | Fuzzy:100.0 | --
-TIMB  ### Turning Up | -35.6% | W:– | MTF:1/5 M:RISK | Fuzzy:69.6* | --
-OFRM  ### Turning Up | -34.2% | W:– | MTF:1/5 | Fuzzy:64.0 | --
-BDN  ### Turning Up | -31.3% | W:– | MTF:1/5 | Fuzzy:54.3 | --
+FAC  ### Turning Up | -79.4% | W:A+AR | MTF:2/5 | Fuzzy:100.0 | --
+STRO  ### Turning Up | -51.1% | W:⚠ Dist | MTF:1/5 | Fuzzy:100.0 | --
+TIMB  ### Turning Up | -35.3% | W:– | MTF:3/5 M:RISK | Fuzzy:69.4* | --
+SUPV  ### Turning Up | -35.2% | W:– | MTF:1/5 | Fuzzy:67.3 | --
