@@ -1,0 +1,144 @@
+name: Stock Screener Watchdog
+
+on:
+  schedule:
+    # 12:30 UTC = 14:30 czasu polskiego
+    - cron: '30 12 * * 1-5'
+
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Check today's screener
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+        run: |
+
+          echo "========================================"
+          echo "🔎 STOCK SCREENER WATCHDOG"
+          echo "========================================"
+
+          TODAY=$(date -u +'%Y-%m-%d')
+
+          echo "📅 Data UTC: ${TODAY}"
+          echo ""
+
+          # ------------------------------------------------------
+          # Znajdź dzisiejsze uruchomienia głównego screenera
+          # ------------------------------------------------------
+
+          RUNS=$(gh run list \
+            --repo "${{ github.repository }}" \
+            --workflow="screener.yml" \
+            --limit 20 \
+            --json databaseId,event,status,conclusion,createdAt \
+            --jq '.[]')
+
+          echo "Ostatnie uruchomienia:"
+          echo "----------------------------------------"
+          echo "$RUNS"
+          echo "----------------------------------------"
+
+          # ------------------------------------------------------
+          # SUCCESS
+          # ------------------------------------------------------
+
+          SUCCESS=$(echo "$RUNS" | jq -r \
+            --arg TODAY "$TODAY" '
+              select(
+                .event == "schedule" and
+                .conclusion == "success" and
+                (.createdAt | startswith($TODAY))
+              )
+              | .databaseId
+            ' | head -n 1)
+
+          if [ -n "$SUCCESS" ]; then
+            echo ""
+            echo "========================================"
+            echo "✅ SCREENER DZISIAJ DZIAŁAŁ POPRAWNIE"
+            echo "Run ID: ${SUCCESS}"
+            echo "========================================"
+            exit 0
+          fi
+
+          # ------------------------------------------------------
+          # IN PROGRESS
+          # ------------------------------------------------------
+
+          RUNNING=$(echo "$RUNS" | jq -r \
+            --arg TODAY "$TODAY" '
+              select(
+                .event == "schedule" and
+                .status == "in_progress" and
+                (.createdAt | startswith($TODAY))
+              )
+              | .databaseId
+            ' | head -n 1)
+
+          if [ -n "$RUNNING" ]; then
+            echo ""
+            echo "========================================"
+            echo "⏳ SCREENER NADAL DZIAŁA"
+            echo "Run ID: ${RUNNING}"
+            echo "========================================"
+            exit 0
+          fi
+
+          # ------------------------------------------------------
+          # FAILURE
+          # ------------------------------------------------------
+
+          FAILURE=$(echo "$RUNS" | jq -r \
+            --arg TODAY "$TODAY" '
+              select(
+                .event == "schedule" and
+                .conclusion == "failure" and
+                (.createdAt | startswith($TODAY))
+              )
+              | .databaseId
+            ' | head -n 1)
+
+          if [ -n "$FAILURE" ]; then
+            echo ""
+            echo "⚠️ Dzisiejszy screener uruchomił się, ale zakończył błędem."
+            echo "Run ID: ${FAILURE}"
+            echo ""
+            echo "Nie wykonuję automatycznego retry."
+            echo "Zgodnie z konfiguracją retry dotyczy tylko"
+            echo "braku uruchomienia screenera."
+            exit 0
+          fi
+
+          # ------------------------------------------------------
+          # BRAK RUNU
+          # ------------------------------------------------------
+
+          echo ""
+          echo "========================================"
+          echo "🚨 BRAK DZISIEJSZEGO SCREENERA"
+          echo "========================================"
+          echo ""
+          echo "GitHub Scheduler prawdopodobnie pominął"
+          echo "dzisiejsze uruchomienie."
+          echo ""
+          echo "Uruchamiam screener ponownie..."
+          echo ""
+
+          gh workflow run screener.yml \
+            --repo "${{ github.repository }}" \
+            --ref main
+
+          echo ""
+          echo "========================================"
+          echo "🚀 RETRY URUCHOMIONY"
+          echo "========================================"
