@@ -1,34 +1,51 @@
 name: Stock Screener SMI
+
 on:
   schedule:
+    # 11:17 UTC = 13:17 czasu polskiego
     - cron: '17 11 * * 1-5'
+
   workflow_dispatch:
+
 permissions:
   contents: write
   pages: write
   id-token: write
+
+concurrency:
+  group: stock-screener
+  cancel-in-progress: false
+
 jobs:
   run-screener:
     runs-on: ubuntu-latest
     timeout-minutes: 90
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
+
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
-          cache: 'pip'
+          cache: pip
 
       - name: Install dependencies
-        run: pip install yfinance pandas numpy requests
+        run: |
+          python -m pip install --upgrade pip
+          pip install yfinance pandas numpy requests
 
       - name: Run screener
-        run: python scripts/screener.py
+        run: |
+          python scripts/screener.py
         env:
           PYTHONUNBUFFERED: "1"
           WP_API_TOKEN: ${{ secrets.WP_API_TOKEN }}
@@ -36,43 +53,107 @@ jobs:
       - name: Save dated copy of results
         run: |
           DATE=$(date -u +'%Y-%m-%d')
-          cp results/results_main.json results/results_main_${DATE}.json
+
+          cp results/results_main.json \
+             results/results_main_${DATE}.json
+
           echo "✅ Saved results_main_${DATE}.json"
-          # Usun pliki starsze niz 30 dni zeby repo nie uroslo za bardzo
-          find results/ -name 'results_main_*.json' \
+
+          find results/ \
+            -name 'results_main_*.json' \
             ! -name "results_main_${DATE}.json" \
-            -mtime +30 -delete && echo "🗑️ Pruned old dated files" || true
+            -mtime +30 \
+            -delete || true
 
       - name: Verify output
         run: |
           DATE=$(date -u +'%Y-%m-%d')
-          for f in results/index.html results/screener.html results/index_all.html \
-                   results/results.json results/results_main.json \
-                   results/results_main_${DATE}.json; do
+
+          echo "🔎 Checking screener output..."
+
+          REQUIRED_FILES="
+          results/index.html
+          results/screener.html
+          results/index_all.html
+          results/results.json
+          results/results_main.json
+          results/results_main_${DATE}.json
+          "
+
+          for f in $REQUIRED_FILES; do
             if [ ! -f "$f" ]; then
-              echo "BLAD: brak pliku $f"
+              echo "❌ BŁĄD: brak pliku $f"
               exit 1
             fi
           done
-          FULL=$(python3 -c "import json; print(len(json.load(open('results/results.json'))))")
-          MAIN=$(python3 -c "import json; print(len(json.load(open('results/results_main.json'))))")
-          echo "✅ Full Scan: ${FULL} | Screener glowny: ${MAIN} | Dated file: OK"
+
+          echo "✅ Wszystkie wymagane pliki istnieją."
+
+          python3 <<'PY'
+          import json
+          import sys
+
+          files = [
+              "results/results.json",
+              "results/results_main.json"
+          ]
+
+          for filename in files:
+              try:
+                  with open(filename, "r", encoding="utf-8") as f:
+                      data = json.load(f)
+              except Exception as e:
+                  print(f"❌ BŁĄD JSON: {filename}: {e}")
+                  sys.exit(1)
+
+              if not isinstance(data, (list, dict)):
+                  print(f"❌ BŁĄD: {filename} ma nieprawidłowy format")
+                  sys.exit(1)
+
+              count = len(data)
+
+              if count == 0:
+                  print(f"❌ BŁĄD: {filename} jest pusty")
+                  sys.exit(1)
+
+              print(f"✅ {filename}: {count} rekordów")
+
+          full = json.load(open("results/results.json", encoding="utf-8"))
+          main = json.load(open("results/results_main.json", encoding="utf-8"))
+
+          print("----------------------------------------")
+          print(f"Full Scan:       {len(full)}")
+          print(f"Screener główny: {len(main)}")
+          print("----------------------------------------")
+          PY
 
       - name: Generate Claude prompt file
         run: |
-          [ -f scripts/make_prompt.py ] && python scripts/make_prompt.py || true
+          if [ -f scripts/make_prompt.py ]; then
+            python scripts/make_prompt.py
+            echo "✅ Claude prompt generated"
+          else
+            echo "ℹ️ make_prompt.py not found - skipping"
+          fi
 
-      - name: Commit wynikow do repo
+      - name: Commit wyników do repo
         run: |
-          git config user.name  "github-actions[bot]"
+          git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
           git add results/
-          git diff --staged --quiet || \
-            git commit -m "📊 SMI scan $(date -u +'%Y-%m-%d %H:%M UTC')"
-          git push
+
+          if git diff --staged --quiet; then
+            echo "ℹ️ Brak zmian do commitowania"
+          else
+            git commit \
+              -m "📊 SMI scan $(date -u +'%Y-%m-%d %H:%M UTC')"
+
+            git push
+          fi
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: results/
 
