@@ -1,14 +1,10 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-28 14:01 UTC
-### Liczba tickerow: 8
+### Wygenerowano: 2026-08-28 16:17 UTC
+### Liczba tickerow: 4
 ###
-### ── Strong BUY (7) ──
-NGEN  ### Strong BUY | -62.8% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:81.6 | --
-OPTU  ### Strong BUY | -61.5% | W:A+AR | MTF:3/5 | Fuzzy:100.0 | --
-JMIA  ### Strong BUY | -52.0% | W:– | MTF:1/5 M:RISK | Fuzzy:82.2 | --
-MARA  ### Strong BUY | -52.0% | W:– | MTF:3/5 | Fuzzy:100.0 | --
-DXYZ  ### Strong BUY | -52.0% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | --
-LRN  ### Strong BUY | -48.3% | W:A+AR | MTF:3/5 | Fuzzy:86.9 | --
-CXDO  ### Strong BUY | -42.7% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:85.8* | --
+### ── Strong BUY (3) ──
+NAGE  ### Strong BUY | -69.3% | W:– | MTF:1/5 M:RISK | Fuzzy:100.0 | Healthcare
+DXYZ  ### Strong BUY | -51.7% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | Financial Services
+LRN  ### Strong BUY | -48.6% | W:A+AR | MTF:3/5 | Fuzzy:86.9 | Consumer Defensive
 ### ── Turning Up (1) ──
-UPWK  ### Turning Up | -60.6% | W:Spring | MTF:0/5 M:RISK | Fuzzy:100.0 | Communication Services
+DOCS  ### Turning Up | -65.3% | W:SC | MTF:1/5 | Fuzzy:97.4 | Healthcare
