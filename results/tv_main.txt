@@ -1,10 +1,12 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-28 16:17 UTC
-### Liczba tickerow: 4
+### Wygenerowano: 2026-08-28 21:40 UTC
+### Liczba tickerow: 6
 ###
-### ── Strong BUY (3) ──
-NAGE  ### Strong BUY | -69.3% | W:– | MTF:1/5 M:RISK | Fuzzy:100.0 | Healthcare
-DXYZ  ### Strong BUY | -51.7% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | Financial Services
-LRN  ### Strong BUY | -48.6% | W:A+AR | MTF:3/5 | Fuzzy:86.9 | Consumer Defensive
-### ── Turning Up (1) ──
-DOCS  ### Turning Up | -65.3% | W:SC | MTF:1/5 | Fuzzy:97.4 | Healthcare
+### ── Strong BUY (4) ──
+JMIA  ### Strong BUY | -52.9% | W:– | MTF:1/5 M:RISK | Fuzzy:82.2 | --
+DXYZ  ### Strong BUY | -52.3% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | Financial Services
+LRN  ### Strong BUY | -48.0% | W:A+AR | MTF:2/5 | Fuzzy:86.9 | Consumer Defensive
+CHA  ### Strong BUY | -47.5% | W:– | MTF:3/5 | Fuzzy:97.5 | Consumer Cyclical
+### ── Turning Up (2) ──
+DOCS  ### Turning Up | -65.1% | W:SC | MTF:1/5 | Fuzzy:97.4 | Healthcare
+UPWK  ### Turning Up | -60.5% | W:Spring | MTF:0/5 M:RISK | Fuzzy:96.3 | Communication Services
