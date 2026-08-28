@@ -1,8 +1,14 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-27 17:50 UTC
-### Liczba tickerow: 3
+### Wygenerowano: 2026-08-28 14:01 UTC
+### Liczba tickerow: 8
 ###
-### ── Strong BUY (3) ──
-SPRY  ### Strong BUY | -55.0% | W:⚠ Dist | MTF:4/5 M:RISK | Fuzzy:100.0 | --
-DXYZ  ### Strong BUY | -52.1% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | Financial Services
-LRN  ### Strong BUY | -49.8% | W:A+AR | MTF:3/5 | Fuzzy:86.9 | Consumer Defensive
+### ── Strong BUY (7) ──
+NGEN  ### Strong BUY | -62.8% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:81.6 | --
+OPTU  ### Strong BUY | -61.5% | W:A+AR | MTF:3/5 | Fuzzy:100.0 | --
+JMIA  ### Strong BUY | -52.0% | W:– | MTF:1/5 M:RISK | Fuzzy:82.2 | --
+MARA  ### Strong BUY | -52.0% | W:– | MTF:3/5 | Fuzzy:100.0 | --
+DXYZ  ### Strong BUY | -52.0% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | --
+LRN  ### Strong BUY | -48.3% | W:A+AR | MTF:3/5 | Fuzzy:86.9 | --
+CXDO  ### Strong BUY | -42.7% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:85.8* | --
+### ── Turning Up (1) ──
+UPWK  ### Turning Up | -60.6% | W:Spring | MTF:0/5 M:RISK | Fuzzy:100.0 | Communication Services
