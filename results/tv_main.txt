@@ -1,12 +1,13 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-08-28 21:40 UTC
-### Liczba tickerow: 6
+### Wygenerowano: 2026-08-31 17:25 UTC
+### Liczba tickerow: 7
 ###
-### ── Strong BUY (4) ──
-JMIA  ### Strong BUY | -52.9% | W:– | MTF:1/5 M:RISK | Fuzzy:82.2 | --
-DXYZ  ### Strong BUY | -52.3% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | Financial Services
-LRN  ### Strong BUY | -48.0% | W:A+AR | MTF:2/5 | Fuzzy:86.9 | Consumer Defensive
-CHA  ### Strong BUY | -47.5% | W:– | MTF:3/5 | Fuzzy:97.5 | Consumer Cyclical
-### ── Turning Up (2) ──
-DOCS  ### Turning Up | -65.1% | W:SC | MTF:1/5 | Fuzzy:97.4 | Healthcare
-UPWK  ### Turning Up | -60.5% | W:Spring | MTF:0/5 M:RISK | Fuzzy:96.3 | Communication Services
+### ── Strong BUY (1) ──
+HIMX  ### Strong BUY | -45.7% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | --
+### ── Turning Up (6) ──
+PODD  ### Turning Up | -58.1% | W:A+AR | MTF:0/5 M:RISK | Fuzzy:100.0 | --
+FINV  ### Turning Up | -56.0% | W:Spring | MTF:4/5 | Fuzzy:84.8* | Financial Services
+TIMB  ### Turning Up | -36.6% | W:– | MTF:3/5 M:RISK | Fuzzy:70.3* | Communication Services
+UMC  ### Turning Up | -31.6% | W:– | MTF:2/5 | Fuzzy:55.3 | --
+CECO  ### Turning Up | -30.5% | W:⚠ Dist | MTF:2/5 | Fuzzy:51.7 | --
+GGAL  ### Turning Up | -29.3% | W:SC | MTF:3/5 | Fuzzy:71.9* | Financial Services
