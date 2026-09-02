@@ -1,11 +1,14 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-01 15:43 UTC
-### Liczba tickerow: 5
+### Wygenerowano: 2026-09-02 15:24 UTC
+### Liczba tickerow: 8
 ###
-### ── Strong BUY (2) ──
-CHA  ### Strong BUY | -36.7% | W:– | MTF:2/5 | Fuzzy:72.3 | --
-TIMB  ### Strong BUY | -35.3% | W:– | MTF:4/5 M:RISK | Fuzzy:69.4* | --
-### ── Turning Up (3) ──
-SLBT  ### Turning Up | -81.2% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | --
-COTY  ### Turning Up | -37.5% | W:A+AR | MTF:1/5 | Fuzzy:75.0 | --
-SUPV  ### Turning Up | -34.4% | W:– | MTF:1/5 M:RISK | Fuzzy:69.8 | --
+### ── Strong BUY (4) ──
+SMPL  ### Strong BUY | -59.8% | W:– | MTF:5/5 | Fuzzy:100.0 | --
+LMB  ### Strong BUY | -58.5% | W:– | MTF:4/5 M:RISK | Fuzzy:100.0 | --
+CRUS  ### Strong BUY | -37.2% | W:– | MTF:3/5 M:RISK | Fuzzy:89.9 | Technology
+TIMB  ### Strong BUY | -34.3% | W:– | MTF:2/5 M:RISK | Fuzzy:68.7* | Communication Services
+### ── Turning Up (4) ──
+TTD  ### Turning Up | -74.4% | W:A+AR | MTF:4/5 | Fuzzy:92.4 | Communication Services
+DOCS  ### Turning Up | -64.9% | W:SC | MTF:3/5 | Fuzzy:97.4 | Healthcare
+PODD  ### Turning Up | -58.1% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:87.5 | Healthcare
+GGAL  ### Turning Up | -28.5% | W:SC | MTF:1/5 | Fuzzy:70.6* | Financial Services
