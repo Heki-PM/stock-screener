@@ -1,13 +1,14 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-03 15:17 UTC
-### Liczba tickerow: 7
+### Wygenerowano: 2026-09-04 15:11 UTC
+### Liczba tickerow: 8
 ###
-### ── Strong BUY (4) ──
-TTD  ### Strong BUY | -74.3% | W:A+AR | MTF:3/5 | Fuzzy:92.4 | --
-LRN  ### Strong BUY | -48.8% | W:A+AR | MTF:2/5 | Fuzzy:86.9 | Consumer Defensive
-TIMB  ### Strong BUY | -33.2% | W:– | MTF:2/5 M:RISK | Fuzzy:67.9* | Communication Services
-GME  ### Strong BUY | -31.9% | W:SC | MTF:2/5 M:RISK | Fuzzy:56.3 | Consumer Cyclical
+### ── Strong BUY (5) ──
+TTD  ### Strong BUY | -74.6% | W:A+AR | MTF:3/5 | Fuzzy:92.4 | --
+LMB  ### Strong BUY | -57.3% | W:– | MTF:2/5 M:RISK | Fuzzy:74.4* | Industrials
+AGBK  ### Strong BUY | -44.9% | W:– | MTF:2/5 | Fuzzy:85.9 | --
+CRUS  ### Strong BUY | -37.3% | W:– | MTF:2/5 M:RISK | Fuzzy:90.0 | Technology
+TIMB  ### Strong BUY | -34.3% | W:– | MTF:2/5 M:RISK | Fuzzy:68.7* | --
 ### ── Turning Up (3) ──
-DOCS  ### Turning Up | -65.2% | W:SC | MTF:1/5 | Fuzzy:97.4 | --
-AHCO  ### Turning Up | -54.4% | W:Faza B | MTF:1/5 M:RISK | Fuzzy:100.0 | --
-LMND  ### Turning Up | -44.9% | W:– | MTF:3/5 M:RISK | Fuzzy:86.3 | --
+BMBL  ### Turning Up | -61.1% | W:– | MTF:3/5 M:RISK | Fuzzy:83.3* | --
+CAMT  ### Turning Up | -32.4% | W:– | MTF:1/5 | Fuzzy:67.1* | --
+GGAL  ### Turning Up | -29.3% | W:SC | MTF:1/5 | Fuzzy:71.9* | --
