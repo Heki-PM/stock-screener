@@ -1,7 +1,14 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-07 16:19 UTC
-### Liczba tickerow: 2
+### Wygenerowano: 2026-09-07 16:49 UTC
+### Liczba tickerow: 8
 ###
-### ── Strong BUY (2) ──
-LMB  ### Strong BUY | -56.6% | W:– | MTF:2/5 M:RISK | Fuzzy:74.4* | Industrials
-CRUS  ### Strong BUY | -37.3% | W:– | MTF:2/5 M:RISK | Fuzzy:90.0 | --
+### ── Strong BUY (5) ──
+RR  ### Strong BUY | -76.4% | W:– | MTF:3/5 M:RISK | Fuzzy:79.8 | Industrials
+LMB  ### Strong BUY | -56.6% | W:– | MTF:2/5 M:RISK | Fuzzy:74.4* | --
+AGBK  ### Strong BUY | -44.7% | W:– | MTF:2/5 | Fuzzy:85.5 | Financial Services
+MIR  ### Strong BUY | -44.1% | W:Spring | MTF:2/5 M:RISK | Fuzzy:94.8 | --
+TIMB  ### Strong BUY | -34.7% | W:– | MTF:2/5 M:RISK | Fuzzy:82.8 | --
+### ── Turning Up (3) ──
+SEDG  ### Turning Up | -57.9% | W:Spring | MTF:1/5 M:RISK | Fuzzy:100.0 | --
+WULF  ### Turning Up | -44.7% | W:– | MTF:1/5 | Fuzzy:99.5 | --
+GGAL  ### Turning Up | -29.0% | W:SC | MTF:1/5 | Fuzzy:71.4* | --
