@@ -1,10 +1,14 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-09 15:23 UTC
-### Liczba tickerow: 4
+### Wygenerowano: 2026-09-10 15:17 UTC
+### Liczba tickerow: 8
 ###
-### ── Strong BUY (3) ──
-LAB  ### Strong BUY | -58.7% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:100.0 | --
-STNE  ### Strong BUY | -50.4% | W:– | MTF:4/5 M:RISK | Fuzzy:100.0 | --
-CAMT  ### Strong BUY | -31.8% | W:– | MTF:2/5 | Fuzzy:66.7* | Technology
+### ── Strong BUY (7) ──
+WCT  ### Strong BUY | -71.3% | W:SOS | MTF:2/5 | Fuzzy:100.0 | --
+INDP  ### Strong BUY | -71.0% | W:⚠ Dist | MTF:3/5 | Fuzzy:100.0 | --
+BMBL  ### Strong BUY | -59.7% | W:– | MTF:1/5 M:RISK | Fuzzy:83.3* | --
+OSG  ### Strong BUY | -52.4% | W:SC | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+SUPV  ### Strong BUY | -34.6% | W:– | MTF:2/5 M:RISK | Fuzzy:82.7 | --
+CAMT  ### Strong BUY | -32.5% | W:– | MTF:2/5 | Fuzzy:67.2* | --
+GGAL  ### Strong BUY | -27.3% | W:SC | MTF:4/5 | Fuzzy:68.6* | --
 ### ── Turning Up (1) ──
-ENPH  ### Turning Up | -50.3% | W:SC | MTF:1/5 M:RISK | Fuzzy:100.0 | --
+VECO  ### Turning Up | -48.6% | W:⚠ Dist | MTF:1/5 | Fuzzy:100.0 | --
