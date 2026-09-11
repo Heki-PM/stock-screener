@@ -1,14 +1,13 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-10 15:17 UTC
-### Liczba tickerow: 8
+### Wygenerowano: 2026-09-11 15:20 UTC
+### Liczba tickerow: 7
 ###
-### ── Strong BUY (7) ──
-WCT  ### Strong BUY | -71.3% | W:SOS | MTF:2/5 | Fuzzy:100.0 | --
-INDP  ### Strong BUY | -71.0% | W:⚠ Dist | MTF:3/5 | Fuzzy:100.0 | --
-BMBL  ### Strong BUY | -59.7% | W:– | MTF:1/5 M:RISK | Fuzzy:83.3* | --
-OSG  ### Strong BUY | -52.4% | W:SC | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-SUPV  ### Strong BUY | -34.6% | W:– | MTF:2/5 M:RISK | Fuzzy:82.7 | --
-CAMT  ### Strong BUY | -32.5% | W:– | MTF:2/5 | Fuzzy:67.2* | --
-GGAL  ### Strong BUY | -27.3% | W:SC | MTF:4/5 | Fuzzy:68.6* | --
-### ── Turning Up (1) ──
-VECO  ### Turning Up | -48.6% | W:⚠ Dist | MTF:1/5 | Fuzzy:100.0 | --
+### ── Strong BUY (4) ──
+WCT  ### Strong BUY | -68.7% | W:SOS | MTF:2/5 | Fuzzy:100.0 | --
+MIR  ### Strong BUY | -46.9% | W:Spring | MTF:3/5 M:RISK | Fuzzy:100.0 | --
+CAMT  ### Strong BUY | -32.0% | W:– | MTF:1/5 | Fuzzy:66.8* | Technology
+VIV  ### Strong BUY | -31.0% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:53.3 | --
+### ── Turning Up (3) ──
+WING  ### Turning Up | -61.5% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:95.8 | Consumer Cyclical
+POWI  ### Turning Up | -41.9% | W:⚠ Dist | MTF:3/5 | Fuzzy:95.9 | --
+BBAR  ### Turning Up | -32.5% | W:– | MTF:3/5 | Fuzzy:75.8 | Financial Services
