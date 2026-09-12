@@ -160,3 +160,12 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Powiadom n8n o nowych wynikach (webhook)
+        run: |
+          DATE=$(date -u +'%Y-%m-%d')
+          curl -sf -X POST "https://eve320-20320.mikrus.cloud/webhook/zhelektro-daily-refresh" \
+            -H "X-Webhook-Secret: ${{ secrets.N8N_WEBHOOK_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"date\": \"${DATE}\"}"
+            
