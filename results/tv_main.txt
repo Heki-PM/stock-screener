@@ -1,13 +1,8 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-11 15:20 UTC
-### Liczba tickerow: 7
+### Wygenerowano: 2026-09-13 10:26 UTC
+### Liczba tickerow: 2
 ###
-### ── Strong BUY (4) ──
-WCT  ### Strong BUY | -68.7% | W:SOS | MTF:2/5 | Fuzzy:100.0 | --
-MIR  ### Strong BUY | -46.9% | W:Spring | MTF:3/5 M:RISK | Fuzzy:100.0 | --
-CAMT  ### Strong BUY | -32.0% | W:– | MTF:1/5 | Fuzzy:66.8* | Technology
-VIV  ### Strong BUY | -31.0% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:53.3 | --
-### ── Turning Up (3) ──
-WING  ### Turning Up | -61.5% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:95.8 | Consumer Cyclical
-POWI  ### Turning Up | -41.9% | W:⚠ Dist | MTF:3/5 | Fuzzy:95.9 | --
-BBAR  ### Turning Up | -32.5% | W:– | MTF:3/5 | Fuzzy:75.8 | Financial Services
+### ── Strong BUY (1) ──
+CAMT  ### Strong BUY | -31.5% | W:– | MTF:1/5 | Fuzzy:55.0 | Technology
+### ── Turning Up (1) ──
+VECO  ### Turning Up | -48.3% | W:⚠ Dist | MTF:1/5 | Fuzzy:100.0 | --
