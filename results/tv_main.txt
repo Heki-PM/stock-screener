@@ -1,8 +1,12 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-13 10:26 UTC
-### Liczba tickerow: 2
+### Wygenerowano: 2026-09-13 10:43 UTC
+### Liczba tickerow: 6
 ###
-### ── Strong BUY (1) ──
-CAMT  ### Strong BUY | -31.5% | W:– | MTF:1/5 | Fuzzy:55.0 | Technology
-### ── Turning Up (1) ──
-VECO  ### Turning Up | -48.3% | W:⚠ Dist | MTF:1/5 | Fuzzy:100.0 | --
+### ── Strong BUY (4) ──
+RBLX  ### Strong BUY | -68.0% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:100.0 | --
+IPGP  ### Strong BUY | -48.7% | W:Spring | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+NOK  ### Strong BUY | -36.2% | W:⚠ Dist | MTF:1/5 | Fuzzy:56.5 | --
+CAMT  ### Strong BUY | -31.5% | W:– | MTF:1/5 | Fuzzy:66.5* | Technology
+### ── Turning Up (2) ──
+WING  ### Turning Up | -61.3% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:95.8 | Consumer Cyclical
+XETR:IFX  ### Turning Up | -34.1% | W:– | MTF:3/5 | Fuzzy:63.7 | --
