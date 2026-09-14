@@ -1,10 +1,20 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-13 10:52 UTC
-### Liczba tickerow: 4
+### Wygenerowano: 2026-09-14 17:06 UTC
+### Liczba tickerow: 14
 ###
-### ── Strong BUY (1) ──
-GFUZ  ### Strong BUY | -43.4% | W:⚠ Dist | MTF:2/5 | Fuzzy:94.7 | --
-### ── Turning Up (3) ──
-WING  ### Turning Up | -61.3% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:95.8 | Consumer Cyclical
-HDB  ### Turning Up | -37.7% | W:– | MTF:1/5 M:RISK | Fuzzy:63.2 | Financial Services
-OPFI  ### Turning Up | -35.9% | W:– | MTF:1/5 M:RISK | Fuzzy:69.7 | --
+### ── Strong BUY (6) ──
+RXT  ### Strong BUY | -58.1% | W:⚠ Dist | MTF:3/5 | Fuzzy:100.0 | --
+IONQ  ### Strong BUY | -55.1% | W:– | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+OSG  ### Strong BUY | -52.8% | W:SC | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+HDB  ### Strong BUY | -38.3% | W:– | MTF:4/5 M:RISK | Fuzzy:64.2 | --
+GGAL  ### Strong BUY | -31.2% | W:SC | MTF:4/5 | Fuzzy:75.1 | --
+ERIC  ### Strong BUY | -26.8% | W:– | MTF:2/5 M:RISK | Fuzzy:71.4* | --
+### ── Turning Up (8) ──
+QFIN  ### Turning Up | -74.0% | W:SC | MTF:1/5 M:RISK | Fuzzy:87.5 | --
+ANGI  ### Turning Up | -73.0% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:100.0 | --
+MNDY  ### Turning Up | -57.0% | W:SOS | MTF:1/5 | Fuzzy:93.3 | --
+FINV  ### Turning Up | -56.9% | W:Spring | MTF:3/5 M:RISK | Fuzzy:86.0* | --
+BOT  ### Turning Up | -55.0% | W:– | MTF:2/5 | Fuzzy:100.0 | --
+AMSF  ### Turning Up | -44.7% | W:SC | MTF:1/5 M:RISK | Fuzzy:99.0 | --
+RKT  ### Turning Up | -43.8% | W:Spring | MTF:0/5 M:RISK | Fuzzy:76.0 | --
+COCO  ### Turning Up | -35.4% | W:Spring | MTF:3/5 | Fuzzy:85.1 | --
