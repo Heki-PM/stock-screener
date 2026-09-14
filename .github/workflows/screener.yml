@@ -1,9 +1,6 @@
 name: Stock Screener SMI
 
 on:
-  schedule:
-    # 11:17 UTC = 13:17 czasu polskiego
-    - cron: '45 11 * * 1-5'
 
   workflow_dispatch:
 
