@@ -1,17 +1,11 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-14 17:59 UTC
-### Liczba tickerow: 11
+### Wygenerowano: 2026-09-15 14:09 UTC
+### Liczba tickerow: 5
 ###
-### ── Strong BUY (3) ──
-ENPH  ### Strong BUY | -49.6% | W:SC | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-SGI  ### Strong BUY | -30.9% | W:Spring | MTF:3/5 M:RISK | Fuzzy:53.0 | --
-ERIC  ### Strong BUY | -26.9% | W:– | MTF:2/5 M:RISK | Fuzzy:71.5* | --
-### ── Turning Up (8) ──
-BOT  ### Turning Up | -54.9% | W:– | MTF:2/5 | Fuzzy:100.0 | --
-NXT  ### Turning Up | -49.1% | W:– | MTF:1/5 M:RISK | Fuzzy:87.3 | --
-AMSF  ### Turning Up | -44.8% | W:SC | MTF:1/5 M:RISK | Fuzzy:99.7 | --
-RKT  ### Turning Up | -43.9% | W:Spring | MTF:0/5 M:RISK | Fuzzy:76.2 | --
-CLBT  ### Turning Up | -40.9% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:86.3 | --
-BLLN  ### Turning Up | -32.5% | W:⚠ Dist | MTF:1/5 | Fuzzy:77.9 | --
-NICE  ### Turning Up | -30.6% | W:Spring | MTF:3/5 | Fuzzy:79.0* | --
-IRWD  ### Turning Up | -28.1% | W:– | MTF:2/5 | Fuzzy:72.0* | --
+### ── Strong BUY (1) ──
+ERIC  ### Strong BUY | -26.6% | W:– | MTF:2/5 M:RISK | Fuzzy:71.3* | Technology
+### ── Turning Up (4) ──
+AMSF  ### Turning Up | -44.9% | W:SC | MTF:1/5 M:RISK | Fuzzy:99.8 | Financial Services
+COCO  ### Turning Up | -36.6% | W:Spring | MTF:3/5 | Fuzzy:66.7 | Consumer Defensive
+BLLN  ### Turning Up | -31.5% | W:⚠ Dist | MTF:1/5 | Fuzzy:77.2 | Healthcare
+TNGX  ### Turning Up | -30.2% | W:Spring | MTF:3/5 | Fuzzy:50.7 | --
