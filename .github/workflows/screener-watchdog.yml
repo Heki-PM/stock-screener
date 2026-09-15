@@ -55,7 +55,7 @@ jobs:
           SUCCESS=$(echo "$RUNS" | jq -r \
             --arg TODAY "$TODAY" '
               select(
-                .event == "schedule" and
+                (.event == "schedule" or .event == "workflow_dispatch") and
                 .conclusion == "success" and
                 (.createdAt | startswith($TODAY))
               )
@@ -78,7 +78,7 @@ jobs:
           RUNNING=$(echo "$RUNS" | jq -r \
             --arg TODAY "$TODAY" '
               select(
-                .event == "schedule" and
+                (.event == "schedule" or .event == "workflow_dispatch") and
                 .status == "in_progress" and
                 (.createdAt | startswith($TODAY))
               )
@@ -101,7 +101,7 @@ jobs:
           FAILURE=$(echo "$RUNS" | jq -r \
             --arg TODAY "$TODAY" '
               select(
-                .event == "schedule" and
+                (.event == "schedule" or .event == "workflow_dispatch") and
                 .conclusion == "failure" and
                 (.createdAt | startswith($TODAY))
               )
