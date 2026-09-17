@@ -1,15 +1,12 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-16 14:09 UTC
-### Liczba tickerow: 9
+### Wygenerowano: 2026-09-17 14:11 UTC
+### Liczba tickerow: 6
 ###
-### ── Strong BUY (4) ──
-INDP  ### Strong BUY | -58.3% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | --
-GILT  ### Strong BUY | -53.3% | W:– | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-OSG  ### Strong BUY | -53.0% | W:SC | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-LCTX  ### Strong BUY | -47.1% | W:– | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+### ── Strong BUY (1) ──
+COCO  ### Strong BUY | -33.7% | W:Spring | MTF:4/5 | Fuzzy:83.9 | Consumer Defensive
 ### ── Turning Up (5) ──
-RXT  ### Turning Up | -59.7% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | --
-BOT  ### Turning Up | -55.2% | W:– | MTF:1/5 | Fuzzy:100.0 | --
-COCO  ### Turning Up | -35.0% | W:Spring | MTF:1/5 | Fuzzy:84.9 | --
-BLLN  ### Turning Up | -30.8% | W:⚠ Dist | MTF:1/5 | Fuzzy:76.7 | --
-ANIP  ### Turning Up | -25.9% | W:– | MTF:1/5 M:RISK | Fuzzy:68.2* | --
+SRAD  ### Turning Up | -57.8% | W:Spring | MTF:0/5 M:RISK | Fuzzy:100.0 | Technology
+INOD  ### Turning Up | -55.1% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:89.6 | Technology
+SPIR  ### Turning Up | -53.8% | W:Spring | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+BOT  ### Turning Up | -53.6% | W:– | MTF:1/5 | Fuzzy:100.0 | Financial Services
+BLLN  ### Turning Up | -28.6% | W:⚠ Dist | MTF:1/5 | Fuzzy:75.2* | Healthcare
