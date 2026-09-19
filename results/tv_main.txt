@@ -1,17 +1,10 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-18 14:10 UTC
-### Liczba tickerow: 11
+### Wygenerowano: 2026-09-19 09:32 UTC
+### Liczba tickerow: 4
 ###
-### ── Strong BUY (6) ──
-INDP  ### Strong BUY | -54.0% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | --
-BOT  ### Strong BUY | -53.0% | W:– | MTF:3/5 | Fuzzy:100.0 | Financial Services
-NXT  ### Strong BUY | -49.9% | W:– | MTF:2/5 M:RISK | Fuzzy:87.3 | --
-SHLS  ### Strong BUY | -42.6% | W:– | MTF:3/5 M:RISK | Fuzzy:92.0 | --
-HDB  ### Strong BUY | -38.3% | W:– | MTF:4/5 M:RISK | Fuzzy:64.2 | --
-DBI  ### Strong BUY | -34.5% | W:– | MTF:2/5 | Fuzzy:65.0 | --
-### ── Turning Up (5) ──
-DOCS  ### Turning Up | -65.6% | W:SC | MTF:3/5 | Fuzzy:100.0 | --
-RMBS  ### Turning Up | -50.7% | W:SOS | MTF:1/5 M:RISK | Fuzzy:89.8 | --
-CLNE  ### Turning Up | -44.4% | W:– | MTF:3/5 M:RISK | Fuzzy:98.0 | --
-BLLN  ### Turning Up | -27.5% | W:Spring | MTF:1/5 | Fuzzy:74.4* | Healthcare
-IRWD  ### Turning Up | -26.5% | W:– | MTF:0/5 | Fuzzy:70.2* | Healthcare
+### ── Strong BUY (1) ──
+OPTU  ### Strong BUY | -61.3% | W:A+AR | MTF:4/5 | Fuzzy:100.0 | --
+### ── Turning Up (3) ──
+UTI  ### Turning Up | -58.2% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:74.9* | --
+INOD  ### Turning Up | -54.3% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:89.6 | --
+PENG  ### Turning Up | -40.7% | W:⚠ Dist | MTF:3/5 | Fuzzy:85.7 | --
