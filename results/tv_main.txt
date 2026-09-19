@@ -1,10 +1,14 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-19 09:32 UTC
-### Liczba tickerow: 4
+### Wygenerowano: 2026-09-19 10:06 UTC
+### Liczba tickerow: 8
 ###
-### ── Strong BUY (1) ──
-OPTU  ### Strong BUY | -61.3% | W:A+AR | MTF:4/5 | Fuzzy:100.0 | --
-### ── Turning Up (3) ──
-UTI  ### Turning Up | -58.2% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:74.9* | --
-INOD  ### Turning Up | -54.3% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:89.6 | --
-PENG  ### Turning Up | -40.7% | W:⚠ Dist | MTF:3/5 | Fuzzy:85.7 | --
+### ── Strong BUY (7) ──
+POET  ### Strong BUY | -62.5% | W:SC | MTF:3/5 M:RISK | Fuzzy:100.0 | --
+LAB  ### Strong BUY | -55.2% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+BOT  ### Strong BUY | -49.9% | W:– | MTF:3/5 | Fuzzy:100.0 | --
+HDB  ### Strong BUY | -38.2% | W:– | MTF:4/5 M:RISK | Fuzzy:64.0 | --
+MCHP  ### Strong BUY | -30.8% | W:– | MTF:2/5 | Fuzzy:52.7 | --
+DOCN  ### Strong BUY | -30.6% | W:SOS | MTF:1/5 | Fuzzy:78.7 | --
+ERIC  ### Strong BUY | -26.1% | W:– | MTF:1/5 M:RISK | Fuzzy:70.9* | --
+### ── Turning Up (1) ──
+PENG  ### Turning Up | -40.7% | W:⚠ Dist | MTF:3/5 | Fuzzy:82.2 | --
