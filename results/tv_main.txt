@@ -1,14 +1,16 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-19 10:06 UTC
-### Liczba tickerow: 8
+### Wygenerowano: 2026-09-19 10:20 UTC
+### Liczba tickerow: 10
 ###
-### ── Strong BUY (7) ──
-POET  ### Strong BUY | -62.5% | W:SC | MTF:3/5 M:RISK | Fuzzy:100.0 | --
-LAB  ### Strong BUY | -55.2% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+### ── Strong BUY (5) ──
+INDP  ### Strong BUY | -58.6% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | --
 BOT  ### Strong BUY | -49.9% | W:– | MTF:3/5 | Fuzzy:100.0 | --
+RMBS  ### Strong BUY | -49.7% | W:SOS | MTF:2/5 M:RISK | Fuzzy:89.8 | --
 HDB  ### Strong BUY | -38.2% | W:– | MTF:4/5 M:RISK | Fuzzy:64.0 | --
-MCHP  ### Strong BUY | -30.8% | W:– | MTF:2/5 | Fuzzy:52.7 | --
-DOCN  ### Strong BUY | -30.6% | W:SOS | MTF:1/5 | Fuzzy:78.7 | --
-ERIC  ### Strong BUY | -26.1% | W:– | MTF:1/5 M:RISK | Fuzzy:70.9* | --
-### ── Turning Up (1) ──
-PENG  ### Turning Up | -40.7% | W:⚠ Dist | MTF:3/5 | Fuzzy:82.2 | --
+ERIC  ### Strong BUY | -26.1% | W:– | MTF:1/5 M:RISK | Fuzzy:70.9* | Technology
+### ── Turning Up (5) ──
+VITL  ### Turning Up | -73.4% | W:A+AR | MTF:2/5 | Fuzzy:80.4 | --
+UTI  ### Turning Up | -58.2% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:74.9* | --
+INOD  ### Turning Up | -54.3% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:89.6 | Technology
+COCO  ### Turning Up | -35.0% | W:Spring | MTF:3/5 | Fuzzy:84.9 | --
+BLLN  ### Turning Up | -29.6% | W:Spring | MTF:1/5 | Fuzzy:75.9* | Healthcare
