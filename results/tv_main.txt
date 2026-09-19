@@ -1,14 +1,12 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-19 11:15 UTC
-### Liczba tickerow: 8
+### Wygenerowano: 2026-09-19 11:45 UTC
+### Liczba tickerow: 6
 ###
 ### ── Strong BUY (4) ──
-INDP  ### Strong BUY | -58.6% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | --
-RMBS  ### Strong BUY | -49.7% | W:SOS | MTF:2/5 M:RISK | Fuzzy:89.8 | --
-FPS  ### Strong BUY | -40.2% | W:SC | MTF:2/5 | Fuzzy:70.6 | --
-ERIC  ### Strong BUY | -26.1% | W:– | MTF:1/5 M:RISK | Fuzzy:70.9* | --
-### ── Turning Up (4) ──
-VITL  ### Turning Up | -73.4% | W:A+AR | MTF:2/5 | Fuzzy:80.4 | --
-UTI  ### Turning Up | -58.2% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:74.9* | --
-RKLB  ### Turning Up | -57.2% | W:– | MTF:2/5 M:RISK | Fuzzy:77.8 | --
-OFRM  ### Turning Up | -38.7% | W:– | MTF:1/5 | Fuzzy:79.0 | --
+SOC  ### Strong BUY | -81.6% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:100.0 | --
+BOT  ### Strong BUY | -49.9% | W:– | MTF:3/5 | Fuzzy:100.0 | --
+AMKR  ### Strong BUY | -48.0% | W:Spring | MTF:2/5 M:RISK | Fuzzy:100.0 | Technology
+ERIC  ### Strong BUY | -26.1% | W:– | MTF:1/5 M:RISK | Fuzzy:70.9* | Technology
+### ── Turning Up (2) ──
+INOD  ### Turning Up | -54.3% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:89.6 | --
+MWH  ### Turning Up | -45.3% | W:A+AR | MTF:2/5 | Fuzzy:100.0 | --
