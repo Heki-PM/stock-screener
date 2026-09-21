@@ -1,14 +1,14 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-19 14:08 UTC
+### Wygenerowano: 2026-09-21 14:08 UTC
 ### Liczba tickerow: 8
 ###
-### ── Strong BUY (3) ──
-INDP  ### Strong BUY | -58.6% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | --
-GLOO  ### Strong BUY | -51.1% | W:– | MTF:1/5 | Fuzzy:100.0 | --
-HDB  ### Strong BUY | -38.2% | W:– | MTF:4/5 M:RISK | Fuzzy:64.0 | Financial Services
-### ── Turning Up (5) ──
-NXH  ### Turning Up | -72.6% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:80.0 | --
-COCO  ### Turning Up | -35.0% | W:Spring | MTF:3/5 | Fuzzy:84.9 | --
-MRCY  ### Turning Up | -33.6% | W:– | MTF:3/5 | Fuzzy:62.0 | --
-GDS  ### Turning Up | -32.5% | W:– | MTF:0/5 M:RISK | Fuzzy:58.3 | --
-BLLN  ### Turning Up | -29.6% | W:Spring | MTF:1/5 | Fuzzy:75.9* | Healthcare
+### ── Strong BUY (6) ──
+INOD  ### Strong BUY | -53.9% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:89.6 | Technology
+INIO  ### Strong BUY | -52.4% | W:– | MTF:3/5 | Fuzzy:100.0 | --
+POWI  ### Strong BUY | -45.1% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | Technology
+OFRM  ### Strong BUY | -40.1% | W:– | MTF:1/5 | Fuzzy:82.8 | --
+HDB  ### Strong BUY | -36.8% | W:– | MTF:3/5 M:RISK | Fuzzy:61.7 | Financial Services
+ATEN  ### Strong BUY | -31.3% | W:⚠ Dist | MTF:4/5 | Fuzzy:54.3 | --
+### ── Turning Up (2) ──
+AMSF  ### Turning Up | -44.4% | W:SC | MTF:1/5 M:RISK | Fuzzy:99.0 | Financial Services
+ULS  ### Turning Up | -38.7% | W:SOS | MTF:2/5 M:RISK | Fuzzy:86.6 | Industrials
