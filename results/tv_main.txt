@@ -1,14 +1,25 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-21 14:08 UTC
-### Liczba tickerow: 8
+### Wygenerowano: 2026-09-22 14:09 UTC
+### Liczba tickerow: 19
 ###
-### ── Strong BUY (6) ──
-INOD  ### Strong BUY | -53.9% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:89.6 | Technology
-INIO  ### Strong BUY | -52.4% | W:– | MTF:3/5 | Fuzzy:100.0 | --
-POWI  ### Strong BUY | -45.1% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | Technology
-OFRM  ### Strong BUY | -40.1% | W:– | MTF:1/5 | Fuzzy:82.8 | --
-HDB  ### Strong BUY | -36.8% | W:– | MTF:3/5 M:RISK | Fuzzy:61.7 | Financial Services
-ATEN  ### Strong BUY | -31.3% | W:⚠ Dist | MTF:4/5 | Fuzzy:54.3 | --
-### ── Turning Up (2) ──
-AMSF  ### Turning Up | -44.4% | W:SC | MTF:1/5 M:RISK | Fuzzy:99.0 | Financial Services
-ULS  ### Turning Up | -38.7% | W:SOS | MTF:2/5 M:RISK | Fuzzy:86.6 | Industrials
+### ── Strong BUY (9) ──
+EMAT  ### Strong BUY | -85.3% | W:– | MTF:1/5 | Fuzzy:100.0 | --
+OKLO  ### Strong BUY | -79.5% | W:– | MTF:2/5 M:RISK | Fuzzy:90.9 | --
+ALMU  ### Strong BUY | -57.9% | W:⚠ Dist | MTF:4/5 M:RISK | Fuzzy:100.0 | --
+POWI  ### Strong BUY | -43.4% | W:⚠ Dist | MTF:2/5 | Fuzzy:94.7 | --
+ACLS  ### Strong BUY | -40.8% | W:– | MTF:2/5 | Fuzzy:88.8 | --
+ONON  ### Strong BUY | -39.6% | W:Spring | MTF:4/5 M:RISK | Fuzzy:92.3 | Consumer Cyclical
+ULS  ### Strong BUY | -38.4% | W:SOS | MTF:3/5 M:RISK | Fuzzy:86.4 | Industrials
+COCO  ### Strong BUY | -31.6% | W:Spring | MTF:2/5 | Fuzzy:82.5 | Consumer Defensive
+BLLN  ### Strong BUY | -27.1% | W:⚠ Dist | MTF:3/5 | Fuzzy:74.1* | Healthcare
+### ── Turning Up (10) ──
+SPRY  ### Turning Up | -65.5% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:100.0 | --
+SVC  ### Turning Up | -53.1% | W:Faza B | MTF:3/5 M:RISK | Fuzzy:100.0 | --
+ADMA  ### Turning Up | -52.7% | W:Spring | MTF:3/5 | Fuzzy:94.7 | Healthcare
+NKE  ### Turning Up | -52.5% | W:Spring | MTF:3/5 M:RISK | Fuzzy:80.0 | Consumer Cyclical
+PLAB  ### Turning Up | -47.0% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:76.1 | Technology
+PTON  ### Turning Up | -44.2% | W:SC | MTF:2/5 | Fuzzy:99.3 | Consumer Cyclical
+BETA  ### Turning Up | -42.7% | W:– | MTF:1/5 | Fuzzy:92.3 | --
+CRNC  ### Turning Up | -40.7% | W:– | MTF:1/5 M:RISK | Fuzzy:85.7 | --
+DECK  ### Turning Up | -33.7% | W:– | MTF:2/5 M:RISK | Fuzzy:88.0 | Consumer Cyclical
+IVR  ### Turning Up | -30.5% | W:⚠ Dist | MTF:2/5 | Fuzzy:75.8 | Real Estate
