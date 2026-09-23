@@ -1,25 +1,15 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-22 14:09 UTC
-### Liczba tickerow: 19
+### Wygenerowano: 2026-09-23 14:11 UTC
+### Liczba tickerow: 9
 ###
-### ── Strong BUY (9) ──
-EMAT  ### Strong BUY | -85.3% | W:– | MTF:1/5 | Fuzzy:100.0 | --
-OKLO  ### Strong BUY | -79.5% | W:– | MTF:2/5 M:RISK | Fuzzy:90.9 | --
-ALMU  ### Strong BUY | -57.9% | W:⚠ Dist | MTF:4/5 M:RISK | Fuzzy:100.0 | --
-POWI  ### Strong BUY | -43.4% | W:⚠ Dist | MTF:2/5 | Fuzzy:94.7 | --
-ACLS  ### Strong BUY | -40.8% | W:– | MTF:2/5 | Fuzzy:88.8 | --
-ONON  ### Strong BUY | -39.6% | W:Spring | MTF:4/5 M:RISK | Fuzzy:92.3 | Consumer Cyclical
-ULS  ### Strong BUY | -38.4% | W:SOS | MTF:3/5 M:RISK | Fuzzy:86.4 | Industrials
-COCO  ### Strong BUY | -31.6% | W:Spring | MTF:2/5 | Fuzzy:82.5 | Consumer Defensive
-BLLN  ### Strong BUY | -27.1% | W:⚠ Dist | MTF:3/5 | Fuzzy:74.1* | Healthcare
-### ── Turning Up (10) ──
-SPRY  ### Turning Up | -65.5% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:100.0 | --
-SVC  ### Turning Up | -53.1% | W:Faza B | MTF:3/5 M:RISK | Fuzzy:100.0 | --
-ADMA  ### Turning Up | -52.7% | W:Spring | MTF:3/5 | Fuzzy:94.7 | Healthcare
-NKE  ### Turning Up | -52.5% | W:Spring | MTF:3/5 M:RISK | Fuzzy:80.0 | Consumer Cyclical
-PLAB  ### Turning Up | -47.0% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:76.1 | Technology
-PTON  ### Turning Up | -44.2% | W:SC | MTF:2/5 | Fuzzy:99.3 | Consumer Cyclical
-BETA  ### Turning Up | -42.7% | W:– | MTF:1/5 | Fuzzy:92.3 | --
-CRNC  ### Turning Up | -40.7% | W:– | MTF:1/5 M:RISK | Fuzzy:85.7 | --
-DECK  ### Turning Up | -33.7% | W:– | MTF:2/5 M:RISK | Fuzzy:88.0 | Consumer Cyclical
-IVR  ### Turning Up | -30.5% | W:⚠ Dist | MTF:2/5 | Fuzzy:75.8 | Real Estate
+### ── Strong BUY (5) ──
+PMA  ### Strong BUY | -56.1% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | --
+NXT  ### Strong BUY | -49.8% | W:– | MTF:2/5 M:RISK | Fuzzy:75.1 | Technology
+INOD  ### Strong BUY | -45.7% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:89.6 | Technology
+SITE  ### Strong BUY | -44.2% | W:SC | MTF:2/5 M:RISK | Fuzzy:97.3 | Industrials
+COCO  ### Strong BUY | -31.2% | W:Spring | MTF:2/5 | Fuzzy:82.2 | Consumer Defensive
+### ── Turning Up (4) ──
+ADMA  ### Turning Up | -52.5% | W:Spring | MTF:3/5 | Fuzzy:94.7 | Healthcare
+ELVA  ### Turning Up | -48.4% | W:– | MTF:1/5 | Fuzzy:68.2* | Industrials
+ULS  ### Turning Up | -38.6% | W:SOS | MTF:2/5 M:RISK | Fuzzy:86.6 | Industrials
+DAKT  ### Turning Up | -36.6% | W:– | MTF:3/5 M:RISK | Fuzzy:74.5* | Technology
