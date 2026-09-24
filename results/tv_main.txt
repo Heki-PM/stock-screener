@@ -1,15 +1,15 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-23 14:11 UTC
+### Wygenerowano: 2026-09-24 14:09 UTC
 ### Liczba tickerow: 9
 ###
-### ── Strong BUY (5) ──
-PMA  ### Strong BUY | -56.1% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | --
-NXT  ### Strong BUY | -49.8% | W:– | MTF:2/5 M:RISK | Fuzzy:75.1 | Technology
-INOD  ### Strong BUY | -45.7% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:89.6 | Technology
-SITE  ### Strong BUY | -44.2% | W:SC | MTF:2/5 M:RISK | Fuzzy:97.3 | Industrials
-COCO  ### Strong BUY | -31.2% | W:Spring | MTF:2/5 | Fuzzy:82.2 | Consumer Defensive
-### ── Turning Up (4) ──
-ADMA  ### Turning Up | -52.5% | W:Spring | MTF:3/5 | Fuzzy:94.7 | Healthcare
-ELVA  ### Turning Up | -48.4% | W:– | MTF:1/5 | Fuzzy:68.2* | Industrials
-ULS  ### Turning Up | -38.6% | W:SOS | MTF:2/5 M:RISK | Fuzzy:86.6 | Industrials
-DAKT  ### Turning Up | -36.6% | W:– | MTF:3/5 M:RISK | Fuzzy:74.5* | Technology
+### ── Strong BUY (2) ──
+INOD  ### Strong BUY | -43.8% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:88.7 | Technology
+ONON  ### Strong BUY | -40.8% | W:Spring | MTF:2/5 M:RISK | Fuzzy:93.1 | Consumer Cyclical
+### ── Turning Up (7) ──
+ADMA  ### Turning Up | -52.6% | W:Spring | MTF:1/5 | Fuzzy:100.0 | Healthcare
+MAZE  ### Turning Up | -49.7% | W:Spring | MTF:1/5 M:RISK | Fuzzy:100.0 | --
+PLAB  ### Turning Up | -46.8% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:76.1 | Technology
+NSLR  ### Turning Up | -44.7% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:86.0 | Financial Services
+TCMD  ### Turning Up | -40.3% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:82.9* | Healthcare
+ULS  ### Turning Up | -39.1% | W:SOS | MTF:2/5 M:RISK | Fuzzy:86.9 | Industrials
+BMI  ### Turning Up | -35.6% | W:Spring | MTF:3/5 | Fuzzy:84.1 | Technology
