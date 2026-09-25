@@ -1,15 +1,15 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-24 14:09 UTC
+### Wygenerowano: 2026-09-25 14:09 UTC
 ### Liczba tickerow: 9
 ###
-### ── Strong BUY (2) ──
-INOD  ### Strong BUY | -43.8% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:88.7 | Technology
-ONON  ### Strong BUY | -40.8% | W:Spring | MTF:2/5 M:RISK | Fuzzy:93.1 | Consumer Cyclical
-### ── Turning Up (7) ──
-ADMA  ### Turning Up | -52.6% | W:Spring | MTF:1/5 | Fuzzy:100.0 | Healthcare
-MAZE  ### Turning Up | -49.7% | W:Spring | MTF:1/5 M:RISK | Fuzzy:100.0 | --
-PLAB  ### Turning Up | -46.8% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:76.1 | Technology
-NSLR  ### Turning Up | -44.7% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:86.0 | Financial Services
-TCMD  ### Turning Up | -40.3% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:82.9* | Healthcare
-ULS  ### Turning Up | -39.1% | W:SOS | MTF:2/5 M:RISK | Fuzzy:86.9 | Industrials
-BMI  ### Turning Up | -35.6% | W:Spring | MTF:3/5 | Fuzzy:84.1 | Technology
+### ── Strong BUY (4) ──
+GLND  ### Strong BUY | -76.7% | W:– | MTF:1/5 | Fuzzy:80.0 | --
+BOT  ### Strong BUY | -50.7% | W:– | MTF:2/5 | Fuzzy:100.0 | --
+PLAB  ### Strong BUY | -46.2% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:76.1 | --
+ACMR  ### Strong BUY | -38.9% | W:– | MTF:2/5 | Fuzzy:79.7 | --
+### ── Turning Up (5) ──
+LU  ### Turning Up | -72.3% | W:– | MTF:1/5 M:RISK | Fuzzy:85.5 | --
+ADMA  ### Turning Up | -53.0% | W:Spring | MTF:1/5 | Fuzzy:100.0 | --
+MPT  ### Turning Up | -44.9% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:99.7 | --
+TCMD  ### Turning Up | -40.3% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:82.9* | --
+ULS  ### Turning Up | -38.8% | W:SOS | MTF:2/5 M:RISK | Fuzzy:86.7 | --
