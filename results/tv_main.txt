@@ -1,27 +1,14 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-27 09:32 UTC
-### Liczba tickerow: 21
+### Wygenerowano: 2026-09-27 11:03 UTC
+### Liczba tickerow: 8
 ###
-### ── Strong BUY (13) ──
-GLND  ### Strong BUY | -75.9% | W:– | MTF:1/5 | Fuzzy:80.0 | --
-SIGA  ### Strong BUY | -62.9% | W:– | MTF:1/5 M:RISK | Fuzzy:100.0 | --
-NTLA  ### Strong BUY | -58.4% | W:A+AR | MTF:3/5 | Fuzzy:100.0 | --
-NXT  ### Strong BUY | -50.4% | W:– | MTF:4/5 M:RISK | Fuzzy:87.3 | --
-PLAB  ### Strong BUY | -45.7% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:76.1 | --
-POWI  ### Strong BUY | -42.7% | W:⚠ Dist | MTF:4/5 | Fuzzy:92.3 | --
-MNRO  ### Strong BUY | -42.5% | W:SOS | MTF:1/5 M:RISK | Fuzzy:74.4 | --
-ONON  ### Strong BUY | -41.3% | W:Spring | MTF:2/5 M:RISK | Fuzzy:93.4 | --
-BB  ### Strong BUY | -39.6% | W:– | MTF:4/5 | Fuzzy:82.0 | --
-STM  ### Strong BUY | -36.2% | W:⚠ Dist | MTF:2/5 | Fuzzy:70.7 | --
-BIRK  ### Strong BUY | -33.8% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:62.7 | --
-COCO  ### Strong BUY | -31.7% | W:Spring | MTF:2/5 | Fuzzy:82.5 | --
-OUST  ### Strong BUY | -31.5% | W:– | MTF:2/5 | Fuzzy:55.0 | --
-### ── Turning Up (8) ──
-DOCS  ### Turning Up | -65.6% | W:SC | MTF:3/5 | Fuzzy:97.4 | --
-TME  ### Turning Up | -65.4% | W:– | MTF:1/5 M:RISK | Fuzzy:100.0 | --
-MAZE  ### Turning Up | -51.4% | W:Spring | MTF:3/5 M:RISK | Fuzzy:100.0 | --
-CXDO  ### Turning Up | -45.8% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:87.4* | --
-YOU  ### Turning Up | -42.7% | W:– | MTF:3/5 | Fuzzy:87.2 | --
-TCMD  ### Turning Up | -39.8% | W:⚠ Dist | MTF:2/5 | Fuzzy:82.6* | --
+### ── Strong BUY (4) ──
+KDK  ### Strong BUY | -78.6% | W:SC | MTF:3/5 | Fuzzy:100.0 | --
+QNC  ### Strong BUY | -57.7% | W:– | MTF:3/5 | Fuzzy:100.0 | --
+NXT  ### Strong BUY | -50.4% | W:– | MTF:4/5 M:RISK | Fuzzy:87.3 | Technology
+COCO  ### Strong BUY | -31.7% | W:Spring | MTF:2/5 | Fuzzy:82.5 | Consumer Defensive
+### ── Turning Up (4) ──
+YOU  ### Turning Up | -42.7% | W:– | MTF:3/5 | Fuzzy:87.2 | Technology
+ULS  ### Turning Up | -38.6% | W:SOS | MTF:2/5 M:RISK | Fuzzy:86.6 | Industrials
 ALGT  ### Turning Up | -36.0% | W:Spring | MTF:1/5 | Fuzzy:70.0 | --
-BKE  ### Turning Up | -29.6% | W:– | MTF:3/5 M:RISK | Fuzzy:74.5* | --
+BKE  ### Turning Up | -29.6% | W:– | MTF:3/5 M:RISK | Fuzzy:74.5* | Consumer Cyclical
