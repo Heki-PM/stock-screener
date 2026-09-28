@@ -1,14 +1,11 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-27 11:03 UTC
-### Liczba tickerow: 8
+### Wygenerowano: 2026-09-28 14:09 UTC
+### Liczba tickerow: 5
 ###
-### ── Strong BUY (4) ──
-KDK  ### Strong BUY | -78.6% | W:SC | MTF:3/5 | Fuzzy:100.0 | --
-QNC  ### Strong BUY | -57.7% | W:– | MTF:3/5 | Fuzzy:100.0 | --
-NXT  ### Strong BUY | -50.4% | W:– | MTF:4/5 M:RISK | Fuzzy:87.3 | Technology
-COCO  ### Strong BUY | -31.7% | W:Spring | MTF:2/5 | Fuzzy:82.5 | Consumer Defensive
-### ── Turning Up (4) ──
-YOU  ### Turning Up | -42.7% | W:– | MTF:3/5 | Fuzzy:87.2 | Technology
-ULS  ### Turning Up | -38.6% | W:SOS | MTF:2/5 M:RISK | Fuzzy:86.6 | Industrials
-ALGT  ### Turning Up | -36.0% | W:Spring | MTF:1/5 | Fuzzy:70.0 | --
-BKE  ### Turning Up | -29.6% | W:– | MTF:3/5 M:RISK | Fuzzy:74.5* | Consumer Cyclical
+### ── Strong BUY (3) ──
+RMBS  ### Strong BUY | -41.5% | W:SOS | MTF:1/5 M:RISK | Fuzzy:87.4 | --
+YOU  ### Strong BUY | -41.0% | W:– | MTF:2/5 | Fuzzy:86.7 | --
+ULS  ### Strong BUY | -38.2% | W:SOS | MTF:2/5 M:RISK | Fuzzy:86.3 | --
+### ── Turning Up (2) ──
+LU  ### Turning Up | -73.0% | W:– | MTF:1/5 M:RISK | Fuzzy:85.5 | --
+BILI  ### Turning Up | -58.2% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | --
