@@ -1,11 +1,12 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-28 14:09 UTC
-### Liczba tickerow: 5
+### Wygenerowano: 2026-09-29 14:09 UTC
+### Liczba tickerow: 6
 ###
-### ── Strong BUY (3) ──
-RMBS  ### Strong BUY | -41.5% | W:SOS | MTF:1/5 M:RISK | Fuzzy:87.4 | --
-YOU  ### Strong BUY | -41.0% | W:– | MTF:2/5 | Fuzzy:86.7 | --
-ULS  ### Strong BUY | -38.2% | W:SOS | MTF:2/5 M:RISK | Fuzzy:86.3 | --
-### ── Turning Up (2) ──
-LU  ### Turning Up | -73.0% | W:– | MTF:1/5 M:RISK | Fuzzy:85.5 | --
-BILI  ### Turning Up | -58.2% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | --
+### ── Strong BUY (5) ──
+WOLF  ### Strong BUY | -64.6% | W:⚠ Dist | MTF:1/5 | Fuzzy:100.0 | --
+INOD  ### Strong BUY | -45.6% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:89.6 | Technology
+RMBS  ### Strong BUY | -40.3% | W:SOS | MTF:1/5 M:RISK | Fuzzy:86.5 | Technology
+YOU  ### Strong BUY | -40.2% | W:– | MTF:2/5 | Fuzzy:85.4 | Technology
+ULS  ### Strong BUY | -39.9% | W:SOS | MTF:3/5 M:RISK | Fuzzy:87.5 | Industrials
+### ── Turning Up (1) ──
+MNSO  ### Turning Up | -60.3% | W:– | MTF:3/5 M:RISK | Fuzzy:77.5* | --
