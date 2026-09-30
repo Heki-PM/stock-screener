@@ -1,12 +1,20 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-29 14:09 UTC
-### Liczba tickerow: 6
+### Wygenerowano: 2026-09-30 14:08 UTC
+### Liczba tickerow: 14
 ###
-### ── Strong BUY (5) ──
-WOLF  ### Strong BUY | -64.6% | W:⚠ Dist | MTF:1/5 | Fuzzy:100.0 | --
-INOD  ### Strong BUY | -45.6% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:89.6 | Technology
-RMBS  ### Strong BUY | -40.3% | W:SOS | MTF:1/5 M:RISK | Fuzzy:86.5 | Technology
-YOU  ### Strong BUY | -40.2% | W:– | MTF:2/5 | Fuzzy:85.4 | Technology
-ULS  ### Strong BUY | -39.9% | W:SOS | MTF:3/5 M:RISK | Fuzzy:87.5 | Industrials
-### ── Turning Up (1) ──
-MNSO  ### Turning Up | -60.3% | W:– | MTF:3/5 M:RISK | Fuzzy:77.5* | --
+### ── Strong BUY (7) ──
+WING  ### Strong BUY | -65.0% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:98.1 | --
+OSS  ### Strong BUY | -58.3% | W:A+AR | MTF:2/5 | Fuzzy:100.0 | --
+BOT  ### Strong BUY | -54.7% | W:– | MTF:2/5 | Fuzzy:100.0 | --
+INOD  ### Strong BUY | -46.5% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:89.6 | --
+PACK  ### Strong BUY | -44.2% | W:SOS | MTF:2/5 | Fuzzy:97.3 | --
+PWP  ### Strong BUY | -38.0% | W:– | MTF:2/5 M:RISK | Fuzzy:76.7 | --
+FLEX  ### Strong BUY | -32.7% | W:⚠ Dist | MTF:1/5 | Fuzzy:59.0 | --
+### ── Turning Up (7) ──
+OMH  ### Turning Up | -97.7% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:79.0 | --
+WVE  ### Turning Up | -82.8% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:100.0 | --
+MNSO  ### Turning Up | -59.5% | W:– | MTF:1/5 M:RISK | Fuzzy:100.0 | --
+AMSF  ### Turning Up | -45.8% | W:SC | MTF:3/5 M:RISK | Fuzzy:100.0 | --
+PTON  ### Turning Up | -45.3% | W:SC | MTF:2/5 | Fuzzy:100.0 | --
+TSHA  ### Turning Up | -32.3% | W:Spring | MTF:1/5 | Fuzzy:76.0 | --
+PTCT  ### Turning Up | -28.7% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:86.4* | --
