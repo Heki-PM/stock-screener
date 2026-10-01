@@ -1,20 +1,22 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-09-30 14:08 UTC
-### Liczba tickerow: 14
+### Wygenerowano: 2026-10-01 14:10 UTC
+### Liczba tickerow: 16
 ###
-### ── Strong BUY (7) ──
-WING  ### Strong BUY | -65.0% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:98.1 | --
-OSS  ### Strong BUY | -58.3% | W:A+AR | MTF:2/5 | Fuzzy:100.0 | --
+### ── Strong BUY (13) ──
+SERV  ### Strong BUY | -75.3% | W:– | MTF:4/5 M:RISK | Fuzzy:100.0 | --
+NVTS  ### Strong BUY | -66.3% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:100.0 | --
+WING  ### Strong BUY | -65.4% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:95.8 | --
+LAB  ### Strong BUY | -58.0% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:100.0 | --
 BOT  ### Strong BUY | -54.7% | W:– | MTF:2/5 | Fuzzy:100.0 | --
-INOD  ### Strong BUY | -46.5% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:89.6 | --
-PACK  ### Strong BUY | -44.2% | W:SOS | MTF:2/5 | Fuzzy:97.3 | --
-PWP  ### Strong BUY | -38.0% | W:– | MTF:2/5 M:RISK | Fuzzy:76.7 | --
-FLEX  ### Strong BUY | -32.7% | W:⚠ Dist | MTF:1/5 | Fuzzy:59.0 | --
-### ── Turning Up (7) ──
-OMH  ### Turning Up | -97.7% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:79.0 | --
-WVE  ### Turning Up | -82.8% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:100.0 | --
-MNSO  ### Turning Up | -59.5% | W:– | MTF:1/5 M:RISK | Fuzzy:100.0 | --
-AMSF  ### Turning Up | -45.8% | W:SC | MTF:3/5 M:RISK | Fuzzy:100.0 | --
-PTON  ### Turning Up | -45.3% | W:SC | MTF:2/5 | Fuzzy:100.0 | --
-TSHA  ### Turning Up | -32.3% | W:Spring | MTF:1/5 | Fuzzy:76.0 | --
-PTCT  ### Turning Up | -28.7% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:86.4* | --
+SFIX  ### Strong BUY | -54.4% | W:– | MTF:2/5 M:RISK | Fuzzy:92.0 | --
+KEEL  ### Strong BUY | -53.6% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+GOOS  ### Strong BUY | -47.2% | W:Spring | MTF:4/5 M:RISK | Fuzzy:100.0 | --
+WIT  ### Strong BUY | -42.6% | W:– | MTF:2/5 M:RISK | Fuzzy:92.0 | --
+NTGR  ### Strong BUY | -39.8% | W:– | MTF:2/5 | Fuzzy:74.3 | --
+LION  ### Strong BUY | -33.8% | W:– | MTF:4/5 | Fuzzy:66.8 | --
+APEI  ### Strong BUY | -31.0% | W:Spring | MTF:2/5 | Fuzzy:71.0* | --
+MCHP  ### Strong BUY | -26.9% | W:– | MTF:1/5 | Fuzzy:69.8* | --
+### ── Turning Up (3) ──
+XETR:HEI  ### Turning Up | -39.7% | W:– | MTF:3/5 M:RISK | Fuzzy:70.2* | --
+PRVA  ### Turning Up | -31.5% | W:– | MTF:1/5 M:RISK | Fuzzy:82.0 | --
+TPR  ### Turning Up | -29.8% | W:– | MTF:1/5 M:RISK | Fuzzy:74.7* | --
