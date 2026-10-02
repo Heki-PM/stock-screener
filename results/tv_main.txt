@@ -1,22 +1,22 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-10-01 14:10 UTC
+### Wygenerowano: 2026-10-02 14:07 UTC
 ### Liczba tickerow: 16
 ###
-### ── Strong BUY (13) ──
-SERV  ### Strong BUY | -75.3% | W:– | MTF:4/5 M:RISK | Fuzzy:100.0 | --
-NVTS  ### Strong BUY | -66.3% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:100.0 | --
-WING  ### Strong BUY | -65.4% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:95.8 | --
-LAB  ### Strong BUY | -58.0% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:100.0 | --
-BOT  ### Strong BUY | -54.7% | W:– | MTF:2/5 | Fuzzy:100.0 | --
-SFIX  ### Strong BUY | -54.4% | W:– | MTF:2/5 M:RISK | Fuzzy:92.0 | --
-KEEL  ### Strong BUY | -53.6% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-GOOS  ### Strong BUY | -47.2% | W:Spring | MTF:4/5 M:RISK | Fuzzy:100.0 | --
-WIT  ### Strong BUY | -42.6% | W:– | MTF:2/5 M:RISK | Fuzzy:92.0 | --
-NTGR  ### Strong BUY | -39.8% | W:– | MTF:2/5 | Fuzzy:74.3 | --
-LION  ### Strong BUY | -33.8% | W:– | MTF:4/5 | Fuzzy:66.8 | --
-APEI  ### Strong BUY | -31.0% | W:Spring | MTF:2/5 | Fuzzy:71.0* | --
-MCHP  ### Strong BUY | -26.9% | W:– | MTF:1/5 | Fuzzy:69.8* | --
-### ── Turning Up (3) ──
-XETR:HEI  ### Turning Up | -39.7% | W:– | MTF:3/5 M:RISK | Fuzzy:70.2* | --
-PRVA  ### Turning Up | -31.5% | W:– | MTF:1/5 M:RISK | Fuzzy:82.0 | --
-TPR  ### Turning Up | -29.8% | W:– | MTF:1/5 M:RISK | Fuzzy:74.7* | --
+### ── Strong BUY (6) ──
+BOT  ### Strong BUY | -53.2% | W:– | MTF:2/5 | Fuzzy:100.0 | Financial Services
+INOD  ### Strong BUY | -42.2% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:87.6 | Technology
+YOU  ### Strong BUY | -40.1% | W:– | MTF:2/5 M:RISK | Fuzzy:85.3 | Technology
+RMBS  ### Strong BUY | -35.4% | W:SOS | MTF:1/5 M:RISK | Fuzzy:83.1 | Technology
+ACMR  ### Strong BUY | -33.5% | W:– | MTF:1/5 | Fuzzy:61.7 | --
+BKE  ### Strong BUY | -27.1% | W:– | MTF:1/5 M:RISK | Fuzzy:72.7* | Consumer Cyclical
+### ── Turning Up (10) ──
+UTI  ### Turning Up | -61.9% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:99.5 | Consumer Defensive
+RKT  ### Turning Up | -49.8% | W:Spring | MTF:1/5 M:RISK | Fuzzy:78.0 | --
+AMSF  ### Turning Up | -45.9% | W:SC | MTF:3/5 M:RISK | Fuzzy:100.0 | Financial Services
+PTON  ### Turning Up | -45.8% | W:SC | MTF:2/5 | Fuzzy:100.0 | Consumer Cyclical
+BMI  ### Turning Up | -36.7% | W:Spring | MTF:1/5 | Fuzzy:84.8 | Technology
+DAKT  ### Turning Up | -36.3% | W:– | MTF:3/5 M:RISK | Fuzzy:74.3* | Technology
+MWA  ### Turning Up | -29.9% | W:– | MTF:3/5 M:RISK | Fuzzy:70.4* | Industrials
+PTC  ### Turning Up | -29.7% | W:– | MTF:1/5 | Fuzzy:67.2* | --
+HAPN  ### Turning Up | -28.5% | W:Spring | MTF:2/5 M:RISK | Fuzzy:68.4* | Financial Services
+MIL:MONC  ### Turning Up | -26.2% | W:– | MTF:1/5 M:RISK | Fuzzy:77.4* | --
