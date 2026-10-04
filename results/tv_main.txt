@@ -1,22 +1,16 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-10-02 14:07 UTC
-### Liczba tickerow: 16
+### Wygenerowano: 2026-10-04 11:32 UTC
+### Liczba tickerow: 10
 ###
-### ── Strong BUY (6) ──
-BOT  ### Strong BUY | -53.2% | W:– | MTF:2/5 | Fuzzy:100.0 | Financial Services
-INOD  ### Strong BUY | -42.2% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:87.6 | Technology
-YOU  ### Strong BUY | -40.1% | W:– | MTF:2/5 M:RISK | Fuzzy:85.3 | Technology
-RMBS  ### Strong BUY | -35.4% | W:SOS | MTF:1/5 M:RISK | Fuzzy:83.1 | Technology
-ACMR  ### Strong BUY | -33.5% | W:– | MTF:1/5 | Fuzzy:61.7 | --
-BKE  ### Strong BUY | -27.1% | W:– | MTF:1/5 M:RISK | Fuzzy:72.7* | Consumer Cyclical
-### ── Turning Up (10) ──
-UTI  ### Turning Up | -61.9% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:99.5 | Consumer Defensive
-RKT  ### Turning Up | -49.8% | W:Spring | MTF:1/5 M:RISK | Fuzzy:78.0 | --
-AMSF  ### Turning Up | -45.9% | W:SC | MTF:3/5 M:RISK | Fuzzy:100.0 | Financial Services
-PTON  ### Turning Up | -45.8% | W:SC | MTF:2/5 | Fuzzy:100.0 | Consumer Cyclical
-BMI  ### Turning Up | -36.7% | W:Spring | MTF:1/5 | Fuzzy:84.8 | Technology
-DAKT  ### Turning Up | -36.3% | W:– | MTF:3/5 M:RISK | Fuzzy:74.3* | Technology
-MWA  ### Turning Up | -29.9% | W:– | MTF:3/5 M:RISK | Fuzzy:70.4* | Industrials
-PTC  ### Turning Up | -29.7% | W:– | MTF:1/5 | Fuzzy:67.2* | --
-HAPN  ### Turning Up | -28.5% | W:Spring | MTF:2/5 M:RISK | Fuzzy:68.4* | Financial Services
-MIL:MONC  ### Turning Up | -26.2% | W:– | MTF:1/5 M:RISK | Fuzzy:77.4* | --
+### ── Strong BUY (7) ──
+SERV  ### Strong BUY | -75.2% | W:– | MTF:4/5 M:RISK | Fuzzy:80.0 | --
+WING  ### Strong BUY | -64.7% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:95.8 | --
+OLN  ### Strong BUY | -47.8% | W:– | MTF:4/5 M:RISK | Fuzzy:100.0 | --
+INOD  ### Strong BUY | -44.0% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:88.9 | --
+NTGR  ### Strong BUY | -36.1% | W:– | MTF:3/5 | Fuzzy:70.3 | --
+RMBS  ### Strong BUY | -35.7% | W:SOS | MTF:1/5 M:RISK | Fuzzy:69.0 | --
+MDLN  ### Strong BUY | -30.0% | W:A+AR | MTF:2/5 | Fuzzy:50.0 | --
+### ── Turning Up (3) ──
+UTI  ### Turning Up | -62.3% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:74.9* | --
+LIF  ### Turning Up | -61.7% | W:SOS | MTF:1/5 M:RISK | Fuzzy:94.7 | --
+LMND  ### Turning Up | -53.5% | W:– | MTF:1/5 M:RISK | Fuzzy:86.5 | --
