@@ -1,12 +1,14 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-10-04 12:09 UTC
-### Liczba tickerow: 6
+### Wygenerowano: 2026-10-05 14:07 UTC
+### Liczba tickerow: 8
 ###
-### ── Strong BUY (4) ──
-INOD  ### Strong BUY | -44.0% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:88.9 | --
-YOU  ### Strong BUY | -39.8% | W:– | MTF:2/5 M:RISK | Fuzzy:85.1 | --
-NTGR  ### Strong BUY | -36.1% | W:– | MTF:3/5 | Fuzzy:70.3 | --
-RMBS  ### Strong BUY | -35.7% | W:SOS | MTF:1/5 M:RISK | Fuzzy:83.3 | --
-### ── Turning Up (2) ──
-OLED  ### Turning Up | -47.6% | W:A+AR | MTF:4/5 | Fuzzy:86.2* | --
-UAA  ### Turning Up | -42.2% | W:– | MTF:1/5 M:RISK | Fuzzy:90.7 | --
+### ── Strong BUY (2) ──
+LPTH  ### Strong BUY | -41.6% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:88.7 | --
+CRUS  ### Strong BUY | -32.8% | W:– | MTF:3/5 M:RISK | Fuzzy:86.8 | Technology
+### ── Turning Up (6) ──
+QFIN  ### Turning Up | -78.0% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:87.5 | Financial Services
+LRN  ### Turning Up | -49.5% | W:A+AR | MTF:2/5 | Fuzzy:86.9 | Consumer Defensive
+AMSF  ### Turning Up | -45.8% | W:SC | MTF:3/5 M:RISK | Fuzzy:100.0 | Financial Services
+PTON  ### Turning Up | -43.4% | W:SC | MTF:2/5 | Fuzzy:98.7 | Consumer Cyclical
+BBWI  ### Turning Up | -37.0% | W:– | MTF:1/5 M:RISK | Fuzzy:70.0* | Consumer Cyclical
+DECK  ### Turning Up | -35.1% | W:– | MTF:3/5 M:RISK | Fuzzy:89.0 | Consumer Cyclical
