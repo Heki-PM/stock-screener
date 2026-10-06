@@ -1,14 +1,16 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-10-05 14:07 UTC
-### Liczba tickerow: 8
+### Wygenerowano: 2026-10-06 14:10 UTC
+### Liczba tickerow: 10
 ###
-### ── Strong BUY (2) ──
-LPTH  ### Strong BUY | -41.6% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:88.7 | --
-CRUS  ### Strong BUY | -32.8% | W:– | MTF:3/5 M:RISK | Fuzzy:86.8 | Technology
+### ── Strong BUY (4) ──
+LMND  ### Strong BUY | -53.5% | W:– | MTF:4/5 M:RISK | Fuzzy:86.5 | --
+PLAB  ### Strong BUY | -44.4% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:75.7 | --
+PICS  ### Strong BUY | -42.1% | W:– | MTF:3/5 | Fuzzy:95.2 | --
+MWA  ### Strong BUY | -29.4% | W:– | MTF:4/5 M:RISK | Fuzzy:70.1* | --
 ### ── Turning Up (6) ──
-QFIN  ### Turning Up | -78.0% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:87.5 | Financial Services
-LRN  ### Turning Up | -49.5% | W:A+AR | MTF:2/5 | Fuzzy:86.9 | Consumer Defensive
-AMSF  ### Turning Up | -45.8% | W:SC | MTF:3/5 M:RISK | Fuzzy:100.0 | Financial Services
-PTON  ### Turning Up | -43.4% | W:SC | MTF:2/5 | Fuzzy:98.7 | Consumer Cyclical
-BBWI  ### Turning Up | -37.0% | W:– | MTF:1/5 M:RISK | Fuzzy:70.0* | Consumer Cyclical
-DECK  ### Turning Up | -35.1% | W:– | MTF:3/5 M:RISK | Fuzzy:89.0 | Consumer Cyclical
+DUOL  ### Turning Up | -58.5% | W:A+AR | MTF:3/5 | Fuzzy:94.7 | --
+SRAD  ### Turning Up | -55.9% | W:Spring | MTF:3/5 M:RISK | Fuzzy:100.0 | --
+PLTK  ### Turning Up | -49.8% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | --
+YELP  ### Turning Up | -46.9% | W:– | MTF:1/5 M:RISK | Fuzzy:98.0 | --
+CLBT  ### Turning Up | -42.7% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:92.3 | --
+NTES  ### Turning Up | -24.7% | W:– | MTF:2/5 M:RISK | Fuzzy:80.5* | --
