@@ -1,16 +1,8 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-10-06 14:10 UTC
-### Liczba tickerow: 10
+### Wygenerowano: 2026-10-07 14:13 UTC
+### Liczba tickerow: 3
 ###
-### ── Strong BUY (4) ──
-LMND  ### Strong BUY | -53.5% | W:– | MTF:4/5 M:RISK | Fuzzy:86.5 | --
-PLAB  ### Strong BUY | -44.4% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:75.7 | --
-PICS  ### Strong BUY | -42.1% | W:– | MTF:3/5 | Fuzzy:95.2 | --
-MWA  ### Strong BUY | -29.4% | W:– | MTF:4/5 M:RISK | Fuzzy:70.1* | --
-### ── Turning Up (6) ──
-DUOL  ### Turning Up | -58.5% | W:A+AR | MTF:3/5 | Fuzzy:94.7 | --
-SRAD  ### Turning Up | -55.9% | W:Spring | MTF:3/5 M:RISK | Fuzzy:100.0 | --
-PLTK  ### Turning Up | -49.8% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:100.0 | --
-YELP  ### Turning Up | -46.9% | W:– | MTF:1/5 M:RISK | Fuzzy:98.0 | --
-CLBT  ### Turning Up | -42.7% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:92.3 | --
-NTES  ### Turning Up | -24.7% | W:– | MTF:2/5 M:RISK | Fuzzy:80.5* | --
+### ── Turning Up (3) ──
+SGML  ### Turning Up | -59.4% | W:SOS | MTF:1/5 M:RISK | Fuzzy:100.0 | --
+IIIV  ### Turning Up | -56.2% | W:SC | MTF:3/5 M:RISK | Fuzzy:100.0 | --
+TLS  ### Turning Up | -48.7% | W:Spring | MTF:0/5 M:RISK | Fuzzy:100.0 | --
