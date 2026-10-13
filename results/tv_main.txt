@@ -1,24 +1,15 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-10-12 14:10 UTC
-### Liczba tickerow: 18
+### Wygenerowano: 2026-10-13 14:10 UTC
+### Liczba tickerow: 9
 ###
-### ── Strong BUY (10) ──
-UPWK  ### Strong BUY | -62.5% | W:Spring | MTF:2/5 M:RISK | Fuzzy:91.1 | Communication Services
-WING  ### Strong BUY | -59.9% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:95.8 | Consumer Cyclical
-PLNT  ### Strong BUY | -58.3% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:83.3* | Consumer Cyclical
-COUR  ### Strong BUY | -52.3% | W:Spring | MTF:3/5 | Fuzzy:100.0 | --
-YELP  ### Strong BUY | -45.8% | W:– | MTF:4/5 M:RISK | Fuzzy:98.0 | Communication Services
-PDD  ### Strong BUY | -41.9% | W:– | MTF:2/5 M:RISK | Fuzzy:97.6 | Consumer Cyclical
-GOF  ### Strong BUY | -41.0% | W:SC | MTF:2/5 M:RISK | Fuzzy:92.4 | Financial Services
-CRTO  ### Strong BUY | -39.5% | W:SC | MTF:2/5 M:RISK | Fuzzy:81.6* | Communication Services
-BBWI  ### Strong BUY | -37.5% | W:– | MTF:3/5 M:RISK | Fuzzy:70.5* | Consumer Cyclical
-RVLV  ### Strong BUY | -31.9% | W:SOS | MTF:2/5 M:RISK | Fuzzy:88.5 | Consumer Cyclical
-### ── Turning Up (8) ──
-ERII  ### Turning Up | -62.9% | W:– | MTF:1/5 M:RISK | Fuzzy:86.5* | Industrials
-QTTB  ### Turning Up | -62.6% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:97.9 | Healthcare
-PODD  ### Turning Up | -61.3% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:87.5 | Healthcare
-CLBT  ### Turning Up | -43.5% | W:Spring | MTF:1/5 M:RISK | Fuzzy:85.5* | Technology
-GGAL  ### Turning Up | -41.4% | W:SC | MTF:1/5 M:RISK | Fuzzy:92.1 | Financial Services
-BRO  ### Turning Up | -33.5% | W:Spring | MTF:2/5 | Fuzzy:61.7 | Financial Services
-HAPN  ### Turning Up | -30.5% | W:Spring | MTF:1/5 M:RISK | Fuzzy:71.8 | Financial Services
-WSE  ### Turning Up | -30.3% | W:– | MTF:1/5 | Fuzzy:76.8 | Technology
+### ── Strong BUY (7) ──
+GOGO  ### Strong BUY | -76.1% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:100.0 | --
+UPWK  ### Strong BUY | -62.0% | W:Spring | MTF:2/5 M:RISK | Fuzzy:91.1 | Communication Services
+PLNT  ### Strong BUY | -58.6% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:83.3* | Consumer Cyclical
+LZ  ### Strong BUY | -51.0% | W:SC | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+HDB  ### Strong BUY | -39.1% | W:– | MTF:1/5 M:RISK | Fuzzy:74.1 | Financial Services
+YMM  ### Strong BUY | -35.9% | W:SC | MTF:3/5 | Fuzzy:69.7 | --
+BBWI  ### Strong BUY | -35.5% | W:– | MTF:3/5 M:RISK | Fuzzy:68.8* | Consumer Cyclical
+### ── Turning Up (2) ──
+WSE  ### Turning Up | -30.4% | W:– | MTF:1/5 | Fuzzy:51.3 | Technology
+DX  ### Turning Up | -27.6% | W:Spring | MTF:1/5 M:RISK | Fuzzy:71.0* | Real Estate
