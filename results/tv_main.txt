@@ -1,15 +1,21 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-10-13 14:10 UTC
-### Liczba tickerow: 9
+### Wygenerowano: 2026-10-14 14:08 UTC
+### Liczba tickerow: 15
 ###
-### ── Strong BUY (7) ──
-GOGO  ### Strong BUY | -76.1% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:100.0 | --
-UPWK  ### Strong BUY | -62.0% | W:Spring | MTF:2/5 M:RISK | Fuzzy:91.1 | Communication Services
-PLNT  ### Strong BUY | -58.6% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:83.3* | Consumer Cyclical
-LZ  ### Strong BUY | -51.0% | W:SC | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-HDB  ### Strong BUY | -39.1% | W:– | MTF:1/5 M:RISK | Fuzzy:74.1 | Financial Services
-YMM  ### Strong BUY | -35.9% | W:SC | MTF:3/5 | Fuzzy:69.7 | --
-BBWI  ### Strong BUY | -35.5% | W:– | MTF:3/5 M:RISK | Fuzzy:68.8* | Consumer Cyclical
-### ── Turning Up (2) ──
-WSE  ### Turning Up | -30.4% | W:– | MTF:1/5 | Fuzzy:51.3 | Technology
-DX  ### Turning Up | -27.6% | W:Spring | MTF:1/5 M:RISK | Fuzzy:71.0* | Real Estate
+### ── Strong BUY (9) ──
+BRBR  ### Strong BUY | -75.9% | W:– | MTF:2/5 M:RISK | Fuzzy:77.6 | Consumer Defensive
+INFY  ### Strong BUY | -61.8% | W:A+AR | MTF:4/5 | Fuzzy:82.8 | Technology
+PLNT  ### Strong BUY | -59.3% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:83.3* | Consumer Cyclical
+LZ  ### Strong BUY | -51.6% | W:SC | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+SITE  ### Strong BUY | -47.6% | W:SC | MTF:4/5 M:RISK | Fuzzy:100.0 | Industrials
+BBAR  ### Strong BUY | -43.5% | W:– | MTF:2/5 M:RISK | Fuzzy:94.1 | Financial Services
+CRTO  ### Strong BUY | -41.4% | W:SC | MTF:2/5 M:RISK | Fuzzy:88.0 | --
+TDOC  ### Strong BUY | -41.3% | W:– | MTF:3/5 M:RISK | Fuzzy:87.7 | --
+VIV  ### Strong BUY | -30.0% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:67.5 | Communication Services
+### ── Turning Up (6) ──
+PODD  ### Turning Up | -61.4% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:87.5 | Healthcare
+ZURA  ### Turning Up | -39.4% | W:– | MTF:1/5 M:RISK | Fuzzy:81.3 | --
+BRO  ### Turning Up | -32.9% | W:Spring | MTF:2/5 | Fuzzy:59.7 | --
+BLBD  ### Turning Up | -31.9% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:56.3 | --
+WSE  ### Turning Up | -31.0% | W:– | MTF:1/5 | Fuzzy:77.5 | Technology
+EVER  ### Turning Up | -28.9% | W:– | MTF:4/5 | Fuzzy:85.5* | Communication Services
