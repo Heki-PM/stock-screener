@@ -165,4 +165,12 @@ jobs:
             -H "X-Webhook-Secret: ${{ secrets.N8N_WEBHOOK_SECRET }}" \
             -H "Content-Type: application/json" \
             -d "{\"date\": \"${DATE}\"}"
-            
+
+      - name: Powiadom n8n o błędzie (webhook)
+        if: failure()
+        run: |
+          DATE=$(date -u +'%Y-%m-%d')
+          curl -sf -X POST "https://eve320-20320.mikrus.cloud/webhook/zhelektro-daily-refresh" \
+            -H "X-Webhook-Secret: ${{ secrets.N8N_WEBHOOK_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"date\": \"${DATE}\", \"status\": \"failure\", \"run_url\": \"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" || true
