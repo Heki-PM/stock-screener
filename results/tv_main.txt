@@ -1,21 +1,26 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-10-14 14:08 UTC
-### Liczba tickerow: 15
+### Wygenerowano: 2026-10-15 14:09 UTC
+### Liczba tickerow: 20
 ###
-### ── Strong BUY (9) ──
-BRBR  ### Strong BUY | -75.9% | W:– | MTF:2/5 M:RISK | Fuzzy:77.6 | Consumer Defensive
-INFY  ### Strong BUY | -61.8% | W:A+AR | MTF:4/5 | Fuzzy:82.8 | Technology
-PLNT  ### Strong BUY | -59.3% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:83.3* | Consumer Cyclical
-LZ  ### Strong BUY | -51.6% | W:SC | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-SITE  ### Strong BUY | -47.6% | W:SC | MTF:4/5 M:RISK | Fuzzy:100.0 | Industrials
-BBAR  ### Strong BUY | -43.5% | W:– | MTF:2/5 M:RISK | Fuzzy:94.1 | Financial Services
-CRTO  ### Strong BUY | -41.4% | W:SC | MTF:2/5 M:RISK | Fuzzy:88.0 | --
-TDOC  ### Strong BUY | -41.3% | W:– | MTF:3/5 M:RISK | Fuzzy:87.7 | --
-VIV  ### Strong BUY | -30.0% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:67.5 | Communication Services
-### ── Turning Up (6) ──
-PODD  ### Turning Up | -61.4% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:87.5 | Healthcare
-ZURA  ### Turning Up | -39.4% | W:– | MTF:1/5 M:RISK | Fuzzy:81.3 | --
-BRO  ### Turning Up | -32.9% | W:Spring | MTF:2/5 | Fuzzy:59.7 | --
-BLBD  ### Turning Up | -31.9% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:56.3 | --
-WSE  ### Turning Up | -31.0% | W:– | MTF:1/5 | Fuzzy:77.5 | Technology
-EVER  ### Turning Up | -28.9% | W:– | MTF:4/5 | Fuzzy:85.5* | Communication Services
+### ── Strong BUY (11) ──
+FVRR  ### Strong BUY | -63.2% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:100.0 | --
+COLL  ### Strong BUY | -53.0% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:100.0 | --
+LZ  ### Strong BUY | -49.4% | W:SC | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+SGRY  ### Strong BUY | -36.0% | W:A+AR | MTF:2/5 | Fuzzy:70.0 | --
+BFAM  ### Strong BUY | -35.3% | W:Spring | MTF:2/5 | Fuzzy:67.7 | --
+YMM  ### Strong BUY | -35.1% | W:SC | MTF:3/5 | Fuzzy:67.0 | --
+AAP  ### Strong BUY | -34.0% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:63.3 | --
+HLMN  ### Strong BUY | -33.6% | W:SOS | MTF:2/5 M:RISK | Fuzzy:69.6 | --
+TRN  ### Strong BUY | -32.1% | W:– | MTF:2/5 M:RISK | Fuzzy:57.0 | --
+COCO  ### Strong BUY | -29.6% | W:Spring | MTF:1/5 | Fuzzy:81.1* | Consumer Defensive
+RVLV  ### Strong BUY | -28.3% | W:SOS | MTF:1/5 M:RISK | Fuzzy:85.9* | Consumer Cyclical
+### ── Turning Up (9) ──
+LULU  ### Turning Up | -56.4% | W:– | MTF:3/5 M:RISK | Fuzzy:97.1 | Consumer Cyclical
+PNR  ### Turning Up | -52.3% | W:SC | MTF:3/5 M:RISK | Fuzzy:100.0 | --
+RERE  ### Turning Up | -38.6% | W:– | MTF:3/5 M:RISK | Fuzzy:78.7 | --
+PRKS  ### Turning Up | -37.5% | W:– | MTF:2/5 M:RISK | Fuzzy:87.5 | Consumer Cyclical
+VNT  ### Turning Up | -32.4% | W:– | MTF:1/5 | Fuzzy:46.4 | --
+WSE  ### Turning Up | -30.6% | W:– | MTF:1/5 | Fuzzy:77.1 | Technology
+AGNC  ### Turning Up | -26.9% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:69.8* | Real Estate
+EVER  ### Turning Up | -26.1% | W:– | MTF:2/5 | Fuzzy:83.6* | Communication Services
+CARG  ### Turning Up | -24.2% | W:– | MTF:2/5 | Fuzzy:83.2* | Communication Services
