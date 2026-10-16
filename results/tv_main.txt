@@ -1,15 +1,16 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-10-16 07:15 UTC
-### Liczba tickerow: 9
+### Wygenerowano: 2026-10-16 14:11 UTC
+### Liczba tickerow: 10
 ###
-### ── Strong BUY (5) ──
-PLNT  ### Strong BUY | -56.8% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:100.0 | --
-WING  ### Strong BUY | -56.7% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:95.8 | --
-CLVT  ### Strong BUY | -55.0% | W:Spring | MTF:4/5 M:RISK | Fuzzy:100.0 | --
-TRIP  ### Strong BUY | -47.3% | W:– | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-KVYO  ### Strong BUY | -45.8% | W:SC | MTF:2/5 | Fuzzy:100.0 | --
+### ── Strong BUY (6) ──
+TME  ### Strong BUY | -63.7% | W:– | MTF:2/5 | Fuzzy:100.0 | Communication Services
+COUR  ### Strong BUY | -52.4% | W:Spring | MTF:3/5 | Fuzzy:100.0 | --
+MZTI  ### Strong BUY | -41.1% | W:SC | MTF:2/5 | Fuzzy:89.6 | Consumer Defensive
+YELP  ### Strong BUY | -40.9% | W:– | MTF:2/5 | Fuzzy:95.1 | Communication Services
+MATW  ### Strong BUY | -37.1% | W:– | MTF:2/5 | Fuzzy:73.7 | --
+UPBD  ### Strong BUY | -30.3% | W:– | MTF:2/5 | Fuzzy:40.8 | --
 ### ── Turning Up (4) ──
-VCX  ### Turning Up | -95.6% | W:A+AR | MTF:2/5 | Fuzzy:100.0 | --
-ORC  ### Turning Up | -38.3% | W:– | MTF:1/5 M:RISK | Fuzzy:88.8 | --
-COO  ### Turning Up | -36.1% | W:Spring | MTF:1/5 M:RISK | Fuzzy:70.3 | --
-EVER  ### Turning Up | -24.9% | W:– | MTF:2/5 | Fuzzy:82.7* | --
+LQDA  ### Turning Up | -64.0% | W:⚠ Dist | MTF:1/5 | Fuzzy:100.0 | --
+TPB  ### Turning Up | -57.7% | W:SC | MTF:2/5 | Fuzzy:84.5 | Consumer Defensive
+LULU  ### Turning Up | -55.9% | W:– | MTF:2/5 | Fuzzy:97.1 | Consumer Cyclical
+TASK  ### Turning Up | -41.0% | W:A+AR | MTF:1/5 | Fuzzy:73.0 | Technology
