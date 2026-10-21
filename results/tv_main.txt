@@ -1,22 +1,22 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-10-20 12:07 UTC
+### Wygenerowano: 2026-10-21 12:12 UTC
 ### Liczba tickerow: 16
 ###
-### ── Strong BUY (13) ──
-UPWK  ### Strong BUY | -62.7% | W:Spring | MTF:3/5 M:RISK | Fuzzy:91.1 | Communication Services
-PODD  ### Strong BUY | -60.0% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:87.5 | Healthcare
-LMB  ### Strong BUY | -57.8% | W:– | MTF:1/5 M:RISK | Fuzzy:74.4* | Industrials
-LULU  ### Strong BUY | -56.7% | W:– | MTF:4/5 M:RISK | Fuzzy:97.1 | Consumer Cyclical
-LZ  ### Strong BUY | -49.2% | W:SC | MTF:1/5 M:RISK | Fuzzy:100.0 | Industrials
-OLED  ### Strong BUY | -47.3% | W:A+AR | MTF:4/5 | Fuzzy:86.2* | Technology
-NKE  ### Strong BUY | -47.2% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:80.0 | Consumer Cyclical
-CLBT  ### Strong BUY | -44.2% | W:Spring | MTF:4/5 M:RISK | Fuzzy:81.4* | Technology
-PRG  ### Strong BUY | -35.4% | W:SOS | MTF:3/5 M:RISK | Fuzzy:80.0 | Industrials
-SEZL  ### Strong BUY | -34.6% | W:⚠ Dist | MTF:1/5 | Fuzzy:81.9 | Financial Services
-TIMB  ### Strong BUY | -33.8% | W:– | MTF:1/5 M:RISK | Fuzzy:68.3* | Communication Services
-ULS  ### Strong BUY | -32.1% | W:SOS | MTF:1/5 M:RISK | Fuzzy:82.0 | --
-CARG  ### Strong BUY | -24.7% | W:– | MTF:3/5 | Fuzzy:83.5* | Communication Services
-### ── Turning Up (3) ──
-MIAX  ### Turning Up | -44.8% | W:– | MTF:2/5 | Fuzzy:77.6 | Financial Services
-BLLN  ### Turning Up | -32.8% | W:Spring | MTF:1/5 | Fuzzy:78.1 | Healthcare
-KYIV  ### Turning Up | -24.8% | W:Spring | MTF:1/5 | Fuzzy:76.5* | Communication Services
+### ── Strong BUY (9) ──
+LULU  ### Strong BUY | -55.8% | W:– | MTF:2/5 M:RISK | Fuzzy:97.1 | Consumer Cyclical
+MLTX  ### Strong BUY | -55.7% | W:⚠ Dist | MTF:4/5 M:RISK | Fuzzy:100.0 | --
+NKE  ### Strong BUY | -46.2% | W:A+AR | MTF:2/5 | Fuzzy:80.0 | Consumer Cyclical
+CLBT  ### Strong BUY | -43.1% | W:Spring | MTF:4/5 M:RISK | Fuzzy:80.7* | Technology
+PRG  ### Strong BUY | -35.2% | W:SOS | MTF:3/5 | Fuzzy:79.8 | Industrials
+SGRY  ### Strong BUY | -33.9% | W:A+AR | MTF:2/5 | Fuzzy:63.0 | --
+ULS  ### Strong BUY | -31.8% | W:SOS | MTF:1/5 M:RISK | Fuzzy:81.8 | Industrials
+BLLN  ### Strong BUY | -31.2% | W:Spring | MTF:2/5 | Fuzzy:77.0 | Healthcare
+DX  ### Strong BUY | -26.6% | W:– | MTF:3/5 M:RISK | Fuzzy:69.3* | Real Estate
+### ── Turning Up (7) ──
+WULF  ### Turning Up | -59.8% | W:– | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+MIAX  ### Turning Up | -43.3% | W:– | MTF:1/5 | Fuzzy:76.6 | Financial Services
+IVR  ### Turning Up | -43.3% | W:– | MTF:3/5 M:RISK | Fuzzy:97.2 | Real Estate
+CRMD  ### Turning Up | -41.9% | W:Spring | MTF:4/5 | Fuzzy:91.9 | Healthcare
+GOF  ### Turning Up | -39.1% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:88.8 | Financial Services
+TBBK  ### Turning Up | -37.2% | W:SC | MTF:1/5 M:RISK | Fuzzy:78.5 | Financial Services
+ARR  ### Turning Up | -34.3% | W:– | MTF:2/5 M:RISK | Fuzzy:64.3 | --
