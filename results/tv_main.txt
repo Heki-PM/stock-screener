@@ -1,22 +1,14 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-10-21 12:12 UTC
-### Liczba tickerow: 16
+### Wygenerowano: 2026-10-22 11:11 UTC
+### Liczba tickerow: 8
 ###
-### ── Strong BUY (9) ──
-LULU  ### Strong BUY | -55.8% | W:– | MTF:2/5 M:RISK | Fuzzy:97.1 | Consumer Cyclical
-MLTX  ### Strong BUY | -55.7% | W:⚠ Dist | MTF:4/5 M:RISK | Fuzzy:100.0 | --
-NKE  ### Strong BUY | -46.2% | W:A+AR | MTF:2/5 | Fuzzy:80.0 | Consumer Cyclical
-CLBT  ### Strong BUY | -43.1% | W:Spring | MTF:4/5 M:RISK | Fuzzy:80.7* | Technology
-PRG  ### Strong BUY | -35.2% | W:SOS | MTF:3/5 | Fuzzy:79.8 | Industrials
-SGRY  ### Strong BUY | -33.9% | W:A+AR | MTF:2/5 | Fuzzy:63.0 | --
-ULS  ### Strong BUY | -31.8% | W:SOS | MTF:1/5 M:RISK | Fuzzy:81.8 | Industrials
-BLLN  ### Strong BUY | -31.2% | W:Spring | MTF:2/5 | Fuzzy:77.0 | Healthcare
-DX  ### Strong BUY | -26.6% | W:– | MTF:3/5 M:RISK | Fuzzy:69.3* | Real Estate
-### ── Turning Up (7) ──
-WULF  ### Turning Up | -59.8% | W:– | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-MIAX  ### Turning Up | -43.3% | W:– | MTF:1/5 | Fuzzy:76.6 | Financial Services
-IVR  ### Turning Up | -43.3% | W:– | MTF:3/5 M:RISK | Fuzzy:97.2 | Real Estate
-CRMD  ### Turning Up | -41.9% | W:Spring | MTF:4/5 | Fuzzy:91.9 | Healthcare
-GOF  ### Turning Up | -39.1% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:88.8 | Financial Services
-TBBK  ### Turning Up | -37.2% | W:SC | MTF:1/5 M:RISK | Fuzzy:78.5 | Financial Services
-ARR  ### Turning Up | -34.3% | W:– | MTF:2/5 M:RISK | Fuzzy:64.3 | --
+### ── Strong BUY (5) ──
+FISV  ### Strong BUY | -62.6% | W:Spring | MTF:3/5 | Fuzzy:100.0 | --
+TSHA  ### Strong BUY | -43.6% | W:Spring | MTF:2/5 | Fuzzy:89.7 | --
+TIMB  ### Strong BUY | -31.8% | W:– | MTF:3/5 M:RISK | Fuzzy:66.9* | --
+PCG  ### Strong BUY | -31.4% | W:– | MTF:4/5 M:RISK | Fuzzy:54.7 | --
+CRF  ### Strong BUY | -27.0% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:65.7* | --
+### ── Turning Up (3) ──
+ARLO  ### Turning Up | -39.1% | W:– | MTF:3/5 M:RISK | Fuzzy:78.9 | --
+ARR  ### Turning Up | -33.7% | W:– | MTF:2/5 M:RISK | Fuzzy:81.2 | --
+SVRA  ### Turning Up | -33.3% | W:– | MTF:1/5 M:RISK | Fuzzy:61.0 | --
