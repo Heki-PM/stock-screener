@@ -1,14 +1,31 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-10-22 11:11 UTC
-### Liczba tickerow: 8
+### Wygenerowano: 2026-10-23 11:08 UTC
+### Liczba tickerow: 25
 ###
-### ── Strong BUY (5) ──
-FISV  ### Strong BUY | -62.6% | W:Spring | MTF:3/5 | Fuzzy:100.0 | --
-TSHA  ### Strong BUY | -43.6% | W:Spring | MTF:2/5 | Fuzzy:89.7 | --
-TIMB  ### Strong BUY | -31.8% | W:– | MTF:3/5 M:RISK | Fuzzy:66.9* | --
-PCG  ### Strong BUY | -31.4% | W:– | MTF:4/5 M:RISK | Fuzzy:54.7 | --
-CRF  ### Strong BUY | -27.0% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:65.7* | --
-### ── Turning Up (3) ──
-ARLO  ### Turning Up | -39.1% | W:– | MTF:3/5 M:RISK | Fuzzy:78.9 | --
-ARR  ### Turning Up | -33.7% | W:– | MTF:2/5 M:RISK | Fuzzy:81.2 | --
-SVRA  ### Turning Up | -33.3% | W:– | MTF:1/5 M:RISK | Fuzzy:61.0 | --
+### ── Strong BUY (19) ──
+VITL  ### Strong BUY | -75.8% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:80.4 | --
+UPWK  ### Strong BUY | -58.9% | W:Spring | MTF:1/5 M:RISK | Fuzzy:91.1 | Communication Services
+LMB  ### Strong BUY | -58.6% | W:– | MTF:3/5 M:RISK | Fuzzy:74.4* | Industrials
+TPB  ### Strong BUY | -54.5% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:80.1 | Consumer Defensive
+OLED  ### Strong BUY | -42.6% | W:A+AR | MTF:2/5 | Fuzzy:84.5* | --
+GGAL  ### Strong BUY | -42.2% | W:SC | MTF:2/5 M:RISK | Fuzzy:92.5 | --
+IVR  ### Strong BUY | -41.9% | W:– | MTF:2/5 M:RISK | Fuzzy:94.8 | Real Estate
+CLBT  ### Strong BUY | -41.0% | W:Spring | MTF:2/5 M:RISK | Fuzzy:79.2* | Technology
+GOF  ### Strong BUY | -38.1% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:86.9 | Financial Services
+CRMD  ### Strong BUY | -37.8% | W:Spring | MTF:3/5 | Fuzzy:89.0 | Healthcare
+FND  ### Strong BUY | -37.8% | W:– | MTF:4/5 M:RISK | Fuzzy:80.8 | --
+SFM  ### Strong BUY | -37.0% | W:A+AR | MTF:5/5 | Fuzzy:73.3 | --
+ARLO  ### Strong BUY | -36.8% | W:– | MTF:4/5 M:RISK | Fuzzy:76.9 | Industrials
+BFAM  ### Strong BUY | -35.4% | W:Spring | MTF:4/5 | Fuzzy:68.0 | Consumer Cyclical
+PRG  ### Strong BUY | -33.3% | W:SOS | MTF:2/5 | Fuzzy:78.1 | Industrials
+OMCL  ### Strong BUY | -32.5% | W:Spring | MTF:3/5 M:RISK | Fuzzy:66.7 | --
+ULS  ### Strong BUY | -31.5% | W:SOS | MTF:1/5 M:RISK | Fuzzy:81.6 | Industrials
+PTON  ### Strong BUY | -31.5% | W:SC | MTF:2/5 | Fuzzy:88.8 | Consumer Cyclical
+NSSC  ### Strong BUY | -25.4% | W:– | MTF:2/5 M:RISK | Fuzzy:86.2* | Industrials
+### ── Turning Up (6) ──
+GSHD  ### Turning Up | -36.6% | W:Spring | MTF:3/5 | Fuzzy:70.1 | Financial Services
+TBBK  ### Turning Up | -36.5% | W:SC | MTF:1/5 M:RISK | Fuzzy:77.3 | Financial Services
+VC  ### Turning Up | -35.6% | W:– | MTF:1/5 M:RISK | Fuzzy:68.7 | --
+ARR  ### Turning Up | -34.3% | W:– | MTF:2/5 M:RISK | Fuzzy:82.2 | Real Estate
+SGHC  ### Turning Up | -28.4% | W:⚠ Dist | MTF:1/5 | Fuzzy:88.4* | Consumer Cyclical
+APAM  ### Turning Up | -26.1% | W:SOS | MTF:2/5 M:RISK | Fuzzy:74.7* | Financial Services
