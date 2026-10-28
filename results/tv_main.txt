@@ -1,26 +1,18 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-10-27 12:07 UTC
-### Liczba tickerow: 20
+### Wygenerowano: 2026-10-28 12:10 UTC
+### Liczba tickerow: 12
 ###
-### ── Strong BUY (15) ──
-VCX  ### Strong BUY | -95.6% | W:A+AR | MTF:3/5 | Fuzzy:100.0 | Financial Services
-BRBR  ### Strong BUY | -71.5% | W:– | MTF:2/5 | Fuzzy:100.0 | --
-BUR  ### Strong BUY | -71.1% | W:SC | MTF:4/5 M:RISK | Fuzzy:100.0 | --
-QTTB  ### Strong BUY | -64.1% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:97.9 | Healthcare
-ERII  ### Strong BUY | -61.5% | W:– | MTF:2/5 M:RISK | Fuzzy:86.5* | Industrials
-HLLY  ### Strong BUY | -42.9% | W:Spring | MTF:4/5 M:RISK | Fuzzy:93.0 | Consumer Cyclical
-CG  ### Strong BUY | -42.4% | W:– | MTF:2/5 M:RISK | Fuzzy:91.3 | Financial Services
-CRMD  ### Strong BUY | -39.0% | W:Spring | MTF:2/5 | Fuzzy:89.8 | Healthcare
-CLBT  ### Strong BUY | -38.8% | W:Spring | MTF:1/5 M:RISK | Fuzzy:77.7* | Technology
-COAG  ### Strong BUY | -35.0% | W:– | MTF:2/5 | Fuzzy:66.7 | --
-CPRT  ### Strong BUY | -34.3% | W:– | MTF:3/5 | Fuzzy:76.6 | Industrials
-ARR  ### Strong BUY | -34.3% | W:– | MTF:3/5 M:RISK | Fuzzy:69.7 | Real Estate
-YOU  ### Strong BUY | -33.3% | W:– | MTF:1/5 | Fuzzy:80.6 | Technology
-CLM  ### Strong BUY | -32.2% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:75.6 | Financial Services
-CRF  ### Strong BUY | -31.5% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:74.3 | Financial Services
-### ── Turning Up (5) ──
-QFIN  ### Turning Up | -77.7% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:87.5 | Financial Services
-RSI  ### Turning Up | -52.8% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:90.7 | Consumer Cyclical
-PEGA  ### Turning Up | -45.2% | W:SC | MTF:1/5 | Fuzzy:93.6 | Technology
-IMNM  ### Turning Up | -40.5% | W:Spring | MTF:1/5 | Fuzzy:85.0 | --
-GSHD  ### Turning Up | -40.0% | W:Spring | MTF:3/5 | Fuzzy:75.1 | Financial Services
+### ── Strong BUY (9) ──
+VCX  ### Strong BUY | -95.7% | W:A+AR | MTF:2/5 | Fuzzy:100.0 | --
+QFIN  ### Strong BUY | -77.3% | W:⚠ Dist | MTF:4/5 M:RISK | Fuzzy:87.5 | --
+PL  ### Strong BUY | -72.0% | W:– | MTF:4/5 M:RISK | Fuzzy:100.0 | --
+QTTB  ### Strong BUY | -63.0% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+WLK  ### Strong BUY | -46.7% | W:– | MTF:2/5 M:RISK | Fuzzy:100.0 | --
+CLBT  ### Strong BUY | -40.3% | W:Spring | MTF:1/5 M:RISK | Fuzzy:78.7* | --
+RERE  ### Strong BUY | -38.3% | W:– | MTF:4/5 M:RISK | Fuzzy:77.7 | --
+CPRT  ### Strong BUY | -33.8% | W:– | MTF:3/5 | Fuzzy:76.3 | --
+CLM  ### Strong BUY | -32.0% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:75.2 | --
+### ── Turning Up (3) ──
+STLA  ### Turning Up | -66.1% | W:– | MTF:3/5 M:RISK | Fuzzy:100.0 | --
+MWH  ### Turning Up | -53.4% | W:A+AR | MTF:2/5 | Fuzzy:100.0 | --
+SOFI  ### Turning Up | -49.9% | W:– | MTF:3/5 M:RISK | Fuzzy:91.1 | --
