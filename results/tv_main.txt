@@ -1,18 +1,13 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-10-28 12:10 UTC
-### Liczba tickerow: 12
+### Wygenerowano: 2026-10-29 12:10 UTC
+### Liczba tickerow: 7
 ###
-### ── Strong BUY (9) ──
-VCX  ### Strong BUY | -95.7% | W:A+AR | MTF:2/5 | Fuzzy:100.0 | --
-QFIN  ### Strong BUY | -77.3% | W:⚠ Dist | MTF:4/5 M:RISK | Fuzzy:87.5 | --
-PL  ### Strong BUY | -72.0% | W:– | MTF:4/5 M:RISK | Fuzzy:100.0 | --
-QTTB  ### Strong BUY | -63.0% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-WLK  ### Strong BUY | -46.7% | W:– | MTF:2/5 M:RISK | Fuzzy:100.0 | --
-CLBT  ### Strong BUY | -40.3% | W:Spring | MTF:1/5 M:RISK | Fuzzy:78.7* | --
-RERE  ### Strong BUY | -38.3% | W:– | MTF:4/5 M:RISK | Fuzzy:77.7 | --
-CPRT  ### Strong BUY | -33.8% | W:– | MTF:3/5 | Fuzzy:76.3 | --
-CLM  ### Strong BUY | -32.0% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:75.2 | --
-### ── Turning Up (3) ──
-STLA  ### Turning Up | -66.1% | W:– | MTF:3/5 M:RISK | Fuzzy:100.0 | --
-MWH  ### Turning Up | -53.4% | W:A+AR | MTF:2/5 | Fuzzy:100.0 | --
-SOFI  ### Turning Up | -49.9% | W:– | MTF:3/5 M:RISK | Fuzzy:91.1 | --
+### ── Strong BUY (6) ──
+ERII  ### Strong BUY | -60.0% | W:– | MTF:4/5 M:RISK | Fuzzy:86.5* | Industrials
+ORC  ### Strong BUY | -40.0% | W:– | MTF:4/5 M:RISK | Fuzzy:79.2 | Real Estate
+TBBK  ### Strong BUY | -36.4% | W:SC | MTF:2/5 M:RISK | Fuzzy:77.1 | Financial Services
+CPRT  ### Strong BUY | -33.2% | W:– | MTF:3/5 | Fuzzy:75.9 | Industrials
+PFLT  ### Strong BUY | -31.0% | W:Spring | MTF:4/5 M:RISK | Fuzzy:53.3 | --
+ARLO  ### Strong BUY | -30.3% | W:– | MTF:1/5 M:RISK | Fuzzy:71.1 | Industrials
+### ── Turning Up (1) ──
+PIPR  ### Turning Up | -29.6% | W:SC | MTF:3/5 M:RISK | Fuzzy:66.6* | Financial Services
