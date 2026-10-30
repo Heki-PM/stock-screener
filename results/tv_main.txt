@@ -1,13 +1,18 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-10-29 12:10 UTC
-### Liczba tickerow: 7
+### Wygenerowano: 2026-10-30 12:08 UTC
+### Liczba tickerow: 12
 ###
-### ── Strong BUY (6) ──
-ERII  ### Strong BUY | -60.0% | W:– | MTF:4/5 M:RISK | Fuzzy:86.5* | Industrials
-ORC  ### Strong BUY | -40.0% | W:– | MTF:4/5 M:RISK | Fuzzy:79.2 | Real Estate
-TBBK  ### Strong BUY | -36.4% | W:SC | MTF:2/5 M:RISK | Fuzzy:77.1 | Financial Services
-CPRT  ### Strong BUY | -33.2% | W:– | MTF:3/5 | Fuzzy:75.9 | Industrials
-PFLT  ### Strong BUY | -31.0% | W:Spring | MTF:4/5 M:RISK | Fuzzy:53.3 | --
-ARLO  ### Strong BUY | -30.3% | W:– | MTF:1/5 M:RISK | Fuzzy:71.1 | Industrials
-### ── Turning Up (1) ──
-PIPR  ### Turning Up | -29.6% | W:SC | MTF:3/5 M:RISK | Fuzzy:66.6* | Financial Services
+### ── Strong BUY (9) ──
+BRAI  ### Strong BUY | -90.7% | W:SC | MTF:3/5 | Fuzzy:100.0 | --
+BW  ### Strong BUY | -79.3% | W:⚠ Dist | MTF:2/5 | Fuzzy:100.0 | --
+ERII  ### Strong BUY | -59.0% | W:– | MTF:2/5 | Fuzzy:86.5* | Industrials
+SOFI  ### Strong BUY | -46.2% | W:– | MTF:1/5 | Fuzzy:100.0 | Financial Services
+JACK  ### Strong BUY | -45.4% | W:– | MTF:2/5 | Fuzzy:100.0 | Consumer Cyclical
+IART  ### Strong BUY | -37.4% | W:– | MTF:2/5 | Fuzzy:74.7 | --
+CMP  ### Strong BUY | -33.5% | W:⚠ Dist | MTF:2/5 | Fuzzy:61.7 | --
+YOU  ### Strong BUY | -33.1% | W:– | MTF:1/5 | Fuzzy:80.4 | Technology
+TBBK  ### Strong BUY | -30.8% | W:SC | MTF:2/5 | Fuzzy:67.8 | Financial Services
+### ── Turning Up (3) ──
+CABA  ### Turning Up | -62.5% | W:⚠ Dist | MTF:1/5 | Fuzzy:100.0 | --
+VOYG  ### Turning Up | -46.9% | W:– | MTF:2/5 | Fuzzy:100.0 | --
+CLYM  ### Turning Up | -43.6% | W:A+AR | MTF:1/5 | Fuzzy:95.3 | --
