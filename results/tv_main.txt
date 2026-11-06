@@ -1,28 +1,13 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-11-05 12:04 UTC
-### Liczba tickerow: 22
+### Wygenerowano: 2026-11-06 12:04 UTC
+### Liczba tickerow: 7
 ###
-### ── Strong BUY (16) ──
-BRAI  ### Strong BUY | -92.5% | W:– | MTF:3/5 | Fuzzy:100.0 | --
-ZJYL  ### Strong BUY | -63.6% | W:SOS | MTF:1/5 | Fuzzy:100.0 | --
-BUR  ### Strong BUY | -58.8% | W:SC | MTF:1/5 | Fuzzy:85.6 | --
-SANA  ### Strong BUY | -53.4% | W:– | MTF:3/5 | Fuzzy:80.0 | --
-TPB  ### Strong BUY | -52.1% | W:A+AR | MTF:1/5 | Fuzzy:80.1 | --
-RCKT  ### Strong BUY | -52.1% | W:– | MTF:2/5 | Fuzzy:100.0 | --
-LULU  ### Strong BUY | -50.4% | W:– | MTF:1/5 | Fuzzy:97.1 | --
-ZURA  ### Strong BUY | -46.0% | W:⚠ Dist | MTF:3/5 | Fuzzy:94.8 | --
-PWP  ### Strong BUY | -44.1% | W:– | MTF:2/5 | Fuzzy:77.2* | --
-JBI  ### Strong BUY | -43.1% | W:– | MTF:1/5 | Fuzzy:93.7 | --
-FBRT  ### Strong BUY | -40.6% | W:– | MTF:3/5 | Fuzzy:85.3 | --
-BRSP  ### Strong BUY | -40.5% | W:SC | MTF:3/5 | Fuzzy:85.0 | --
-RIVN  ### Strong BUY | -38.0% | W:A+AR | MTF:2/5 | Fuzzy:76.7 | --
-ARR  ### Strong BUY | -34.7% | W:– | MTF:3/5 | Fuzzy:70.3 | --
-GOF  ### Strong BUY | -30.6% | W:A+AR | MTF:1/5 | Fuzzy:52.0 | --
-SGHC  ### Strong BUY | -27.2% | W:⚠ Dist | MTF:3/5 | Fuzzy:87.5* | --
-### ── Turning Up (6) ──
-BTQ  ### Turning Up | -75.5% | W:– | MTF:1/5 | Fuzzy:100.0 | --
-TIGR  ### Turning Up | -65.2% | W:A+AR | MTF:1/5 | Fuzzy:100.0 | --
-PALI  ### Turning Up | -56.3% | W:– | MTF:2/5 | Fuzzy:93.5 | --
-NFGC  ### Turning Up | -54.3% | W:– | MTF:0/5 | Fuzzy:100.0 | --
-INBX  ### Turning Up | -44.1% | W:– | MTF:1/5 | Fuzzy:97.0 | --
-NFLX  ### Turning Up | -43.1% | W:– | MTF:2/5 | Fuzzy:87.9 | --
+### ── Strong BUY (5) ──
+VITL  ### Strong BUY | -73.6% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:85.6 | --
+ZURA  ### Strong BUY | -50.0% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:94.8 | --
+LXRX  ### Strong BUY | -39.9% | W:– | MTF:3/5 | Fuzzy:91.5 | --
+DKNG  ### Strong BUY | -36.4% | W:Faza B | MTF:2/5 | Fuzzy:71.3 | --
+TPG  ### Strong BUY | -33.6% | W:SC | MTF:2/5 | Fuzzy:62.0 | --
+### ── Turning Up (2) ──
+CURR  ### Turning Up | -63.4% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:81.5 | --
+HLNE  ### Turning Up | -42.1% | W:SC | MTF:2/5 | Fuzzy:84.5 | --
