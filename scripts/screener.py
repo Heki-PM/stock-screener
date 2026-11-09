@@ -352,6 +352,15 @@ def _wyckoff_cell(score, dist_warning):
 #  O'NEIL – KIERUNEK RYNKU
 # ══════════════════════════════════════════════════════════════
 
+def _close_series(df):
+    """Kolumna Close jako Series. Nowsze yfinance zwraca dla jednego tickera kolumny
+    MultiIndex, więc df["Close"] to DataFrame i float(...) na nim rzuca wyjątek."""
+    close = df["Close"]
+    if isinstance(close, pd.DataFrame):
+        close = close.iloc[:, 0]
+    return close.dropna()
+
+
 def check_market_direction() -> dict:
     result = {"USA": True, "EU": True,
               "usa_price": None, "usa_sma50w": None,
@@ -362,7 +371,7 @@ def check_market_direction() -> dict:
                              auto_adjust=True, progress=False)
             if df is None or df.empty or len(df) < MARKET_SMA_WEEKS + 5:
                 continue
-            close  = df["Close"].dropna()
+            close  = _close_series(df)
             price  = float(close.iloc[-1])
             sma50w = float(close.rolling(MARKET_SMA_WEEKS).mean().iloc[-1])
             above  = price > sma50w
@@ -718,6 +727,8 @@ def _download_batch_once(batch, period, interval):
             raw = yf.download(batch[0], period=period, interval=interval,
                               auto_adjust=True, progress=False)
             if raw is not None and not raw.empty:
+                if isinstance(raw.columns, pd.MultiIndex):
+                    raw.columns = raw.columns.get_level_values(0)
                 return {batch[0]: raw}
             return {}
         raw = yf.download(batch, period=period, interval=interval,
@@ -787,7 +798,7 @@ def phase1_weekly_signals(ticker_market_list):
             df_idx = yf.download(idx_ticker, period="2y", interval="1wk",
                                  auto_adjust=True, progress=False)
             if df_idx is not None and not df_idx.empty and len(df_idx) >= 52:
-                c = df_idx["Close"].dropna()
+                c = _close_series(df_idx)
                 index_returns[mkt] = float(c.iloc[-1])/float(c.iloc[-53])-1 if len(c)>=53 else None
         except Exception:
             index_returns[mkt] = None
