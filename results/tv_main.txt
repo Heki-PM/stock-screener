@@ -1,13 +1,40 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-11-06 12:04 UTC
-### Liczba tickerow: 7
+### Wygenerowano: 2026-11-09 12:52 UTC
+### Liczba tickerow: 34
 ###
-### ── Strong BUY (5) ──
-VITL  ### Strong BUY | -73.6% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:85.6 | --
-ZURA  ### Strong BUY | -50.0% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:94.8 | --
-LXRX  ### Strong BUY | -39.9% | W:– | MTF:3/5 | Fuzzy:91.5 | --
-DKNG  ### Strong BUY | -36.4% | W:Faza B | MTF:2/5 | Fuzzy:71.3 | --
-TPG  ### Strong BUY | -33.6% | W:SC | MTF:2/5 | Fuzzy:62.0 | --
-### ── Turning Up (2) ──
-CURR  ### Turning Up | -63.4% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:81.5 | --
-HLNE  ### Turning Up | -42.1% | W:SC | MTF:2/5 | Fuzzy:84.5 | --
+### ── Strong BUY (17) ──
+QFIN  ### Strong BUY | -76.5% | W:⚠ Dist | MTF:4/5 M:RISK | Fuzzy:87.5 | Financial Services
+BILI  ### Strong BUY | -59.7% | W:– | MTF:2/5 M:RISK | Fuzzy:73.1* | Communication Services
+FINV  ### Strong BUY | -54.0% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:86.0* | Financial Services
+LULU  ### Strong BUY | -51.0% | W:– | MTF:2/5 | Fuzzy:97.1 | Consumer Cyclical
+SOFI  ### Strong BUY | -50.5% | W:– | MTF:4/5 | Fuzzy:100.0 | Financial Services
+PWP  ### Strong BUY | -47.2% | W:– | MTF:3/5 M:RISK | Fuzzy:77.9* | Financial Services
+CELH  ### Strong BUY | -45.8% | W:Spring | MTF:4/5 | Fuzzy:83.3* | Consumer Defensive
+TMDX  ### Strong BUY | -43.4% | W:– | MTF:4/5 | Fuzzy:87.5* | Healthcare
+PDD  ### Strong BUY | -40.3% | W:– | MTF:2/5 | Fuzzy:96.5 | Consumer Cyclical
+NXT  ### Strong BUY | -35.7% | W:– | MTF:1/5 M:RISK | Fuzzy:79.4 | Technology
+Q  ### Strong BUY | -34.0% | W:– | MTF:2/5 | Fuzzy:63.3 | --
+GOF  ### Strong BUY | -32.6% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:76.4 | Financial Services
+TCMD  ### Strong BUY | -31.1% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:53.7 | Healthcare
+GSHD  ### Strong BUY | -30.4% | W:– | MTF:3/5 | Fuzzy:60.9 | Financial Services
+DECK  ### Strong BUY | -29.1% | W:– | MTF:3/5 M:RISK | Fuzzy:88.8* | Consumer Cyclical
+SGHC  ### Strong BUY | -28.4% | W:⚠ Dist | MTF:2/5 | Fuzzy:87.3* | Consumer Cyclical
+IRWD  ### Strong BUY | -24.0% | W:– | MTF:1/5 | Fuzzy:65.3* | Healthcare
+### ── Turning Up (17) ──
+VCX  ### Turning Up | -96.5% | W:A+AR | MTF:2/5 | Fuzzy:100.0 | Financial Services
+TIGR  ### Turning Up | -65.6% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:94.0 | Financial Services
+RSI  ### Turning Up | -64.4% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:87.0 | Consumer Cyclical
+SE  ### Turning Up | -52.4% | W:SC | MTF:1/5 M:RISK | Fuzzy:81.8* | Consumer Cyclical
+PLAB  ### Turning Up | -51.1% | W:– | MTF:1/5 M:RISK | Fuzzy:76.1 | Technology
+FUTU  ### Turning Up | -48.5% | W:– | MTF:1/5 M:RISK | Fuzzy:93.7 | Financial Services
+CDE  ### Turning Up | -44.3% | W:Faza B | MTF:3/5 M:RISK | Fuzzy:83.6 | Basic Materials
+AGI  ### Turning Up | -42.6% | W:Spring | MTF:3/5 M:RISK | Fuzzy:81.2* | Basic Materials
+HLNE  ### Turning Up | -42.5% | W:SC | MTF:2/5 | Fuzzy:84.7 | Financial Services
+GFI  ### Turning Up | -36.5% | W:– | MTF:1/5 M:RISK | Fuzzy:90.0 | Basic Materials
+WSE  ### Turning Up | -36.2% | W:– | MTF:2/5 | Fuzzy:82.4 | Technology
+TBBK  ### Turning Up | -33.9% | W:SC | MTF:1/5 M:RISK | Fuzzy:73.9 | Financial Services
+RWAY  ### Turning Up | -33.5% | W:– | MTF:2/5 | Fuzzy:65.1 | Financial Services
+PIPR  ### Turning Up | -30.7% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:63.7 | Financial Services
+BXDC  ### Turning Up | -30.1% | W:– | MTF:1/5 | Fuzzy:50.3 | Real Estate
+AU  ### Turning Up | -28.0% | W:Faza B | MTF:2/5 M:RISK | Fuzzy:82.3* | Basic Materials
+B  ### Turning Up | -25.8% | W:– | MTF:2/5 M:RISK | Fuzzy:71.5* | Basic Materials
