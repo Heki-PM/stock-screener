@@ -64,7 +64,7 @@ MARKET_DIRECTION_USA = "SPY"
 MARKET_DIRECTION_EU  = "VGK"
 MARKET_SMA_WEEKS     = 50
 
-FUNDAMENTALS_WORKERS = 12   # było 30 – przy 30 wątkach Yahoo zwraca HTTP 429 z IP runnerów GitHuba
+FUNDAMENTALS_WORKERS = 20   # 30 powodowało HTTP 429 z IP runnerów GitHuba, 12 wydłużało run do ~19 min
 DOWNLOAD_BATCH_SIZE  = 200   # OPT 3: większe batche = mniej round-tripów HTTP
 DOWNLOAD_WORKERS     = 2     # było 4 – mniej równoległych zapytań do Yahoo
 
