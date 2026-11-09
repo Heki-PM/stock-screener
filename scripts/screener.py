@@ -38,6 +38,8 @@ import numpy as np
 import requests
 import json
 import os
+import random
+import time
 from datetime import datetime
 from pathlib import Path
 from io import StringIO
@@ -62,8 +64,13 @@ MARKET_DIRECTION_USA = "SPY"
 MARKET_DIRECTION_EU  = "VGK"
 MARKET_SMA_WEEKS     = 50
 
-FUNDAMENTALS_WORKERS = 30   # OPT 5: więcej wątków – fundamenty to I/O-bound
+FUNDAMENTALS_WORKERS = 12   # było 30 – przy 30 wątkach Yahoo zwraca HTTP 429 z IP runnerów GitHuba
 DOWNLOAD_BATCH_SIZE  = 200   # OPT 3: większe batche = mniej round-tripów HTTP
+DOWNLOAD_WORKERS     = 2     # było 4 – mniej równoległych zapytań do Yahoo
+
+# Retry z rosnącym odstępem (5s, 10s, 20s + losowy jitter) przy limitach Yahoo (HTTP 429)
+RETRY_ATTEMPTS       = 4
+RETRY_BASE_SLEEP_S   = 5
 OUTPUT_DIR           = "results"
 SMI_LEN_K, SMI_LEN_D, SMI_LEN_EMA = 10, 3, 3
 
@@ -699,8 +706,13 @@ def calc_mtf_score(r):
 
 
 
-def _download_batch(batch, period, interval):
-    """Pobiera jeden batch tickerów. Używane przez bulk_download w puli wątków."""
+def _backoff(attempt):
+    """Odczekaj 5s, 10s, 20s... (+ jitter), żeby wątki nie ponawiały w tej samej chwili."""
+    time.sleep(RETRY_BASE_SLEEP_S * (2 ** attempt) + random.uniform(0, 2))
+
+
+def _download_batch_once(batch, period, interval):
+    """Jedna próba pobrania paczki tickerów (bez ponawiania)."""
     try:
         if len(batch) == 1:
             raw = yf.download(batch[0], period=period, interval=interval,
@@ -726,13 +738,33 @@ def _download_batch(batch, period, interval):
         return {}
 
 
-def bulk_download(tickers, period, interval):
+def _download_batch(batch, period, interval, min_coverage):
+    """Pobiera paczkę tickerów; ponawia, gdy wróciło za mało danych (limit Yahoo, HTTP 429)."""
+    needed = max(1, int(min_coverage * len(batch)))
+    best = {}
+    for attempt in range(RETRY_ATTEMPTS):
+        out = _download_batch_once(batch, period, interval)
+        if len(out) > len(best):
+            best = out
+        if len(best) >= needed:
+            return best
+        if attempt < RETRY_ATTEMPTS - 1:
+            print(f"      [retry] {interval}: {len(best)}/{len(batch)} tickerow "
+                  f"(wymagane >= {needed}) -- proba {attempt + 2}/{RETRY_ATTEMPTS}")
+            _backoff(attempt)
+    return best
+
+
+def bulk_download(tickers, period, interval, min_coverage=0.3):
+    """min_coverage: minimalny ułamek paczki z danymi, poniżej którego paczka jest ponawiana.
+    Etap tygodniowy ma luźny próg (ok. 30% tickerów legalnie nie ma danych: warranty,
+    wycofane spółki); etap dzienny działa na wyselekcjonowanych tickerach, więc ścisły."""
     result  = {}
     batches = [tickers[i:i+DOWNLOAD_BATCH_SIZE]
                for i in range(0, len(tickers), DOWNLOAD_BATCH_SIZE)]
-    # OPT 3: batche pobierane równolegle (4 wątki = 4 połączenia do YF jednocześnie)
-    with ThreadPoolExecutor(max_workers=4) as pool:
-        futures = {pool.submit(_download_batch, b, period, interval): b
+    # OPT 3: batche pobierane równolegle (DOWNLOAD_WORKERS połączeń do YF jednocześnie)
+    with ThreadPoolExecutor(max_workers=DOWNLOAD_WORKERS) as pool:
+        futures = {pool.submit(_download_batch, b, period, interval, min_coverage): b
                    for b in batches if b}
         for future in as_completed(futures):
             result.update(future.result())
@@ -824,7 +856,8 @@ def phase1_weekly_signals(ticker_market_list):
     # ── D1 LEAD: dla spółek z sygnałem W1 sprawdzamy wyprzedzenie SMI dziennego ──
     if signals:
         print(f"\n[1b/2] SMI dzienny (D1) -- {len(signals)} tickerow z sygnalem W1...")
-        d1_data = bulk_download(list(signals.keys()), period="6mo", interval="1d")
+        d1_data = bulk_download(list(signals.keys()), period="6mo", interval="1d",
+                                min_coverage=0.8)
         print(f"      Pobrano D1: {len(d1_data)}")
 
         early_count = 0
@@ -1015,6 +1048,18 @@ def _calc_gross_margin(tkr):
         return round(gp/rev, 4)
     except Exception: return None
 
+def _read_fast_info(tkr):
+    """Zwraca (price, cap, vol, currency, high_52w) albo None, gdy Yahoo rzuci wyjątek."""
+    try:
+        fi = tkr.fast_info
+        return (getattr(fi, "last_price", None),
+                getattr(fi, "market_cap", None),
+                getattr(fi, "three_month_average_volume", None) or getattr(fi, "last_volume", None),
+                getattr(fi, "currency", "USD"),
+                getattr(fi, "year_high", None))
+    except Exception:
+        return None
+
 def _fetch_fundamentals(symbol: str) -> dict | None:
     """
     Pobiera surowe dane fundamentalne z Yahoo Finance dla jednego symbolu.
@@ -1023,12 +1068,16 @@ def _fetch_fundamentals(symbol: str) -> dict | None:
     """
     try:
         tkr = yf.Ticker(symbol)
-        fi  = tkr.fast_info
-        price    = getattr(fi, "last_price", None)
-        cap      = getattr(fi, "market_cap", None)
-        vol      = getattr(fi, "three_month_average_volume", None) or getattr(fi, "last_volume", None)
-        currency = getattr(fi, "currency", "USD")
-        high_52w = getattr(fi, "year_high", None)
+        # Brak market_cap oznacza zwykle limit Yahoo (429), a nie spółkę poniżej progu – ponawiamy.
+        fast = None
+        for attempt in range(RETRY_ATTEMPTS):
+            fast = _read_fast_info(tkr)
+            if fast and fast[1]:
+                break
+            if attempt < RETRY_ATTEMPTS - 1:
+                _backoff(attempt)
+        if not fast: return None
+        price, cap, vol, currency, high_52w = fast
         if not cap or cap < MIN_MARKET_CAP: return None
         if not vol or vol < MIN_VOLUME:     return None
         discount_pct = None
@@ -1036,7 +1085,16 @@ def _fetch_fundamentals(symbol: str) -> dict | None:
             discount_pct = round((high_52w - price) / high_52w * 100, 1)
         name=symbol; sector="--"; country="--"; eps_ttm=None; sales=None; qr=None
         try:
-            info = tkr.info
+            info = None
+            for attempt in range(RETRY_ATTEMPTS):
+                try:
+                    info = tkr.info
+                except Exception:
+                    info = None
+                if info and len(info) > 5:
+                    break
+                if attempt < RETRY_ATTEMPTS - 1:
+                    _backoff(attempt)
             if info and len(info) > 5:
                 name    = info.get("shortName") or symbol
                 sector  = info.get("sector")    or "--"
