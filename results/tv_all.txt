@@ -1,644 +1,798 @@
 ### TradingView Watchlist – Full Scan
-### Wygenerowano: 2026-11-09 12:52 UTC
-### Liczba tickerow: 637
+### Wygenerowano: 2026-11-10 12:33 UTC
+### Liczba tickerow: 791
 ###
-### ── Strong BUY (405) ──
-XNDU  ### Strong BUY | -93.7% | W:– | MTF:-- | Fuzzy:65.6 | Technology
-EMAT  ### Strong BUY | -91.9% | W:– | MTF:-- | Fuzzy:62.5 | Basic Materials
-KDK  ### Strong BUY | -88.7% | W:SC | MTF:-- | Fuzzy:58.3 | Technology
-CDNL  ### Strong BUY | -84.9% | W:– | MTF:-- | Fuzzy:58.1 | Industrials
-FLNC  ### Strong BUY | -84.3% | W:– | MTF:-- | Fuzzy:41.0 | Industrials
-MPLT  ### Strong BUY | -82.9% | W:– | MTF:-- | Fuzzy:68.9 | Healthcare
-TE  ### Strong BUY | -81.1% | W:⚠ Dist | MTF:-- | Fuzzy:32.8 | Industrials
-SERV  ### Strong BUY | -80.0% | W:– | MTF:-- | Fuzzy:52.6 | Industrials
-OKLO  ### Strong BUY | -79.9% | W:SC | MTF:-- | Fuzzy:66.7 | Utilities
-OLMA  ### Strong BUY | -79.8% | W:– | MTF:-- | Fuzzy:66.7 | Healthcare
-MFP  ### Strong BUY | -78.8% | W:– | MTF:-- | Fuzzy:62.4 | Industrials
-SPRY  ### Strong BUY | -78.8% | W:⚠ Dist | MTF:-- | Fuzzy:69.0 | Healthcare
-RCAT  ### Strong BUY | -78.5% | W:⚠ Dist | MTF:-- | Fuzzy:52.6 | Industrials
-ASPI  ### Strong BUY | -77.7% | W:– | MTF:-- | Fuzzy:44.7 | Basic Materials
-EH  ### Strong BUY | -76.5% | W:– | MTF:-- | Fuzzy:73.7 | Industrials
-BTQ  ### Strong BUY | -76.5% | W:– | MTF:-- | Fuzzy:67.2 | Technology
-QFIN  ### Strong BUY | -76.5% | W:⚠ Dist | MTF:4/5 M:RISK | Fuzzy:87.5 | Financial Services
-PL  ### Strong BUY | -75.8% | W:– | MTF:-- | Fuzzy:63.2 | Industrials
-QS  ### Strong BUY | -75.7% | W:A+AR | MTF:-- | Fuzzy:71.0 | Consumer Cyclical
-LXEO  ### Strong BUY | -73.7% | W:A+AR | MTF:-- | Fuzzy:66.7 | Healthcare
-VITL  ### Strong BUY | -73.6% | W:A+AR | MTF:-- | Fuzzy:85.6 | Consumer Defensive
-XE  ### Strong BUY | -71.9% | W:– | MTF:-- | Fuzzy:57.9 | Industrials
-LEU  ### Strong BUY | -69.7% | W:SOS | MTF:-- | Fuzzy:72.1 | Energy
-TOYO  ### Strong BUY | -69.2% | W:⚠ Dist | MTF:-- | Fuzzy:58.6 | Technology
-SPCE  ### Strong BUY | -68.9% | W:– | MTF:-- | Fuzzy:48.6 | Industrials
-HYMC  ### Strong BUY | -68.0% | W:– | MTF:-- | Fuzzy:66.7 | Basic Materials
-CSIQ  ### Strong BUY | -67.9% | W:– | MTF:-- | Fuzzy:28.3 | Technology
-QBTS  ### Strong BUY | -67.0% | W:– | MTF:-- | Fuzzy:73.7 | Technology
-SPIR  ### Strong BUY | -66.6% | W:Spring | MTF:-- | Fuzzy:70.2 | Industrials
-OCGN  ### Strong BUY | -66.1% | W:– | MTF:-- | Fuzzy:55.7 | Healthcare
-GILT  ### Strong BUY | -65.6% | W:SC | MTF:-- | Fuzzy:66.8 | Technology
-DQ  ### Strong BUY | -65.4% | W:– | MTF:-- | Fuzzy:57.9 | Technology
-ONDS  ### Strong BUY | -65.1% | W:A+AR | MTF:-- | Fuzzy:67.5 | Technology
-AEVA  ### Strong BUY | -64.9% | W:Spring | MTF:-- | Fuzzy:42.1 | Technology
-AIP  ### Strong BUY | -64.6% | W:⚠ Dist | MTF:-- | Fuzzy:61.8 | Technology
-BUR  ### Strong BUY | -64.5% | W:SC | MTF:-- | Fuzzy:85.6 | Financial Services
-KYTX  ### Strong BUY | -64.3% | W:– | MTF:-- | Fuzzy:69.4 | Healthcare
-EVEX  ### Strong BUY | -64.1% | W:Spring | MTF:-- | Fuzzy:51.3 | Industrials
-XPEV  ### Strong BUY | -63.7% | W:A+AR | MTF:-- | Fuzzy:47.2 | Consumer Cyclical
-DY  ### Strong BUY | -63.4% | W:⚠ Dist | MTF:-- | Fuzzy:50.2 | Industrials
-LRMR  ### Strong BUY | -62.8% | W:– | MTF:-- | Fuzzy:94.3 | Healthcare
-WULF  ### Strong BUY | -61.9% | W:SC | MTF:-- | Fuzzy:57.9 | Financial Services
-FUN  ### Strong BUY | -61.9% | W:– | MTF:-- | Fuzzy:48.8 | Consumer Cyclical
-KRMN  ### Strong BUY | -61.5% | W:Spring | MTF:-- | Fuzzy:60.1 | Industrials
-CRVS  ### Strong BUY | -60.9% | W:A+AR | MTF:-- | Fuzzy:66.7 | Healthcare
-BILI  ### Strong BUY | -59.7% | W:– | MTF:2/5 M:RISK | Fuzzy:73.1* | Communication Services
-IQ  ### Strong BUY | -58.3% | W:– | MTF:-- | Fuzzy:33.1 | Communication Services
-QNT  ### Strong BUY | -56.7% | W:– | MTF:-- | Fuzzy:73.7 | Technology
-AOSL  ### Strong BUY | -56.6% | W:A+AR | MTF:-- | Fuzzy:59.5 | Technology
-WRD  ### Strong BUY | -55.5% | W:– | MTF:-- | Fuzzy:67.0 | Technology
-ALB  ### Strong BUY | -55.1% | W:– | MTF:-- | Fuzzy:52.1 | Basic Materials
-RUN  ### Strong BUY | -54.5% | W:– | MTF:-- | Fuzzy:47.7 | Technology
-AIOT  ### Strong BUY | -54.3% | W:– | MTF:-- | Fuzzy:62.2 | Technology
-KC  ### Strong BUY | -54.0% | W:– | MTF:-- | Fuzzy:44.7 | Technology
-FINV  ### Strong BUY | -54.0% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:86.0* | Financial Services
-AKTS  ### Strong BUY | -53.7% | W:⚠ Dist | MTF:-- | Fuzzy:58.3 | Healthcare
-CHTR  ### Strong BUY | -53.5% | W:SC | MTF:-- | Fuzzy:48.5 | Communication Services
-GEVO  ### Strong BUY | -53.2% | W:– | MTF:-- | Fuzzy:71.2 | Basic Materials
-RGNX  ### Strong BUY | -52.9% | W:SC | MTF:-- | Fuzzy:69.3 | Healthcare
-GIL  ### Strong BUY | -52.8% | W:SC | MTF:-- | Fuzzy:53.0 | Consumer Cyclical
-MLCO  ### Strong BUY | -52.7% | W:– | MTF:-- | Fuzzy:59.2 | Consumer Cyclical
-CTRI  ### Strong BUY | -52.6% | W:Spring | MTF:-- | Fuzzy:49.9 | Utilities
-LQDA  ### Strong BUY | -52.6% | W:A+AR | MTF:-- | Fuzzy:63.2 | Healthcare
-CENX  ### Strong BUY | -52.5% | W:Spring | MTF:-- | Fuzzy:45.5 | Basic Materials
-BLDR  ### Strong BUY | -52.4% | W:A+AR | MTF:-- | Fuzzy:54.8 | Industrials
-SFIX  ### Strong BUY | -52.3% | W:– | MTF:-- | Fuzzy:60.8 | Consumer Cyclical
-KEP  ### Strong BUY | -52.2% | W:– | MTF:-- | Fuzzy:22.4 | Utilities
-ACHR  ### Strong BUY | -52.2% | W:A+AR | MTF:-- | Fuzzy:52.6 | Industrials
-ARRY  ### Strong BUY | -52.1% | W:Faza B | MTF:-- | Fuzzy:45.9 | Technology
-NIO  ### Strong BUY | -52.0% | W:Spring | MTF:-- | Fuzzy:26.9 | Consumer Cyclical
-LULU  ### Strong BUY | -51.0% | W:– | MTF:2/5 | Fuzzy:97.1 | Consumer Cyclical
-ACM  ### Strong BUY | -50.8% | W:– | MTF:-- | Fuzzy:49.7 | Industrials
-LIF  ### Strong BUY | -50.6% | W:SOS | MTF:-- | Fuzzy:76.3 | Technology
-BIDU  ### Strong BUY | -50.5% | W:– | MTF:-- | Fuzzy:69.3 | Communication Services
-SOFI  ### Strong BUY | -50.5% | W:– | MTF:4/5 | Fuzzy:100.0 | Financial Services
-EVGO  ### Strong BUY | -50.3% | W:– | MTF:-- | Fuzzy:48.1 | Consumer Cyclical
-AGLT  ### Strong BUY | -49.7% | W:– | MTF:-- | Fuzzy:46.7 | Technology
-DPC  ### Strong BUY | -49.7% | W:– | MTF:-- | Fuzzy:61.5 | Industrials
-PNNT  ### Strong BUY | -49.2% | W:Spring | MTF:-- | Fuzzy:67.7 | Financial Services
-AXSM  ### Strong BUY | -49.1% | W:⚠ Dist | MTF:-- | Fuzzy:79.6 | Healthcare
-AVR  ### Strong BUY | -48.5% | W:SOS | MTF:-- | Fuzzy:73.1 | Healthcare
-MAIR  ### Strong BUY | -48.2% | W:– | MTF:-- | Fuzzy:58.9 | Industrials
-FIP  ### Strong BUY | -48.1% | W:– | MTF:-- | Fuzzy:40.9 | Industrials
-TYRA  ### Strong BUY | -48.0% | W:A+AR | MTF:-- | Fuzzy:67.1 | Healthcare
-IVA  ### Strong BUY | -47.9% | W:A+AR | MTF:-- | Fuzzy:63.6 | Healthcare
-OPFI  ### Strong BUY | -47.2% | W:– | MTF:-- | Fuzzy:78.9 | Financial Services
-PWP  ### Strong BUY | -47.2% | W:– | MTF:3/5 M:RISK | Fuzzy:77.9* | Financial Services
-APP  ### Strong BUY | -47.0% | W:Spring | MTF:-- | Fuzzy:84.1 | Communication Services
-PATK  ### Strong BUY | -46.9% | W:SC | MTF:-- | Fuzzy:39.3 | Consumer Cyclical
-GPGI  ### Strong BUY | -46.4% | W:A+AR | MTF:-- | Fuzzy:77.8 | Industrials
-TREE  ### Strong BUY | -46.3% | W:Spring | MTF:-- | Fuzzy:69.0 | Financial Services
-JBIO  ### Strong BUY | -46.2% | W:SOS | MTF:-- | Fuzzy:66.7 | Healthcare
-INSM  ### Strong BUY | -46.2% | W:Spring | MTF:-- | Fuzzy:69.1 | Healthcare
-CELH  ### Strong BUY | -45.8% | W:Spring | MTF:4/5 | Fuzzy:83.3* | Consumer Defensive
-ABEO  ### Strong BUY | -45.5% | W:– | MTF:-- | Fuzzy:68.4 | Healthcare
-AHCO  ### Strong BUY | -45.4% | W:Faza B | MTF:-- | Fuzzy:34.3 | Healthcare
-GRAB  ### Strong BUY | -45.3% | W:– | MTF:-- | Fuzzy:69.5 | Technology
-RH  ### Strong BUY | -45.3% | W:– | MTF:-- | Fuzzy:46.1 | Consumer Cyclical
-ZURA  ### Strong BUY | -45.0% | W:⚠ Dist | MTF:-- | Fuzzy:94.8 | Healthcare
-RIOT  ### Strong BUY | -44.9% | W:– | MTF:-- | Fuzzy:59.5 | Financial Services
-CPNG  ### Strong BUY | -44.8% | W:Spring | MTF:-- | Fuzzy:52.4 | Consumer Cyclical
-FTAI  ### Strong BUY | -44.3% | W:⚠ Dist | MTF:-- | Fuzzy:62.6 | Industrials
-SRAD  ### Strong BUY | -44.0% | W:Spring | MTF:-- | Fuzzy:73.4 | Technology
-CLYM  ### Strong BUY | -43.9% | W:A+AR | MTF:-- | Fuzzy:67.6 | Healthcare
-TCOM  ### Strong BUY | -43.8% | W:Spring | MTF:-- | Fuzzy:77.8 | Consumer Cyclical
-TMDX  ### Strong BUY | -43.4% | W:– | MTF:4/5 | Fuzzy:87.5* | Healthcare
-SSP  ### Strong BUY | -43.4% | W:– | MTF:-- | Fuzzy:51.2 | Communication Services
-XMAX  ### Strong BUY | -43.3% | W:⚠ Dist | MTF:-- | Fuzzy:60.7 | Consumer Cyclical
-OLN  ### Strong BUY | -43.2% | W:– | MTF:-- | Fuzzy:29.7 | Basic Materials
-VSNT  ### Strong BUY | -42.9% | W:– | MTF:-- | Fuzzy:75.7 | Communication Services
-GROY  ### Strong BUY | -42.8% | W:– | MTF:-- | Fuzzy:77.4 | Basic Materials
-DFH  ### Strong BUY | -42.5% | W:A+AR | MTF:-- | Fuzzy:34.8 | Consumer Cyclical
-MDA  ### Strong BUY | -42.5% | W:– | MTF:-- | Fuzzy:42.1 | Industrials
-KARD  ### Strong BUY | -42.5% | W:– | MTF:-- | Fuzzy:55.6 | Healthcare
-SLDB  ### Strong BUY | -42.4% | W:⚠ Dist | MTF:-- | Fuzzy:67.3 | Healthcare
-DKS  ### Strong BUY | -42.4% | W:⚠ Dist | MTF:-- | Fuzzy:39.6 | Consumer Cyclical
-BRSL  ### Strong BUY | -42.2% | W:SC | MTF:-- | Fuzzy:45.8 | Consumer Cyclical
-ZJYL  ### Strong BUY | -41.9% | W:SOS | MTF:-- | Fuzzy:58.5 | Healthcare
-AMRC  ### Strong BUY | -41.8% | W:– | MTF:-- | Fuzzy:40.3 | Industrials
-ADUR  ### Strong BUY | -41.8% | W:Spring | MTF:-- | Fuzzy:70.5 | Industrials
-FOUR  ### Strong BUY | -41.7% | W:– | MTF:-- | Fuzzy:51.3 | Technology
-LSE:III  ### Strong BUY | -41.5% | W:Faza B | MTF:-- | Fuzzy:93.3 | Financial Services
-EURONEXT:PRX  ### Strong BUY | -41.3% | W:– | MTF:-- | Fuzzy:72.5 | Consumer Cyclical
-HUN  ### Strong BUY | -41.3% | W:A+AR | MTF:-- | Fuzzy:32.6 | Basic Materials
-SABS  ### Strong BUY | -41.2% | W:⚠ Dist | MTF:-- | Fuzzy:67.9 | Healthcare
-ACRS  ### Strong BUY | -40.9% | W:A+AR | MTF:-- | Fuzzy:54.3 | Healthcare
-ERAS  ### Strong BUY | -40.7% | W:– | MTF:-- | Fuzzy:69.5 | Healthcare
-VC  ### Strong BUY | -40.4% | W:– | MTF:-- | Fuzzy:57.6 | Consumer Cyclical
-EYE  ### Strong BUY | -40.4% | W:Spring | MTF:-- | Fuzzy:49.4 | Consumer Cyclical
-PDD  ### Strong BUY | -40.3% | W:– | MTF:2/5 | Fuzzy:96.5 | Consumer Cyclical
-MNKD  ### Strong BUY | -40.1% | W:Spring | MTF:-- | Fuzzy:69.1 | Healthcare
-RIVN  ### Strong BUY | -40.0% | W:A+AR | MTF:-- | Fuzzy:41.8 | Consumer Cyclical
-ESAB  ### Strong BUY | -39.7% | W:SOS | MTF:-- | Fuzzy:61.5 | Industrials
-BABA  ### Strong BUY | -39.6% | W:– | MTF:-- | Fuzzy:59.7 | Consumer Cyclical
-VMET  ### Strong BUY | -39.1% | W:– | MTF:-- | Fuzzy:46.3 | Basic Materials
-LI  ### Strong BUY | -39.1% | W:A+AR | MTF:-- | Fuzzy:55.9 | Consumer Cyclical
-CSQR  ### Strong BUY | -39.0% | W:– | MTF:-- | Fuzzy:62.6 | Technology
-STEP  ### Strong BUY | -39.0% | W:SC | MTF:-- | Fuzzy:60.3 | Financial Services
-FDXF  ### Strong BUY | -38.2% | W:– | MTF:-- | Fuzzy:64.5 | Industrials
-RKT  ### Strong BUY | -38.2% | W:Spring | MTF:-- | Fuzzy:79.2 | Financial Services
-NVCR  ### Strong BUY | -38.1% | W:⚠ Dist | MTF:-- | Fuzzy:69.6 | Healthcare
-JBI  ### Strong BUY | -38.0% | W:– | MTF:-- | Fuzzy:61.4 | Industrials
-ACRE  ### Strong BUY | -38.0% | W:⚠ Dist | MTF:-- | Fuzzy:50.8 | Real Estate
-IMNM  ### Strong BUY | -37.8% | W:Spring | MTF:-- | Fuzzy:82.2 | Healthcare
-KREF  ### Strong BUY | -37.8% | W:– | MTF:-- | Fuzzy:50.5 | Real Estate
-VKTX  ### Strong BUY | -37.8% | W:⚠ Dist | MTF:-- | Fuzzy:60.3 | Healthcare
-ORA  ### Strong BUY | -37.2% | W:⚠ Dist | MTF:-- | Fuzzy:38.5 | Utilities
-IBP  ### Strong BUY | -36.9% | W:Spring | MTF:-- | Fuzzy:63.4 | Consumer Cyclical
-OTF  ### Strong BUY | -36.6% | W:Spring | MTF:-- | Fuzzy:49.3 | Financial Services
-MOMO  ### Strong BUY | -36.6% | W:SC | MTF:-- | Fuzzy:66.4 | Communication Services
-ZBIO  ### Strong BUY | -36.6% | W:Spring | MTF:-- | Fuzzy:62.4 | Healthcare
-AMRZ  ### Strong BUY | -36.5% | W:– | MTF:-- | Fuzzy:52.0 | Basic Materials
-BHF  ### Strong BUY | -36.2% | W:Faza B | MTF:-- | Fuzzy:54.1 | Financial Services
-MAMA  ### Strong BUY | -36.2% | W:⚠ Dist | MTF:-- | Fuzzy:64.6 | Consumer Defensive
-ATEN  ### Strong BUY | -35.7% | W:A+AR | MTF:-- | Fuzzy:63.1 | Technology
-NXT  ### Strong BUY | -35.7% | W:– | MTF:1/5 M:RISK | Fuzzy:79.4 | Technology
-UA  ### Strong BUY | -35.6% | W:A+AR | MTF:-- | Fuzzy:51.7 | Consumer Cyclical
-XETR:VOW3  ### Strong BUY | -35.4% | W:– | MTF:-- | Fuzzy:28.7 | Consumer Cyclical
-GLIBK  ### Strong BUY | -35.3% | W:A+AR | MTF:-- | Fuzzy:63.9 | Communication Services
-REZI  ### Strong BUY | -35.1% | W:– | MTF:-- | Fuzzy:51.4 | Industrials
-SGI  ### Strong BUY | -34.9% | W:– | MTF:-- | Fuzzy:34.1 | Consumer Cyclical
-NMRK  ### Strong BUY | -34.7% | W:SC | MTF:-- | Fuzzy:41.7 | Real Estate
-EVC  ### Strong BUY | -34.6% | W:⚠ Dist | MTF:-- | Fuzzy:40.1 | Communication Services
-XFOR  ### Strong BUY | -34.2% | W:A+AR | MTF:-- | Fuzzy:64.9 | Healthcare
-Q  ### Strong BUY | -34.0% | W:– | MTF:2/5 | Fuzzy:63.3 | --
-SPHR  ### Strong BUY | -33.9% | W:– | MTF:-- | Fuzzy:57.7 | Communication Services
-TPG  ### Strong BUY | -33.9% | W:SC | MTF:-- | Fuzzy:43.7 | Financial Services
-CLDX  ### Strong BUY | -33.8% | W:SOS | MTF:-- | Fuzzy:62.5 | Healthcare
-FND  ### Strong BUY | -33.8% | W:– | MTF:-- | Fuzzy:40.9 | Consumer Cyclical
-LXRX  ### Strong BUY | -33.6% | W:– | MTF:-- | Fuzzy:68.0 | Healthcare
-WU  ### Strong BUY | -33.5% | W:A+AR | MTF:-- | Fuzzy:59.4 | Financial Services
-MKC  ### Strong BUY | -33.2% | W:– | MTF:-- | Fuzzy:41.6 | Consumer Defensive
-IMVT  ### Strong BUY | -32.8% | W:– | MTF:-- | Fuzzy:78.0 | Healthcare
-TV  ### Strong BUY | -32.7% | W:A+AR | MTF:-- | Fuzzy:62.6 | Communication Services
-CLNE  ### Strong BUY | -32.7% | W:– | MTF:-- | Fuzzy:41.0 | Energy
-GPK  ### Strong BUY | -32.6% | W:SC | MTF:-- | Fuzzy:18.0 | Consumer Cyclical
-GOF  ### Strong BUY | -32.6% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:76.4 | Financial Services
-VIPS  ### Strong BUY | -32.4% | W:– | MTF:-- | Fuzzy:68.8 | Consumer Cyclical
-LTM  ### Strong BUY | -32.3% | W:Spring | MTF:-- | Fuzzy:47.6 | Industrials
-UFPI  ### Strong BUY | -32.3% | W:– | MTF:-- | Fuzzy:50.7 | Basic Materials
-BA  ### Strong BUY | -31.8% | W:SC | MTF:-- | Fuzzy:17.1 | Industrials
-RRX  ### Strong BUY | -31.8% | W:– | MTF:-- | Fuzzy:46.1 | Industrials
-ACAD  ### Strong BUY | -31.4% | W:– | MTF:-- | Fuzzy:74.1 | Healthcare
-IP  ### Strong BUY | -31.3% | W:Spring | MTF:-- | Fuzzy:40.1 | Consumer Cyclical
-RERE  ### Strong BUY | -31.2% | W:– | MTF:-- | Fuzzy:58.5 | Consumer Cyclical
-AURA  ### Strong BUY | -31.2% | W:⚠ Dist | MTF:-- | Fuzzy:57.1 | Healthcare
-TCMD  ### Strong BUY | -31.1% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:53.7 | Healthcare
-BEAM  ### Strong BUY | -31.0% | W:– | MTF:-- | Fuzzy:54.5 | Healthcare
-SLVM  ### Strong BUY | -30.7% | W:– | MTF:-- | Fuzzy:35.3 | Basic Materials
-MOS  ### Strong BUY | -30.7% | W:⚠ Dist | MTF:-- | Fuzzy:27.3 | Basic Materials
-COO  ### Strong BUY | -30.6% | W:Spring | MTF:-- | Fuzzy:63.0 | Healthcare
-ECVT  ### Strong BUY | -30.5% | W:⚠ Dist | MTF:-- | Fuzzy:47.5 | Basic Materials
-GSHD  ### Strong BUY | -30.4% | W:– | MTF:3/5 | Fuzzy:60.9 | Financial Services
-VSEC  ### Strong BUY | -30.3% | W:Spring | MTF:-- | Fuzzy:46.8 | Industrials
-RRR  ### Strong BUY | -30.1% | W:SC | MTF:-- | Fuzzy:45.8 | Consumer Cyclical
-BEPC  ### Strong BUY | -29.7% | W:– | MTF:-- | Fuzzy:43.5 | Utilities
-AZ  ### Strong BUY | -29.6% | W:Spring | MTF:-- | Fuzzy:45.0 | Technology
-ABX  ### Strong BUY | -29.4% | W:A+AR | MTF:-- | Fuzzy:44.9 | Financial Services
-DECK  ### Strong BUY | -29.1% | W:– | MTF:3/5 M:RISK | Fuzzy:88.8* | Consumer Cyclical
-JEF  ### Strong BUY | -28.9% | W:Spring | MTF:-- | Fuzzy:51.8 | Financial Services
-EXTR  ### Strong BUY | -28.8% | W:Faza B | MTF:-- | Fuzzy:45.5 | Technology
-TDAY  ### Strong BUY | -28.7% | W:– | MTF:-- | Fuzzy:27.5 | Communication Services
-SGHC  ### Strong BUY | -28.4% | W:⚠ Dist | MTF:2/5 | Fuzzy:87.3* | Consumer Cyclical
-GIS  ### Strong BUY | -28.4% | W:– | MTF:-- | Fuzzy:27.1 | Consumer Defensive
-PTCT  ### Strong BUY | -28.0% | W:A+AR | MTF:-- | Fuzzy:79.6* | Healthcare
-CRI  ### Strong BUY | -28.0% | W:– | MTF:-- | Fuzzy:49.9 | Consumer Cyclical
-CRH  ### Strong BUY | -27.9% | W:A+AR | MTF:-- | Fuzzy:46.6 | Basic Materials
-TMUS  ### Strong BUY | -27.9% | W:– | MTF:-- | Fuzzy:41.8 | Communication Services
-ATI  ### Strong BUY | -27.8% | W:– | MTF:-- | Fuzzy:48.8 | Industrials
-TRTX  ### Strong BUY | -27.8% | W:A+AR | MTF:-- | Fuzzy:21.3 | Real Estate
-CMCO  ### Strong BUY | -27.8% | W:⚠ Dist | MTF:-- | Fuzzy:31.8 | Industrials
-AVLN  ### Strong BUY | -27.4% | W:– | MTF:-- | Fuzzy:40.8 | Healthcare
-EIX  ### Strong BUY | -27.3% | W:– | MTF:-- | Fuzzy:36.6 | Utilities
-DNTH  ### Strong BUY | -27.0% | W:Spring | MTF:-- | Fuzzy:54.5 | Healthcare
-ONT  ### Strong BUY | -26.9% | W:A+AR | MTF:-- | Fuzzy:53.9 | Industrials
-LBTYA  ### Strong BUY | -26.8% | W:– | MTF:-- | Fuzzy:52.6 | Communication Services
-VLRS  ### Strong BUY | -26.6% | W:A+AR | MTF:-- | Fuzzy:16.9 | Industrials
-BIRK  ### Strong BUY | -26.4% | W:A+AR | MTF:-- | Fuzzy:65.3 | Consumer Cyclical
-AS  ### Strong BUY | -26.4% | W:⚠ Dist | MTF:-- | Fuzzy:51.0 | Consumer Cyclical
-PAY  ### Strong BUY | -26.1% | W:SOS | MTF:-- | Fuzzy:67.4 | Technology
-ARES  ### Strong BUY | -26.1% | W:Spring | MTF:-- | Fuzzy:39.6 | Financial Services
-LBTYK  ### Strong BUY | -25.9% | W:– | MTF:-- | Fuzzy:52.0 | Communication Services
-CMCSA  ### Strong BUY | -25.8% | W:– | MTF:-- | Fuzzy:46.0 | Communication Services
-ALGT  ### Strong BUY | -25.6% | W:Spring | MTF:-- | Fuzzy:14.6 | Industrials
-OSK  ### Strong BUY | -25.6% | W:– | MTF:-- | Fuzzy:39.2 | Industrials
-ACP  ### Strong BUY | -25.2% | W:– | MTF:-- | Fuzzy:60.8 | Financial Services
-ARE  ### Strong BUY | -25.0% | W:– | MTF:-- | Fuzzy:38.3 | Real Estate
-KBH  ### Strong BUY | -25.0% | W:– | MTF:-- | Fuzzy:34.4 | Consumer Cyclical
-IAG  ### Strong BUY | -24.6% | W:– | MTF:-- | Fuzzy:59.8 | Basic Materials
-JBTM  ### Strong BUY | -24.6% | W:– | MTF:-- | Fuzzy:39.9 | Industrials
-STRZ  ### Strong BUY | -24.4% | W:A+AR | MTF:-- | Fuzzy:41.5 | Communication Services
-BNL  ### Strong BUY | -24.2% | W:– | MTF:-- | Fuzzy:53.2 | Real Estate
-EXP  ### Strong BUY | -24.2% | W:– | MTF:-- | Fuzzy:48.3 | Basic Materials
-MSDL  ### Strong BUY | -24.0% | W:Spring | MTF:-- | Fuzzy:42.7 | Financial Services
-IRWD  ### Strong BUY | -24.0% | W:– | MTF:1/5 | Fuzzy:65.3* | Healthcare
-SRRK  ### Strong BUY | -24.0% | W:– | MTF:-- | Fuzzy:47.8 | Healthcare
-ATMU  ### Strong BUY | -23.9% | W:⚠ Dist | MTF:-- | Fuzzy:58.3 | Consumer Cyclical
-APO  ### Strong BUY | -23.8% | W:– | MTF:-- | Fuzzy:45.7 | Financial Services
-IGR  ### Strong BUY | -23.6% | W:A+AR | MTF:-- | Fuzzy:54.1 | Financial Services
-NLY  ### Strong BUY | -23.5% | W:– | MTF:-- | Fuzzy:14.2 | Real Estate
-NOVT  ### Strong BUY | -23.4% | W:– | MTF:-- | Fuzzy:57.7 | Technology
-HLMN  ### Strong BUY | -23.3% | W:SOS | MTF:-- | Fuzzy:40.4 | Industrials
-TRN  ### Strong BUY | -23.2% | W:– | MTF:-- | Fuzzy:25.3 | Industrials
-KT  ### Strong BUY | -22.9% | W:– | MTF:-- | Fuzzy:56.8 | Communication Services
-ZVRA  ### Strong BUY | -22.9% | W:⚠ Dist | MTF:-- | Fuzzy:62.3 | Healthcare
-PRM  ### Strong BUY | -22.7% | W:– | MTF:-- | Fuzzy:59.9 | Basic Materials
-SVV  ### Strong BUY | -22.5% | W:SOS | MTF:-- | Fuzzy:33.8 | Consumer Cyclical
-MWA  ### Strong BUY | -22.4% | W:– | MTF:-- | Fuzzy:61.7 | Industrials
-TIGO  ### Strong BUY | -22.3% | W:Spring | MTF:-- | Fuzzy:37.1 | Communication Services
-BCS  ### Strong BUY | -22.2% | W:– | MTF:-- | Fuzzy:12.0 | Financial Services
-GMRS  ### Strong BUY | -22.2% | W:– | MTF:-- | Fuzzy:39.7 | Healthcare
-PENN  ### Strong BUY | -22.0% | W:– | MTF:-- | Fuzzy:22.3 | Consumer Cyclical
-AN  ### Strong BUY | -22.0% | W:– | MTF:-- | Fuzzy:13.0 | Consumer Cyclical
-NHI  ### Strong BUY | -22.0% | W:SC | MTF:-- | Fuzzy:52.2 | Real Estate
-NEXN  ### Strong BUY | -21.8% | W:– | MTF:-- | Fuzzy:60.5 | Communication Services
-WOOF  ### Strong BUY | -21.7% | W:⚠ Dist | MTF:-- | Fuzzy:24.2 | Consumer Cyclical
-FER  ### Strong BUY | -21.5% | W:Spring | MTF:-- | Fuzzy:37.1 | Industrials
-BMRN  ### Strong BUY | -21.1% | W:SOS | MTF:-- | Fuzzy:57.3 | Healthcare
-PRG  ### Strong BUY | -21.0% | W:SOS | MTF:-- | Fuzzy:66.8 | Industrials
-PHIN  ### Strong BUY | -20.7% | W:– | MTF:-- | Fuzzy:42.7 | Consumer Cyclical
-HGV  ### Strong BUY | -20.7% | W:– | MTF:-- | Fuzzy:46.1 | Consumer Cyclical
-RUSHA  ### Strong BUY | -20.7% | W:– | MTF:-- | Fuzzy:27.8 | Consumer Cyclical
-SF  ### Strong BUY | -20.6% | W:– | MTF:-- | Fuzzy:52.0 | Financial Services
-ZTO  ### Strong BUY | -20.6% | W:⚠ Dist | MTF:-- | Fuzzy:51.6 | Industrials
-VIK  ### Strong BUY | -20.5% | W:– | MTF:-- | Fuzzy:51.5 | Consumer Cyclical
-AGO  ### Strong BUY | -20.5% | W:– | MTF:-- | Fuzzy:31.5 | Financial Services
-BBIO  ### Strong BUY | -20.5% | W:⚠ Dist | MTF:-- | Fuzzy:54.6 | Healthcare
-MTH  ### Strong BUY | -20.3% | W:– | MTF:-- | Fuzzy:39.2 | Consumer Cyclical
-RYAAY  ### Strong BUY | -20.1% | W:A+AR | MTF:-- | Fuzzy:56.6 | Industrials
-PRKS  ### Strong BUY | -20.0% | W:– | MTF:-- | Fuzzy:47.0 | Consumer Cyclical
-SARO  ### Strong BUY | -19.9% | W:SC | MTF:-- | Fuzzy:36.5 | Industrials
-CWK  ### Strong BUY | -19.8% | W:Spring | MTF:-- | Fuzzy:22.5 | Real Estate
-VICI  ### Strong BUY | -19.6% | W:– | MTF:-- | Fuzzy:55.5 | Real Estate
-EPRT  ### Strong BUY | -19.5% | W:– | MTF:-- | Fuzzy:53.0 | Real Estate
-FOXF  ### Strong BUY | -19.4% | W:A+AR | MTF:-- | Fuzzy:39.4 | Consumer Cyclical
-OBDC  ### Strong BUY | -19.4% | W:SOS | MTF:-- | Fuzzy:33.4 | Financial Services
-TTWO  ### Strong BUY | -19.2% | W:– | MTF:-- | Fuzzy:50.9 | Communication Services
-PII  ### Strong BUY | -19.1% | W:– | MTF:-- | Fuzzy:5.4 | Consumer Cyclical
-EAT  ### Strong BUY | -19.0% | W:– | MTF:-- | Fuzzy:26.1 | Consumer Cyclical
-LSE:MNDI  ### Strong BUY | -19.0% | W:Faza B | MTF:-- | Fuzzy:35.7 | Basic Materials
-UAL  ### Strong BUY | -18.8% | W:– | MTF:-- | Fuzzy:21.6 | Industrials
-BCE  ### Strong BUY | -18.5% | W:– | MTF:-- | Fuzzy:26.5 | Communication Services
-FHB  ### Strong BUY | -18.3% | W:– | MTF:-- | Fuzzy:43.0 | Financial Services
-TDG  ### Strong BUY | -18.2% | W:– | MTF:-- | Fuzzy:65.4 | Industrials
-CARG  ### Strong BUY | -18.1% | W:– | MTF:-- | Fuzzy:78.9 | Communication Services
-BANC  ### Strong BUY | -18.0% | W:Spring | MTF:-- | Fuzzy:41.2 | Financial Services
-EURONEXT:SGO  ### Strong BUY | -18.0% | W:– | MTF:-- | Fuzzy:34.2 | Industrials
-GL  ### Strong BUY | -17.9% | W:– | MTF:-- | Fuzzy:34.2 | Financial Services
-HRL  ### Strong BUY | -17.5% | W:SC | MTF:-- | Fuzzy:29.0 | Consumer Defensive
-ALKS  ### Strong BUY | -17.5% | W:⚠ Dist | MTF:-- | Fuzzy:66.9 | Healthcare
-ALGN  ### Strong BUY | -17.2% | W:– | MTF:-- | Fuzzy:63.5 | Healthcare
-DLX  ### Strong BUY | -17.2% | W:⚠ Dist | MTF:-- | Fuzzy:33.5 | Industrials
-DNUT  ### Strong BUY | -17.1% | W:⚠ Dist | MTF:-- | Fuzzy:27.8 | Consumer Defensive
-CALY  ### Strong BUY | -17.0% | W:– | MTF:-- | Fuzzy:39.5 | Consumer Cyclical
-CPT  ### Strong BUY | -17.0% | W:– | MTF:-- | Fuzzy:32.0 | Real Estate
-CMG  ### Strong BUY | -16.9% | W:– | MTF:-- | Fuzzy:35.0 | Consumer Cyclical
-ATAT  ### Strong BUY | -16.8% | W:– | MTF:-- | Fuzzy:74.7 | Consumer Cyclical
-GAB  ### Strong BUY | -16.8% | W:SC | MTF:-- | Fuzzy:46.3 | Financial Services
-FFIN  ### Strong BUY | -16.7% | W:SOS | MTF:-- | Fuzzy:43.9 | Financial Services
-HYT  ### Strong BUY | -16.6% | W:SC | MTF:-- | Fuzzy:45.9 | Financial Services
-BN  ### Strong BUY | -16.5% | W:– | MTF:-- | Fuzzy:16.1 | Financial Services
-RTX  ### Strong BUY | -16.5% | W:– | MTF:-- | Fuzzy:28.3 | Industrials
-NTST  ### Strong BUY | -16.3% | W:– | MTF:-- | Fuzzy:53.8 | Real Estate
-DB  ### Strong BUY | -16.3% | W:– | MTF:-- | Fuzzy:4.7 | Financial Services
-GIII  ### Strong BUY | -16.3% | W:Spring | MTF:-- | Fuzzy:47.9 | Consumer Cyclical
-DLR  ### Strong BUY | -16.3% | W:– | MTF:-- | Fuzzy:41.4 | Real Estate
-SW  ### Strong BUY | -16.3% | W:– | MTF:-- | Fuzzy:26.9 | Consumer Cyclical
-PFN  ### Strong BUY | -16.3% | W:– | MTF:-- | Fuzzy:42.5 | Financial Services
-NMZ  ### Strong BUY | -16.2% | W:SC | MTF:-- | Fuzzy:45.1 | Financial Services
-ENOV  ### Strong BUY | -16.2% | W:– | MTF:-- | Fuzzy:44.9 | Healthcare
-APAM  ### Strong BUY | -15.9% | W:SOS | MTF:-- | Fuzzy:62.8 | Financial Services
-TRNO  ### Strong BUY | -15.9% | W:– | MTF:-- | Fuzzy:41.2 | Real Estate
-TKO  ### Strong BUY | -15.8% | W:– | MTF:-- | Fuzzy:42.8 | Communication Services
-BIT  ### Strong BUY | -15.7% | W:SC | MTF:-- | Fuzzy:40.6 | Financial Services
-FSS  ### Strong BUY | -15.7% | W:– | MTF:-- | Fuzzy:45.7 | Industrials
-EEFT  ### Strong BUY | -15.6% | W:A+AR | MTF:-- | Fuzzy:53.6 | Technology
-CDP  ### Strong BUY | -15.5% | W:– | MTF:-- | Fuzzy:31.7 | Real Estate
-BKU  ### Strong BUY | -15.5% | W:SC | MTF:-- | Fuzzy:35.5 | Financial Services
-SLG  ### Strong BUY | -15.5% | W:– | MTF:-- | Fuzzy:43.7 | Real Estate
-EVV  ### Strong BUY | -15.3% | W:– | MTF:-- | Fuzzy:37.8 | Financial Services
-ORI  ### Strong BUY | -15.3% | W:– | MTF:-- | Fuzzy:25.3 | Financial Services
-IVT  ### Strong BUY | -15.3% | W:⚠ Dist | MTF:-- | Fuzzy:51.2 | Real Estate
-RPM  ### Strong BUY | -15.2% | W:A+AR | MTF:-- | Fuzzy:47.9 | Basic Materials
-ALSN  ### Strong BUY | -15.1% | W:A+AR | MTF:-- | Fuzzy:54.0 | Consumer Cyclical
-JD  ### Strong BUY | -15.1% | W:– | MTF:-- | Fuzzy:26.4 | Consumer Cyclical
-AYI  ### Strong BUY | -15.0% | W:Spring | MTF:-- | Fuzzy:68.2 | Industrials
-TXRH  ### Strong BUY | -15.0% | W:– | MTF:-- | Fuzzy:25.8 | Consumer Cyclical
-KRG  ### Strong BUY | -14.9% | W:– | MTF:-- | Fuzzy:45.4 | Real Estate
-EE  ### Strong BUY | -14.7% | W:– | MTF:-- | Fuzzy:33.5 | Energy
-PDO  ### Strong BUY | -14.7% | W:SC | MTF:-- | Fuzzy:31.6 | Financial Services
-PCN  ### Strong BUY | -14.6% | W:– | MTF:-- | Fuzzy:42.9 | Financial Services
-CODI  ### Strong BUY | -14.6% | W:SOS | MTF:-- | Fuzzy:29.1 | Industrials
-SRTA  ### Strong BUY | -14.5% | W:– | MTF:-- | Fuzzy:40.4 | Healthcare
-JPC  ### Strong BUY | -14.5% | W:A+AR | MTF:-- | Fuzzy:38.2 | Financial Services
-LINE  ### Strong BUY | -14.5% | W:– | MTF:-- | Fuzzy:27.6 | Real Estate
-BC  ### Strong BUY | -14.4% | W:– | MTF:-- | Fuzzy:15.6 | Consumer Cyclical
-BSAC  ### Strong BUY | -14.3% | W:– | MTF:-- | Fuzzy:0.0 | Financial Services
-RVMD  ### Strong BUY | -14.3% | W:– | MTF:-- | Fuzzy:0.0 | --
-VNO  ### Strong BUY | -13.9% | W:SC | MTF:-- | Fuzzy:41.9 | Real Estate
-WEN  ### Strong BUY | -13.8% | W:⚠ Dist | MTF:-- | Fuzzy:24.1 | Consumer Cyclical
-AMBP  ### Strong BUY | -13.7% | W:⚠ Dist | MTF:-- | Fuzzy:12.5 | Consumer Cyclical
-ARGX  ### Strong BUY | -13.6% | W:– | MTF:-- | Fuzzy:78.9 | Healthcare
-BTZ  ### Strong BUY | -13.6% | W:– | MTF:-- | Fuzzy:36.7 | Financial Services
-FBK  ### Strong BUY | -13.5% | W:– | MTF:-- | Fuzzy:43.3 | Financial Services
-BXP  ### Strong BUY | -13.3% | W:SC | MTF:-- | Fuzzy:42.1 | Real Estate
-HIO  ### Strong BUY | -13.3% | W:SC | MTF:-- | Fuzzy:42.9 | Financial Services
-SNA  ### Strong BUY | -13.2% | W:– | MTF:-- | Fuzzy:66.5 | Industrials
-RYN  ### Strong BUY | -13.2% | W:SC | MTF:-- | Fuzzy:45.5 | Real Estate
-O  ### Strong BUY | -13.1% | W:– | MTF:-- | Fuzzy:50.5 | Real Estate
-AHRT  ### Strong BUY | -13.0% | W:– | MTF:-- | Fuzzy:42.1 | Real Estate
-PNC  ### Strong BUY | -13.0% | W:– | MTF:-- | Fuzzy:26.2 | Financial Services
-HR  ### Strong BUY | -12.9% | W:– | MTF:-- | Fuzzy:51.6 | Real Estate
-CR  ### Strong BUY | -12.8% | W:– | MTF:-- | Fuzzy:53.3 | Industrials
-FCPT  ### Strong BUY | -12.8% | W:– | MTF:-- | Fuzzy:33.9 | Real Estate
-UMBF  ### Strong BUY | -12.8% | W:– | MTF:-- | Fuzzy:41.1 | Financial Services
-SPB  ### Strong BUY | -12.5% | W:– | MTF:-- | Fuzzy:43.3 | Consumer Defensive
-CTRE  ### Strong BUY | -12.4% | W:– | MTF:-- | Fuzzy:55.0 | Real Estate
-FRT  ### Strong BUY | -12.2% | W:– | MTF:-- | Fuzzy:32.2 | Real Estate
-TPC  ### Strong BUY | -12.1% | W:SOS | MTF:-- | Fuzzy:36.7 | Industrials
-OCFC  ### Strong BUY | -12.0% | W:Spring | MTF:-- | Fuzzy:33.7 | Financial Services
-HASI  ### Strong BUY | -11.9% | W:– | MTF:-- | Fuzzy:28.3 | Financial Services
-JAZZ  ### Strong BUY | -11.9% | W:⚠ Dist | MTF:-- | Fuzzy:42.6 | Healthcare
-AWF  ### Strong BUY | -11.7% | W:– | MTF:-- | Fuzzy:42.9 | Financial Services
-HEI  ### Strong BUY | -11.7% | W:SC | MTF:-- | Fuzzy:49.2 | Industrials
-DOC  ### Strong BUY | -11.7% | W:– | MTF:-- | Fuzzy:29.2 | Real Estate
-NBIX  ### Strong BUY | -11.5% | W:– | MTF:-- | Fuzzy:66.9 | Healthcare
-COAG  ### Strong BUY | -11.5% | W:– | MTF:-- | Fuzzy:25.0 | Healthcare
-BME:CABK  ### Strong BUY | -11.2% | W:Spring | MTF:-- | Fuzzy:20.8 | Financial Services
-NRK  ### Strong BUY | -11.2% | W:SC | MTF:-- | Fuzzy:42.9 | Financial Services
-CTO  ### Strong BUY | -11.1% | W:SC | MTF:-- | Fuzzy:44.3 | Real Estate
-JQC  ### Strong BUY | -11.0% | W:– | MTF:-- | Fuzzy:38.6 | Financial Services
-ORKA  ### Strong BUY | -11.0% | W:⚠ Dist | MTF:-- | Fuzzy:40.0 | Healthcare
-RJF  ### Strong BUY | -10.9% | W:– | MTF:-- | Fuzzy:44.8 | Financial Services
-EQIX  ### Strong BUY | -10.3% | W:SC | MTF:-- | Fuzzy:38.0 | Real Estate
-LNTH  ### Strong BUY | -10.1% | W:⚠ Dist | MTF:-- | Fuzzy:60.7 | Healthcare
-HTH  ### Strong BUY | -9.9% | W:– | MTF:-- | Fuzzy:37.5 | Financial Services
-CSWC  ### Strong BUY | -9.7% | W:– | MTF:-- | Fuzzy:17.0 | Financial Services
-XETR:DBK  ### Strong BUY | -9.7% | W:Spring | MTF:-- | Fuzzy:0.0 | Financial Services
-ATHM  ### Strong BUY | -9.3% | W:– | MTF:-- | Fuzzy:52.6 | Communication Services
-MIL:ISP  ### Strong BUY | -9.1% | W:– | MTF:-- | Fuzzy:2.3 | Financial Services
-DAL  ### Strong BUY | -8.9% | W:– | MTF:-- | Fuzzy:19.0 | Industrials
-ELS  ### Strong BUY | -8.8% | W:SC | MTF:-- | Fuzzy:25.1 | Real Estate
-LOAR  ### Strong BUY | -8.7% | W:– | MTF:-- | Fuzzy:55.3 | Industrials
-MUC  ### Strong BUY | -8.5% | W:A+AR | MTF:-- | Fuzzy:42.9 | Financial Services
-NUV  ### Strong BUY | -8.5% | W:SC | MTF:-- | Fuzzy:42.9 | Financial Services
-JFR  ### Strong BUY | -8.4% | W:SC | MTF:-- | Fuzzy:40.3 | Financial Services
-OVID  ### Strong BUY | -8.2% | W:A+AR | MTF:-- | Fuzzy:46.7 | Healthcare
-RYTM  ### Strong BUY | -8.1% | W:– | MTF:-- | Fuzzy:56.6 | Healthcare
-RMNI  ### Strong BUY | -8.1% | W:– | MTF:-- | Fuzzy:50.7 | Technology
-SKY  ### Strong BUY | -7.8% | W:– | MTF:-- | Fuzzy:56.2 | Consumer Cyclical
-EWTX  ### Strong BUY | -7.2% | W:⚠ Dist | MTF:-- | Fuzzy:46.7 | Healthcare
-BEN  ### Strong BUY | -7.0% | W:– | MTF:-- | Fuzzy:46.7 | Financial Services
-AMH  ### Strong BUY | -6.4% | W:SC | MTF:-- | Fuzzy:32.3 | Real Estate
-JLL  ### Strong BUY | -6.3% | W:SOS | MTF:-- | Fuzzy:51.5 | Real Estate
-CGON  ### Strong BUY | -6.2% | W:Spring | MTF:-- | Fuzzy:31.6 | Healthcare
-DTIL  ### Strong BUY | -6.1% | W:SOS | MTF:-- | Fuzzy:46.5 | Healthcare
-TRIN  ### Strong BUY | -5.8% | W:– | MTF:-- | Fuzzy:19.0 | Financial Services
-BAM  ### Strong BUY | -5.4% | W:– | MTF:-- | Fuzzy:70.6 | Financial Services
-FHI  ### Strong BUY | -5.0% | W:– | MTF:-- | Fuzzy:75.6 | Financial Services
-HMN  ### Strong BUY | -4.2% | W:A+AR | MTF:-- | Fuzzy:26.0 | Financial Services
-XYZ  ### Strong BUY | -3.4% | W:⚠ Dist | MTF:-- | Fuzzy:61.1 | Technology
-JAN  ### Strong BUY | -2.6% | W:– | MTF:-- | Fuzzy:28.2 | Real Estate
-NVRI  ### Strong BUY | -2.2% | W:Spring | MTF:-- | Fuzzy:12.2 | Industrials
-ACEL  ### Strong BUY | -2.0% | W:⚠ Dist | MTF:-- | Fuzzy:37.6 | Consumer Cyclical
-PERI  ### Strong BUY | -0.6% | W:– | MTF:-- | Fuzzy:48.6 | Communication Services
-### ── BUY (58) ──
-CAPR  ### BUY | -77.7% | W:A+AR | MTF:-- | Fuzzy:66.7 | Healthcare
-HUYA  ### BUY | -55.6% | W:⚠ Dist | MTF:-- | Fuzzy:57.9 | Communication Services
-SNDL  ### BUY | -39.5% | W:– | MTF:-- | Fuzzy:56.2 | Consumer Defensive
-PPC  ### BUY | -36.4% | W:– | MTF:-- | Fuzzy:46.8 | Consumer Defensive
-LZM  ### BUY | -34.4% | W:Spring | MTF:-- | Fuzzy:64.7 | --
-GAU  ### BUY | -30.9% | W:– | MTF:-- | Fuzzy:70.7 | Basic Materials
-AERO  ### BUY | -28.7% | W:A+AR | MTF:-- | Fuzzy:50.7 | Industrials
-FSK  ### BUY | -28.3% | W:Spring | MTF:-- | Fuzzy:47.0 | Financial Services
-BETA  ### BUY | -25.6% | W:– | MTF:-- | Fuzzy:64.6 | Industrials
-HLF  ### BUY | -25.1% | W:– | MTF:-- | Fuzzy:66.9 | Consumer Defensive
-CVNA  ### BUY | -24.4% | W:– | MTF:-- | Fuzzy:35.0 | Consumer Cyclical
-GTN  ### BUY | -23.6% | W:– | MTF:-- | Fuzzy:29.2 | Communication Services
-ABSI  ### BUY | -18.9% | W:SOS | MTF:-- | Fuzzy:43.5 | Healthcare
-SWBI  ### BUY | -17.6% | W:⚠ Dist | MTF:-- | Fuzzy:35.0 | Industrials
-SUZ  ### BUY | -16.3% | W:Spring | MTF:-- | Fuzzy:27.2 | Basic Materials
-CGBD  ### BUY | -15.9% | W:Spring | MTF:-- | Fuzzy:26.2 | Financial Services
-WFC  ### BUY | -14.1% | W:– | MTF:-- | Fuzzy:0.0 | Financial Services
-SGMT  ### BUY | -14.0% | W:SOS | MTF:-- | Fuzzy:45.9 | Healthcare
-PPLI  ### BUY | -12.9% | W:SOS | MTF:-- | Fuzzy:52.6 | Communication Services
-MAIN  ### BUY | -12.6% | W:Spring | MTF:-- | Fuzzy:37.0 | Financial Services
-GRDN  ### BUY | -12.3% | W:⚠ Dist | MTF:-- | Fuzzy:0.0 | Healthcare
-VZ  ### BUY | -11.6% | W:– | MTF:-- | Fuzzy:34.9 | Communication Services
-RDNT  ### BUY | -11.5% | W:⚠ Dist | MTF:-- | Fuzzy:22.0 | Healthcare
-EDD  ### BUY | -11.2% | W:– | MTF:-- | Fuzzy:42.9 | Financial Services
-BFH  ### BUY | -11.1% | W:– | MTF:-- | Fuzzy:52.0 | Financial Services
-ITT  ### BUY | -10.8% | W:Spring | MTF:-- | Fuzzy:60.4 | Industrials
-APPF  ### BUY | -10.4% | W:– | MTF:-- | Fuzzy:76.7 | Technology
-OCSL  ### BUY | -10.1% | W:– | MTF:-- | Fuzzy:32.1 | Financial Services
-AMZN  ### BUY | -9.7% | W:Spring | MTF:-- | Fuzzy:49.8 | Consumer Cyclical
-ARCC  ### BUY | -9.5% | W:SC | MTF:-- | Fuzzy:29.6 | Financial Services
-GRMN  ### BUY | -9.1% | W:– | MTF:-- | Fuzzy:72.2 | Technology
-CFFN  ### BUY | -9.0% | W:– | MTF:-- | Fuzzy:1.7 | Financial Services
-ROIV  ### BUY | -8.5% | W:– | MTF:-- | Fuzzy:52.6 | Healthcare
-EMBJ  ### BUY | -8.3% | W:– | MTF:-- | Fuzzy:27.7 | Industrials
-PRU  ### BUY | -7.4% | W:SC | MTF:-- | Fuzzy:39.8 | Financial Services
-DLB  ### BUY | -7.3% | W:– | MTF:-- | Fuzzy:59.3 | Industrials
-VOYA  ### BUY | -6.3% | W:SC | MTF:-- | Fuzzy:27.4 | Financial Services
-CNMD  ### BUY | -6.0% | W:– | MTF:-- | Fuzzy:39.5 | Healthcare
-CPAY  ### BUY | -5.1% | W:– | MTF:-- | Fuzzy:43.4 | Technology
-HUM  ### BUY | -5.0% | W:A+AR | MTF:-- | Fuzzy:18.3 | Healthcare
-RACE  ### BUY | -4.8% | W:⚠ Dist | MTF:-- | Fuzzy:69.5 | Consumer Cyclical
-FROG  ### BUY | -4.5% | W:– | MTF:-- | Fuzzy:57.9 | Technology
-CHPT  ### BUY | -3.9% | W:– | MTF:-- | Fuzzy:16.5 | Consumer Cyclical
-LILA  ### BUY | -3.7% | W:– | MTF:-- | Fuzzy:32.7 | Communication Services
-LILAK  ### BUY | -3.5% | W:– | MTF:-- | Fuzzy:32.7 | Communication Services
-FOSL  ### BUY | -3.2% | W:SOS | MTF:-- | Fuzzy:32.3 | Consumer Cyclical
-XMTR  ### BUY | -2.5% | W:– | MTF:-- | Fuzzy:41.6 | Industrials
-TMO  ### BUY | -2.4% | W:– | MTF:-- | Fuzzy:47.9 | Healthcare
-SGHT  ### BUY | -2.2% | W:– | MTF:-- | Fuzzy:49.1 | Healthcare
-CYRX  ### BUY | -2.2% | W:⚠ Dist | MTF:-- | Fuzzy:53.7 | Industrials
-BWIN  ### BUY | -2.2% | W:A+AR | MTF:-- | Fuzzy:18.8 | Financial Services
-XNCR  ### BUY | -2.1% | W:A+AR | MTF:-- | Fuzzy:46.7 | Healthcare
-ROKU  ### BUY | -1.9% | W:– | MTF:-- | Fuzzy:52.1 | Communication Services
-VIR  ### BUY | -1.9% | W:⚠ Dist | MTF:-- | Fuzzy:52.6 | Healthcare
-ABNB  ### BUY | -1.8% | W:– | MTF:-- | Fuzzy:77.1 | Consumer Cyclical
-TEVA  ### BUY | -1.7% | W:– | MTF:-- | Fuzzy:43.3 | Healthcare
-REPL  ### BUY | -1.3% | W:Spring | MTF:-- | Fuzzy:41.7 | Healthcare
-ONC  ### BUY | -0.9% | W:⚠ Dist | MTF:-- | Fuzzy:70.5 | Healthcare
-### ── Turning Up (174) ──
-AEHL  ### Turning Up | -96.7% | W:– | MTF:-- | Fuzzy:55.6 | Industrials
-VCX  ### Turning Up | -96.5% | W:A+AR | MTF:2/5 | Fuzzy:100.0 | Financial Services
-SMR  ### Turning Up | -84.2% | W:– | MTF:-- | Fuzzy:68.0 | Industrials
-LCID  ### Turning Up | -81.5% | W:– | MTF:-- | Fuzzy:28.5 | Consumer Cyclical
-TLRY  ### Turning Up | -81.4% | W:– | MTF:-- | Fuzzy:63.9 | Healthcare
-TMC  ### Turning Up | -77.4% | W:– | MTF:-- | Fuzzy:58.3 | Basic Materials
-CBRS  ### Turning Up | -76.8% | W:– | MTF:-- | Fuzzy:100.0 | Technology
-NMG  ### Turning Up | -76.7% | W:– | MTF:-- | Fuzzy:60.7 | Basic Materials
-POET  ### Turning Up | -75.6% | W:SC | MTF:-- | Fuzzy:71.0 | Technology
-USAR  ### Turning Up | -74.9% | W:– | MTF:-- | Fuzzy:57.9 | Basic Materials
-NVTS  ### Turning Up | -74.8% | W:⚠ Dist | MTF:-- | Fuzzy:67.5 | Technology
-RZLV  ### Turning Up | -73.4% | W:Spring | MTF:-- | Fuzzy:60.2 | Technology
-NNE  ### Turning Up | -73.2% | W:A+AR | MTF:-- | Fuzzy:67.5 | Industrials
-PONY  ### Turning Up | -73.1% | W:SOS | MTF:-- | Fuzzy:53.1 | Technology
-CGC  ### Turning Up | -72.6% | W:– | MTF:-- | Fuzzy:62.5 | Healthcare
-TMQ  ### Turning Up | -70.3% | W:– | MTF:-- | Fuzzy:73.3 | Basic Materials
-APLD  ### Turning Up | -69.3% | W:– | MTF:-- | Fuzzy:43.3 | Technology
-ALT  ### Turning Up | -67.7% | W:– | MTF:-- | Fuzzy:73.3 | Healthcare
-PLUG  ### Turning Up | -66.5% | W:Spring | MTF:-- | Fuzzy:49.3 | Industrials
-RGTI  ### Turning Up | -66.1% | W:– | MTF:-- | Fuzzy:61.1 | Technology
-EIKN  ### Turning Up | -66.1% | W:⚠ Dist | MTF:-- | Fuzzy:66.7 | Healthcare
-TIGR  ### Turning Up | -65.6% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:94.0 | Financial Services
-BLZE  ### Turning Up | -65.5% | W:⚠ Dist | MTF:-- | Fuzzy:67.5 | Technology
-RKLB  ### Turning Up | -64.9% | W:– | MTF:-- | Fuzzy:64.3 | Industrials
-OPTU  ### Turning Up | -64.9% | W:A+AR | MTF:-- | Fuzzy:62.4 | Communication Services
-LAR  ### Turning Up | -64.7% | W:– | MTF:-- | Fuzzy:46.3 | Basic Materials
-RSI  ### Turning Up | -64.4% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:87.0 | Consumer Cyclical
-ECC  ### Turning Up | -64.2% | W:SC | MTF:-- | Fuzzy:94.9 | Financial Services
-CURR  ### Turning Up | -62.8% | W:⚠ Dist | MTF:-- | Fuzzy:81.5 | Technology
-HUT  ### Turning Up | -62.6% | W:SC | MTF:-- | Fuzzy:72.5 | Financial Services
-ALGM  ### Turning Up | -60.7% | W:⚠ Dist | MTF:-- | Fuzzy:76.5 | Technology
-NWCL  ### Turning Up | -60.5% | W:A+AR | MTF:-- | Fuzzy:59.6 | Industrials
-MBLY  ### Turning Up | -60.0% | W:SC | MTF:-- | Fuzzy:72.3 | Consumer Cyclical
-UNIT  ### Turning Up | -59.7% | W:– | MTF:-- | Fuzzy:45.3 | Real Estate
-HNRG  ### Turning Up | -59.1% | W:– | MTF:-- | Fuzzy:76.7 | Utilities
-MKSI  ### Turning Up | -57.0% | W:– | MTF:-- | Fuzzy:65.7 | Technology
-FN  ### Turning Up | -56.3% | W:⚠ Dist | MTF:-- | Fuzzy:66.6 | Technology
-ARQQ  ### Turning Up | -56.3% | W:⚠ Dist | MTF:-- | Fuzzy:100.0 | Technology
-QUBT  ### Turning Up | -56.2% | W:⚠ Dist | MTF:-- | Fuzzy:52.6 | Technology
-IONQ  ### Turning Up | -55.7% | W:– | MTF:-- | Fuzzy:67.9 | Technology
-AZUL  ### Turning Up | -55.6% | W:– | MTF:-- | Fuzzy:50.6 | Industrials
-RWT  ### Turning Up | -55.2% | W:A+AR | MTF:-- | Fuzzy:50.0 | Real Estate
-CTGO  ### Turning Up | -54.8% | W:Faza B | MTF:-- | Fuzzy:47.3 | Basic Materials
-VOYG  ### Turning Up | -54.2% | W:– | MTF:-- | Fuzzy:44.8 | Industrials
-AA  ### Turning Up | -53.1% | W:– | MTF:-- | Fuzzy:48.8 | Basic Materials
-SE  ### Turning Up | -52.4% | W:SC | MTF:1/5 M:RISK | Fuzzy:81.8* | Consumer Cyclical
-HSAI  ### Turning Up | -51.2% | W:– | MTF:-- | Fuzzy:74.0 | Consumer Cyclical
-NRGV  ### Turning Up | -51.2% | W:SOS | MTF:-- | Fuzzy:36.7 | Industrials
-PLAB  ### Turning Up | -51.1% | W:– | MTF:1/5 M:RISK | Fuzzy:76.1 | Technology
-SVCO  ### Turning Up | -51.1% | W:⚠ Dist | MTF:-- | Fuzzy:68.9 | Technology
-GERN  ### Turning Up | -50.7% | W:A+AR | MTF:-- | Fuzzy:76.4 | Healthcare
-DNN  ### Turning Up | -50.6% | W:Faza B | MTF:-- | Fuzzy:52.6 | Energy
-JANX  ### Turning Up | -50.1% | W:– | MTF:-- | Fuzzy:70.5 | Healthcare
-NVMI  ### Turning Up | -49.2% | W:– | MTF:-- | Fuzzy:81.6* | Technology
-FUTU  ### Turning Up | -48.5% | W:– | MTF:1/5 M:RISK | Fuzzy:93.7 | Financial Services
-AUR  ### Turning Up | -48.5% | W:SC | MTF:-- | Fuzzy:56.3 | Consumer Cyclical
-ETOR  ### Turning Up | -48.0% | W:– | MTF:-- | Fuzzy:73.7 | Financial Services
-MUX  ### Turning Up | -47.9% | W:Spring | MTF:-- | Fuzzy:54.5 | Basic Materials
-PPTA  ### Turning Up | -47.7% | W:– | MTF:-- | Fuzzy:66.7 | Basic Materials
-FTH  ### Turning Up | -47.7% | W:⚠ Dist | MTF:-- | Fuzzy:73.3 | Healthcare
-CCJ  ### Turning Up | -47.3% | W:SC | MTF:-- | Fuzzy:61.2 | Energy
-OGG  ### Turning Up | -46.8% | W:SOS | MTF:-- | Fuzzy:75.5 | Basic Materials
-LKQ  ### Turning Up | -46.0% | W:– | MTF:-- | Fuzzy:49.3 | Consumer Cyclical
-INBX  ### Turning Up | -45.6% | W:– | MTF:-- | Fuzzy:63.9 | Healthcare
-OUST  ### Turning Up | -45.5% | W:– | MTF:-- | Fuzzy:78.5 | Technology
-CDE  ### Turning Up | -44.3% | W:Faza B | MTF:3/5 M:RISK | Fuzzy:83.6 | Basic Materials
-TFII  ### Turning Up | -43.4% | W:– | MTF:-- | Fuzzy:36.5 | Industrials
-FBRT  ### Turning Up | -42.7% | W:– | MTF:-- | Fuzzy:51.7 | Real Estate
-AGI  ### Turning Up | -42.6% | W:Spring | MTF:3/5 M:RISK | Fuzzy:81.2* | Basic Materials
-SNEX  ### Turning Up | -42.6% | W:SOS | MTF:-- | Fuzzy:36.9 | Financial Services
-HLNE  ### Turning Up | -42.5% | W:SC | MTF:2/5 | Fuzzy:84.7 | Financial Services
-ATRO  ### Turning Up | -42.1% | W:– | MTF:-- | Fuzzy:57.3 | Industrials
-MGTX  ### Turning Up | -41.4% | W:⚠ Dist | MTF:-- | Fuzzy:55.1 | Healthcare
-SQM  ### Turning Up | -41.3% | W:– | MTF:-- | Fuzzy:60.0 | Basic Materials
-NXE  ### Turning Up | -40.9% | W:– | MTF:-- | Fuzzy:69.4 | Energy
-IRD  ### Turning Up | -40.9% | W:⚠ Dist | MTF:-- | Fuzzy:95.0 | Healthcare
-STC  ### Turning Up | -40.2% | W:SC | MTF:-- | Fuzzy:50.2 | Financial Services
-EQX  ### Turning Up | -39.2% | W:– | MTF:-- | Fuzzy:57.2 | Basic Materials
-HIMS  ### Turning Up | -39.1% | W:– | MTF:-- | Fuzzy:58.4 | Healthcare
-CADL  ### Turning Up | -37.5% | W:⚠ Dist | MTF:-- | Fuzzy:70.1 | Healthcare
-GFI  ### Turning Up | -36.5% | W:– | MTF:1/5 M:RISK | Fuzzy:90.0 | Basic Materials
-WSE  ### Turning Up | -36.2% | W:– | MTF:2/5 | Fuzzy:82.4 | Technology
-ENVA  ### Turning Up | -35.5% | W:SC | MTF:-- | Fuzzy:51.6 | Financial Services
-VALE  ### Turning Up | -35.4% | W:SC | MTF:-- | Fuzzy:47.1 | Basic Materials
-MDGL  ### Turning Up | -35.0% | W:SC | MTF:-- | Fuzzy:69.0 | Healthcare
-BURL  ### Turning Up | -34.8% | W:A+AR | MTF:-- | Fuzzy:44.0 | Consumer Cyclical
-SA  ### Turning Up | -34.2% | W:– | MTF:-- | Fuzzy:60.6 | Basic Materials
-HMY  ### Turning Up | -34.1% | W:– | MTF:-- | Fuzzy:74.4 | Basic Materials
-PESI  ### Turning Up | -34.1% | W:⚠ Dist | MTF:-- | Fuzzy:49.5 | Industrials
-TBBK  ### Turning Up | -33.9% | W:SC | MTF:1/5 M:RISK | Fuzzy:73.9 | Financial Services
-RWAY  ### Turning Up | -33.5% | W:– | MTF:2/5 | Fuzzy:65.1 | Financial Services
-LSCC  ### Turning Up | -33.1% | W:– | MTF:-- | Fuzzy:65.3 | Technology
-ICL  ### Turning Up | -32.9% | W:– | MTF:-- | Fuzzy:42.3 | Basic Materials
-ANRO  ### Turning Up | -32.9% | W:⚠ Dist | MTF:-- | Fuzzy:83.7 | Healthcare
-SABR  ### Turning Up | -32.6% | W:– | MTF:-- | Fuzzy:51.4 | Technology
-SSMR  ### Turning Up | -32.3% | W:– | MTF:-- | Fuzzy:43.7 | Basic Materials
-APPS  ### Turning Up | -32.3% | W:⚠ Dist | MTF:-- | Fuzzy:49.5 | Technology
-PIPR  ### Turning Up | -30.7% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:63.7 | Financial Services
-BXDC  ### Turning Up | -30.1% | W:– | MTF:1/5 | Fuzzy:50.3 | Real Estate
-LSE:RIO  ### Turning Up | -29.7% | W:– | MTF:-- | Fuzzy:62.7 | Basic Materials
-RBC  ### Turning Up | -28.9% | W:– | MTF:-- | Fuzzy:50.6 | Industrials
-AAUC  ### Turning Up | -28.3% | W:Faza B | MTF:-- | Fuzzy:55.8 | Basic Materials
-AU  ### Turning Up | -28.0% | W:Faza B | MTF:2/5 M:RISK | Fuzzy:82.3* | Basic Materials
-HXL  ### Turning Up | -28.0% | W:⚠ Dist | MTF:-- | Fuzzy:37.4 | Industrials
-UBER  ### Turning Up | -27.9% | W:– | MTF:-- | Fuzzy:56.8 | Technology
-TVTX  ### Turning Up | -27.8% | W:SOS | MTF:-- | Fuzzy:45.8 | Healthcare
-BKNG  ### Turning Up | -27.2% | W:– | MTF:-- | Fuzzy:64.0 | Consumer Cyclical
-ST  ### Turning Up | -27.1% | W:⚠ Dist | MTF:-- | Fuzzy:44.2 | Technology
-GRND  ### Turning Up | -26.8% | W:– | MTF:-- | Fuzzy:66.2 | Technology
-BG  ### Turning Up | -26.5% | W:– | MTF:-- | Fuzzy:20.3 | Consumer Defensive
-B  ### Turning Up | -25.8% | W:– | MTF:2/5 M:RISK | Fuzzy:71.5* | Basic Materials
-DCI  ### Turning Up | -25.3% | W:– | MTF:-- | Fuzzy:58.6 | Industrials
-AEM  ### Turning Up | -24.9% | W:– | MTF:-- | Fuzzy:66.9 | Basic Materials
-DUOL  ### Turning Up | -24.8% | W:⚠ Dist | MTF:-- | Fuzzy:80.6* | Technology
-TFPM  ### Turning Up | -24.4% | W:Spring | MTF:-- | Fuzzy:64.1 | Basic Materials
-VOR  ### Turning Up | -23.5% | W:– | MTF:-- | Fuzzy:34.4 | Healthcare
-NWL  ### Turning Up | -23.3% | W:⚠ Dist | MTF:-- | Fuzzy:18.8 | Consumer Defensive
-IBKR  ### Turning Up | -23.2% | W:SOS | MTF:-- | Fuzzy:69.4 | Financial Services
-AGCO  ### Turning Up | -23.2% | W:– | MTF:-- | Fuzzy:32.1 | Industrials
-IRDM  ### Turning Up | -23.0% | W:– | MTF:-- | Fuzzy:51.1 | Communication Services
-FSCO  ### Turning Up | -22.3% | W:– | MTF:-- | Fuzzy:56.8 | Financial Services
-LSE:LLOY  ### Turning Up | -20.9% | W:A+AR | MTF:-- | Fuzzy:11.2 | Financial Services
-UHS  ### Turning Up | -20.6% | W:– | MTF:-- | Fuzzy:52.0 | Healthcare
-FLR  ### Turning Up | -20.3% | W:– | MTF:-- | Fuzzy:36.9 | Industrials
-SKE  ### Turning Up | -20.2% | W:A+AR | MTF:-- | Fuzzy:50.0 | Basic Materials
-SCHW  ### Turning Up | -20.1% | W:– | MTF:-- | Fuzzy:43.3 | Financial Services
-DC  ### Turning Up | -17.9% | W:SOS | MTF:-- | Fuzzy:47.2 | Basic Materials
-WPM  ### Turning Up | -17.8% | W:– | MTF:-- | Fuzzy:68.3 | Basic Materials
-LSE:HSBA  ### Turning Up | -17.7% | W:SC | MTF:-- | Fuzzy:9.0 | Financial Services
-TKNO  ### Turning Up | -17.6% | W:⚠ Dist | MTF:-- | Fuzzy:44.7 | Healthcare
-BCH  ### Turning Up | -17.3% | W:– | MTF:-- | Fuzzy:9.8 | Financial Services
-MNTK  ### Turning Up | -17.1% | W:A+AR | MTF:-- | Fuzzy:40.1 | Basic Materials
-PH  ### Turning Up | -16.6% | W:– | MTF:-- | Fuzzy:42.5 | Industrials
-GEO  ### Turning Up | -16.2% | W:SC | MTF:-- | Fuzzy:33.2 | Industrials
-BXSL  ### Turning Up | -15.7% | W:Spring | MTF:-- | Fuzzy:26.3 | Financial Services
-BBVA  ### Turning Up | -15.5% | W:SC | MTF:-- | Fuzzy:9.8 | Financial Services
-ETON  ### Turning Up | -14.9% | W:⚠ Dist | MTF:-- | Fuzzy:43.4 | Healthcare
-GCMG  ### Turning Up | -14.8% | W:– | MTF:-- | Fuzzy:58.1 | Financial Services
-PS  ### Turning Up | -14.8% | W:– | MTF:-- | Fuzzy:57.9 | Financial Services
-UBS  ### Turning Up | -14.7% | W:– | MTF:-- | Fuzzy:0.0 | Financial Services
-BTG  ### Turning Up | -14.1% | W:– | MTF:-- | Fuzzy:49.2 | Basic Materials
-NMR  ### Turning Up | -13.9% | W:Spring | MTF:-- | Fuzzy:0.0 | Financial Services
-AEG  ### Turning Up | -13.6% | W:– | MTF:-- | Fuzzy:25.5 | Financial Services
-RGLD  ### Turning Up | -13.2% | W:A+AR | MTF:-- | Fuzzy:54.6 | Basic Materials
-TRLV  ### Turning Up | -13.0% | W:⚠ Dist | MTF:-- | Fuzzy:50.7 | Healthcare
-FOXA  ### Turning Up | -12.8% | W:Faza B | MTF:-- | Fuzzy:58.0 | Communication Services
-FOX  ### Turning Up | -12.7% | W:Spring | MTF:-- | Fuzzy:58.0 | Communication Services
-NHP  ### Turning Up | -12.7% | W:– | MTF:-- | Fuzzy:18.5 | Real Estate
-AMP  ### Turning Up | -12.4% | W:– | MTF:-- | Fuzzy:18.1 | Financial Services
-VGZ  ### Turning Up | -12.1% | W:A+AR | MTF:-- | Fuzzy:41.9 | Basic Materials
-PSTL  ### Turning Up | -12.1% | W:⚠ Dist | MTF:-- | Fuzzy:29.2 | Real Estate
-SDGR  ### Turning Up | -11.7% | W:⚠ Dist | MTF:-- | Fuzzy:52.6 | Healthcare
-BRKR  ### Turning Up | -11.1% | W:Spring | MTF:-- | Fuzzy:34.6 | Healthcare
-LXFR  ### Turning Up | -11.0% | W:A+AR | MTF:-- | Fuzzy:27.3 | Industrials
-FNV  ### Turning Up | -10.8% | W:– | MTF:-- | Fuzzy:61.8 | Basic Materials
-NEM  ### Turning Up | -10.6% | W:– | MTF:-- | Fuzzy:66.8 | Basic Materials
-ECPG  ### Turning Up | -9.9% | W:– | MTF:-- | Fuzzy:39.8 | Financial Services
-LCLN  ### Turning Up | -9.6% | W:– | MTF:-- | Fuzzy:38.1 | Financial Services
-CRCT  ### Turning Up | -9.5% | W:– | MTF:-- | Fuzzy:73.7 | Technology
-PLSE  ### Turning Up | -9.5% | W:⚠ Dist | MTF:-- | Fuzzy:31.6 | Healthcare
-BBDC  ### Turning Up | -9.4% | W:– | MTF:-- | Fuzzy:15.9 | Financial Services
-ADPT  ### Turning Up | -9.0% | W:Faza B | MTF:-- | Fuzzy:50.0 | Healthcare
-CRON  ### Turning Up | -7.7% | W:– | MTF:-- | Fuzzy:48.3 | Healthcare
-WAB  ### Turning Up | -7.5% | W:– | MTF:-- | Fuzzy:31.8 | Industrials
-OABI  ### Turning Up | -7.4% | W:⚠ Dist | MTF:-- | Fuzzy:52.6 | Healthcare
-ZLAB  ### Turning Up | -7.3% | W:– | MTF:-- | Fuzzy:57.0 | Healthcare
-TGT  ### Turning Up | -7.2% | W:SC | MTF:-- | Fuzzy:26.3 | Consumer Defensive
-EXG  ### Turning Up | -7.0% | W:– | MTF:-- | Fuzzy:42.9 | Financial Services
-MRNA  ### Turning Up | -5.0% | W:⚠ Dist | MTF:-- | Fuzzy:57.9 | Healthcare
-SOLV  ### Turning Up | -4.0% | W:– | MTF:-- | Fuzzy:36.3 | Healthcare
-MGNI  ### Turning Up | -2.8% | W:– | MTF:-- | Fuzzy:54.4 | Communication Services
-U  ### Turning Up | -2.7% | W:SOS | MTF:-- | Fuzzy:53.8 | Technology
-TBBB  ### Turning Up | -0.4% | W:– | MTF:-- | Fuzzy:6.0 | Consumer Defensive
-TECH  ### Turning Up | -0.1% | W:Spring | MTF:-- | Fuzzy:60.3 | Healthcare
+### ── Strong BUY (434) ──
+SUPX  ### Strong BUY | -89.2% | W:A+AR | MTF:-- | Fuzzy:52.6 | --
+MVST  ### Strong BUY | -87.6% | W:– | MTF:-- | Fuzzy:45.0 | --
+PCT  ### Strong BUY | -85.5% | W:– | MTF:-- | Fuzzy:40.0 | --
+CAR  ### Strong BUY | -84.9% | W:A+AR | MTF:-- | Fuzzy:56.8 | --
+BW  ### Strong BUY | -82.8% | W:⚠ Dist | MTF:-- | Fuzzy:54.2 | --
+TLRY  ### Strong BUY | -81.8% | W:– | MTF:-- | Fuzzy:60.7 | --
+SMR  ### Strong BUY | -80.7% | W:– | MTF:-- | Fuzzy:65.8 | --
+VELO  ### Strong BUY | -80.4% | W:⚠ Dist | MTF:-- | Fuzzy:46.0 | --
+LCID  ### Strong BUY | -79.3% | W:– | MTF:-- | Fuzzy:27.0 | --
+ALMS  ### Strong BUY | -79.1% | W:⚠ Dist | MTF:-- | Fuzzy:64.8 | --
+CIFR  ### Strong BUY | -77.4% | W:A+AR | MTF:-- | Fuzzy:47.7 | --
+GPCR  ### Strong BUY | -77.4% | W:– | MTF:-- | Fuzzy:62.5 | --
+MFP  ### Strong BUY | -76.9% | W:– | MTF:-- | Fuzzy:62.4 | --
+METC  ### Strong BUY | -76.2% | W:Spring | MTF:-- | Fuzzy:43.6 | --
+NMG  ### Strong BUY | -75.9% | W:– | MTF:-- | Fuzzy:56.9 | --
+LAES  ### Strong BUY | -75.3% | W:A+AR | MTF:-- | Fuzzy:72.0 | --
+CBRS  ### Strong BUY | -75.0% | W:– | MTF:-- | Fuzzy:60.9 | --
+POET  ### Strong BUY | -74.7% | W:SC | MTF:-- | Fuzzy:69.0 | --
+ALOY  ### Strong BUY | -74.5% | W:SOS | MTF:-- | Fuzzy:55.6 | --
+ALIT  ### Strong BUY | -74.4% | W:– | MTF:-- | Fuzzy:42.9 | --
+LUNR  ### Strong BUY | -74.2% | W:– | MTF:-- | Fuzzy:44.3 | --
+TMC  ### Strong BUY | -73.9% | W:– | MTF:-- | Fuzzy:53.8 | --
+ABAT  ### Strong BUY | -73.4% | W:A+AR | MTF:-- | Fuzzy:50.0 | --
+USAR  ### Strong BUY | -73.3% | W:– | MTF:-- | Fuzzy:55.0 | --
+SLI  ### Strong BUY | -73.3% | W:– | MTF:-- | Fuzzy:64.3 | --
+AVEX  ### Strong BUY | -72.7% | W:– | MTF:-- | Fuzzy:55.3 | --
+PONY  ### Strong BUY | -72.5% | W:SOS | MTF:-- | Fuzzy:50.4 | --
+ASTS  ### Strong BUY | -72.4% | W:– | MTF:-- | Fuzzy:60.8 | --
+NVTS  ### Strong BUY | -72.0% | W:⚠ Dist | MTF:-- | Fuzzy:66.0 | --
+RZLV  ### Strong BUY | -71.4% | W:Spring | MTF:-- | Fuzzy:57.0 | --
+LAC  ### Strong BUY | -71.0% | W:– | MTF:-- | Fuzzy:64.0 | --
+STUB  ### Strong BUY | -70.5% | W:– | MTF:-- | Fuzzy:53.2 | --
+LGN  ### Strong BUY | -70.0% | W:⚠ Dist | MTF:-- | Fuzzy:40.2 | --
+ENVX  ### Strong BUY | -69.7% | W:A+AR | MTF:-- | Fuzzy:37.4 | --
+RDW  ### Strong BUY | -69.4% | W:SC | MTF:-- | Fuzzy:56.5 | --
+NNE  ### Strong BUY | -68.7% | W:A+AR | MTF:-- | Fuzzy:63.3 | --
+UCTT  ### Strong BUY | -68.2% | W:⚠ Dist | MTF:-- | Fuzzy:54.2 | --
+TMQ  ### Strong BUY | -68.1% | W:– | MTF:-- | Fuzzy:68.7 | --
+BCAX  ### Strong BUY | -67.8% | W:⚠ Dist | MTF:-- | Fuzzy:66.4 | --
+WOLF  ### Strong BUY | -67.7% | W:⚠ Dist | MTF:-- | Fuzzy:42.4 | --
+TTD  ### Strong BUY | -67.2% | W:A+AR | MTF:4/5 | Fuzzy:87.8 | --
+MOD  ### Strong BUY | -67.2% | W:⚠ Dist | MTF:-- | Fuzzy:58.3 | --
+APLD  ### Strong BUY | -67.0% | W:– | MTF:-- | Fuzzy:41.2 | --
+BLZE  ### Strong BUY | -66.7% | W:⚠ Dist | MTF:-- | Fuzzy:69.2 | --
+EIKN  ### Strong BUY | -66.3% | W:⚠ Dist | MTF:-- | Fuzzy:66.7 | --
+DQ  ### Strong BUY | -66.2% | W:– | MTF:-- | Fuzzy:55.0 | --
+NKLR  ### Strong BUY | -66.2% | W:⚠ Dist | MTF:-- | Fuzzy:53.8 | --
+PLUG  ### Strong BUY | -65.4% | W:Spring | MTF:-- | Fuzzy:46.8 | --
+PRIM  ### Strong BUY | -65.3% | W:A+AR | MTF:-- | Fuzzy:58.4 | --
+INIO  ### Strong BUY | -65.3% | W:– | MTF:-- | Fuzzy:48.6 | --
+TIGR  ### Strong BUY | -65.2% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:89.3 | --
+RSI  ### Strong BUY | -64.9% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:82.6 | --
+CABA  ### Strong BUY | -64.5% | W:⚠ Dist | MTF:-- | Fuzzy:67.4 | --
+IONS  ### Strong BUY | -64.3% | W:⚠ Dist | MTF:-- | Fuzzy:57.0 | --
+JOBY  ### Strong BUY | -63.9% | W:– | MTF:-- | Fuzzy:70.3 | --
+RXST  ### Strong BUY | -63.2% | W:– | MTF:-- | Fuzzy:70.0 | --
+LAR  ### Strong BUY | -63.2% | W:– | MTF:-- | Fuzzy:43.4 | --
+PUMP  ### Strong BUY | -63.0% | W:⚠ Dist | MTF:-- | Fuzzy:51.1 | --
+PLAY  ### Strong BUY | -62.9% | W:SC | MTF:-- | Fuzzy:40.0 | --
+CURR  ### Strong BUY | -62.6% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:75.2 | --
+UEC  ### Strong BUY | -62.5% | W:– | MTF:-- | Fuzzy:67.3 | --
+URG  ### Strong BUY | -62.3% | W:Spring | MTF:-- | Fuzzy:49.2 | --
+RKLB  ### Strong BUY | -61.0% | W:– | MTF:-- | Fuzzy:64.1 | --
+ACMR  ### Strong BUY | -60.9% | W:– | MTF:-- | Fuzzy:74.0 | --
+FLY  ### Strong BUY | -60.9% | W:⚠ Dist | MTF:-- | Fuzzy:55.2 | --
+AMPX  ### Strong BUY | -60.7% | W:– | MTF:-- | Fuzzy:50.6 | --
+LAB  ### Strong BUY | -59.9% | W:A+AR | MTF:-- | Fuzzy:74.9 | --
+RGTI  ### Strong BUY | -59.7% | W:– | MTF:-- | Fuzzy:58.1 | --
+MBLY  ### Strong BUY | -59.1% | W:– | MTF:-- | Fuzzy:68.7 | --
+VNDA  ### Strong BUY | -58.9% | W:– | MTF:-- | Fuzzy:75.0 | --
+BMM  ### Strong BUY | -58.7% | W:– | MTF:-- | Fuzzy:73.3 | --
+PFSI  ### Strong BUY | -58.6% | W:A+AR | MTF:-- | Fuzzy:60.0 | --
+BSX  ### Strong BUY | -58.3% | W:– | MTF:-- | Fuzzy:66.3 | --
+CORZ  ### Strong BUY | -58.2% | W:– | MTF:-- | Fuzzy:40.9 | --
+AAON  ### Strong BUY | -58.2% | W:– | MTF:-- | Fuzzy:64.4 | --
+NWCL  ### Strong BUY | -57.2% | W:A+AR | MTF:-- | Fuzzy:56.6 | --
+UTI  ### Strong BUY | -57.2% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:71.2* | --
+HNRG  ### Strong BUY | -57.1% | W:– | MTF:-- | Fuzzy:72.9 | --
+IMRX  ### Strong BUY | -57.0% | W:SC | MTF:-- | Fuzzy:62.5 | --
+TPB  ### Strong BUY | -56.9% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:76.1 | --
+ALGM  ### Strong BUY | -56.9% | W:⚠ Dist | MTF:-- | Fuzzy:75.2 | --
+BBW  ### Strong BUY | -56.2% | W:Spring | MTF:-- | Fuzzy:69.5 | --
+RWT  ### Strong BUY | -55.5% | W:A+AR | MTF:-- | Fuzzy:44.4 | --
+SANA  ### Strong BUY | -55.1% | W:– | MTF:-- | Fuzzy:66.4 | --
+NAMS  ### Strong BUY | -55.0% | W:A+AR | MTF:-- | Fuzzy:68.7 | --
+BKSY  ### Strong BUY | -54.8% | W:– | MTF:-- | Fuzzy:65.0 | --
+ERII  ### Strong BUY | -54.7% | W:– | MTF:1/5 M:RISK | Fuzzy:77.1* | --
+IPGP  ### Strong BUY | -54.6% | W:Spring | MTF:-- | Fuzzy:68.1 | --
+EURONEXT:BESI  ### Strong BUY | -53.8% | W:– | MTF:-- | Fuzzy:86.9* | Technology
+RCKT  ### Strong BUY | -53.6% | W:– | MTF:-- | Fuzzy:68.7 | --
+MKSI  ### Strong BUY | -52.7% | W:– | MTF:-- | Fuzzy:67.4 | --
+CMTG  ### Strong BUY | -52.5% | W:– | MTF:4/5 | Fuzzy:76.9 | --
+QUBT  ### Strong BUY | -52.5% | W:⚠ Dist | MTF:-- | Fuzzy:50.0 | --
+NG  ### Strong BUY | -52.2% | W:– | MTF:-- | Fuzzy:53.5 | --
+IONQ  ### Strong BUY | -52.0% | W:– | MTF:-- | Fuzzy:69.5 | --
+OFIX  ### Strong BUY | -51.9% | W:A+AR | MTF:-- | Fuzzy:73.0 | --
+CTGO  ### Strong BUY | -51.9% | W:Faza B | MTF:-- | Fuzzy:44.4 | --
+PSEC  ### Strong BUY | -51.8% | W:SOS | MTF:2/5 M:RISK | Fuzzy:70.3 | --
+TLK  ### Strong BUY | -51.5% | W:– | MTF:2/5 M:RISK | Fuzzy:67.0* | --
+KLRA  ### Strong BUY | -51.5% | W:A+AR | MTF:-- | Fuzzy:66.7 | --
+POWI  ### Strong BUY | -51.4% | W:⚠ Dist | MTF:-- | Fuzzy:78.1 | --
+COLL  ### Strong BUY | -51.3% | W:A+AR | MTF:-- | Fuzzy:67.0 | --
+HSAI  ### Strong BUY | -51.2% | W:– | MTF:-- | Fuzzy:70.3 | --
+CRS  ### Strong BUY | -51.2% | W:⚠ Dist | MTF:-- | Fuzzy:74.7 | --
+FN  ### Strong BUY | -51.1% | W:⚠ Dist | MTF:-- | Fuzzy:63.3 | --
+AZUL  ### Strong BUY | -51.0% | W:– | MTF:-- | Fuzzy:50.6 | --
+SE  ### Strong BUY | -51.0% | W:SC | MTF:2/5 M:RISK | Fuzzy:77.7* | --
+TTI  ### Strong BUY | -51.0% | W:– | MTF:-- | Fuzzy:48.5 | --
+RAPP  ### Strong BUY | -50.7% | W:⚠ Dist | MTF:-- | Fuzzy:69.5 | --
+GEVO  ### Strong BUY | -50.5% | W:– | MTF:-- | Fuzzy:67.7 | --
+AA  ### Strong BUY | -50.4% | W:– | MTF:-- | Fuzzy:47.5 | --
+LASR  ### Strong BUY | -50.3% | W:⚠ Dist | MTF:-- | Fuzzy:62.9 | --
+GERN  ### Strong BUY | -50.2% | W:A+AR | MTF:-- | Fuzzy:72.6 | --
+CBIO  ### Strong BUY | -50.2% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:84.9 | --
+QXO  ### Strong BUY | -50.1% | W:A+AR | MTF:-- | Fuzzy:58.5 | --
+HROW  ### Strong BUY | -49.9% | W:– | MTF:-- | Fuzzy:68.3 | --
+SVCO  ### Strong BUY | -49.6% | W:⚠ Dist | MTF:-- | Fuzzy:70.5 | --
+SKYD  ### Strong BUY | -49.3% | W:⚠ Dist | MTF:-- | Fuzzy:43.2 | --
+EURONEXT:WLN  ### Strong BUY | -49.2% | W:– | MTF:-- | Fuzzy:61.0 | Technology
+OSL:NEL  ### Strong BUY | -48.8% | W:⚠ Dist | MTF:-- | Fuzzy:74.3 | --
+ARQQ  ### Strong BUY | -48.5% | W:⚠ Dist | MTF:1/5 | Fuzzy:90.9 | --
+PLAB  ### Strong BUY | -48.4% | W:– | MTF:2/5 M:RISK | Fuzzy:76.1 | --
+RLMD  ### Strong BUY | -48.3% | W:A+AR | MTF:-- | Fuzzy:69.2 | --
+ETOR  ### Strong BUY | -47.3% | W:– | MTF:-- | Fuzzy:70.0 | --
+DNN  ### Strong BUY | -47.2% | W:Faza B | MTF:-- | Fuzzy:50.0 | --
+VOYG  ### Strong BUY | -46.8% | W:– | MTF:-- | Fuzzy:46.8 | --
+FUTU  ### Strong BUY | -46.7% | W:– | MTF:4/5 M:RISK | Fuzzy:89.0 | --
+AOSL  ### Strong BUY | -46.3% | W:A+AR | MTF:-- | Fuzzy:64.2 | --
+NVMI  ### Strong BUY | -45.9% | W:– | MTF:-- | Fuzzy:78.9* | --
+MLTX  ### Strong BUY | -45.8% | W:SC | MTF:-- | Fuzzy:62.5 | --
+AUR  ### Strong BUY | -45.7% | W:SC | MTF:-- | Fuzzy:54.7 | --
+NRGV  ### Strong BUY | -45.5% | W:SOS | MTF:-- | Fuzzy:36.5 | --
+MUX  ### Strong BUY | -45.4% | W:Spring | MTF:-- | Fuzzy:51.7 | --
+VERA  ### Strong BUY | -45.4% | W:A+AR | MTF:-- | Fuzzy:67.7 | --
+ASMB  ### Strong BUY | -45.1% | W:SOS | MTF:-- | Fuzzy:68.7 | --
+LKQ  ### Strong BUY | -45.0% | W:– | MTF:-- | Fuzzy:46.9 | --
+AEIS  ### Strong BUY | -44.8% | W:– | MTF:-- | Fuzzy:77.5 | --
+GRAB  ### Strong BUY | -44.8% | W:– | MTF:-- | Fuzzy:65.9 | --
+HONA  ### Strong BUY | -44.6% | W:– | MTF:-- | Fuzzy:74.6 | --
+CCJ  ### Strong BUY | -44.3% | W:– | MTF:-- | Fuzzy:62.7 | --
+OGG  ### Strong BUY | -44.3% | W:SOS | MTF:-- | Fuzzy:71.3 | --
+TFII  ### Strong BUY | -43.5% | W:– | MTF:-- | Fuzzy:35.8 | --
+MWH  ### Strong BUY | -43.4% | W:A+AR | MTF:-- | Fuzzy:64.4 | --
+PPTA  ### Strong BUY | -43.4% | W:– | MTF:-- | Fuzzy:61.2 | --
+LVS  ### Strong BUY | -43.0% | W:– | MTF:-- | Fuzzy:61.9 | --
+KGS  ### Strong BUY | -42.5% | W:⚠ Dist | MTF:-- | Fuzzy:46.1 | --
+CTNM  ### Strong BUY | -42.1% | W:Spring | MTF:-- | Fuzzy:60.1 | --
+HLIT  ### Strong BUY | -42.1% | W:– | MTF:-- | Fuzzy:72.3 | --
+SQM  ### Strong BUY | -42.1% | W:– | MTF:-- | Fuzzy:58.1 | --
+PMT  ### Strong BUY | -42.1% | W:– | MTF:-- | Fuzzy:40.1 | --
+HLLY  ### Strong BUY | -41.7% | W:Spring | MTF:-- | Fuzzy:52.8 | --
+OSL:NHY  ### Strong BUY | -41.7% | W:– | MTF:4/5 M:RISK | Fuzzy:66.2 | --
+KGC  ### Strong BUY | -41.6% | W:– | MTF:4/5 M:RISK | Fuzzy:85.8 | --
+STC  ### Strong BUY | -41.6% | W:SC | MTF:-- | Fuzzy:47.8 | --
+PLTK  ### Strong BUY | -41.4% | W:⚠ Dist | MTF:-- | Fuzzy:54.8 | --
+LSE:FRES  ### Strong BUY | -41.3% | W:– | MTF:-- | Fuzzy:93.0 | Basic Materials
+AGI  ### Strong BUY | -41.2% | W:Spring | MTF:1/5 M:RISK | Fuzzy:76.2* | --
+ANNX  ### Strong BUY | -41.1% | W:– | MTF:-- | Fuzzy:65.5 | --
+EURONEXT:PRX  ### Strong BUY | -40.9% | W:– | MTF:-- | Fuzzy:68.4 | Consumer Cyclical
+FBRT  ### Strong BUY | -40.9% | W:– | MTF:-- | Fuzzy:48.0 | --
+INBX  ### Strong BUY | -40.9% | W:– | MTF:-- | Fuzzy:56.6 | --
+CDE  ### Strong BUY | -40.8% | W:Faza B | MTF:2/5 M:RISK | Fuzzy:78.1 | --
+IPSC  ### Strong BUY | -40.5% | W:– | MTF:-- | Fuzzy:65.0 | --
+MBI  ### Strong BUY | -40.5% | W:– | MTF:-- | Fuzzy:44.0 | --
+JBLU  ### Strong BUY | -40.5% | W:– | MTF:-- | Fuzzy:20.9 | --
+MMYT  ### Strong BUY | -40.3% | W:Spring | MTF:-- | Fuzzy:67.4 | --
+LSE:III  ### Strong BUY | -40.3% | W:Faza B | MTF:-- | Fuzzy:79.7 | --
+SNEX  ### Strong BUY | -40.0% | W:SOS | MTF:-- | Fuzzy:37.8 | --
+WD  ### Strong BUY | -40.0% | W:– | MTF:-- | Fuzzy:51.0 | --
+MFA  ### Strong BUY | -39.8% | W:– | MTF:-- | Fuzzy:36.7 | --
+AMRC  ### Strong BUY | -39.6% | W:– | MTF:-- | Fuzzy:36.8 | --
+OUST  ### Strong BUY | -39.5% | W:– | MTF:-- | Fuzzy:75.9 | --
+CCCC  ### Strong BUY | -39.1% | W:⚠ Dist | MTF:-- | Fuzzy:64.9 | --
+OWL  ### Strong BUY | -39.0% | W:SC | MTF:-- | Fuzzy:49.1 | --
+KNF  ### Strong BUY | -38.8% | W:⚠ Dist | MTF:-- | Fuzzy:48.4 | --
+TNDM  ### Strong BUY | -38.7% | W:– | MTF:-- | Fuzzy:55.8 | --
+GHRS  ### Strong BUY | -38.7% | W:⚠ Dist | MTF:-- | Fuzzy:68.4 | --
+OXM  ### Strong BUY | -38.6% | W:Spring | MTF:-- | Fuzzy:47.8 | --
+CSTM  ### Strong BUY | -38.5% | W:⚠ Dist | MTF:-- | Fuzzy:25.1 | --
+HLNE  ### Strong BUY | -38.4% | W:SC | MTF:2/5 | Fuzzy:77.8 | --
+SVM  ### Strong BUY | -38.3% | W:– | MTF:3/5 M:RISK | Fuzzy:77.6* | --
+YELP  ### Strong BUY | -38.3% | W:– | MTF:1/5 M:RISK | Fuzzy:86.6 | --
+MGTX  ### Strong BUY | -38.2% | W:⚠ Dist | MTF:-- | Fuzzy:53.8 | --
+LFTO  ### Strong BUY | -37.8% | W:– | MTF:-- | Fuzzy:64.7 | --
+JACK  ### Strong BUY | -37.8% | W:– | MTF:-- | Fuzzy:36.6 | --
+MDA  ### Strong BUY | -37.7% | W:– | MTF:-- | Fuzzy:38.8 | --
+ATRO  ### Strong BUY | -37.6% | W:– | MTF:-- | Fuzzy:55.8 | --
+GENB  ### Strong BUY | -37.5% | W:⚠ Dist | MTF:-- | Fuzzy:58.3 | --
+VMET  ### Strong BUY | -37.5% | W:– | MTF:-- | Fuzzy:45.1 | --
+NXE  ### Strong BUY | -37.3% | W:– | MTF:-- | Fuzzy:62.8 | --
+DMRA  ### Strong BUY | -37.2% | W:Faza B | MTF:2/5 | Fuzzy:76.4 | --
+THRM  ### Strong BUY | -37.2% | W:⚠ Dist | MTF:-- | Fuzzy:47.6 | --
+CG  ### Strong BUY | -37.1% | W:– | MTF:-- | Fuzzy:32.7 | --
+CAVA  ### Strong BUY | -36.9% | W:– | MTF:-- | Fuzzy:53.3 | --
+HTLD  ### Strong BUY | -36.8% | W:– | MTF:-- | Fuzzy:41.9 | --
+CMI  ### Strong BUY | -36.8% | W:– | MTF:-- | Fuzzy:54.8 | --
+EVLV  ### Strong BUY | -36.4% | W:– | MTF:-- | Fuzzy:58.5 | --
+ASLE  ### Strong BUY | -36.2% | W:– | MTF:-- | Fuzzy:43.9 | --
+EQX  ### Strong BUY | -36.2% | W:– | MTF:-- | Fuzzy:52.3 | --
+AMBA  ### Strong BUY | -36.2% | W:⚠ Dist | MTF:-- | Fuzzy:69.1 | --
+ELDN  ### Strong BUY | -36.1% | W:SOS | MTF:-- | Fuzzy:66.4 | --
+LSTR  ### Strong BUY | -35.9% | W:Spring | MTF:-- | Fuzzy:66.0 | --
+BOOT  ### Strong BUY | -35.7% | W:– | MTF:-- | Fuzzy:45.8 | --
+IKT  ### Strong BUY | -35.6% | W:⚠ Dist | MTF:-- | Fuzzy:55.8 | --
+AVGO  ### Strong BUY | -35.5% | W:SOS | MTF:-- | Fuzzy:77.8 | --
+XETR:VOW3  ### Strong BUY | -35.5% | W:– | MTF:-- | Fuzzy:27.3 | Consumer Cyclical
+XETR:ENR  ### Strong BUY | -35.4% | W:– | MTF:-- | Fuzzy:45.4 | Industrials
+XRAY  ### Strong BUY | -35.4% | W:– | MTF:-- | Fuzzy:43.2 | --
+XMAX  ### Strong BUY | -35.4% | W:⚠ Dist | MTF:-- | Fuzzy:53.0 | --
+WSE  ### Strong BUY | -35.3% | W:– | MTF:3/5 | Fuzzy:81.5 | --
+PTRN  ### Strong BUY | -34.8% | W:⚠ Dist | MTF:-- | Fuzzy:64.4 | --
+XYL  ### Strong BUY | -34.7% | W:– | MTF:-- | Fuzzy:59.5 | --
+FTK  ### Strong BUY | -34.5% | W:⚠ Dist | MTF:-- | Fuzzy:70.8 | --
+CRUS  ### Strong BUY | -34.4% | W:– | MTF:1/5 M:RISK | Fuzzy:87.9 | --
+MTRX  ### Strong BUY | -34.4% | W:Spring | MTF:-- | Fuzzy:50.0 | --
+PSFE  ### Strong BUY | -34.4% | W:– | MTF:-- | Fuzzy:44.0 | --
+TKC  ### Strong BUY | -33.7% | W:A+AR | MTF:-- | Fuzzy:48.6 | --
+GFI  ### Strong BUY | -33.4% | W:– | MTF:1/5 M:RISK | Fuzzy:83.5 | --
+XPER  ### Strong BUY | -33.4% | W:– | MTF:-- | Fuzzy:62.3 | --
+VALE  ### Strong BUY | -33.3% | W:A+AR | MTF:-- | Fuzzy:43.8 | --
+BDC  ### Strong BUY | -33.2% | W:Spring | MTF:-- | Fuzzy:51.5 | --
+OGC  ### Strong BUY | -32.7% | W:Spring | MTF:1/5 M:RISK | Fuzzy:74.0 | --
+LAZ  ### Strong BUY | -32.7% | W:Spring | MTF:-- | Fuzzy:48.7 | --
+HMY  ### Strong BUY | -32.5% | W:– | MTF:-- | Fuzzy:69.9 | --
+TV  ### Strong BUY | -32.4% | W:A+AR | MTF:-- | Fuzzy:53.0 | --
+KKR  ### Strong BUY | -32.3% | W:SOS | MTF:-- | Fuzzy:33.6 | --
+EVC  ### Strong BUY | -32.3% | W:⚠ Dist | MTF:-- | Fuzzy:37.3 | --
+CADL  ### Strong BUY | -32.2% | W:⚠ Dist | MTF:4/5 | Fuzzy:66.7 | --
+CMP  ### Strong BUY | -32.1% | W:⚠ Dist | MTF:-- | Fuzzy:23.7 | --
+BURL  ### Strong BUY | -32.0% | W:A+AR | MTF:-- | Fuzzy:39.9 | --
+TBBK  ### Strong BUY | -31.8% | W:SC | MTF:2/5 M:RISK | Fuzzy:62.6 | --
+ALK  ### Strong BUY | -31.2% | W:A+AR | MTF:-- | Fuzzy:12.1 | --
+STOK  ### Strong BUY | -31.1% | W:– | MTF:-- | Fuzzy:51.3 | --
+SAIA  ### Strong BUY | -30.9% | W:– | MTF:-- | Fuzzy:48.4 | --
+WSC  ### Strong BUY | -30.7% | W:SOS | MTF:-- | Fuzzy:43.0 | --
+SA  ### Strong BUY | -30.3% | W:– | MTF:-- | Fuzzy:55.7 | --
+MIL:TIT  ### Strong BUY | -30.2% | W:– | MTF:-- | Fuzzy:38.2 | Communication Services
+EDIT  ### Strong BUY | -30.2% | W:⚠ Dist | MTF:2/5 | Fuzzy:69.9 | --
+ESTA  ### Strong BUY | -29.8% | W:⚠ Dist | MTF:-- | Fuzzy:48.3 | --
+ATEN  ### Strong BUY | -29.7% | W:A+AR | MTF:-- | Fuzzy:66.0 | --
+MDGL  ### Strong BUY | -29.6% | W:A+AR | MTF:-- | Fuzzy:62.0 | --
+GBX  ### Strong BUY | -29.4% | W:Spring | MTF:-- | Fuzzy:29.3 | --
+MOS  ### Strong BUY | -29.4% | W:⚠ Dist | MTF:-- | Fuzzy:28.7 | --
+VST  ### Strong BUY | -29.3% | W:A+AR | MTF:-- | Fuzzy:28.8 | --
+GOLF  ### Strong BUY | -29.3% | W:– | MTF:-- | Fuzzy:49.5 | --
+LAD  ### Strong BUY | -29.3% | W:– | MTF:-- | Fuzzy:14.6 | --
+SKYW  ### Strong BUY | -29.1% | W:– | MTF:-- | Fuzzy:31.8 | --
+DRVN  ### Strong BUY | -29.1% | W:– | MTF:-- | Fuzzy:34.7 | --
+LSE:HLMA  ### Strong BUY | -29.0% | W:– | MTF:-- | Fuzzy:69.7 | --
+PIPR  ### Strong BUY | -28.8% | W:A+AR | MTF:-- | Fuzzy:53.8 | --
+PBLS  ### Strong BUY | -28.5% | W:– | MTF:-- | Fuzzy:28.0 | --
+MIRM  ### Strong BUY | -28.3% | W:⚠ Dist | MTF:-- | Fuzzy:58.9 | --
+LTM  ### Strong BUY | -28.2% | W:Spring | MTF:-- | Fuzzy:43.8 | --
+CLM  ### Strong BUY | -28.1% | W:⚠ Dist | MTF:-- | Fuzzy:59.3 | --
+SABR  ### Strong BUY | -28.0% | W:– | MTF:-- | Fuzzy:45.3 | --
+OM:BOL  ### Strong BUY | -27.9% | W:– | MTF:-- | Fuzzy:39.3 | Basic Materials
+SVRA  ### Strong BUY | -27.9% | W:– | MTF:-- | Fuzzy:51.0 | --
+FG  ### Strong BUY | -27.7% | W:Spring | MTF:-- | Fuzzy:41.2 | --
+SLRC  ### Strong BUY | -27.6% | W:– | MTF:-- | Fuzzy:34.1 | --
+LSCC  ### Strong BUY | -27.5% | W:– | MTF:-- | Fuzzy:63.3 | --
+CEG  ### Strong BUY | -27.5% | W:– | MTF:-- | Fuzzy:35.3 | --
+LZB  ### Strong BUY | -27.3% | W:SC | MTF:-- | Fuzzy:53.7 | --
+HXL  ### Strong BUY | -27.2% | W:– | MTF:-- | Fuzzy:36.9 | --
+OSL:TOM  ### Strong BUY | -27.2% | W:A+AR | MTF:-- | Fuzzy:47.4 | Industrials
+BXDC  ### Strong BUY | -27.1% | W:– | MTF:-- | Fuzzy:40.3 | --
+PESI  ### Strong BUY | -26.9% | W:⚠ Dist | MTF:-- | Fuzzy:45.4 | --
+WMS  ### Strong BUY | -26.9% | W:– | MTF:-- | Fuzzy:50.5 | --
+AVLN  ### Strong BUY | -26.6% | W:– | MTF:-- | Fuzzy:39.9 | --
+CRF  ### Strong BUY | -26.6% | W:⚠ Dist | MTF:-- | Fuzzy:56.8 | --
+RBC  ### Strong BUY | -26.5% | W:– | MTF:-- | Fuzzy:47.7 | --
+APPS  ### Strong BUY | -26.3% | W:⚠ Dist | MTF:-- | Fuzzy:48.0 | --
+WWD  ### Strong BUY | -26.2% | W:Spring | MTF:-- | Fuzzy:54.8 | --
+LBTYA  ### Strong BUY | -26.1% | W:– | MTF:-- | Fuzzy:49.5 | --
+JEF  ### Strong BUY | -25.8% | W:Spring | MTF:-- | Fuzzy:47.2 | --
+LBTYK  ### Strong BUY | -25.8% | W:– | MTF:-- | Fuzzy:49.3 | --
+ANRO  ### Strong BUY | -25.8% | W:⚠ Dist | MTF:4/5 | Fuzzy:77.2* | --
+MBX  ### Strong BUY | -25.6% | W:– | MTF:-- | Fuzzy:52.6 | --
+PRTA  ### Strong BUY | -25.6% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:66.8* | --
+BCSF  ### Strong BUY | -25.4% | W:Spring | MTF:-- | Fuzzy:37.3 | --
+UBER  ### Strong BUY | -25.2% | W:– | MTF:-- | Fuzzy:52.2 | --
+FUL  ### Strong BUY | -25.2% | W:SC | MTF:-- | Fuzzy:36.9 | --
+SNDA  ### Strong BUY | -25.2% | W:⚠ Dist | MTF:-- | Fuzzy:30.5 | --
+HAPN  ### Strong BUY | -25.1% | W:Spring | MTF:-- | Fuzzy:51.5 | --
+BG  ### Strong BUY | -25.0% | W:– | MTF:-- | Fuzzy:19.0 | --
+TVTX  ### Strong BUY | -24.9% | W:⚠ Dist | MTF:-- | Fuzzy:46.6 | --
+TMUS  ### Strong BUY | -24.9% | W:– | MTF:-- | Fuzzy:37.7 | --
+BX  ### Strong BUY | -24.9% | W:– | MTF:-- | Fuzzy:20.5 | --
+ST  ### Strong BUY | -24.6% | W:⚠ Dist | MTF:-- | Fuzzy:44.1 | --
+AAL  ### Strong BUY | -24.6% | W:– | MTF:-- | Fuzzy:11.5 | --
+SSMR  ### Strong BUY | -24.5% | W:– | MTF:-- | Fuzzy:38.2 | --
+DASH  ### Strong BUY | -24.3% | W:– | MTF:-- | Fuzzy:62.5 | --
+TRVI  ### Strong BUY | -24.3% | W:⚠ Dist | MTF:-- | Fuzzy:49.8 | --
+CMC  ### Strong BUY | -24.2% | W:Faza B | MTF:-- | Fuzzy:44.9 | --
+DHC  ### Strong BUY | -24.2% | W:– | MTF:-- | Fuzzy:31.5 | --
+PCAR  ### Strong BUY | -24.1% | W:– | MTF:-- | Fuzzy:40.0 | --
+WY  ### Strong BUY | -23.9% | W:– | MTF:-- | Fuzzy:22.9 | --
+MIL:MONC  ### Strong BUY | -23.8% | W:– | MTF:-- | Fuzzy:71.6 | Consumer Cyclical
+DNTH  ### Strong BUY | -23.7% | W:Spring | MTF:-- | Fuzzy:54.6 | --
+VSEC  ### Strong BUY | -23.5% | W:Spring | MTF:-- | Fuzzy:41.0 | --
+XETR:DTE  ### Strong BUY | -23.3% | W:– | MTF:-- | Fuzzy:41.1 | Communication Services
+COGT  ### Strong BUY | -23.3% | W:⚠ Dist | MTF:-- | Fuzzy:43.5 | --
+VOR  ### Strong BUY | -23.2% | W:– | MTF:-- | Fuzzy:39.2 | --
+AU  ### Strong BUY | -23.1% | W:Faza B | MTF:-- | Fuzzy:78.2 | --
+FNF  ### Strong BUY | -22.9% | W:Spring | MTF:-- | Fuzzy:33.6 | --
+B  ### Strong BUY | -22.7% | W:– | MTF:-- | Fuzzy:67.5 | --
+COMP  ### Strong BUY | -22.7% | W:Spring | MTF:-- | Fuzzy:25.8 | --
+CHCT  ### Strong BUY | -22.6% | W:– | MTF:-- | Fuzzy:36.3 | --
+UTG  ### Strong BUY | -22.5% | W:SC | MTF:-- | Fuzzy:50.0 | --
+TEX  ### Strong BUY | -22.3% | W:– | MTF:-- | Fuzzy:34.5 | --
+JMKE  ### Strong BUY | -22.2% | W:– | MTF:-- | Fuzzy:45.6 | --
+IMCR  ### Strong BUY | -22.1% | W:– | MTF:-- | Fuzzy:46.3 | --
+TTWO  ### Strong BUY | -22.0% | W:– | MTF:-- | Fuzzy:50.2 | --
+HUBB  ### Strong BUY | -21.9% | W:– | MTF:-- | Fuzzy:48.6 | --
+DCI  ### Strong BUY | -21.8% | W:– | MTF:-- | Fuzzy:53.6 | --
+GS  ### Strong BUY | -21.5% | W:– | MTF:-- | Fuzzy:13.3 | --
+IBKR  ### Strong BUY | -21.4% | W:SOS | MTF:-- | Fuzzy:66.5 | --
+FR  ### Strong BUY | -21.4% | W:– | MTF:-- | Fuzzy:32.6 | --
+IRDM  ### Strong BUY | -21.2% | W:– | MTF:-- | Fuzzy:52.4 | --
+GLPI  ### Strong BUY | -21.0% | W:SC | MTF:-- | Fuzzy:45.5 | --
+TFPM  ### Strong BUY | -20.9% | W:Spring | MTF:-- | Fuzzy:59.5 | --
+CBRE  ### Strong BUY | -20.7% | W:Spring | MTF:-- | Fuzzy:27.7 | --
+OC  ### Strong BUY | -20.6% | W:– | MTF:-- | Fuzzy:23.1 | --
+LSE:PRU  ### Strong BUY | -20.6% | W:– | MTF:-- | Fuzzy:31.2 | Financial Services
+SBGI  ### Strong BUY | -20.4% | W:⚠ Dist | MTF:-- | Fuzzy:41.5 | --
+PHVS  ### Strong BUY | -20.3% | W:⚠ Dist | MTF:-- | Fuzzy:64.1 | --
+EAT  ### Strong BUY | -20.2% | W:– | MTF:-- | Fuzzy:30.6 | --
+GRBK  ### Strong BUY | -20.0% | W:– | MTF:-- | Fuzzy:45.6 | --
+DEI  ### Strong BUY | -20.0% | W:– | MTF:-- | Fuzzy:38.3 | --
+AURA  ### Strong BUY | -19.7% | W:⚠ Dist | MTF:-- | Fuzzy:52.7 | --
+MS  ### Strong BUY | -19.4% | W:⚠ Dist | MTF:-- | Fuzzy:10.2 | --
+LSE:LLOY  ### Strong BUY | -19.3% | W:A+AR | MTF:-- | Fuzzy:18.8 | Financial Services
+MPWR  ### Strong BUY | -19.0% | W:Spring | MTF:-- | Fuzzy:76.6 | --
+SCHW  ### Strong BUY | -19.0% | W:– | MTF:-- | Fuzzy:36.8 | --
+AGCO  ### Strong BUY | -19.0% | W:– | MTF:-- | Fuzzy:28.9 | --
+LSE:MNDI  ### Strong BUY | -19.0% | W:Faza B | MTF:-- | Fuzzy:33.8 | Basic Materials
+HBAN  ### Strong BUY | -18.2% | W:SOS | MTF:-- | Fuzzy:31.9 | --
+BOH  ### Strong BUY | -18.2% | W:– | MTF:-- | Fuzzy:46.5 | --
+BEP  ### Strong BUY | -18.2% | W:SC | MTF:-- | Fuzzy:28.4 | --
+EURONEXT:EN  ### Strong BUY | -18.0% | W:– | MTF:-- | Fuzzy:37.0 | Industrials
+ZWS  ### Strong BUY | -17.9% | W:– | MTF:-- | Fuzzy:53.9 | --
+IRM  ### Strong BUY | -17.7% | W:A+AR | MTF:-- | Fuzzy:38.7 | --
+TPR  ### Strong BUY | -17.4% | W:– | MTF:-- | Fuzzy:58.7 | --
+NWL  ### Strong BUY | -17.4% | W:⚠ Dist | MTF:-- | Fuzzy:18.9 | --
+ELVN  ### Strong BUY | -17.3% | W:A+AR | MTF:-- | Fuzzy:51.9 | --
+JD  ### Strong BUY | -17.3% | W:– | MTF:-- | Fuzzy:26.5 | --
+MAA  ### Strong BUY | -17.3% | W:– | MTF:-- | Fuzzy:19.7 | --
+SON  ### Strong BUY | -17.2% | W:– | MTF:-- | Fuzzy:15.9 | --
+SAN  ### Strong BUY | -17.2% | W:⚠ Dist | MTF:-- | Fuzzy:10.6 | --
+KMX  ### Strong BUY | -17.1% | W:– | MTF:-- | Fuzzy:6.4 | --
+LYG  ### Strong BUY | -17.0% | W:– | MTF:-- | Fuzzy:16.9 | --
+NMCO  ### Strong BUY | -16.8% | W:– | MTF:-- | Fuzzy:40.5 | --
+NNN  ### Strong BUY | -16.6% | W:– | MTF:-- | Fuzzy:31.5 | --
+SRRK  ### Strong BUY | -16.5% | W:– | MTF:-- | Fuzzy:43.5 | --
+BCH  ### Strong BUY | -16.1% | W:– | MTF:-- | Fuzzy:10.2 | --
+POR  ### Strong BUY | -15.8% | W:A+AR | MTF:-- | Fuzzy:37.1 | --
+FOXF  ### Strong BUY | -15.4% | W:A+AR | MTF:-- | Fuzzy:33.1 | --
+PRAX  ### Strong BUY | -15.2% | W:– | MTF:-- | Fuzzy:43.9 | --
+EURONEXT:SGO  ### Strong BUY | -15.2% | W:– | MTF:-- | Fuzzy:30.4 | --
+DSU  ### Strong BUY | -15.1% | W:– | MTF:-- | Fuzzy:37.7 | --
+EURONEXT:BNP  ### Strong BUY | -15.0% | W:– | MTF:-- | Fuzzy:11.1 | --
+ALH  ### Strong BUY | -14.8% | W:SC | MTF:-- | Fuzzy:30.9 | --
+NAC  ### Strong BUY | -14.8% | W:⚠ Dist | MTF:-- | Fuzzy:37.5 | --
+MCHB  ### Strong BUY | -14.7% | W:SOS | MTF:-- | Fuzzy:38.3 | --
+NVST  ### Strong BUY | -14.6% | W:– | MTF:-- | Fuzzy:56.4 | --
+LSE:RR  ### Strong BUY | -14.5% | W:– | MTF:-- | Fuzzy:40.8 | Industrials
+ADC  ### Strong BUY | -14.5% | W:– | MTF:-- | Fuzzy:42.0 | --
+UE  ### Strong BUY | -14.4% | W:– | MTF:-- | Fuzzy:46.3 | --
+HNST  ### Strong BUY | -14.0% | W:SOS | MTF:-- | Fuzzy:50.5 | --
+FAF  ### Strong BUY | -14.0% | W:Spring | MTF:-- | Fuzzy:21.9 | --
+DSL  ### Strong BUY | -13.8% | W:– | MTF:-- | Fuzzy:37.5 | --
+FLR  ### Strong BUY | -13.7% | W:– | MTF:-- | Fuzzy:36.6 | --
+GE  ### Strong BUY | -13.7% | W:– | MTF:-- | Fuzzy:26.5 | --
+PRKS  ### Strong BUY | -13.6% | W:– | MTF:-- | Fuzzy:44.7 | --
+BME:SAN  ### Strong BUY | -13.5% | W:– | MTF:-- | Fuzzy:8.5 | Financial Services
+LSE:INF  ### Strong BUY | -13.5% | W:– | MTF:-- | Fuzzy:37.1 | Communication Services
+BSAC  ### Strong BUY | -13.5% | W:– | MTF:-- | Fuzzy:3.8 | --
+AKR  ### Strong BUY | -13.3% | W:Spring | MTF:-- | Fuzzy:40.6 | --
+WPM  ### Strong BUY | -13.2% | W:– | MTF:-- | Fuzzy:66.6 | --
+MIL:PST  ### Strong BUY | -13.1% | W:⚠ Dist | MTF:-- | Fuzzy:25.4 | Industrials
+PH  ### Strong BUY | -13.0% | W:– | MTF:-- | Fuzzy:40.8 | --
+STT  ### Strong BUY | -12.8% | W:⚠ Dist | MTF:-- | Fuzzy:31.5 | --
+ARMK  ### Strong BUY | -12.6% | W:⚠ Dist | MTF:-- | Fuzzy:12.8 | --
+UBS  ### Strong BUY | -12.5% | W:– | MTF:-- | Fuzzy:9.1 | --
+DEA  ### Strong BUY | -12.5% | W:– | MTF:-- | Fuzzy:31.7 | --
+NMR  ### Strong BUY | -12.1% | W:Spring | MTF:-- | Fuzzy:6.9 | --
+DB  ### Strong BUY | -12.1% | W:– | MTF:-- | Fuzzy:2.4 | --
+BPOP  ### Strong BUY | -12.0% | W:– | MTF:-- | Fuzzy:44.8 | --
+INVH  ### Strong BUY | -12.0% | W:SC | MTF:-- | Fuzzy:44.2 | --
+BME:BKT  ### Strong BUY | -11.7% | W:– | MTF:-- | Fuzzy:4.5 | Financial Services
+FHN  ### Strong BUY | -11.4% | W:A+AR | MTF:-- | Fuzzy:36.1 | --
+OM:ATCO-A  ### Strong BUY | -11.1% | W:– | MTF:-- | Fuzzy:60.6 | --
+BBVA  ### Strong BUY | -10.8% | W:SC | MTF:-- | Fuzzy:15.0 | --
+AEG  ### Strong BUY | -10.6% | W:– | MTF:-- | Fuzzy:26.1 | --
+AWF  ### Strong BUY | -10.5% | W:– | MTF:-- | Fuzzy:37.5 | --
+ALSN  ### Strong BUY | -9.9% | W:Spring | MTF:-- | Fuzzy:56.2 | --
+LNC  ### Strong BUY | -9.8% | W:– | MTF:-- | Fuzzy:22.3 | --
+LSE:MNG  ### Strong BUY | -9.8% | W:– | MTF:-- | Fuzzy:3.7 | Financial Services
+KRNY  ### Strong BUY | -9.6% | W:⚠ Dist | MTF:-- | Fuzzy:28.9 | --
+GCMG  ### Strong BUY | -9.5% | W:– | MTF:-- | Fuzzy:57.4 | --
+MIL:UNI  ### Strong BUY | -9.5% | W:– | MTF:-- | Fuzzy:29.7 | Financial Services
+AMP  ### Strong BUY | -9.5% | W:– | MTF:-- | Fuzzy:18.9 | --
+NTRS  ### Strong BUY | -9.3% | W:– | MTF:-- | Fuzzy:25.9 | --
+SIX:UBSG  ### Strong BUY | -9.2% | W:– | MTF:-- | Fuzzy:10.7 | Financial Services
+ESS  ### Strong BUY | -9.2% | W:⚠ Dist | MTF:-- | Fuzzy:35.9 | --
+EURONEXT:KBC  ### Strong BUY | -9.0% | W:⚠ Dist | MTF:-- | Fuzzy:33.6 | Financial Services
+PSTL  ### Strong BUY | -9.0% | W:⚠ Dist | MTF:-- | Fuzzy:32.7 | --
+CSWC  ### Strong BUY | -8.8% | W:– | MTF:-- | Fuzzy:20.8 | --
+OM:NDA-SE  ### Strong BUY | -8.7% | W:⚠ Dist | MTF:-- | Fuzzy:5.4 | Financial Services
+JAZZ  ### Strong BUY | -8.6% | W:⚠ Dist | MTF:-- | Fuzzy:45.4 | --
+BBDC  ### Strong BUY | -8.2% | W:– | MTF:-- | Fuzzy:25.8 | --
+RJF  ### Strong BUY | -8.2% | W:– | MTF:-- | Fuzzy:41.1 | --
+BME:MAP  ### Strong BUY | -8.1% | W:– | MTF:-- | Fuzzy:25.9 | Financial Services
+CBSH  ### Strong BUY | -8.0% | W:– | MTF:-- | Fuzzy:38.5 | --
+PRMB  ### Strong BUY | -7.9% | W:⚠ Dist | MTF:-- | Fuzzy:23.0 | --
+MIL:FBK  ### Strong BUY | -7.7% | W:– | MTF:-- | Fuzzy:39.7 | --
+BME:CABK  ### Strong BUY | -7.4% | W:Spring | MTF:-- | Fuzzy:28.0 | Financial Services
+MIL:AZM  ### Strong BUY | -7.0% | W:SOS | MTF:-- | Fuzzy:41.0 | Financial Services
+OM:SEB-A  ### Strong BUY | -7.0% | W:⚠ Dist | MTF:-- | Fuzzy:6.3 | --
+SRTA  ### Strong BUY | -6.9% | W:– | MTF:-- | Fuzzy:41.0 | --
+EURONEXT:AGN  ### Strong BUY | -6.9% | W:– | MTF:-- | Fuzzy:26.9 | --
+MIL:MB  ### Strong BUY | -6.9% | W:⚠ Dist | MTF:-- | Fuzzy:13.5 | Financial Services
+BME:BBVA  ### Strong BUY | -6.8% | W:Spring | MTF:-- | Fuzzy:16.0 | --
+MIL:ISP  ### Strong BUY | -6.8% | W:– | MTF:-- | Fuzzy:6.0 | Financial Services
+LSE:STAN  ### Strong BUY | -6.8% | W:⚠ Dist | MTF:-- | Fuzzy:19.3 | Financial Services
+XETR:DBK  ### Strong BUY | -6.7% | W:Spring | MTF:-- | Fuzzy:3.7 | Financial Services
+JPM  ### Strong BUY | -6.7% | W:– | MTF:-- | Fuzzy:12.5 | --
+BME:UNI  ### Strong BUY | -6.0% | W:Spring | MTF:-- | Fuzzy:38.3 | Financial Services
+XETR:SIE  ### Strong BUY | -5.3% | W:– | MTF:-- | Fuzzy:39.3 | Industrials
+EXG  ### Strong BUY | -5.3% | W:– | MTF:-- | Fuzzy:41.0 | --
+CZR  ### Strong BUY | -5.2% | W:SOS | MTF:-- | Fuzzy:31.3 | --
+PFG  ### Strong BUY | -4.8% | W:– | MTF:-- | Fuzzy:53.4 | --
+MIL:UCG  ### Strong BUY | -2.0% | W:– | MTF:-- | Fuzzy:15.4 | Financial Services
+DCTH  ### Strong BUY | -0.1% | W:– | MTF:-- | Fuzzy:60.0 | --
+MIL:BMED  ### Strong BUY | --0.8% | W:– | MTF:-- | Fuzzy:45.9 | --
+### ── BUY (98) ──
+SPCE  ### BUY | -67.8% | W:– | MTF:-- | Fuzzy:46.2 | --
+OPTU  ### BUY | -62.5% | W:A+AR | MTF:-- | Fuzzy:58.7 | --
+INO  ### BUY | -44.5% | W:⚠ Dist | MTF:-- | Fuzzy:87.1 | --
+GROY  ### BUY | -41.5% | W:– | MTF:-- | Fuzzy:72.7 | --
+SMMT  ### BUY | -39.0% | W:⚠ Dist | MTF:-- | Fuzzy:60.6 | --
+CMRC  ### BUY | -33.8% | W:SOS | MTF:-- | Fuzzy:47.5 | --
+DNA  ### BUY | -32.1% | W:⚠ Dist | MTF:-- | Fuzzy:64.3 | --
+LSE:MRO  ### BUY | -28.9% | W:A+AR | MTF:-- | Fuzzy:34.8 | Industrials
+DUOL  ### BUY | -27.7% | W:⚠ Dist | MTF:-- | Fuzzy:78.5* | --
+OLLI  ### BUY | -27.3% | W:Faza B | MTF:-- | Fuzzy:52.0 | --
+AAUC  ### BUY | -26.9% | W:Faza B | MTF:-- | Fuzzy:51.6 | --
+ALLT  ### BUY | -25.0% | W:⚠ Dist | MTF:-- | Fuzzy:61.7 | --
+WLTH  ### BUY | -24.4% | W:A+AR | MTF:-- | Fuzzy:64.5 | --
+TSLX  ### BUY | -21.5% | W:– | MTF:-- | Fuzzy:25.5 | --
+AEM  ### BUY | -21.3% | W:– | MTF:-- | Fuzzy:63.2 | --
+OR  ### BUY | -21.3% | W:– | MTF:-- | Fuzzy:63.3 | --
+FSCO  ### BUY | -21.0% | W:– | MTF:-- | Fuzzy:47.5 | --
+IAG  ### BUY | -20.2% | W:– | MTF:-- | Fuzzy:63.6 | --
+UHS  ### BUY | -20.0% | W:– | MTF:-- | Fuzzy:49.0 | --
+ALMR  ### BUY | -19.6% | W:⚠ Dist | MTF:-- | Fuzzy:51.8 | --
+EURONEXT:LR  ### BUY | -18.0% | W:– | MTF:-- | Fuzzy:54.3 | --
+BXSL  ### BUY | -16.3% | W:Spring | MTF:-- | Fuzzy:24.3 | --
+SKE  ### BUY | -15.6% | W:A+AR | MTF:-- | Fuzzy:49.3 | --
+MNTK  ### BUY | -15.2% | W:A+AR | MTF:-- | Fuzzy:41.6 | --
+MRVI  ### BUY | -14.9% | W:– | MTF:-- | Fuzzy:22.7 | --
+PS  ### BUY | -14.0% | W:– | MTF:-- | Fuzzy:57.9 | --
+AZTA  ### BUY | -11.8% | W:⚠ Dist | MTF:-- | Fuzzy:56.4 | --
+FOXA  ### BUY | -11.4% | W:Faza B | MTF:-- | Fuzzy:54.8 | --
+FOX  ### BUY | -11.2% | W:Spring | MTF:-- | Fuzzy:54.7 | --
+DC  ### BUY | -11.0% | W:SOS | MTF:-- | Fuzzy:48.1 | --
+LXFR  ### BUY | -11.0% | W:A+AR | MTF:-- | Fuzzy:31.0 | --
+DLO  ### BUY | -10.9% | W:Faza B | MTF:-- | Fuzzy:67.6 | --
+RVMD  ### BUY | -10.8% | W:– | MTF:-- | Fuzzy:50.0 | --
+OM:SAND  ### BUY | -10.1% | W:– | MTF:-- | Fuzzy:49.7 | Industrials
+VGZ  ### BUY | -9.9% | W:A+AR | MTF:-- | Fuzzy:45.5 | --
+AMC  ### BUY | -9.8% | W:Faza B | MTF:-- | Fuzzy:35.3 | --
+TKNO  ### BUY | -9.8% | W:⚠ Dist | MTF:-- | Fuzzy:45.7 | --
+BTG  ### BUY | -9.7% | W:– | MTF:-- | Fuzzy:51.0 | --
+CRON  ### BUY | -9.5% | W:– | MTF:-- | Fuzzy:50.6 | --
+CRCT  ### BUY | -9.4% | W:– | MTF:-- | Fuzzy:75.0 | --
+HCA  ### BUY | -9.3% | W:– | MTF:-- | Fuzzy:45.6 | --
+GEO  ### BUY | -9.1% | W:– | MTF:-- | Fuzzy:35.8 | --
+NHP  ### BUY | -8.6% | W:– | MTF:-- | Fuzzy:18.5 | --
+CHYM  ### BUY | -8.5% | W:⚠ Dist | MTF:-- | Fuzzy:60.0 | --
+GDOT  ### BUY | -8.4% | W:Spring | MTF:-- | Fuzzy:30.6 | --
+FNV  ### BUY | -7.8% | W:– | MTF:-- | Fuzzy:62.3 | --
+RGLD  ### BUY | -7.7% | W:A+AR | MTF:-- | Fuzzy:56.9 | --
+NEM  ### BUY | -7.5% | W:– | MTF:-- | Fuzzy:68.1 | --
+ZLAB  ### BUY | -7.4% | W:– | MTF:-- | Fuzzy:56.5 | --
+ENIC  ### BUY | -6.8% | W:– | MTF:-- | Fuzzy:38.0 | --
+LFST  ### BUY | -6.8% | W:⚠ Dist | MTF:-- | Fuzzy:46.2 | --
+LCLN  ### BUY | -6.1% | W:– | MTF:-- | Fuzzy:38.1 | --
+CGAU  ### BUY | -6.0% | W:– | MTF:-- | Fuzzy:58.2 | --
+HNI  ### BUY | -5.8% | W:– | MTF:-- | Fuzzy:37.5 | --
+CLBK  ### BUY | -5.4% | W:⚠ Dist | MTF:-- | Fuzzy:28.4 | --
+U  ### BUY | -5.2% | W:SOS | MTF:-- | Fuzzy:55.3 | --
+XETR:RWE  ### BUY | -5.2% | W:– | MTF:-- | Fuzzy:45.2 | --
+TEM  ### BUY | -5.2% | W:– | MTF:-- | Fuzzy:37.4 | --
+BATRK  ### BUY | -4.3% | W:⚠ Dist | MTF:-- | Fuzzy:19.5 | --
+DE  ### BUY | -4.2% | W:– | MTF:-- | Fuzzy:37.5 | --
+MRNA  ### BUY | -4.2% | W:⚠ Dist | MTF:-- | Fuzzy:60.0 | --
+THC  ### BUY | -4.1% | W:– | MTF:-- | Fuzzy:53.0 | --
+SOLV  ### BUY | -4.0% | W:– | MTF:-- | Fuzzy:36.4 | --
+OSBC  ### BUY | -3.7% | W:– | MTF:-- | Fuzzy:45.4 | --
+BRKR  ### BUY | -3.5% | W:Spring | MTF:-- | Fuzzy:37.9 | --
+WPP  ### BUY | -3.4% | W:– | MTF:-- | Fuzzy:11.9 | --
+SEIC  ### BUY | -3.2% | W:⚠ Dist | MTF:-- | Fuzzy:68.5 | --
+IEX  ### BUY | -3.2% | W:⚠ Dist | MTF:-- | Fuzzy:56.2 | --
+ELF  ### BUY | -3.1% | W:A+AR | MTF:-- | Fuzzy:49.9 | --
+ETON  ### BUY | -3.0% | W:⚠ Dist | MTF:-- | Fuzzy:46.2 | --
+MIL:BMPS  ### BUY | -2.8% | W:SOS | MTF:-- | Fuzzy:11.1 | Financial Services
+TGT  ### BUY | -2.8% | W:SC | MTF:-- | Fuzzy:30.0 | --
+WAB  ### BUY | -2.8% | W:– | MTF:-- | Fuzzy:35.2 | --
+OABI  ### BUY | -2.8% | W:⚠ Dist | MTF:-- | Fuzzy:55.0 | --
+EPC  ### BUY | -2.7% | W:SOS | MTF:-- | Fuzzy:41.7 | --
+LSE:WPP  ### BUY | -2.7% | W:A+AR | MTF:-- | Fuzzy:11.5 | --
+RGR  ### BUY | -2.7% | W:⚠ Dist | MTF:-- | Fuzzy:35.0 | --
+EXEL  ### BUY | -2.6% | W:– | MTF:-- | Fuzzy:72.9 | --
+AAMI  ### BUY | -2.5% | W:SOS | MTF:-- | Fuzzy:55.7 | --
+PUBM  ### BUY | -2.3% | W:SOS | MTF:-- | Fuzzy:58.4 | --
+OM:SKF-B  ### BUY | -1.8% | W:– | MTF:-- | Fuzzy:40.4 | Industrials
+ADPT  ### BUY | -1.7% | W:Faza B | MTF:-- | Fuzzy:59.4 | --
+A  ### BUY | -1.5% | W:– | MTF:-- | Fuzzy:63.4 | --
+EURONEXT:ABN  ### BUY | -1.4% | W:– | MTF:-- | Fuzzy:19.2 | Financial Services
+EMR  ### BUY | -1.4% | W:⚠ Dist | MTF:-- | Fuzzy:42.8 | --
+AAPL  ### BUY | -1.3% | W:Faza B | MTF:-- | Fuzzy:61.3 | --
+PLSE  ### BUY | -1.3% | W:⚠ Dist | MTF:-- | Fuzzy:38.0 | --
+WAT  ### BUY | -1.2% | W:SC | MTF:-- | Fuzzy:67.4 | --
+SDGR  ### BUY | -1.2% | W:⚠ Dist | MTF:-- | Fuzzy:55.0 | --
+GFR  ### BUY | -1.0% | W:⚠ Dist | MTF:-- | Fuzzy:54.4 | --
+GO  ### BUY | -1.0% | W:– | MTF:-- | Fuzzy:16.1 | --
+SLAB  ### BUY | -0.8% | W:SC | MTF:-- | Fuzzy:75.0 | --
+MGNI  ### BUY | -0.7% | W:– | MTF:-- | Fuzzy:56.7 | --
+PRGO  ### BUY | -0.4% | W:A+AR | MTF:-- | Fuzzy:35.4 | --
+TBBB  ### BUY | -0.4% | W:– | MTF:-- | Fuzzy:10.7 | --
+TECH  ### BUY | -0.1% | W:Spring | MTF:-- | Fuzzy:56.9 | --
+BME:SAB  ### BUY | --0.1% | W:– | MTF:-- | Fuzzy:13.7 | Financial Services
+OM:SWED-A  ### BUY | --0.3% | W:– | MTF:-- | Fuzzy:18.9 | Financial Services
+### ── Turning Up (259) ──
+FRMI  ### Turning Up | -93.0% | W:– | MTF:-- | Fuzzy:68.7 | --
+EOSE  ### Turning Up | -90.4% | W:Spring | MTF:-- | Fuzzy:47.1 | --
+CCOI  ### Turning Up | -84.5% | W:A+AR | MTF:-- | Fuzzy:61.5 | --
+BRUN  ### Turning Up | -84.0% | W:⚠ Dist | MTF:-- | Fuzzy:40.0 | --
+RR  ### Turning Up | -83.1% | W:– | MTF:-- | Fuzzy:65.2 | --
+FUBO  ### Turning Up | -83.0% | W:– | MTF:-- | Fuzzy:20.5 | --
+FAC  ### Turning Up | -82.4% | W:A+AR | MTF:-- | Fuzzy:53.8 | --
+PSQL  ### Turning Up | -82.1% | W:– | MTF:-- | Fuzzy:74.5 | --
+BKKT  ### Turning Up | -79.6% | W:Spring | MTF:-- | Fuzzy:55.0 | --
+BAK  ### Turning Up | -79.2% | W:⚠ Dist | MTF:-- | Fuzzy:29.4 | --
+ADTN  ### Turning Up | -78.5% | W:⚠ Dist | MTF:-- | Fuzzy:44.4 | --
+VNET  ### Turning Up | -77.3% | W:– | MTF:-- | Fuzzy:35.3 | --
+FULC  ### Turning Up | -76.4% | W:– | MTF:-- | Fuzzy:62.5 | --
+ALLO  ### Turning Up | -76.2% | W:– | MTF:-- | Fuzzy:62.5 | --
+DGXX  ### Turning Up | -75.7% | W:Spring | MTF:-- | Fuzzy:50.0 | --
+SGML  ### Turning Up | -75.7% | W:A+AR | MTF:-- | Fuzzy:21.0 | --
+SHAZ  ### Turning Up | -75.5% | W:Faza B | MTF:-- | Fuzzy:36.6 | --
+NAK  ### Turning Up | -75.2% | W:– | MTF:-- | Fuzzy:53.8 | --
+MRAM  ### Turning Up | -74.9% | W:A+AR | MTF:-- | Fuzzy:75.0 | --
+UUUU  ### Turning Up | -73.8% | W:– | MTF:-- | Fuzzy:46.4 | --
+KEEL  ### Turning Up | -73.4% | W:A+AR | MTF:-- | Fuzzy:43.5 | --
+ITG  ### Turning Up | -72.1% | W:– | MTF:-- | Fuzzy:43.6 | --
+FCEL  ### Turning Up | -71.4% | W:⚠ Dist | MTF:-- | Fuzzy:60.0 | --
+STRL  ### Turning Up | -71.1% | W:⚠ Dist | MTF:-- | Fuzzy:72.0 | --
+AVTX  ### Turning Up | -70.0% | W:⚠ Dist | MTF:-- | Fuzzy:75.0 | --
+IREN  ### Turning Up | -69.7% | W:– | MTF:-- | Fuzzy:58.0 | --
+ICHR  ### Turning Up | -69.7% | W:⚠ Dist | MTF:-- | Fuzzy:58.2 | --
+USAS  ### Turning Up | -68.7% | W:Spring | MTF:-- | Fuzzy:50.0 | --
+FIGR  ### Turning Up | -68.6% | W:– | MTF:2/5 | Fuzzy:90.3 | --
+RXT  ### Turning Up | -68.4% | W:⚠ Dist | MTF:-- | Fuzzy:35.2 | --
+BTDR  ### Turning Up | -68.1% | W:– | MTF:-- | Fuzzy:34.1 | --
+GRRR  ### Turning Up | -68.1% | W:– | MTF:-- | Fuzzy:63.5 | --
+VPG  ### Turning Up | -67.9% | W:⚠ Dist | MTF:-- | Fuzzy:73.6 | --
+SATL  ### Turning Up | -67.0% | W:⚠ Dist | MTF:-- | Fuzzy:72.5 | --
+MLYS  ### Turning Up | -66.8% | W:– | MTF:-- | Fuzzy:68.7 | --
+TTMI  ### Turning Up | -66.3% | W:⚠ Dist | MTF:-- | Fuzzy:57.7 | --
+HIVE  ### Turning Up | -66.1% | W:SOS | MTF:-- | Fuzzy:41.0 | --
+OPTX  ### Turning Up | -64.8% | W:SOS | MTF:-- | Fuzzy:43.3 | --
+CLSK  ### Turning Up | -64.0% | W:– | MTF:-- | Fuzzy:69.4 | --
+AMKR  ### Turning Up | -63.8% | W:Spring | MTF:-- | Fuzzy:66.5 | --
+WDC  ### Turning Up | -63.8% | W:– | MTF:-- | Fuzzy:86.4* | --
+HYLN  ### Turning Up | -63.0% | W:⚠ Dist | MTF:-- | Fuzzy:55.0 | --
+WRN  ### Turning Up | -62.9% | W:SOS | MTF:-- | Fuzzy:64.3 | --
+VSH  ### Turning Up | -62.0% | W:⚠ Dist | MTF:-- | Fuzzy:60.4 | --
+IE  ### Turning Up | -61.7% | W:– | MTF:-- | Fuzzy:70.0 | --
+JMIA  ### Turning Up | -61.6% | W:– | MTF:1/5 M:RISK | Fuzzy:83.3 | --
+WGS  ### Turning Up | -61.5% | W:– | MTF:-- | Fuzzy:74.3 | --
+UMAC  ### Turning Up | -61.4% | W:⚠ Dist | MTF:-- | Fuzzy:66.0 | --
+PROK  ### Turning Up | -60.1% | W:– | MTF:-- | Fuzzy:54.5 | --
+EROC  ### Turning Up | -60.1% | W:– | MTF:-- | Fuzzy:46.7 | --
+GLXY  ### Turning Up | -59.8% | W:– | MTF:-- | Fuzzy:45.7 | --
+TSSI  ### Turning Up | -59.4% | W:Spring | MTF:-- | Fuzzy:66.2 | --
+AEHR  ### Turning Up | -59.4% | W:⚠ Dist | MTF:-- | Fuzzy:71.6 | --
+ASM  ### Turning Up | -59.0% | W:SOS | MTF:3/5 M:RISK | Fuzzy:78.7 | --
+PALI  ### Turning Up | -58.4% | W:⚠ Dist | MTF:1/5 M:RISK | Fuzzy:85.7 | --
+OCUL  ### Turning Up | -58.3% | W:Spring | MTF:-- | Fuzzy:73.2 | --
+AMSC  ### Turning Up | -57.9% | W:– | MTF:-- | Fuzzy:58.9 | --
+SCTX  ### Turning Up | -57.9% | W:– | MTF:1/5 | Fuzzy:80.1* | --
+RBBN  ### Turning Up | -57.8% | W:– | MTF:-- | Fuzzy:64.2 | --
+IESC  ### Turning Up | -57.4% | W:⚠ Dist | MTF:-- | Fuzzy:81.0 | --
+YDES  ### Turning Up | -57.3% | W:– | MTF:-- | Fuzzy:53.1 | --
+SYM  ### Turning Up | -57.0% | W:– | MTF:-- | Fuzzy:62.1 | --
+POWL  ### Turning Up | -56.8% | W:– | MTF:2/5 M:RISK | Fuzzy:84.6* | --
+THM  ### Turning Up | -56.4% | W:A+AR | MTF:-- | Fuzzy:62.5 | --
+GFS  ### Turning Up | -56.2% | W:⚠ Dist | MTF:-- | Fuzzy:59.0 | --
+STX  ### Turning Up | -55.8% | W:– | MTF:-- | Fuzzy:77.7 | --
+NUVB  ### Turning Up | -55.4% | W:⚠ Dist | MTF:-- | Fuzzy:75.0 | --
+APMD  ### Turning Up | -55.2% | W:– | MTF:-- | Fuzzy:75.0 | --
+HL  ### Turning Up | -54.9% | W:Spring | MTF:3/5 M:RISK | Fuzzy:78.5* | --
+TTGT  ### Turning Up | -54.9% | W:SC | MTF:-- | Fuzzy:69.8 | --
+LPL  ### Turning Up | -54.7% | W:Spring | MTF:-- | Fuzzy:25.0 | --
+INFQ  ### Turning Up | -54.6% | W:– | MTF:-- | Fuzzy:61.7 | --
+VECO  ### Turning Up | -54.3% | W:⚠ Dist | MTF:-- | Fuzzy:71.8 | --
+SCZM  ### Turning Up | -54.2% | W:SOS | MTF:3/5 M:RISK | Fuzzy:72.9 | --
+GDS  ### Turning Up | -54.2% | W:– | MTF:-- | Fuzzy:39.6 | --
+SIGA  ### Turning Up | -54.1% | W:– | MTF:1/5 | Fuzzy:95.0 | --
+SBSW  ### Turning Up | -53.5% | W:– | MTF:-- | Fuzzy:60.3 | --
+CLPT  ### Turning Up | -53.3% | W:⚠ Dist | MTF:-- | Fuzzy:60.0 | --
+FLEX  ### Turning Up | -53.2% | W:⚠ Dist | MTF:-- | Fuzzy:48.1 | --
+ADEA  ### Turning Up | -52.6% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:79.7 | --
+TSEM  ### Turning Up | -52.4% | W:⚠ Dist | MTF:-- | Fuzzy:66.0 | --
+ITRG  ### Turning Up | -51.5% | W:– | MTF:3/5 M:RISK | Fuzzy:75.1 | --
+VZLA  ### Turning Up | -51.3% | W:Spring | MTF:-- | Fuzzy:65.6 | --
+RBLX  ### Turning Up | -51.1% | W:A+AR | MTF:-- | Fuzzy:46.9 | --
+MP  ### Turning Up | -50.8% | W:– | MTF:-- | Fuzzy:48.0 | --
+ECG  ### Turning Up | -50.8% | W:⚠ Dist | MTF:-- | Fuzzy:68.0 | --
+KLAC  ### Turning Up | -50.7% | W:– | MTF:-- | Fuzzy:90.2 | --
+AG  ### Turning Up | -50.5% | W:– | MTF:-- | Fuzzy:65.6 | --
+AMBQ  ### Turning Up | -50.0% | W:SC | MTF:-- | Fuzzy:76.7 | --
+AMAT  ### Turning Up | -49.9% | W:⚠ Dist | MTF:-- | Fuzzy:93.8 | --
+ONTO  ### Turning Up | -49.8% | W:Spring | MTF:-- | Fuzzy:81.9 | --
+LRCX  ### Turning Up | -49.5% | W:– | MTF:-- | Fuzzy:99.4 | --
+SITM  ### Turning Up | -49.3% | W:⚠ Dist | MTF:-- | Fuzzy:75.0 | --
+KLIC  ### Turning Up | -49.2% | W:⚠ Dist | MTF:-- | Fuzzy:75.7 | --
+KOPN  ### Turning Up | -48.9% | W:⚠ Dist | MTF:-- | Fuzzy:65.6 | --
+COHR  ### Turning Up | -48.8% | W:⚠ Dist | MTF:-- | Fuzzy:73.5 | --
+GORO  ### Turning Up | -48.3% | W:SC | MTF:-- | Fuzzy:37.7 | --
+VRT  ### Turning Up | -47.2% | W:– | MTF:-- | Fuzzy:78.4 | --
+VIAV  ### Turning Up | -47.1% | W:A+AR | MTF:-- | Fuzzy:78.2 | --
+GENI  ### Turning Up | -46.4% | W:⚠ Dist | MTF:-- | Fuzzy:59.6 | --
+FIX  ### Turning Up | -46.3% | W:Spring | MTF:-- | Fuzzy:75.8 | --
+GRPN  ### Turning Up | -45.7% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:80.3* | --
+SSYS  ### Turning Up | -45.4% | W:– | MTF:-- | Fuzzy:70.0 | --
+STM  ### Turning Up | -45.3% | W:⚠ Dist | MTF:-- | Fuzzy:70.8 | --
+ANGX  ### Turning Up | -45.3% | W:⚠ Dist | MTF:-- | Fuzzy:64.1 | --
+EXK  ### Turning Up | -45.0% | W:– | MTF:-- | Fuzzy:48.3 | --
+IQMX  ### Turning Up | -45.0% | W:⚠ Dist | MTF:-- | Fuzzy:68.8 | --
+ACLS  ### Turning Up | -44.5% | W:– | MTF:-- | Fuzzy:80.3 | --
+CAT  ### Turning Up | -44.2% | W:A+AR | MTF:-- | Fuzzy:48.0 | --
+PDFS  ### Turning Up | -43.3% | W:– | MTF:-- | Fuzzy:78.9 | --
+IMMX  ### Turning Up | -43.2% | W:A+AR | MTF:-- | Fuzzy:69.0 | --
+VFF  ### Turning Up | -43.1% | W:Spring | MTF:-- | Fuzzy:69.8 | --
+XETR:IFX  ### Turning Up | -43.1% | W:– | MTF:-- | Fuzzy:64.3 | --
+GTX  ### Turning Up | -42.8% | W:– | MTF:-- | Fuzzy:56.9 | --
+NNDM  ### Turning Up | -42.2% | W:Spring | MTF:-- | Fuzzy:58.7 | --
+CMPS  ### Turning Up | -42.2% | W:⚠ Dist | MTF:-- | Fuzzy:71.5 | --
+ALKT  ### Turning Up | -41.9% | W:Spring | MTF:-- | Fuzzy:65.8 | --
+WBTN  ### Turning Up | -41.6% | W:SOS | MTF:-- | Fuzzy:52.5 | --
+JBL  ### Turning Up | -41.1% | W:⚠ Dist | MTF:-- | Fuzzy:47.2 | --
+MEI  ### Turning Up | -40.5% | W:– | MTF:-- | Fuzzy:52.6 | --
+RCUS  ### Turning Up | -40.3% | W:⚠ Dist | MTF:-- | Fuzzy:58.6 | --
+STTK  ### Turning Up | -40.1% | W:– | MTF:-- | Fuzzy:64.7 | --
+PAAS  ### Turning Up | -39.5% | W:– | MTF:3/5 M:RISK | Fuzzy:71.8* | --
+PAYP  ### Turning Up | -38.1% | W:– | MTF:-- | Fuzzy:55.0 | --
+NVT  ### Turning Up | -38.0% | W:– | MTF:-- | Fuzzy:56.4 | --
+ENS  ### Turning Up | -37.9% | W:SOS | MTF:-- | Fuzzy:65.8 | --
+ELE  ### Turning Up | -37.6% | W:SOS | MTF:-- | Fuzzy:70.8 | --
+DSGN  ### Turning Up | -37.4% | W:⚠ Dist | MTF:-- | Fuzzy:64.1 | --
+DMC  ### Turning Up | -36.0% | W:– | MTF:-- | Fuzzy:37.7 | --
+BVN  ### Turning Up | -35.3% | W:– | MTF:-- | Fuzzy:69.9 | --
+BFLY  ### Turning Up | -34.7% | W:SOS | MTF:-- | Fuzzy:67.8 | --
+BWA  ### Turning Up | -34.7% | W:⚠ Dist | MTF:-- | Fuzzy:48.0 | --
+PATH  ### Turning Up | -34.6% | W:Faza B | MTF:-- | Fuzzy:68.1 | --
+NTLA  ### Turning Up | -34.5% | W:A+AR | MTF:-- | Fuzzy:58.9 | --
+TNGX  ### Turning Up | -33.9% | W:Spring | MTF:-- | Fuzzy:59.5 | --
+IAUX  ### Turning Up | -33.5% | W:Spring | MTF:-- | Fuzzy:31.9 | --
+BSBR  ### Turning Up | -32.9% | W:Spring | MTF:1/5 M:RISK | Fuzzy:61.8 | --
+OSL:YAR  ### Turning Up | -31.9% | W:– | MTF:-- | Fuzzy:43.9 | Basic Materials
+DIOD  ### Turning Up | -31.8% | W:⚠ Dist | MTF:-- | Fuzzy:56.2 | --
+BPRE  ### Turning Up | -31.7% | W:– | MTF:0/5 | Fuzzy:55.7 | --
+SKM  ### Turning Up | -31.5% | W:⚠ Dist | MTF:-- | Fuzzy:58.4 | --
+EME  ### Turning Up | -31.4% | W:– | MTF:-- | Fuzzy:60.6 | --
+PACB  ### Turning Up | -31.4% | W:– | MTF:-- | Fuzzy:42.1 | --
+AMCX  ### Turning Up | -31.2% | W:⚠ Dist | MTF:-- | Fuzzy:48.8 | --
+MIL:PRY  ### Turning Up | -30.7% | W:– | MTF:-- | Fuzzy:52.1 | Industrials
+GEV  ### Turning Up | -30.7% | W:– | MTF:-- | Fuzzy:47.1 | --
+OOMA  ### Turning Up | -30.6% | W:SC | MTF:-- | Fuzzy:51.5 | --
+AGEN  ### Turning Up | -30.6% | W:⚠ Dist | MTF:-- | Fuzzy:44.2 | --
+LSE:RIO  ### Turning Up | -29.7% | W:– | MTF:-- | Fuzzy:61.2 | --
+BNTX  ### Turning Up | -29.4% | W:SOS | MTF:-- | Fuzzy:64.6 | --
+HSLV  ### Turning Up | -29.4% | W:– | MTF:-- | Fuzzy:52.8 | --
+HBM  ### Turning Up | -29.1% | W:– | MTF:-- | Fuzzy:46.0 | --
+GPRE  ### Turning Up | -28.9% | W:A+AR | MTF:-- | Fuzzy:42.0 | --
+NEXA  ### Turning Up | -28.7% | W:A+AR | MTF:-- | Fuzzy:25.3 | --
+ARIS  ### Turning Up | -28.6% | W:A+AR | MTF:-- | Fuzzy:68.1 | --
+GPW:XTB  ### Turning Up | -27.5% | W:SOS | MTF:1/5 | Fuzzy:80.6* | Financial Services
+FSM  ### Turning Up | -27.3% | W:– | MTF:2/5 M:RISK | Fuzzy:72.0* | --
+MTA  ### Turning Up | -27.2% | W:SOS | MTF:-- | Fuzzy:65.7 | --
+INNV  ### Turning Up | -27.1% | W:⚠ Dist | MTF:-- | Fuzzy:45.2 | --
+GGG  ### Turning Up | -27.0% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:75.8* | --
+EGO  ### Turning Up | -26.9% | W:SOS | MTF:-- | Fuzzy:68.9 | --
+MIL:IVG  ### Turning Up | -26.9% | W:⚠ Dist | MTF:-- | Fuzzy:24.1 | Industrials
+AMLX  ### Turning Up | -26.6% | W:⚠ Dist | MTF:-- | Fuzzy:55.7 | --
+SNDR  ### Turning Up | -26.4% | W:– | MTF:-- | Fuzzy:42.9 | --
+FDMT  ### Turning Up | -26.3% | W:– | MTF:-- | Fuzzy:50.1 | --
+LSE:ANTO  ### Turning Up | -26.1% | W:– | MTF:-- | Fuzzy:64.1 | Basic Materials
+KNX  ### Turning Up | -25.8% | W:– | MTF:-- | Fuzzy:36.5 | --
+PCVX  ### Turning Up | -25.6% | W:SC | MTF:-- | Fuzzy:53.0 | --
+ANGO  ### Turning Up | -25.6% | W:⚠ Dist | MTF:-- | Fuzzy:61.9 | --
+OPRA  ### Turning Up | -25.5% | W:Spring | MTF:-- | Fuzzy:66.2 | --
+JBHT  ### Turning Up | -25.2% | W:– | MTF:-- | Fuzzy:36.1 | --
+IDYA  ### Turning Up | -25.0% | W:SC | MTF:-- | Fuzzy:47.6 | --
+PWR  ### Turning Up | -25.0% | W:⚠ Dist | MTF:-- | Fuzzy:37.9 | --
+INGR  ### Turning Up | -24.9% | W:SC | MTF:-- | Fuzzy:55.7 | --
+SSRM  ### Turning Up | -24.8% | W:– | MTF:-- | Fuzzy:59.7 | --
+ETN  ### Turning Up | -24.8% | W:– | MTF:-- | Fuzzy:50.6 | --
+GMED  ### Turning Up | -24.7% | W:– | MTF:-- | Fuzzy:63.3 | --
+TLX  ### Turning Up | -24.6% | W:– | MTF:-- | Fuzzy:47.5 | --
+OSL:AKSO  ### Turning Up | -24.5% | W:– | MTF:-- | Fuzzy:58.7 | Energy
+ASML  ### Turning Up | -24.3% | W:⚠ Dist | MTF:-- | Fuzzy:75.6 | --
+GAP  ### Turning Up | -24.3% | W:– | MTF:-- | Fuzzy:44.8 | --
+CBT  ### Turning Up | -24.0% | W:Spring | MTF:-- | Fuzzy:48.3 | --
+LPLA  ### Turning Up | -23.7% | W:A+AR | MTF:-- | Fuzzy:34.2 | --
+EURONEXT:SU  ### Turning Up | -23.6% | W:SC | MTF:-- | Fuzzy:48.9 | --
+AVO  ### Turning Up | -23.3% | W:SOS | MTF:-- | Fuzzy:37.6 | --
+RIO  ### Turning Up | -23.3% | W:– | MTF:-- | Fuzzy:58.0 | --
+KN  ### Turning Up | -23.1% | W:A+AR | MTF:-- | Fuzzy:61.4 | --
+MLI  ### Turning Up | -23.0% | W:– | MTF:-- | Fuzzy:63.5 | --
+HCC  ### Turning Up | -22.9% | W:– | MTF:-- | Fuzzy:36.4 | --
+VOXR  ### Turning Up | -22.8% | W:– | MTF:-- | Fuzzy:58.6 | --
+OMF  ### Turning Up | -22.8% | W:Faza B | MTF:-- | Fuzzy:21.5 | --
+SIX:ABBN  ### Turning Up | -21.6% | W:– | MTF:-- | Fuzzy:58.6 | Industrials
+FCFS  ### Turning Up | -21.4% | W:– | MTF:-- | Fuzzy:54.3 | --
+AUGO  ### Turning Up | -21.1% | W:– | MTF:-- | Fuzzy:54.4 | --
+EURONEXT:CA  ### Turning Up | -21.0% | W:– | MTF:-- | Fuzzy:24.9 | --
+MATV  ### Turning Up | -20.7% | W:– | MTF:-- | Fuzzy:14.4 | --
+EPRX  ### Turning Up | -20.4% | W:SOS | MTF:-- | Fuzzy:60.4 | --
+ECAT  ### Turning Up | -19.6% | W:– | MTF:-- | Fuzzy:45.2 | --
+ETD  ### Turning Up | -19.5% | W:SOS | MTF:-- | Fuzzy:54.2 | --
+MT  ### Turning Up | -19.4% | W:– | MTF:-- | Fuzzy:23.4 | --
+NEWP  ### Turning Up | -19.1% | W:A+AR | MTF:-- | Fuzzy:50.3 | --
+INMD  ### Turning Up | -19.0% | W:– | MTF:-- | Fuzzy:71.1 | --
+VIRT  ### Turning Up | -17.7% | W:– | MTF:-- | Fuzzy:47.5 | --
+C  ### Turning Up | -17.6% | W:– | MTF:-- | Fuzzy:11.0 | --
+GPC  ### Turning Up | -17.1% | W:– | MTF:-- | Fuzzy:24.8 | --
+NWG  ### Turning Up | -17.0% | W:Faza B | MTF:-- | Fuzzy:12.4 | --
+GTES  ### Turning Up | -16.6% | W:– | MTF:-- | Fuzzy:44.8 | --
+SOPH  ### Turning Up | -16.6% | W:⚠ Dist | MTF:-- | Fuzzy:50.0 | --
+PSUS  ### Turning Up | -16.5% | W:– | MTF:-- | Fuzzy:5.0 | --
+HSBC  ### Turning Up | -16.4% | W:– | MTF:-- | Fuzzy:24.2 | --
+BHP  ### Turning Up | -16.1% | W:– | MTF:-- | Fuzzy:68.5 | --
+LSE:HSBA  ### Turning Up | -15.5% | W:SC | MTF:-- | Fuzzy:20.9 | Financial Services
+NTR  ### Turning Up | -15.3% | W:– | MTF:-- | Fuzzy:30.3 | --
+EURONEXT:MT  ### Turning Up | -15.0% | W:– | MTF:-- | Fuzzy:20.5 | Basic Materials
+MFG  ### Turning Up | -14.5% | W:– | MTF:-- | Fuzzy:20.3 | --
+ANET  ### Turning Up | -14.4% | W:– | MTF:-- | Fuzzy:79.4 | --
+IVZ  ### Turning Up | -14.1% | W:– | MTF:-- | Fuzzy:39.2 | --
+SHOO  ### Turning Up | -13.8% | W:– | MTF:-- | Fuzzy:43.1 | --
+ETY  ### Turning Up | -13.5% | W:– | MTF:-- | Fuzzy:37.5 | --
+SNPS  ### Turning Up | -13.4% | W:Spring | MTF:-- | Fuzzy:54.9 | --
+TEL  ### Turning Up | -13.4% | W:– | MTF:-- | Fuzzy:42.8 | --
+BRBS  ### Turning Up | -13.2% | W:– | MTF:-- | Fuzzy:30.1 | --
+NEO  ### Turning Up | -12.7% | W:Faza B | MTF:-- | Fuzzy:49.2 | --
+AYA  ### Turning Up | -12.7% | W:⚠ Dist | MTF:-- | Fuzzy:54.9 | --
+SXT  ### Turning Up | -12.3% | W:– | MTF:-- | Fuzzy:44.5 | --
+SMFG  ### Turning Up | -12.1% | W:– | MTF:-- | Fuzzy:9.4 | --
+KRO  ### Turning Up | -11.8% | W:– | MTF:-- | Fuzzy:27.7 | --
+ING  ### Turning Up | -11.5% | W:– | MTF:-- | Fuzzy:15.0 | --
+CNH  ### Turning Up | -11.3% | W:– | MTF:-- | Fuzzy:30.0 | --
+IOT  ### Turning Up | -11.0% | W:SOS | MTF:-- | Fuzzy:51.1 | --
+TECK  ### Turning Up | -10.9% | W:– | MTF:-- | Fuzzy:44.7 | --
+MUFG  ### Turning Up | -10.6% | W:– | MTF:-- | Fuzzy:29.3 | --
+DRTS  ### Turning Up | -10.6% | W:⚠ Dist | MTF:-- | Fuzzy:43.7 | --
+APH  ### Turning Up | -10.3% | W:– | MTF:-- | Fuzzy:59.7 | --
+OSL:AUTO  ### Turning Up | -10.0% | W:⚠ Dist | MTF:-- | Fuzzy:56.1 | Industrials
+CHEF  ### Turning Up | -9.5% | W:– | MTF:-- | Fuzzy:25.5 | --
+GGN  ### Turning Up | -8.8% | W:Spring | MTF:-- | Fuzzy:41.5 | --
+SENS  ### Turning Up | -7.9% | W:Faza B | MTF:-- | Fuzzy:51.2 | --
+TRMK  ### Turning Up | -7.2% | W:– | MTF:-- | Fuzzy:38.8 | --
+RAL  ### Turning Up | -7.2% | W:– | MTF:-- | Fuzzy:47.8 | --
+EURONEXT:INGA  ### Turning Up | -7.1% | W:– | MTF:-- | Fuzzy:18.9 | Financial Services
+CDNA  ### Turning Up | -7.1% | W:– | MTF:-- | Fuzzy:55.0 | --
+OM:EVO  ### Turning Up | -6.8% | W:A+AR | MTF:-- | Fuzzy:75.0 | Consumer Cyclical
+AOD  ### Turning Up | -6.7% | W:– | MTF:-- | Fuzzy:42.8 | --
+GPW:PEO  ### Turning Up | -6.1% | W:– | MTF:-- | Fuzzy:35.0 | Financial Services
+PRCH  ### Turning Up | -6.0% | W:– | MTF:-- | Fuzzy:36.4 | --
+MRK  ### Turning Up | -5.2% | W:– | MTF:-- | Fuzzy:66.0 | --
+AMPH  ### Turning Up | -5.2% | W:– | MTF:-- | Fuzzy:54.1 | --
+MET  ### Turning Up | -4.7% | W:– | MTF:-- | Fuzzy:29.7 | --
+CBLL  ### Turning Up | -4.5% | W:– | MTF:-- | Fuzzy:55.3 | --
+PK  ### Turning Up | -4.0% | W:– | MTF:-- | Fuzzy:27.8 | --
+MTW  ### Turning Up | -3.8% | W:⚠ Dist | MTF:-- | Fuzzy:22.4 | --
+AMTB  ### Turning Up | -2.9% | W:⚠ Dist | MTF:-- | Fuzzy:39.6 | --
+MSFT  ### Turning Up | -2.5% | W:Faza B | MTF:-- | Fuzzy:65.2 | --
+EQH  ### Turning Up | -2.5% | W:– | MTF:-- | Fuzzy:15.6 | --
+CRBG  ### Turning Up | -2.2% | W:Spring | MTF:-- | Fuzzy:26.7 | --
+HNGE  ### Turning Up | -2.2% | W:– | MTF:-- | Fuzzy:59.0 | --
+RGA  ### Turning Up | -2.1% | W:SOS | MTF:-- | Fuzzy:30.1 | --
+IQV  ### Turning Up | -2.0% | W:SOS | MTF:-- | Fuzzy:26.7 | --
