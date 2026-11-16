@@ -1,40 +1,44 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-11-13 12:28 UTC
-### Liczba tickerow: 34
+### Wygenerowano: 2026-11-16 12:25 UTC
+### Liczba tickerow: 38
 ###
-### ── Strong BUY (21) ──
-VCX  ### Strong BUY | -96.0% | W:A+AR | MTF:3/5 | Fuzzy:100.0 | --
-PHAT  ### Strong BUY | -66.0% | W:– | MTF:2/5 M:RISK | Fuzzy:92.0 | --
-TIGR  ### Strong BUY | -65.5% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:89.3 | --
-TTD  ### Strong BUY | -63.8% | W:A+AR | MTF:2/5 | Fuzzy:82.8 | --
-SCTX  ### Strong BUY | -57.1% | W:– | MTF:3/5 | Fuzzy:80.1* | --
-LMND  ### Strong BUY | -57.0% | W:– | MTF:4/5 M:RISK | Fuzzy:80.0 | --
-UTI  ### Strong BUY | -56.8% | W:SC | MTF:3/5 M:RISK | Fuzzy:71.2* | --
-CMTG  ### Strong BUY | -56.4% | W:– | MTF:4/5 | Fuzzy:76.9 | --
-ERII  ### Strong BUY | -56.0% | W:– | MTF:1/5 M:RISK | Fuzzy:77.1* | --
-PSEC  ### Strong BUY | -55.0% | W:SOS | MTF:2/5 M:RISK | Fuzzy:70.3 | --
-TLK  ### Strong BUY | -51.1% | W:– | MTF:4/5 M:RISK | Fuzzy:67.0* | --
-PLAB  ### Strong BUY | -50.2% | W:– | MTF:4/5 M:RISK | Fuzzy:75.5 | --
-CBIO  ### Strong BUY | -47.6% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:85.8 | --
-HLNE  ### Strong BUY | -39.7% | W:SC | MTF:3/5 | Fuzzy:78.6 | --
-OGC  ### Strong BUY | -37.1% | W:Spring | MTF:1/5 M:RISK | Fuzzy:76.0 | --
-MIAX  ### Strong BUY | -36.9% | W:– | MTF:1/5 M:RISK | Fuzzy:72.4 | --
-YELP  ### Strong BUY | -36.1% | W:– | MTF:1/5 M:RISK | Fuzzy:85.1 | --
-TBBK  ### Strong BUY | -33.7% | W:SC | MTF:4/5 M:RISK | Fuzzy:65.4 | --
-CRUS  ### Strong BUY | -32.5% | W:– | MTF:1/5 M:RISK | Fuzzy:86.7 | --
-CRTO  ### Strong BUY | -31.1% | W:SC | MTF:1/5 M:RISK | Fuzzy:67.0* | --
-PIPR  ### Strong BUY | -30.5% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:56.3 | --
-### ── Turning Up (13) ──
-FIGR  ### Turning Up | -67.1% | W:– | MTF:1/5 | Fuzzy:90.3 | --
-JMIA  ### Turning Up | -61.8% | W:– | MTF:1/5 M:RISK | Fuzzy:83.3 | --
-POWL  ### Turning Up | -56.8% | W:– | MTF:1/5 M:RISK | Fuzzy:84.5* | --
-CRDO  ### Turning Up | -54.7% | W:– | MTF:1/5 M:RISK | Fuzzy:90.0 | --
-ADEA  ### Turning Up | -51.5% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:79.9 | --
-RMBS  ### Turning Up | -51.2% | W:SOS | MTF:3/5 M:RISK | Fuzzy:85.7 | --
-CAMT  ### Turning Up | -51.2% | W:– | MTF:1/5 M:RISK | Fuzzy:77.9* | --
-AGBK  ### Turning Up | -48.2% | W:– | MTF:1/5 | Fuzzy:86.0 | --
-INO  ### Turning Up | -46.3% | W:⚠ Dist | MTF:3/5 | Fuzzy:79.3 | --
-SVM  ### Turning Up | -43.2% | W:– | MTF:1/5 M:RISK | Fuzzy:79.5* | --
-BSBR  ### Turning Up | -31.4% | W:Spring | MTF:1/5 M:RISK | Fuzzy:59.6 | --
-GPW:XTB  ### Turning Up | -25.8% | W:SOS | MTF:2/5 | Fuzzy:79.5* | Financial Services
+### ── Strong BUY (28) ──
+VCX  ### Strong BUY | -96.1% | W:A+AR | MTF:3/5 | Fuzzy:100.0 | --
+NGEN  ### Strong BUY | -70.2% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:78.8 | --
+PHAT  ### Strong BUY | -66.9% | W:– | MTF:4/5 M:RISK | Fuzzy:92.0 | --
+CURR  ### Strong BUY | -64.4% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:75.2 | --
+ECC  ### Strong BUY | -63.9% | W:SC | MTF:4/5 M:RISK | Fuzzy:84.4 | --
+TIGR  ### Strong BUY | -63.5% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:89.3 | --
+TTD  ### Strong BUY | -62.6% | W:A+AR | MTF:2/5 | Fuzzy:82.8 | --
+UTI  ### Strong BUY | -57.2% | W:SC | MTF:3/5 M:RISK | Fuzzy:71.2* | --
+CMTG  ### Strong BUY | -55.8% | W:– | MTF:4/5 | Fuzzy:76.9 | --
+LMND  ### Strong BUY | -55.8% | W:– | MTF:2/5 M:RISK | Fuzzy:80.0 | --
+ERII  ### Strong BUY | -55.4% | W:– | MTF:3/5 M:RISK | Fuzzy:77.1* | --
+PSEC  ### Strong BUY | -53.4% | W:SOS | MTF:2/5 M:RISK | Fuzzy:70.3 | --
+PLAB  ### Strong BUY | -50.8% | W:– | MTF:4/5 M:RISK | Fuzzy:75.4 | --
+TLK  ### Strong BUY | -50.4% | W:– | MTF:2/5 M:RISK | Fuzzy:67.0* | --
+CBIO  ### Strong BUY | -48.4% | W:⚠ Dist | MTF:3/5 M:RISK | Fuzzy:85.6 | --
+OSL:NHY  ### Strong BUY | -43.9% | W:– | MTF:4/5 M:RISK | Fuzzy:67.7 | --
+HLNE  ### Strong BUY | -39.8% | W:SC | MTF:3/5 | Fuzzy:78.7 | --
+OGC  ### Strong BUY | -37.8% | W:Spring | MTF:3/5 M:RISK | Fuzzy:76.3 | --
+YELP  ### Strong BUY | -35.9% | W:– | MTF:3/5 M:RISK | Fuzzy:85.0 | --
+WSE  ### Strong BUY | -35.7% | W:– | MTF:2/5 | Fuzzy:81.9 | --
+MIAX  ### Strong BUY | -35.1% | W:– | MTF:2/5 | Fuzzy:71.2 | --
+CRUS  ### Strong BUY | -33.4% | W:– | MTF:1/5 M:RISK | Fuzzy:87.3 | --
+TBBK  ### Strong BUY | -33.4% | W:SC | MTF:4/5 M:RISK | Fuzzy:65.0 | --
+CLM  ### Strong BUY | -31.3% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:64.7 | --
+PIPR  ### Strong BUY | -30.3% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:56.0 | --
+CRF  ### Strong BUY | -30.3% | W:SC | MTF:2/5 M:RISK | Fuzzy:63.0 | --
+MIL:MONC  ### Strong BUY | -25.8% | W:– | MTF:1/5 M:RISK | Fuzzy:73.0* | --
+GPW:XTB  ### Strong BUY | -24.6% | W:SOS | MTF:3/5 | Fuzzy:78.7* | --
+### ── Turning Up (10) ──
+FIGR  ### Turning Up | -67.7% | W:– | MTF:1/5 | Fuzzy:87.2 | --
+SCTX  ### Turning Up | -58.7% | W:– | MTF:2/5 | Fuzzy:80.1* | --
+POWL  ### Turning Up | -56.5% | W:– | MTF:1/5 M:RISK | Fuzzy:84.7* | --
+ADEA  ### Turning Up | -52.8% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:79.6 | --
+AGBK  ### Turning Up | -48.7% | W:– | MTF:0/5 | Fuzzy:86.0 | --
+INO  ### Turning Up | -47.4% | W:⚠ Dist | MTF:3/5 | Fuzzy:79.3 | --
+SVM  ### Turning Up | -45.1% | W:– | MTF:2/5 M:RISK | Fuzzy:80.2* | --
+AQST  ### Turning Up | -41.9% | W:Spring | MTF:1/5 M:RISK | Fuzzy:89.1 | --
+BSBR  ### Turning Up | -31.0% | W:Spring | MTF:1/5 M:RISK | Fuzzy:59.0 | --
 GGG  ### Turning Up | -24.3% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:74.0* | --
