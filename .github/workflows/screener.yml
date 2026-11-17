@@ -36,12 +36,32 @@ jobs:
           python -m pip install --upgrade pip
           pip install yfinance pandas numpy requests
 
+      # CACHE: fundamenty i daty wyników (.cache/) przechodzą między przebiegami. Runner startuje "na zimno",
+      # więc bez tego kroku cache 24h w screener.py nie działa. restore-keys bierze NAJNOWSZY zapis z gałęzi.
+      - name: Przywróć cache Yahoo (fundamenty, daty wyników)
+        id: yf-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache
+          key: yf-cache-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            yf-cache-
+
       - name: Run screener
         run: |
           python scripts/screener.py
         env:
           PYTHONUNBUFFERED: "1"
           WP_API_TOKEN: ${{ secrets.WP_API_TOKEN }}
+
+      # always(): częściowy postęp (pobrane już rekordy) zostaje także, gdy późniejszy krok się wywali.
+      # Unikalny klucz na każdy przebieg; GitHub sam usuwa najstarsze wpisy (limit 10 GB, 7 dni bez użycia).
+      - name: Zapisz cache Yahoo
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .cache
+          key: yf-cache-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Save dated copy of results
         run: |
@@ -51,6 +71,14 @@ jobs:
              results/results_main_${DATE}.json
 
           echo "✅ Saved results_main_${DATE}.json"
+
+          # Lista Early D1 (nowa w screener.py): kopia datowana, żeby n8n/generator miał stały adres pliku.
+          # Bez czyszczenia po wieku: na runnerze po checkout wszystkie pliki mają świeży mtime
+          # (jak w results_main_*, gdzie `-mtime +30` nic nie usuwa), a plik waży ~35 KB/dzień.
+          if [ -f results/results_early.json ]; then
+            cp results/results_early.json results/results_early_${DATE}.json
+            echo "✅ Saved results_early_${DATE}.json"
+          fi
 
           find results/ \
             -name 'results_main_*.json' \
@@ -120,6 +148,33 @@ jobs:
           print("----------------------------------------")
           PY
 
+      # Kontrola jakości: gdy Yahoo odmawia (401) przy dużej współbieżności, rekordy bez sektora/EPS
+      # przechodzą przez filter_main ("brak danych = przepuszczamy"). Tylko ostrzeżenie, bez przerywania.
+      - name: Kontrola kompletności danych (ostrzeżenie)
+        run: |
+          python3 <<'PY'
+          import json, os
+          main = json.load(open("results/results_main.json", encoding="utf-8"))
+          n = len(main)
+          no_sector = sum(1 for r in main if r.get("sector") in (None, "--"))
+          no_eps    = sum(1 for r in main if r.get("eps_ttm") is None)
+          no_roic   = sum(1 for r in main if r.get("roic") is None)
+          incompl   = sum(1 for r in main if r.get("data_incomplete"))
+          lines = [
+              "### Kompletność danych – screener główny",
+              "| Metryka | Liczba | % listy |", "|---|---|---|",
+          ]
+          for label, v in (("brak sektora", no_sector), ("brak EPS", no_eps),
+                           ("brak ROIC", no_roic), ("data_incomplete po retry", incompl)):
+              lines.append(f"| {label} | {v} | {round(100*v/n) if n else 0}% |")
+          summary = "\n".join(lines)
+          print(summary)
+          if os.environ.get("GITHUB_STEP_SUMMARY"):
+              open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8").write(summary + "\n")
+          if n and no_sector / n > 0.3:
+              print(f"::warning::{no_sector}/{n} pozycji listy głównej bez sektora/nazwy (Yahoo 401?) - filtry fundamentalne mogły być pominięte")
+          PY
+
       - name: Generate Claude prompt file
         run: |
           if [ -f scripts/make_prompt.py ]; then
@@ -154,6 +209,8 @@ jobs:
   # "github-pages" zdąży być widoczny w API (unika race condition z 2026-11-17).
   deploy:
     needs: run-screener
+    # Tylko z main: test z gałęzi (workflow_dispatch) nie może podmieniać strony GitHub Pages.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -172,6 +229,8 @@ jobs:
   # i niezależnie od jego wyniku.
   notify-n8n:
     needs: run-screener
+    # Tylko z main: przebieg testowy z gałęzi nie może wołać webhooka n8n (publikacja na stronie).
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
