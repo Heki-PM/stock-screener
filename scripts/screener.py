@@ -30,6 +30,21 @@ CHANGELOG:
   TV LIST #2   – MTF score i Monthly Risk w komentarzu każdej linii watchlisty
   SORT #4      – sortowanie main_results po Fazie 3: tech_score*2 + mtf_score
   EPS GROWTH #6– calc_tech_score: +1 za EPS QoQ >= +15% (akceleracja zysku)
+  OPT 6        – prefiltr płynności na danych W1 przed D1/fundamentami (mniej zapytań do Yahoo)
+  NEG CACHE    – odrzucenia Cap/Vol zapamiętywane w cache (bez 4 retry co run)
+  SORT RAW     – sortowanie po surowym tech_score (bez klipu 12 = mniej remisów)
+  STOP LOSS    – sugerowany SL z ATR(14) W1 / dołka 4 tyg. + ryzyko % (karty, JSON/CSV, TV)
+  CLOSED BAR   – opcja USE_CLOSED_WEEKLY_BAR (sygnał tylko z zamkniętej świecy W1)
+  TV FIX       – OMXSTO zamiast OM, klasy akcji (VOLV_B, BT.A, BRK.B)
+  EU LIST      – usunięte martwe tickery i duplikaty, log tickerów EU bez danych
+  HTML         – escaping nazw spółek i sektorów; licznik błędów w Fazie 1
+  EARLY D1 FIX – Early liczony dla spółek BEZ sygnału W1 (SMI W1 tuż pod EMA + świeży cross D1);
+                 osobna lista results_early.* i tv_early.txt
+  RS LOCAL     – RS 12M względem indeksu kraju w walucie lokalnej, okno dat wyrównane (asof)
+  PRICE W1     – cena i 52W High/Discount z dzisiejszych danych W1 zamiast 24h cache
+  EARNINGS     – data najbliższych wyników + ostrzeżenie <= 14 dni (karty, JSON, TV)
+  VOL PRORATA  – vol_confirm rzutowany na pełny tydzień, gdy świeca W1 niezamknięta
+  CLOSED BAR   – USE_CLOSED_WEEKLY_BAR = True (run w dni robocze 11:00 UTC)
 """
 
 import yfinance as yf
@@ -37,6 +52,7 @@ import pandas as pd
 import numpy as np
 import requests
 import json
+import html as _html
 import os
 import random
 import time
@@ -76,7 +92,61 @@ SMI_LEN_K, SMI_LEN_D, SMI_LEN_EMA = 10, 3, 3
 
 # FIX 5 – cache fundamentów
 CACHE_DIR      = Path(".cache/fundamentals")
-CACHE_TTL_H    = 24   # godziny ważności cache
+CACHE_TTL_H    = 96   # godziny ważności cache fundamentów (pt->pn = 72h; cache przechodzi między runami przez actions/cache)
+EARNINGS_TTL_H = 48   # data wyników zmienia się częściej niż fundamenty
+# RETRY PASS – po głównym przebiegu fundamentów tickery z błędem/niekompletnymi danymi (Yahoo 401 "Invalid Crumb"
+# przy dużej współbieżności) pobieramy ponownie małą liczbą wątków. Test 2026-11-17: 36/36 odzyskanych przy 1-3 wątkach.
+FUNDAMENTALS_RETRY_WORKERS = 3
+FUNDAMENTALS_RETRY_PAUSE_S = 10
+
+# OPT 6 – wstępny filtr płynności na danych W1 (przed Wyckoffem, D1 i fundamentami).
+# Średni wolumen tygodniowy / 5 ≈ średni wolumen dzienny. Margines 0.7 zostawia zapas,
+# bo fast_info liczy średnią 3M, a my 13 tygodni – ostateczny próg i tak sprawdza Faza 2.
+PREFILTER_VOL_WEEKS  = 13
+PREFILTER_VOL_MARGIN = 0.7
+
+# NEG CACHE – spółki odrzucone przez Cap/Vol też trafiają do cache (nie pytamy Yahoo co run)
+CACHE_REJECTED = True
+
+# CLOSED BAR – True = ignoruj niezamkniętą świecę tygodniową (brak "repaintingu"
+# sygnału przy uruchomieniu w środku tygodnia). False = zachowanie jak dotychczas.
+USE_CLOSED_WEEKLY_BAR = True   # screener startuje w dni robocze 11:00 UTC = świeca W1 niezamknięta
+
+# STOP LOSS – sugerowany SL z ATR tygodniowego
+ATR_LEN        = 14
+ATR_STOP_MULT  = 2.0
+
+# EARLY D1 – prawdziwy wczesny sygnał: SMI W1 jeszcze POD EMA (brak sygnału W1),
+# luka maleje i jest <= EARLY_MAX_GAP, a SMI D1 przeciął EMA w górę w ciągu
+# ostatnich EARLY_D1_MAX_DAYS sesji i nadal jest nad nią.
+ENABLE_EARLY_D1    = True
+EARLY_MAX_GAP      = 8.0    # pkt SMI między EMA a SMI na W1
+EARLY_MAX_SMI      = 20.0   # nie szukamy "early" w strefie wykupienia
+EARLY_D1_MAX_DAYS  = 5
+EARLY_SIGNAL_LABEL = "Early D1"
+
+# RS LOCAL – RS 12M liczony względem indeksu w walucie notowań spółki.
+# Gdy indeks kraju nie zostanie pobrany: ^STOXX (EUR), potem VGK.
+RS_BENCHMARKS_EU = {
+    ".L":"^FTSE", ".DE":"^GDAXI", ".PA":"^FCHI", ".AS":"^AEX", ".MC":"^IBEX",
+    ".SW":"^SSMI", ".MI":"FTSEMIB.MI", ".ST":"^OMX", ".OL":"OBX.OL",
+    ".BR":"^BFX", ".WA":"WIG20.WA",
+}
+RS_FALLBACK_EU = ["^STOXX", MARKET_DIRECTION_EU]
+
+# COMPAT – pola dodane w tej wersji; w JSON/CSV zawsze na końcu wiersza,
+# żeby stare kolumny zachowały pozycje.
+NEW_OUTPUT_FIELDS = [
+    "tech_score_raw", "atr_w", "stop_loss", "risk_pct", "stop_breached",
+    "vol_projected", "rs_benchmark", "earnings_date", "days_to_earnings",
+    "earnings_warning", "data_incomplete",
+]
+
+# EARNINGS – ostrzeżenie o zbliżającej się publikacji wyników (Faza 3, lista finalna)
+ENABLE_EARNINGS      = True
+EARNINGS_WARN_DAYS   = 14
+EARNINGS_CACHE_DIR   = Path(".cache/earnings")
+EARNINGS_WORKERS     = 8
 
 # FIX 4 – ważone składniki scoringu technicznego
 # Suma maksimum przy wszystkich spełnionych: 4+3+3+2+2+2+1+1+1+1+2 = 22
@@ -146,6 +216,7 @@ def _load_cache(symbol: str) -> dict | None:
     """
     Wczytuje dane fundamentalne z cache jeśli istnieją i nie wygasły.
     Zwraca dict lub None gdy brak / wygasły.
+    Dict z kluczem "_rejected" oznacza spółkę odrzuconą przez Cap/Vol (NEG CACHE).
     """
     p = _cache_path(symbol)
     if not p.exists():
@@ -167,7 +238,7 @@ def _save_cache(symbol: str, data: dict) -> None:
         CACHE_DIR.mkdir(parents=True, exist_ok=True)
         p = _cache_path(symbol)
         # Nie zapisujemy pola _from_cache do pliku
-        to_save = {k: v for k, v in data.items() if k != "_from_cache"}
+        to_save = {k: v for k, v in data.items() if k not in ("_from_cache", "_incomplete")}
         p.write_text(json.dumps(to_save, ensure_ascii=False, default=str),
                      encoding="utf-8")
     except Exception:
@@ -436,10 +507,10 @@ def get_european_indices():
         "SHL.DE","SIE.DE","SY1.DE","VNA.DE","VOW3.DE","ZAL.DE","PUM.DE","ENR.DE",
     ]
     cac = [
-        "AC.PA","ACA.PA","AI.PA","AIR.PA","ALO.PA","MT.PA","ATO.PA","CS.PA","BNP.PA",
-        "EN.PA","CAP.PA","CA.PA","AXA.PA","DSY.PA","EDEN.PA","EL.PA","ERF.PA","EDF.PA",
-        "ENGI.PA","FP.PA","KER.PA","LR.PA","LHN.PA","MC.PA","ML.PA","ORA.PA","RI.PA",
-        "PUB.PA","RNO.PA","SAF.PA","SGO.PA","SAN.PA","SU.PA","GLE.PA","STLAM.PA",
+        "AC.PA","ACA.PA","AI.PA","AIR.PA","ALO.PA","ATO.PA","CS.PA","BNP.PA",
+        "EN.PA","CAP.PA","CA.PA","AXA.PA","DSY.PA","EDEN.PA","EL.PA","ERF.PA",
+        "ENGI.PA","TTE.PA","KER.PA","LR.PA","LHN.PA","MC.PA","ML.PA","ORA.PA","RI.PA",
+        "PUB.PA","RNO.PA","SAF.PA","SGO.PA","SAN.PA","SU.PA","GLE.PA","STLAP.PA",
         "STM.PA","TEP.PA","HO.PA","URW.PA","VIE.PA","DG.PA","VIV.PA","WLN.PA",
     ]
     ftse = [
@@ -450,45 +521,45 @@ def get_european_indices():
         "IHG.L","III.L","ITRK.L","JD.L","JMAT.L","KGF.L","LAND.L","LGEN.L","LLOY.L",
         "LMP.L","MKS.L","MNDI.L","MNG.L","MRO.L","NG.L","NXT.L","OCDO.L","PHNX.L",
         "PRU.L","PSH.L","PSN.L","PSON.L","REL.L","RIO.L","RKT.L","RMV.L","RR.L",
-        "RS1.L","SBRY.L","SDR.L","SGE.L","SHEL.L","SKG.L","SKY.L","SLA.L","SMDS.L",
+        "RS1.L","SBRY.L","SDR.L","SGE.L","SHEL.L","SKG.L","SKY.L","ABDN.L",
         "SMIN.L","SMT.L","SN.L","SPX.L","SSE.L","STAN.L","SVT.L","TSCO.L","TW.L",
         "ULVR.L","UTG.L","UU.L","VOD.L","WEIR.L","WPP.L","WTB.L",
     ]
     aex = [
         "ABN.AS","ADYEN.AS","AGN.AS","AH.AS","AKZA.AS","MT.AS","ASML.AS","ASR.AS",
         "BESI.AS","DSMF.AS","EXOR.AS","HEIA.AS","IMCD.AS","INGA.AS","JUST.AS",
-        "KPN.AS","NN.AS","PHIA.AS","PRX.AS","RAND.AS","REN.AS","SHELL.AS","SBM.AS",
-        "URW.AS","UNA.AS","VPK.AS","WKL.AS",
+        "KPN.AS","NN.AS","PHIA.AS","PRX.AS","RAND.AS","REN.AS","SBM.AS",
+        "VPK.AS","WKL.AS",
     ]
     ibex = [
         "ACS.MC","ACX.MC","AMS.MC","ANA.MC","BBVA.MC","BKT.MC","CABK.MC","CLNX.MC",
         "COL.MC","ELE.MC","ENG.MC","FDR.MC","FER.MC","GRF.MC","IAG.MC","IBE.MC",
         "IDR.MC","ITX.MC","LOG.MC","MAP.MC","MEL.MC","MRL.MC","MTS.MC","NTGY.MC",
-        "RED.MC","REE.MC","REP.MC","ROVI.MC","SAB.MC","SAN.MC","SGRE.MC","SOL.MC",
+        "RED.MC","REE.MC","REP.MC","ROVI.MC","SAB.MC","SAN.MC","SOL.MC",
         "TEF.MC","UNI.MC","VIS.MC",
     ]
     smi_idx = [
-        "ABBN.SW","ADEN.SW","ALC.SW","CSGN.SW","GEBN.SW","GIVN.SW","CFR.SW",
+        "ABBN.SW","ADEN.SW","ALC.SW","GEBN.SW","GIVN.SW","CFR.SW",
         "HOLN.SW","LONN.SW","NESN.SW","NOVN.SW","ROG.SW","SANN.SW","SCMN.SW",
         "SGSN.SW","SLHN.SW","SRENH.SW","UBSG.SW","ZURN.SW",
     ]
     mib = [
-        "A2A.MI","AMP.MI","ATL.MI","AZM.MI","BMED.MI","BMPS.MI","BZU.MI","CPR.MI",
-        "DIA.MI","ENEL.MI","ENI.MI","EXOR.MI","FCA.MI","FBK.MI","G.MI","HER.MI",
+        "A2A.MI","AMP.MI","AZM.MI","BMED.MI","BMPS.MI","BZU.MI","CPR.MI",
+        "DIA.MI","ENEL.MI","ENI.MI","FBK.MI","G.MI","HER.MI",
         "ISP.MI","IVG.MI","LDO.MI","MB.MI","MONC.MI","PIRC.MI","PRY.MI","PST.MI",
-        "REC.MI","SRG.MI","STM.MI","TEN.MI","TIT.MI","TRN.MI","UCG.MI","UNI.MI",
+        "REC.MI","SRG.MI","TEN.MI","TIT.MI","TRN.MI","UCG.MI","UNI.MI",
     ]
     omx = [
-        "ABB.ST","ALFA.ST","ASSA-B.ST","AZN.ST","ATCO-A.ST","BOL.ST","ERIC-B.ST",
+        "ALFA.ST","ASSA-B.ST","ATCO-A.ST","BOL.ST","ERIC-B.ST",
         "ESSITY-B.ST","EVO.ST","GETI-B.ST","HEXA-B.ST","HM-B.ST","HUFV-A.ST",
         "INVE-B.ST","KINV-B.ST","NDA-SE.ST","SAND.ST","SCA-B.ST","SEB-A.ST",
         "SECU-B.ST","SKA-B.ST","SKF-B.ST","SSAB-A.ST","SHB-A.ST","SWED-A.ST",
-        "SWMA.ST","TEL2-B.ST","TELIA.ST","VOLV-B.ST","VOLCAR-B.ST",
+        "TEL2-B.ST","TELIA.ST","VOLV-B.ST","VOLCAR-B.ST",
     ]
     obx = [
         "AKERBP.OL","AKSO.OL","AKER.OL","AMSC.OL","AUTO.OL","BAKKA.OL","DNB.OL",
         "EQNR.OL","FRO.OL","GOGL.OL","MOWI.OL","NEL.OL","NHY.OL","NSKOG.OL",
-        "ORK.OL","PGS.OL","REC.OL","SALM.OL","SCHA.OL","SDRL.OL","SNOG.OL",
+        "ORK.OL","REC.OL","SALM.OL","SCHA.OL","SDRL.OL","SNOG.OL",
         "STB.OL","SUBC.OL","TEL.OL","TOM.OL","TGS.OL","VAR.OL","WILS.OL","YAR.OL",
     ]
     bel = [
@@ -501,6 +572,10 @@ def get_european_indices():
         "LPP.WA","MBK.WA","OPL.WA","PCO.WA","PEO.WA","PGE.WA","PKN.WA","PKO.WA",
         "PZU.WA","SPL.WA","TPE.WA","XTB.WA",
     ]
+    # Usunięte w tej wersji: martwe (CSGN, EDF, SGRE, ATL, SWMA, SMDS, PGS, FCA),
+    # zmiany tickerów (FP→TTE, SLA→ABDN, STLAM.PA→STLAP.PA) oraz duplikaty tej samej
+    # spółki z innej giełdy (MT.PA, STM.MI, URW.AS, AZN.ST, ABB.ST, SHELL.AS, UNA.AS, EXOR.MI).
+    # Tickery bez danych z Yahoo są wypisywane w logu Fazy 1 – łatwo wyłapać kolejne.
     all_eu = list(set(dax+cac+ftse+aex+ibex+smi_idx+mib+omx+obx+bel+wig))
     print(f"  EU: {len(all_eu)} tickerow")
     return all_eu
@@ -508,6 +583,57 @@ def get_european_indices():
 # ══════════════════════════════════════════════════════════════
 #  SMI
 # ══════════════════════════════════════════════════════════════
+
+def _drop_incomplete_week(df):
+    """
+    CLOSED BAR: Yahoo indeksuje świecę W1 datą poniedziałku. Jeśli od tej daty
+    minęło < 5 dni, tydzień nie jest zamknięty (piątkowa sesja się nie skończyła)
+    – usuwamy ostatnią świecę, żeby sygnał nie "przemalowywał się" w trakcie tygodnia.
+    """
+    if df is None or df.empty:
+        return df
+    try:
+        last = pd.Timestamp(df.index[-1]).tz_localize(None)
+        if (pd.Timestamp.now() - last).days < 5:
+            return df.iloc[:-1]
+    except Exception:
+        pass
+    return df
+
+
+def calc_atr_stop(df, length=ATR_LEN, mult=ATR_STOP_MULT):
+    """
+    Sugerowany stop loss dla wejścia na zamknięciu ostatniej świecy W1:
+      SL = max(Close - mult*ATR, najniższy Low z 4 ostatnich tygodni * 0.99)
+    Bierzemy wyższy (ciaśniejszy) z dwóch poziomów – ATR chroni przed zbyt
+    szerokim stopem, a dołek z 4 tygodni to naturalne wsparcie.
+    Zwraca dict: atr_w, stop_loss, risk_pct (None gdy za mało danych).
+    """
+    out = {"atr_w": None, "stop_loss": None, "risk_pct": None}
+    try:
+        if len(df) < length + 2:
+            return out
+        h, l, c = df["High"], df["Low"], df["Close"]
+        tr = pd.concat([h - l, (h - c.shift(1)).abs(), (l - c.shift(1)).abs()],
+                       axis=1).max(axis=1)
+        atr = float(tr.ewm(alpha=1/length, adjust=False).mean().iloc[-1])   # Wilder
+        close = float(c.iloc[-1])
+        if not np.isfinite(atr) or close <= 0:
+            return out
+        sl_atr   = close - mult * atr
+        sl_swing = float(l.iloc[-4:].min()) * 0.99
+        sl = max(sl_atr, sl_swing)
+        if sl >= close:          # dołek tuż pod ceną – zostaje stop z ATR
+            sl = sl_atr
+        if sl <= 0:
+            return out
+        out["atr_w"]     = round(atr, 2)
+        out["stop_loss"] = round(sl, 2)
+        out["risk_pct"]  = round((close - sl) / close * 100, 1)
+    except Exception:
+        pass
+    return out
+
 
 def ema(series, length):
     return series.ewm(span=length, adjust=False).mean()
@@ -581,23 +707,23 @@ def _smi_cross_mask(smi, smi_ema):
     return (cross_up | exit_os).fillna(False)
 
 
-def calc_d1_lead(df_daily, w1_signal_zone, lookback_days=60):
+def calc_d1_lead(df_daily, lookback_days=60):
     """
     Liczy SMI(10,3,3) na danych dziennych i szuka najnowszego crossovera
-    w oknie `lookback_days` wstecz. Zwraca dict z informacją o wyprzedzeniu
-    sygnału dziennego względem sygnału tygodniowego.
+    w oknie `lookback_days` wstecz.
 
     Zwraca:
-      d1_signal_now   – czy SMI D1 sygnalizuje crossover w *ostatniej* sesji
-      d1_zone_now     – aktualna strefa SMI na D1
-      d1_last_cross_days_ago – ile sesji D1 temu był ostatni crossover (None jeśli brak w oknie)
-      early_signal    – True gdy D1 sygnalizuje teraz, a W1 jeszcze nie (zone W1 nie jest OVERSOLD/Bullish z crossover)
+      d1_signal_now          – crossover D1 w *ostatniej* sesji
+      d1_zone_now            – aktualna strefa SMI na D1
+      d1_last_cross_days_ago – ile sesji temu był ostatni crossover (None gdy brak w oknie)
+      d1_above_ema           – SMI D1 >= EMA teraz (crossover się utrzymuje)
+    O tym, czy to "Early Signal", decyduje phase1 (tylko spółki BEZ sygnału W1).
     """
     out = {
         "d1_signal_now": False,
         "d1_zone_now": "--",
         "d1_last_cross_days_ago": None,
-        "early_signal": False,
+        "d1_above_ema": False,
     }
     req = {"High", "Low", "Close"}
     if df_daily is None or len(df_daily) < SMI_LEN_K + 10 or not req.issubset(df_daily.columns):
@@ -610,11 +736,13 @@ def calc_d1_lead(df_daily, w1_signal_zone, lookback_days=60):
             return out
 
         s0 = float(smi_d.iloc[-1])
+        e0 = float(smi_d_ema.iloc[-1])
         if not np.isnan(s0):
             if   s0 >= 40:  out["d1_zone_now"] = "OVERBOUGHT"
             elif s0 <= -40: out["d1_zone_now"] = "OVERSOLD"
             elif s0 > 0:    out["d1_zone_now"] = "Bullish"
             else:           out["d1_zone_now"] = "Bearish"
+            out["d1_above_ema"] = (not np.isnan(e0)) and s0 >= e0
 
         mask = _smi_cross_mask(smi_d, smi_d_ema)
         recent = mask.iloc[-lookback_days:] if len(mask) > lookback_days else mask
@@ -623,14 +751,7 @@ def calc_d1_lead(df_daily, w1_signal_zone, lookback_days=60):
         true_idx = recent[recent].index
         if len(true_idx) > 0:
             last_cross_pos_in_recent = recent.index.get_loc(true_idx[-1])
-            days_ago = len(recent) - 1 - last_cross_pos_in_recent
-            out["d1_last_cross_days_ago"] = int(days_ago)
-
-        # Early Signal: D1 sygnalizuje teraz, ale strefa W1 nadal Bearish/OVERBOUGHT
-        # (czyli W1 jeszcze nie potwierdził tego samego ruchu)
-        if out["d1_signal_now"] and w1_signal_zone not in ("OVERSOLD", "Bullish"):
-            out["early_signal"] = True
-
+            out["d1_last_cross_days_ago"] = int(len(recent) - 1 - last_cross_pos_in_recent)
     except Exception:
         pass
 
@@ -785,6 +906,100 @@ def bulk_download(tickers, period, interval, min_coverage=0.3):
 #  FAZA 1 – Tygodniowe sygnały SMI + Wyckoff
 # ══════════════════════════════════════════════════════════════
 
+def _rs_benchmark(ticker, market):
+    """RS LOCAL: indeks w walucie notowań spółki (USA -> SPY, EU -> indeks kraju)."""
+    if market == "USA":
+        return MARKET_DIRECTION_USA
+    for suffix, idx in RS_BENCHMARKS_EU.items():
+        if ticker.endswith(suffix):
+            return idx
+    return RS_FALLBACK_EU[0]
+
+
+def _load_benchmarks():
+    """Pobiera tygodniowe serie Close wszystkich benchmarków RS jednym zapytaniem."""
+    wanted = sorted({MARKET_DIRECTION_USA, *RS_BENCHMARKS_EU.values(), *RS_FALLBACK_EU})
+    raw = bulk_download(wanted, period="2y", interval="1wk", min_coverage=0.5)
+    out = {}
+    for t, df in raw.items():
+        try:
+            if USE_CLOSED_WEEKLY_BAR:
+                df = _drop_incomplete_week(df)
+            c = _close_series(df)
+            if len(c) >= 53:
+                c.index = pd.DatetimeIndex(c.index).tz_localize(None)
+                out[t] = c
+        except Exception:
+            pass
+    missing = [t for t in wanted if t not in out]
+    print(f"      Benchmarki RS: {len(out)}/{len(wanted)}"
+          + (f" (brak: {', '.join(missing)} -> fallback)" if missing else ""))
+    return out
+
+
+def _calc_rs_12m(cl, ticker, market, benchmarks):
+    """
+    RS 12M = (1 + zwrot spółki) / (1 + zwrot benchmarku) w TYM SAMYM oknie dat
+    (asof), więc przesunięcie świąt między giełdami nie psuje porównania.
+    """
+    if len(cl) < 53:
+        return None
+    candidates = [_rs_benchmark(ticker, market)]
+    if market == "EU":
+        candidates += RS_FALLBACK_EU
+    d_end   = pd.Timestamp(cl.index[-1]).tz_localize(None)
+    d_start = pd.Timestamp(cl.index[-53]).tz_localize(None)
+    for b in candidates:
+        bc = benchmarks.get(b)
+        if bc is None:
+            continue
+        b_end, b_start = bc.asof(d_end), bc.asof(d_start)
+        if pd.isna(b_end) or pd.isna(b_start) or b_start <= 0:
+            continue
+        sr = float(cl.iloc[-1]) / float(cl.iloc[-53]) - 1
+        ir = float(b_end) / float(b_start) - 1
+        if ir == -1:
+            continue
+        return round((1 + sr) / (1 + ir), 4)
+    return None
+
+
+def _projected_last_volume(df_raw):
+    """
+    VOL PRORATA: wolumen ostatniej świecy W1. Gdy tydzień jest niezamknięty,
+    rzutujemy go na pełny tydzień: vol * 5 / liczba zakończonych sesji.
+    Zwraca (wolumen, czy_rzutowany) albo (None, False) gdy nie da się ocenić
+    (poniedziałek przed pierwszą zamkniętą sesją).
+    """
+    vs = df_raw["Volume"].dropna()
+    if vs.empty:
+        return None, False
+    last_bar = pd.Timestamp(vs.index[-1]).tz_localize(None).normalize()
+    today    = pd.Timestamp.now().normalize()
+    done = int(np.busday_count(last_bar.date(), today.date()))   # sesje przed dziś
+    if done >= 5:
+        return float(vs.iloc[-1]), False
+    if done <= 0:
+        return None, False
+    return float(vs.iloc[-1]) * 5 / done, True
+
+
+def _w1_near_cross(smi, smi_ema):
+    """
+    EARLY: SMI W1 jeszcze POD swoją EMA (brak sygnału), ale luka się zwęża
+    i jest mała (<= EARLY_MAX_GAP pkt), poza strefą wykupienia.
+    To kandydaci, u których D1 może wyprzedzić tygodniowy crossover.
+    """
+    if len(smi) < 3:
+        return False
+    s0, s1 = float(smi.iloc[-1]), float(smi.iloc[-2])
+    e0, e1 = float(smi_ema.iloc[-1]), float(smi_ema.iloc[-2])
+    if any(np.isnan(v) for v in (s0, s1, e0, e1)):
+        return False
+    gap0, gap1 = e0 - s0, e1 - s1
+    return 0 < gap0 <= EARLY_MAX_GAP and gap0 < gap1 and s0 < EARLY_MAX_SMI
+
+
 def phase1_weekly_signals(ticker_market_list):
     tickers    = [t for t, _ in ticker_market_list]
     market_map = {t: m for t, m in ticker_market_list}
@@ -792,68 +1007,57 @@ def phase1_weekly_signals(ticker_market_list):
     data = bulk_download(tickers, period="2y", interval="1wk")
     print(f"      Pobrano: {len(data)}")
 
-    index_returns = {}
-    for mkt, idx_ticker in [("USA", MARKET_DIRECTION_USA), ("EU", MARKET_DIRECTION_EU)]:
-        try:
-            df_idx = yf.download(idx_ticker, period="2y", interval="1wk",
-                                 auto_adjust=True, progress=False)
-            if df_idx is not None and not df_idx.empty and len(df_idx) >= 52:
-                c = _close_series(df_idx)
-                index_returns[mkt] = float(c.iloc[-1])/float(c.iloc[-53])-1 if len(c)>=53 else None
-        except Exception:
-            index_returns[mkt] = None
+    benchmarks = _load_benchmarks()
 
-    signals = {}
-    for ticker, df in data.items():
+    # Diagnostyka: tickery EU bez danych (martwe/zmienione symbole do poprawy na liście)
+    eu_missing = sorted(t for t in tickers if market_map[t] == "EU" and t not in data)
+    if eu_missing:
+        print(f"      EU bez danych ({len(eu_missing)}): {', '.join(eu_missing)}")
+
+    signals, early_cands = {}, {}
+    n_errors, n_illiquid = 0, 0
+    min_weekly_vol = MIN_VOLUME * 5 * PREFILTER_VOL_MARGIN
+    for ticker, df_raw in data.items():
         try:
+            df = _drop_incomplete_week(df_raw) if USE_CLOSED_WEEKLY_BAR else df_raw
             smi, smi_e = calc_smi(df["High"], df["Low"], df["Close"],
                                   SMI_LEN_K, SMI_LEN_D, SMI_LEN_EMA)
             sig, s_val, e_val, zone = smi_weekly_signal(smi, smi_e)
-            if sig is None:
-                continue   # OPT 4: Wyckoff liczymy tylko dla spółek z sygnałem
+            near = sig is None and ENABLE_EARLY_D1 and _w1_near_cross(smi, smi_e)
+            if sig is None and not near:
+                continue   # OPT 4: dalsze obliczenia tylko dla sygnałów / kandydatów Early
 
-            div_bull, div_desc = detect_bullish_divergence(df["Close"], smi)
+            # OPT 6: wstępny filtr płynności – odcina spółki, które i tak odpadłyby
+            # na MIN_VOLUME w Fazie 2, zanim pobierzemy dla nich D1 i fundamenty.
+            if "Volume" in df.columns:
+                wv = df["Volume"].dropna().iloc[-PREFILTER_VOL_WEEKS:]
+                if len(wv) >= 4 and float(wv.mean()) < min_weekly_vol:
+                    n_illiquid += 1
+                    continue
 
-            vol_confirm = False
-            try:
-                if "Volume" in df.columns:
-                    vs = df["Volume"].dropna()
-                    if len(vs) >= 52:
-                        avg50 = float(vs.iloc[-51:-1].mean())
-                        cur   = float(vs.iloc[-1])
-                        vol_confirm = avg50 > 0 and cur >= avg50 * VOL_CONFIRM_MULT
-            except Exception:
-                pass
+            # PRICE W1: bieżąca cena i 52W High z danych tygodniowych (zawsze z
+            # niezamkniętą świecą – to najświeższa cena), zamiast 24h cache.
+            w_price   = float(df_raw["Close"].dropna().iloc[-1])
+            w_high52  = float(df_raw["High"].dropna().iloc[-52:].max())
 
-            rs_12m = None
-            try:
-                cl = df["Close"].dropna()
-                if len(cl) >= 53:
-                    sr = float(cl.iloc[-1]) / float(cl.iloc[-53]) - 1
-                    ir = index_returns.get(market_map[ticker])
-                    if ir is not None and ir != -1:
-                        rs_12m = round((1 + sr) / (1 + ir), 4)
-            except Exception:
-                pass
+            if near:
+                _, s0, e0, z0 = smi_weekly_signal(smi, smi_e)
+                early_cands[ticker] = {"market": market_map[ticker], "smi": s0,
+                                       "smi_ema": e0, "zone": z0, "df": df,
+                                       "w_price": w_price, "w_high_52w": w_high52}
+                continue
 
-            # OPT 4: Wyckoff tylko dla tickerów z sygnałem SMI (~12% universum)
-            wyk = wyckoff_score(df)
-
-            signals[ticker] = {
-                "market":          market_map[ticker],
-                "smi": s_val,      "smi_ema": e_val,
-                "zone": zone,      "signal": sig,
-                "divergence_bull": div_bull,
-                "divergence_desc": div_desc,
-                "vol_confirm":     vol_confirm,
-                "rs_12m":          rs_12m,
-                "wyckoff_score":   wyk["score"],
-                "wyckoff_phase":   wyk["phase"],
-                "wyckoff_dist":    wyk["dist_warning"],
-                "wyckoff_dsig":    wyk["dist_signals"],
-            }
+            signals[ticker] = _w1_details(ticker, df, df_raw, smi, s_val, e_val,
+                                          zone, sig, market_map[ticker], benchmarks,
+                                          w_price, w_high52)
         except Exception:
-            pass
+            n_errors += 1
+
+    if n_illiquid:
+        print(f"      Prefiltr plynnosci: odrzucono {n_illiquid} tickerow (avg vol W1 < "
+              f"{int(min_weekly_vol):,})")
+    if n_errors:
+        print(f"      [uwaga] bledy obliczen W1: {n_errors} tickerow")
 
     s  = sum(1 for v in signals.values() if v["signal"] == "Strong BUY")
     b  = sum(1 for v in signals.values() if v["signal"] == "BUY")
@@ -862,38 +1066,107 @@ def phase1_weekly_signals(ticker_market_list):
     w4 = sum(1 for v in signals.values() if v.get("wyckoff_score",0) >= 4)
     wd = sum(1 for v in signals.values() if v.get("wyckoff_dist"))
     print(f"      Sygnaly: {len(signals)} (Strong:{s} BUY:{b} Turn:{tu} "
-          f"VolOK:{vc} Wyckoff>=4:{w4} Dist!:{wd})")
+          f"VolOK:{vc} Wyckoff>=4:{w4} Dist!:{wd}) | Kandydaci Early W1: {len(early_cands)}")
 
-    # ── D1 LEAD: dla spółek z sygnałem W1 sprawdzamy wyprzedzenie SMI dziennego ──
-    if signals:
-        print(f"\n[1b/2] SMI dzienny (D1) -- {len(signals)} tickerow z sygnalem W1...")
-        d1_data = bulk_download(list(signals.keys()), period="6mo", interval="1d",
-                                min_coverage=0.8)
+    # ── D1: (a) wyprzedzenie dla sygnałów W1, (b) EARLY – crossover D1 u kandydatów,
+    #        którzy NIE mają jeszcze sygnału W1 ──
+    d1_tickers = list(signals.keys()) + list(early_cands.keys())
+    if d1_tickers:
+        print(f"\n[1b/2] SMI dzienny (D1) -- {len(signals)} sygnalow W1 + "
+              f"{len(early_cands)} kandydatow Early...")
+        d1_data = bulk_download(d1_tickers, period="6mo", interval="1d", min_coverage=0.8)
         print(f"      Pobrano D1: {len(d1_data)}")
 
-        early_count = 0
         lead_days_sum, lead_days_n = 0, 0
         for ticker, sig_data in signals.items():
-            df_d = d1_data.get(ticker)
-            lead = calc_d1_lead(df_d, sig_data["zone"]) if df_d is not None else {
-                "d1_signal_now": False, "d1_zone_now": "--",
-                "d1_last_cross_days_ago": None, "early_signal": False,
-            }
-            sig_data["d1_signal_now"]          = lead["d1_signal_now"]
-            sig_data["d1_zone_now"]            = lead["d1_zone_now"]
-            sig_data["d1_last_cross_days_ago"] = lead["d1_last_cross_days_ago"]
-            sig_data["early_signal"]           = lead["early_signal"]
-            if lead["early_signal"]:
-                early_count += 1
+            lead = calc_d1_lead(d1_data.get(ticker))
+            sig_data.update({k: lead[k] for k in
+                             ("d1_signal_now", "d1_zone_now", "d1_last_cross_days_ago")})
+            sig_data["early_signal"] = False      # W1 już potwierdził – to nie jest "early"
             if lead["d1_last_cross_days_ago"] is not None:
                 lead_days_sum += lead["d1_last_cross_days_ago"]
                 lead_days_n   += 1
 
+        early_count = 0
+        for ticker, cand in early_cands.items():
+            lead = calc_d1_lead(d1_data.get(ticker))
+            days = lead["d1_last_cross_days_ago"]
+            if days is None or days > EARLY_D1_MAX_DAYS or not lead["d1_above_ema"]:
+                continue
+            try:
+                df = cand["df"]
+                smi, _ = calc_smi(df["High"], df["Low"], df["Close"],
+                                  SMI_LEN_K, SMI_LEN_D, SMI_LEN_EMA)
+                det = _w1_details(ticker, df, data[ticker], smi, cand["smi"],
+                                  cand["smi_ema"], cand["zone"], EARLY_SIGNAL_LABEL,
+                                  cand["market"], benchmarks,
+                                  cand["w_price"], cand["w_high_52w"])
+            except Exception:
+                continue
+            det.update({k: lead[k] for k in
+                        ("d1_signal_now", "d1_zone_now", "d1_last_cross_days_ago")})
+            det["early_signal"] = True
+            signals[ticker] = det
+            early_count += 1
+
         avg_lead = round(lead_days_sum / lead_days_n, 1) if lead_days_n else None
-        print(f"      D1 Early Signal: {early_count} spolek | "
-              f"Srednie wyprzedzenie D1: {avg_lead if avg_lead is not None else '--'} sesji")
+        print(f"      Early D1 (D1 cross <= {EARLY_D1_MAX_DAYS} sesji, W1 jeszcze bez sygnalu): "
+              f"{early_count} spolek | Srednio D1 cross {avg_lead if avg_lead is not None else '--'} "
+              f"sesji przed dzis (sygnaly W1)")
 
     return signals
+
+
+def _w1_details(ticker, df, df_raw, smi, s_val, e_val, zone, sig, market,
+                benchmarks, w_price, w_high52):
+    """Komplet metryk W1 (dywergencja, wolumen, RS, Wyckoff, SL) dla jednego tickera."""
+    div_bull, div_desc = detect_bullish_divergence(df["Close"], smi)
+
+    vol_confirm, vol_projected = False, False
+    try:
+        if "Volume" in df.columns:
+            vs = df["Volume"].dropna()
+            if len(vs) >= 52:
+                if USE_CLOSED_WEEKLY_BAR:
+                    cur, avg50 = float(vs.iloc[-1]), float(vs.iloc[-51:-1].mean())
+                else:
+                    cur, vol_projected = _projected_last_volume(df_raw)
+                    avg50 = float(vs.iloc[-51:-1].mean())
+                    if cur is None:   # brak zakończonej sesji w tym tygodniu
+                        cur, avg50 = float(vs.iloc[-2]), float(vs.iloc[-52:-2].mean())
+                vol_confirm = avg50 > 0 and cur >= avg50 * VOL_CONFIRM_MULT
+    except Exception:
+        pass
+
+    rs_12m = None
+    try:
+        rs_12m = _calc_rs_12m(df["Close"].dropna(), ticker, market, benchmarks)
+    except Exception:
+        pass
+
+    wyk  = wyckoff_score(df)
+    stop = calc_atr_stop(df)
+    return {
+        "market":          market,
+        "smi": s_val,      "smi_ema": e_val,
+        "zone": zone,      "signal": sig,
+        "divergence_bull": div_bull,
+        "divergence_desc": div_desc,
+        "vol_confirm":     vol_confirm,
+        "vol_projected":   vol_projected,
+        "rs_12m":          rs_12m,
+        "rs_benchmark":    _rs_benchmark(ticker, market),
+        "wyckoff_score":   wyk["score"],
+        "wyckoff_phase":   wyk["phase"],
+        "wyckoff_dist":    wyk["dist_warning"],
+        "wyckoff_dsig":    wyk["dist_signals"],
+        "atr_w":           stop["atr_w"],
+        "stop_loss":       stop["stop_loss"],
+        "w_price":         round(w_price, 2),
+        "w_high_52w":      round(w_high52, 2),
+        "d1_signal_now":   False, "d1_zone_now": "--",
+        "d1_last_cross_days_ago": None, "early_signal": False,
+    }
 
 # ══════════════════════════════════════════════════════════════
 #  FAZA 2 – Dane meta + fundamenty  (z cache FIX 5)
@@ -1089,12 +1362,15 @@ def _fetch_fundamentals(symbol: str) -> dict | None:
                 _backoff(attempt)
         if not fast: return None
         price, cap, vol, currency, high_52w = fast
-        if not cap or cap < MIN_MARKET_CAP: return None
-        if not vol or vol < MIN_VOLUME:     return None
+        if not cap: return None   # brak danych / limit – NIE cache'ujemy, spróbujemy przy kolejnym runie
+        # NEG CACHE: jawnie za mała spółka – zapamiętujemy odrzucenie
+        if cap < MIN_MARKET_CAP:        return {"_rejected": "cap"}
+        if not vol or vol < MIN_VOLUME: return {"_rejected": "vol"}
         discount_pct = None
         if high_52w and price and high_52w > 0:
             discount_pct = round((high_52w - price) / high_52w * 100, 1)
         name=symbol; sector="--"; country="--"; eps_ttm=None; sales=None; qr=None
+        info_ok = False
         try:
             info = None
             for attempt in range(RETRY_ATTEMPTS):
@@ -1107,6 +1383,7 @@ def _fetch_fundamentals(symbol: str) -> dict | None:
                 if attempt < RETRY_ATTEMPTS - 1:
                     _backoff(attempt)
             if info and len(info) > 5:
+                info_ok = True
                 name    = info.get("shortName") or symbol
                 sector  = info.get("sector")    or "--"
                 country = info.get("country")   or "--"
@@ -1142,6 +1419,7 @@ def _fetch_fundamentals(symbol: str) -> dict | None:
                 if ca is not None and cl is not None and cl > 0:
                     qr = round((ca-inv)/cl, 2)
         except Exception: pass
+        fin_ok = fin is not None and not getattr(fin, "empty", True)
         roic        = _calc_roic(tkr)
         debt_equity = _calc_debt_equity(tkr)
         gross_margin= _calc_gross_margin(tkr)
@@ -1162,6 +1440,9 @@ def _fetch_fundamentals(symbol: str) -> dict | None:
             "eps_qoq": eps_growth["eps_qoq"],
             "eps_yoy": eps_growth["eps_yoy"],
             "scanned_at": datetime.now().isoformat(),
+            # INCOMPLETE: brak info (nazwa/sektor/EPS) albo financials = Yahoo odmówił (401) – NIE cache'ujemy,
+            # żeby uszkodzony rekord nie przetrwał w cache między runami; trafia do RETRY PASS.
+            "_incomplete": not (info_ok and fin_ok),
         }
     except Exception:
         return None
@@ -1180,7 +1461,31 @@ def _collect_one(symbol: str, weekly_data: dict) -> dict | None:
         fund = _fetch_fundamentals(symbol)
         if fund is None:
             return None
-        _save_cache(symbol, fund)
+        if not fund.get("_incomplete") and ("_rejected" not in fund or CACHE_REJECTED):
+            _save_cache(symbol, fund)
+    if "_rejected" in fund:
+        return None
+    incomplete = bool(fund.get("_incomplete"))
+    fund = {k: v for k, v in fund.items() if k != "_incomplete"}
+
+    # PRICE W1: cena i 52W High z dzisiejszych danych tygodniowych zamiast 24h cache
+    price, high52 = weekly_data.get("w_price"), weekly_data.get("w_high_52w")
+    if price:
+        fund = dict(fund)
+        fund["price"] = price
+        if high52 and high52 > 0:
+            fund["high_52w"]     = high52
+            fund["discount_52w"] = round(max(0.0, (high52 - price) / high52 * 100), 1)
+
+    # Ryzyko liczone od bieżącej ceny (SL pochodzi z zamkniętej świecy W1)
+    sl = weekly_data.get("stop_loss")
+    cur = fund.get("price")
+    risk_pct, stop_breached = None, False
+    if sl is not None and cur:
+        if cur > sl:
+            risk_pct = round((cur - sl) / cur * 100, 1)
+        else:
+            stop_breached = True
 
     # Scalamy fundamenty z danymi tygodniowymi (sygnał SMI + Wyckoff)
     return {
@@ -1202,6 +1507,13 @@ def _collect_one(symbol: str, weekly_data: dict) -> dict | None:
         "d1_zone_now":            weekly_data.get("d1_zone_now", "--"),
         "d1_last_cross_days_ago": weekly_data.get("d1_last_cross_days_ago", None),
         "early_signal":           weekly_data.get("early_signal", False),
+        "atr_w":         weekly_data.get("atr_w"),
+        "stop_loss":     sl,
+        "risk_pct":      risk_pct,
+        "stop_breached": stop_breached,
+        "vol_projected": weekly_data.get("vol_projected", False),
+        "rs_benchmark":  weekly_data.get("rs_benchmark"),
+        "data_incomplete": incomplete,
     }
 
 def phase2_collect(weekly_signals):
@@ -1211,8 +1523,11 @@ def phase2_collect(weekly_signals):
           f"({FUNDAMENTALS_WORKERS} watkow)...")
 
     # Statystyki cache
-    cache_hits = sum(1 for s in candidates if _load_cache(s) is not None)
-    print(f"      Cache: {cache_hits} trafien / {len(candidates)} tickerow")
+    cached_all = [_load_cache(s) for s in candidates]
+    cache_hits = sum(1 for c in cached_all if c is not None)
+    cache_rej  = sum(1 for c in cached_all if c is not None and "_rejected" in c)
+    print(f"      Cache: {cache_hits} trafien / {len(candidates)} tickerow "
+          f"(w tym {cache_rej} zapamietanych odrzucen Cap/Vol)")
 
     results = []
     with ThreadPoolExecutor(max_workers=FUNDAMENTALS_WORKERS) as pool:
@@ -1222,11 +1537,35 @@ def phase2_collect(weekly_signals):
             r = future.result()
             if r: results.append(r)
     print(f"      Zebrano danych: {len(results)}")
+
+    # RETRY PASS: (a) rekordy niekompletne, (b) tickery bez wyniku i bez wpisu w cache (błąd pobrania;
+    # odrzucone Cap/Vol mają wpis w cache i są pomijane).
+    got = {r["ticker"] for r in results}
+    retry = sorted({r["ticker"] for r in results if r.get("data_incomplete")} |
+                   {s for s in candidates if s not in got and _load_cache(s) is None})
+    if retry:
+        print(f"      Retry pass: {len(retry)} tickerow ({FUNDAMENTALS_RETRY_WORKERS} watki, "
+              f"pauza {FUNDAMENTALS_RETRY_PAUSE_S}s)...")
+        time.sleep(FUNDAMENTALS_RETRY_PAUSE_S)
+        fixed = {}
+        with ThreadPoolExecutor(max_workers=FUNDAMENTALS_RETRY_WORKERS) as pool:
+            futs = {pool.submit(_collect_one, s, weekly_signals[s]): s for s in retry}
+            for f in as_completed(futs):
+                r2 = f.result()
+                if r2 and not r2.get("data_incomplete"):
+                    fixed[futs[f]] = r2
+        added = [t for t in fixed if t not in got]
+        results = [fixed.get(r["ticker"], r) for r in results] + [fixed[t] for t in added]
+        print(f"      Retry pass: odzyskano {len(fixed)}/{len(retry)} (w tym {len(added)} nowych rekordow)")
+    n_inc = sum(1 for r in results if r.get("data_incomplete"))
+    if n_inc:
+        print(f"      [uwaga] rekordy z niekompletnymi danymi po retry: {n_inc}/{len(results)}")
     for r in results:
-        r["tech_score"]   = calc_tech_score(r)
+        r["tech_score_raw"] = _tech_score_raw(r)
+        r["tech_score"]   = max(0, min(r["tech_score_raw"], 12))
         r["fuzzy_score"]  = calc_fuzzy_score(r)
         r["fuzzy_rescue"] = _fuzzy_rescue_check(r) if ENABLE_FUZZY_FILTER else False
-    results.sort(key=lambda x: x.get("tech_score",0), reverse=True)
+    results.sort(key=lambda x: x.get("tech_score_raw",0), reverse=True)
 
     fuzzy_vals = [r["fuzzy_score"] for r in results if r.get("fuzzy_score") is not None]
     rescued    = sum(1 for r in results if r.get("fuzzy_rescue"))
@@ -1278,7 +1617,14 @@ def filter_main(r):
 # ══════════════════════════════════════════════════════════════
 
 def calc_tech_score(sig: dict) -> int:
+    """Scoring do wyświetlania (klip 0-12). Do sortowania używaj _tech_score_raw."""
+    return max(0, min(_tech_score_raw(sig), 12))
+
+
+def _tech_score_raw(sig: dict) -> int:
     """
+    SORT RAW: surowa suma bez klipu (max 22) – przy klipie do 12 wiele spółek
+    dostawało ten sam wynik i ranking tracił rozdzielczość.
     Ważony scoring techniczny oparty na SCORE_WEIGHTS.
     FIX 4:
       – Każdy składnik ma wagę proporcjonalną do wartości predykcyjnej.
@@ -1336,7 +1682,7 @@ def calc_tech_score(sig: dict) -> int:
     if sig.get("wyckoff_dist"):
         score += W["wyckoff_dist"]   # wartość ujemna (-3)
 
-    return max(0, min(score, 12))
+    return score
 
 # ══════════════════════════════════════════════════════════════
 #  LOGIKA ROZMYTA (FUZZY) – dodatkowy filtr
@@ -1591,6 +1937,8 @@ COMMON_CSS = """
                      padding:.15rem .45rem;border-radius:3px;margin-left:.3rem}
   .badge-fuzzy-rescue{background:#2e0a2e;color:#e29bff;font-size:.68rem;font-weight:700;
                      padding:.15rem .5rem;border-radius:4px;border:1px solid #c471ed66;margin-left:.3rem}
+  .badge-earn       {background:#2e2400;color:#ffd24d;font-size:.7rem;font-weight:700;
+                     padding:.18rem .55rem;border-radius:4px;border:1px solid #ffd24d55;margin-right:.3rem}
   @media(max-width:900px){.page{padding:1rem} th,td{padding:.45rem .6rem}}
 """
 
@@ -1599,6 +1947,8 @@ def _signal_cfg(sig):
         return "linear-gradient(90deg,#ff6b00,#ffb800)", "STRONG BUY", "#ffb800"
     if sig == "BUY":
         return "linear-gradient(90deg,#1a9e5c,#3ecf8e)", "BUY", "#3ecf8e"
+    if sig == EARLY_SIGNAL_LABEL:
+        return "linear-gradient(90deg,#ffb800,#9be564)", "EARLY D1", "#ffb800"
     return "linear-gradient(90deg,#7b2ff7,#c471ed)", "TURNING UP", "#c471ed"
 
 def _zone_color(z):
@@ -1639,7 +1989,9 @@ def _d1_badge(days_ago, early):
     if days_ago is None:
         return ""
     if early:
-        return f'<span class="badge-early" title="SMI dzienny wyprzedza tygodniowy">⚡ D1 wczesniej o {days_ago}d</span>'
+        when = "dzis" if days_ago == 0 else f"{days_ago}d temu"
+        return (f'<span class="badge-early" title="SMI D1 przecial EMA, W1 jeszcze bez sygnalu">'
+                f'⚡ D1 cross {when}</span>')
     if days_ago > 0:
         return f'<span class="badge-d1-lead" title="Dni od crossover na D1">D1: -{days_ago}d</span>'
     return ""
@@ -1675,6 +2027,30 @@ def _fuzzy_badge(score, rescued=False):
         return f'<span class="badge-fuzzy-rescue" title="{title}">&#128302; Fuzzy {score}</span>'
     cls = "badge-fuzzy-high" if score >= 70 else "badge-fuzzy-mid" if score >= 45 else "badge-fuzzy-low"
     return f'<span class="{cls}" title="Fuzzy Score - ciagla ocena jakosci fundamentalnej">Fuzzy {score}</span>'
+
+def _stop_row(r):
+    """Wiersz karty z sugerowanym SL (ATR W1 / dołek 4 tyg.) i ryzykiem w %."""
+    sl, risk = r.get("stop_loss"), r.get("risk_pct")
+    if sl is None:
+        return ""
+    if r.get("stop_breached"):
+        return (f'<div class="sc-row"><span>Stop Loss</span>'
+                f'<span style="color:#ff4560;font-weight:600">{sl} &#9888; cena pod SL</span></div>')
+    if risk is None:
+        return ""
+    rc = "#3ecf8e" if risk <= 8 else "#ffb800" if risk <= 15 else "#ff4560"
+    return (f'<div class="sc-row"><span title="max(Close - {ATR_STOP_MULT}xATR{ATR_LEN} W1, '
+            f'dolek 4 tyg.)">Stop Loss</span>'
+            f'<span>{sl} <span style="color:{rc};font-weight:600">(-{risk}%)</span></span></div>')
+
+def _earnings_badge(r):
+    """Ostrzeżenie: publikacja wyników w ciągu EARNINGS_WARN_DAYS dni (ryzyko luki)."""
+    if not r.get("earnings_warning"):
+        return ""
+    d = r.get("days_to_earnings")
+    when = "dzis" if d == 0 else f"za {d}d"
+    return (f'<span class="badge-earn" title="Publikacja wynikow {r.get("earnings_date")} - '
+            f'ryzyko luki cenowej">&#128197; Wyniki {when}</span>')
 
 def _color_ok(val, ok):
     if val is None: return "#888"
@@ -1728,7 +2104,8 @@ def render_cards(data, show_quality=False):
     cards = ""
     for r in sorted(data, key=lambda x: (
         {"Strong BUY":0,"BUY":1,"Turning Up":2}.get(x["signal"],9),
-        -(x.get("tech_score") or 0)
+        -(x.get("tech_score_raw") or 0),
+        -(x.get("fuzzy_score") or 0),
     )):
         sig = r.get("signal","Strong BUY")
         tc, sl, sc = _signal_cfg(sig)
@@ -1757,6 +2134,7 @@ def render_cards(data, show_quality=False):
             vc_c  ="#3ecf8e" if vc else "#555d7a"
             rs12_c=_color_ok(rs12,rs12 is not None and rs12>=RS_MIN_OUTPERFORM)
             rs12_s=f"{rs12:.2f}×" if rs12 is not None else "--"
+            rs12_s += f' <span style="color:#555d7a;font-size:.65rem">vs {r.get("rs_benchmark") or "--"}</span>'
             wyk_label, wyk_bg = _wyckoff_cell(wyk_s, wyk_d)
             wyk_row = (f'<div class="sc-row"><span>Wyckoff W1</span>'
                        f'<span style="background:{wyk_bg};color:{"#ff6b6b" if wyk_d else "#3ecf8e" if wyk_s>=4 else "#7c9ef0"};'
@@ -1772,16 +2150,18 @@ def render_cards(data, show_quality=False):
                 f'<span style="color:{gm_c};font-weight:600">{fmt_pct(gm)}</span></div>'
                 f'<div class="sc-divider"></div>'
                 f'<div class="sc-row"><span>Vol W1</span>'
-                f'<span style="color:{vc_c};font-weight:600;font-size:.72rem">{"✓ potw." if vc else "brak potw."}</span></div>'
+                f'<span style="color:{vc_c};font-weight:600;font-size:.72rem">{"✓ potw." if vc else "brak potw."}'
+                f'{" (proj.)" if r.get("vol_projected") else ""}</span></div>'
                 f'<div class="sc-row"><span>RS 12M</span>'
                 f'<span style="color:{rs12_c};font-weight:600">{rs12_s}</span></div>'
                 f'{wyk_row}'
             )
 
         monthly_risk_html = ""
-        if r.get("m_risk_warning"):
+        if r.get("m_risk_warning") or r.get("earnings_warning"):
             monthly_risk_html = (
                 '<div style="margin:.5rem 0">'
+                + _earnings_badge(r)
                 + _monthly_risk_badge(r.get("m_risk_warning", False), r.get("m_zone", "--"))
                 + '</div>'
             )
@@ -1798,7 +2178,7 @@ def render_cards(data, show_quality=False):
             f'{_mtf_badge(r.get("mtf_score"))}'
             f'{_fuzzy_badge(r.get("fuzzy_score"), r.get("fuzzy_rescue", False))}'
             f'</div>'
-            f'<div class="sc-name">{r["name"]}</div></div>'
+            f'<div class="sc-name">{_html.escape(str(r["name"]))}</div></div>'
             f'<span class="badge-{mc}">{r["market"]}</span></div>'
             f'{monthly_risk_html}'
             f'<div class="sc-price">{na(r["price"])} {r["currency"]}</div>'
@@ -1807,7 +2187,7 @@ def render_cards(data, show_quality=False):
             f'{disc_row}'
             f'<div class="sc-row"><span>Strefa SMI</span>'
             f'<span style="color:{zc}">{z}</span></div>'
-            f'<div class="sc-row"><span>Sektor</span><span>{r["sector"]}</span></div>'
+            f'<div class="sc-row"><span>Sektor</span><span>{_html.escape(str(r["sector"]))}</span></div>'
             f'<div class="sc-row"><span>Market Cap</span>'
             f'<span style="color:var(--accent)">{fmt_cap(r.get("market_cap_mln"))}</span></div>'
             f'<div class="sc-row"><span>Vol avg</span>'
@@ -1817,6 +2197,7 @@ def render_cards(data, show_quality=False):
             f'<span style="color:{_color_ok(r.get("eps_ttm"), (r.get("eps_ttm") or 0) > 0)}">'
             f'{na(r.get("eps_ttm"))}</span></div>'
             f'{_eps_growth_rows(r)}'
+            f'{_stop_row(r)}'
             f'<div class="sc-row"><span>Sales TTM</span>'
             f'<span>{na(r.get("sales_ttm_mln"))} M</span></div>'
             f'<div class="sc-row"><span>Quick Ratio</span>'
@@ -1837,7 +2218,7 @@ def render_table_rows(data, show_quality=False):
         return "<tr><td colspan='20' style='text-align:center;color:#888;padding:2rem'>Brak wynikow</td></tr>"
     data = sorted(data, key=lambda x: (
         {"Strong BUY":0,"BUY":1,"Turning Up":2}.get(x["signal"],9),
-        -(x.get("tech_score") or 0)
+        -(x.get("tech_score_raw") or 0)
     ))
     html = ""
     for r in data:
@@ -1847,6 +2228,7 @@ def render_table_rows(data, show_quality=False):
         sig   = r["signal"]
         badge = ('<span class="badge-strong">STRONG</span>' if sig=="Strong BUY"
                  else '<span class="badge-buy">BUY</span>' if sig=="BUY"
+                 else '<span class="badge-early">EARLY</span>' if sig==EARLY_SIGNAL_LABEL
                  else '<span class="badge-turning">TURN</span>')
         eps=r.get("eps_ttm"); qr=r.get("quick_ratio")
         roic=r.get("roic"); de=r.get("debt_equity"); gm=r.get("gross_margin")
@@ -1880,9 +2262,9 @@ def render_table_rows(data, show_quality=False):
 
         html += f"""<tr>
           <td><span class="ticker">{r['ticker']}</span>{badge}{_score_badge(r.get('tech_score'))}{_div_badge(r.get('divergence_bull'),r.get('divergence_desc',''))}{_d1_badge(r.get('d1_last_cross_days_ago'), r.get('early_signal', False))}{_mtf_badge(r.get('mtf_score'))}{_fuzzy_badge(r.get('fuzzy_score'), r.get('fuzzy_rescue', False))}</td>
-          <td class="name-col">{r['name']}</td>
+          <td class="name-col">{_html.escape(str(r['name']))}</td>
           <td><span class="badge-{'usa' if r['market']=='USA' else 'eu'}">{r['market']}</span></td>
-          <td>{r['sector']}</td>
+          <td>{_html.escape(str(r['sector']))}</td>
           <td class="num">{na(r['price'])} {r['currency']}</td>
           <td class="num" style="color:{disc_color};font-weight:600">{disc_str}</td>
           <td class="num">{fmt_cap(r.get('market_cap_mln'))}</td>
@@ -1903,11 +2285,13 @@ def render_table_rows(data, show_quality=False):
 #  HTML – SCREENER GŁÓWNY
 # ══════════════════════════════════════════════════════════════
 
-def generate_html_main(meta, results):
+def generate_html_main(meta, results, early_results=()):
     dt = datetime.fromisoformat(meta["generated_at"]).strftime("%d.%m.%Y %H:%M")
     strong_res  = [r for r in results if r["signal"] == "Strong BUY"]
     turning_res = [r for r in results if r["signal"] == "Turning Up"]
-    early_res   = [r for r in results if r.get("early_signal")]
+    early_res   = list(early_results)
+    bar_note    = ("zamkni&#281;ta &#347;wieca W1" if meta.get("closed_weekly_bar")
+                   else "bie&#380;&#261;ca (niezamkni&#281;ta) &#347;wieca W1")
     html = f"""<!DOCTYPE html>
 <html lang="pl"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -1928,7 +2312,7 @@ def generate_html_main(meta, results):
     <a href="index_all.html" class="nav-link">&#128270; Full Scan</a>
   </nav>
   <h1>Screener g&#322;&#243;wny &mdash; SMI Tygodniowy</h1>
-  <p class="subtitle">Wygenerowano: {dt} &nbsp;|&nbsp; Czas: {meta['elapsed_min']} min &nbsp;|&nbsp; SMI({SMI_LEN_K},{SMI_LEN_D},{SMI_LEN_EMA})</p>
+  <p class="subtitle">Wygenerowano: {dt} &nbsp;|&nbsp; Czas: {meta['elapsed_min']} min &nbsp;|&nbsp; SMI({SMI_LEN_K},{SMI_LEN_D},{SMI_LEN_EMA}) &nbsp;|&nbsp; Sygna&#322;: {bar_note}</p>
   <div class="strategy-box" style="margin:1.5rem 0">
     <strong>&#9881; Aktywna strategia:</strong>
     <ul>
@@ -1941,7 +2325,11 @@ def generate_html_main(meta, results):
       <li>Gross Margin &gt; <strong>{int(MIN_GROSS_MARGIN*100)}%</strong> (wymagane)</li>
       <li>Cap &gt; <strong>{MIN_MARKET_CAP//1_000_000}M</strong> | Vol &gt; <strong>{MIN_VOLUME:,}</strong></li>
       <li>Wyckoff W1: informacyjnie (badge W:Spring/SOS/&#9888;Dist)</li>
-      <li>D1 Lead: informacyjnie (badge &#9889;D1 wczesniej / D1:-Xd)</li>
+      <li>D1 Lead: informacyjnie (badge D1:-Xd = ile sesji temu by&#322; crossover D1)</li>
+      <li>Early D1: osobna sekcja &mdash; SMI D1 przeci&#261;&#322; EMA, W1 jeszcze bez sygna&#322;u</li>
+      <li>RS 12M: wzgl&#281;dem indeksu kraju w walucie lokalnej (USA: SPY)</li>
+      <li>Stop Loss: max(Close &minus; {ATR_STOP_MULT}&times;ATR{ATR_LEN} W1, do&#322;ek 4 tyg.)</li>
+      <li>&#128197; Wyniki: ostrze&#380;enie gdy publikacja w ci&#261;gu {EARNINGS_WARN_DAYS} dni</li>
       <li>MTF Score: informacyjnie 0-5 (badge MTF&#9670;X, zgodnosc D1+W1+Monthly)</li>
       <li>Monthly Risk: ostrzezenie gdy trend miesieczny przeczy sygnalowi W1</li>
       <li>Fuzzy: dodatkowa &#347;cie&#380;ka rozmyta &mdash; ratuje sp&oacute;&#322;k&#281; z 1 niespe&#322;nionym
@@ -1958,15 +2346,17 @@ def generate_html_main(meta, results):
     <div class="stat"><div class="stat-val green">{meta.get('mtf_high_count', 0)}</div><div class="stat-label">MTF Score&ge;4</div></div>
     <div class="stat"><div class="stat-val" style="color:#ff4560">{meta.get('monthly_risk_count', 0)}</div><div class="stat-label">Monthly Risk</div></div>
     <div class="stat"><div class="stat-val" style="color:#e29bff">{meta.get('fuzzy_rescue_count', 0)}</div><div class="stat-label">Fuzzy Rescue</div></div>
+    <div class="stat"><div class="stat-val" style="color:#ffd24d">{meta.get('earnings_warn_count', 0)}</div><div class="stat-label">Wyniki &le;{EARNINGS_WARN_DAYS}d</div></div>
   </div>
   <div class="section section-early">
     <div class="section-header"><span class="section-icon">&#9889;</span>
       <h2>Early Signal D1 &mdash; {len(early_res)} sygnalow</h2></div>
-    <p class="early-note">Sp&oacute;&#322;ki, gdzie SMI dzienny ju&#380; pokaza&#322; crossover w g&oacute;r&#281;,
-      ale SMI tygodniowy jeszcze go nie potwierdzi&#322; (strefa W1 nadal Bearish/OVERBOUGHT).
-      To wczesne ostrze&#380;enie &mdash; sygna&#322; W1 mo&#380;e pojawi&#263; si&#281; za kilka tygodni,
-      je&#347;li ruch na D1 si&#281; utrzyma. Brak filtr&oacute;w fundamentalnych w tej sekcji.</p>
-    {render_cards(early_res, show_quality=False)}
+    <p class="early-note">Sp&oacute;&#322;ki <strong>bez</strong> sygna&#322;u W1, u kt&oacute;rych SMI tygodniowy
+      jest tu&#380; pod swoj&#261; EMA (luka &le; {EARLY_MAX_GAP:g} pkt i maleje), a SMI dzienny
+      przeci&#261;&#322; EMA w g&oacute;r&#281; w ci&#261;gu ostatnich {EARLY_D1_MAX_DAYS} sesji i nadal jest nad ni&#261;.
+      Je&#347;li ruch si&#281; utrzyma, crossover W1 mo&#380;e pojawi&#263; si&#281; w najbli&#380;szych tygodniach.
+      Tylko filtry Cap/Vol &mdash; bez filtr&oacute;w fundamentalnych./p>
+    {render_cards(early_res, show_quality=True)}
   </div>
   <div class="section section-strong">
     <div class="section-header"><span class="section-icon">&#9889;</span>
@@ -2223,23 +2613,31 @@ def generate_html_index(meta):
 
 _TV_SUFFIX_MAP = {
     ".DE":"XETR",".PA":"EURONEXT",".L":"LSE",".AS":"EURONEXT",".MC":"BME",
-    ".SW":"SIX",".MI":"MIL",".ST":"OM",".OL":"OSL",".BR":"EURONEXT",".WA":"GPW",
+    ".SW":"SIX",".MI":"MIL",".ST":"OMXSTO",".OL":"OSL",".BR":"EURONEXT",".WA":"GPW",
 }
 
 def _to_tv_ticker(yahoo_ticker):
+    """
+    TV FIX: Sztokholm w TradingView to OMXSTO (nie OM), a klasy akcji Yahoo
+    zapisuje z myślnikiem: VOLV-B.ST -> OMXSTO:VOLV_B, BT-A.L -> LSE:BT.A,
+    BRK-B (USA) -> BRK.B.
+    """
     for suffix, exchange in _TV_SUFFIX_MAP.items():
         if yahoo_ticker.endswith(suffix):
-            return f"{exchange}:{yahoo_ticker[:-len(suffix)]}"
-    return yahoo_ticker
+            base = yahoo_ticker[:-len(suffix)]
+            base = base.replace("-", "_" if exchange == "OMXSTO" else ".")
+            return f"{exchange}:{base}"
+    return yahoo_ticker.replace("-", ".")
 
-def generate_tradingview_lists(main_results, full_results):
+def generate_tradingview_lists(main_results, full_results, early_results=()):
     dt_str = datetime.now().strftime("%Y-%m-%d %H:%M UTC")
     for label, data, filename in [
         ("Screener główny", main_results, "tv_main.txt"),
         ("Full Scan",       full_results, "tv_all.txt"),
+        ("Early D1",        list(early_results), "tv_early.txt"),
     ]:
         sorted_data = sorted(data, key=lambda x: (
-            {"Strong BUY":0,"BUY":1,"Turning Up":2}.get(x["signal"],9),
+            {"Strong BUY":0,"BUY":1,"Turning Up":2,EARLY_SIGNAL_LABEL:3}.get(x["signal"],9),
             -(x.get("discount_52w") or 0),
         ))
         lines = [
@@ -2248,7 +2646,7 @@ def generate_tradingview_lists(main_results, full_results):
             f"### Liczba tickerow: {len(sorted_data)}",
             "###",
         ]
-        for sig_type in ("Strong BUY","BUY","Turning Up"):
+        for sig_type in ("Strong BUY","BUY","Turning Up",EARLY_SIGNAL_LABEL):
             group = [r for r in sorted_data if r["signal"] == sig_type]
             if not group: continue
             lines.append(f"### ── {sig_type} ({len(group)}) ──")
@@ -2264,8 +2662,17 @@ def generate_tradingview_lists(main_results, full_results):
                 fuzzy = r.get("fuzzy_score")
                 fuzzy_s = f"Fuzzy:{fuzzy}" if fuzzy is not None else "Fuzzy:--"
                 fuzzy_s += "*" if r.get("fuzzy_rescue") else ""
+                # COMPAT: nowe pola (SL, ER) dopisywane NA KOŃCU, po sektorze –
+                # pozycje dotychczasowych pól rozdzielonych "|" się nie zmieniają.
+                extra = ""
+                if r.get("stop_breached"):
+                    extra = f" | SL:{r['stop_loss']} PRZEBITY"
+                elif r.get("stop_loss") is not None and r.get("risk_pct") is not None:
+                    extra = f" | SL:{r['stop_loss']} (-{r['risk_pct']}%)"
+                if r.get("earnings_warning"):
+                    extra += f" | ER:{r['days_to_earnings']}d"
                 lines.append(
-                    f"{tv}  ### {r['signal']} | {disc} | W:{wyk_l} | {mtf_s}{mrisk} | {fuzzy_s} | {r.get('sector','--')}"
+                    f"{tv}  ### {r['signal']} | {disc} | W:{wyk_l} | {mtf_s}{mrisk} | {fuzzy_s} | {r.get('sector','--')}{extra}"
                 )
         path = f"{OUTPUT_DIR}/{filename}"
         with open(path,"w",encoding="utf-8") as f: f.write("\n".join(lines)+"\n")
@@ -2273,6 +2680,81 @@ def generate_tradingview_lists(main_results, full_results):
         with open(clean_path,"w",encoding="utf-8") as f:
             f.write("\n".join(_to_tv_ticker(r["ticker"]) for r in sorted_data)+"\n")
         print(f"  TradingView {label}: {path}  ({len(sorted_data)} tickerow)")
+
+# ══════════════════════════════════════════════════════════════
+#  EARNINGS – data najbliższej publikacji wyników (Faza 3)
+# ══════════════════════════════════════════════════════════════
+
+def _parse_earnings_date(cal):
+    """yfinance zwraca calendar jako dict (nowsze) albo DataFrame (starsze)."""
+    try:
+        if cal is None:
+            return None
+        if isinstance(cal, dict):
+            v = cal.get("Earnings Date")
+        else:
+            if cal.empty:
+                return None
+            v = cal.loc["Earnings Date"].tolist() if "Earnings Date" in cal.index else None
+        if v is None:
+            return None
+        vals = v if isinstance(v, (list, tuple)) else [v]
+        dates = sorted(pd.Timestamp(x).tz_localize(None).normalize()
+                       for x in vals if x is not None and not pd.isna(x))
+        return dates[0] if dates else None
+    except Exception:
+        return None
+
+
+def _get_earnings_date(symbol):
+    """Data wyników z cache (24h) albo z Yahoo. Zwraca ISO 'YYYY-MM-DD' lub None."""
+    safe = symbol.replace("/", "_").replace("\\", "_").replace(":", "_")
+    p = EARNINGS_CACHE_DIR / f"{safe}.json"
+    try:
+        if p.exists() and (time.time() - p.stat().st_mtime) / 3600 <= EARNINGS_TTL_H:
+            return json.loads(p.read_text(encoding="utf-8")).get("date")
+    except Exception:
+        pass
+    d = None
+    for attempt in range(2):
+        try:
+            d = _parse_earnings_date(yf.Ticker(symbol).calendar)
+            break
+        except Exception:
+            if attempt == 0:
+                _backoff(0)
+    iso = d.strftime("%Y-%m-%d") if d is not None else None
+    try:
+        EARNINGS_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps({"date": iso}), encoding="utf-8")
+    except Exception:
+        pass
+    return iso
+
+
+def add_earnings_info(rows):
+    """Dokłada earnings_date / days_to_earnings / earnings_warning do każdego wiersza."""
+    if not rows:
+        return 0
+    syms = list({r["ticker"] for r in rows})
+    dates = {}
+    with ThreadPoolExecutor(max_workers=EARNINGS_WORKERS) as pool:
+        futs = {pool.submit(_get_earnings_date, s): s for s in syms}
+        for f in as_completed(futs):
+            try:
+                dates[futs[f]] = f.result()
+            except Exception:
+                dates[futs[f]] = None
+    today = pd.Timestamp.now().normalize()
+    warn = 0
+    for r in rows:
+        iso = dates.get(r["ticker"])
+        days = int((pd.Timestamp(iso) - today).days) if iso else None
+        r["earnings_date"]    = iso
+        r["days_to_earnings"] = days
+        r["earnings_warning"] = days is not None and 0 <= days <= EARNINGS_WARN_DAYS
+        warn += r["earnings_warning"]
+    return warn
 
 # ══════════════════════════════════════════════════════════════
 #  GŁÓWNA PĘTLA
@@ -2308,8 +2790,11 @@ def run_screener():
         print("  Oba rynki ponizej SMA50W — sygnaly SMI maja nizsza wiarygodnosc!")
     all_data       = phase2_collect(weekly_signals)
 
-    main_results = [r for r in all_data if filter_main(r)]
-    full_results = all_data
+    # EARLY D1 to osobna lista – nie trafia do Full Scan ani do screenera głównego
+    early_results = [r for r in all_data if r.get("signal") == EARLY_SIGNAL_LABEL]
+    signal_data   = [r for r in all_data if r.get("signal") != EARLY_SIGNAL_LABEL]
+    main_results = [r for r in signal_data if filter_main(r)]
+    full_results = signal_data
     fuzzy_rescue_count = sum(1 for r in main_results if r.get("fuzzy_rescue"))
     if fuzzy_rescue_count:
         print(f"  Fuzzy rescue: {fuzzy_rescue_count} spolek w screenerze glownym dzieki "
@@ -2340,14 +2825,24 @@ def run_screener():
         main_results.sort(
             key=lambda x: (
                 {"Strong BUY": 0, "Turning Up": 1}.get(x.get("signal", ""), 2),
-                -(x.get("tech_score", 0) * 2 + (x.get("mtf_score") or 0)),
+                -(x.get("tech_score_raw", 0) * 2 + (x.get("mtf_score") or 0)),
             )
         )
         print(f"      MTF Score>=4: {mtf_high_count} spolek | "
               f"Monthly Risk Warning: {monthly_risk_count} spolek | "
               f"Posortowano po tech_score*2 + mtf_score")
+    # EARNINGS: tylko lista finalna + Early (1 zapytanie na spółkę, cache 24h)
+    earnings_warn_count = 0
+    if ENABLE_EARNINGS and (main_results or early_results):
+        print(f"\n[3b/3] Daty wynikow -- {len(main_results) + len(early_results)} tickerow...")
+        earnings_warn_count = add_earnings_info(main_results + early_results)
+        print(f"      Wyniki w ciagu {EARNINGS_WARN_DAYS} dni: {earnings_warn_count} spolek")
+
     # full_results nie dostaje Monthly/MTF (informacyjne tylko na liście głównej)
-    for r in full_results:
+    for r in full_results + early_results:
+        r.setdefault("earnings_date", None)
+        r.setdefault("days_to_earnings", None)
+        r.setdefault("earnings_warning", False)
         r.setdefault("m_zone", "--")
         r.setdefault("m_bullish", False)
         r.setdefault("m_risk_warning", False)
@@ -2358,7 +2853,8 @@ def run_screener():
         "generated_at":   datetime.now().isoformat(),
         "elapsed_min":    elapsed,
         "total_scanned":  len(ticker_market),
-        "weekly_signals": len(weekly_signals),
+        "weekly_signals": sum(1 for v in weekly_signals.values()
+                              if v.get("signal") != EARLY_SIGNAL_LABEL),
         "main_total":     len(main_results),
         "full_total":     len(full_results),
         "mtf_high_count":     mtf_high_count,
@@ -2373,24 +2869,41 @@ def run_screener():
             "eu_price":         market_dir.get("eu_price"),
             "eu_sma50w":        market_dir.get("eu_sma50w"),
         },
+        # COMPAT: nowe pola meta na końcu
+        "early_total":         len(early_results),
+        "earnings_warn_count": earnings_warn_count,
+        "closed_weekly_bar":   USE_CLOSED_WEEKLY_BAR,
     }
 
+    def _compat(rows):
+        """COMPAT: dotychczasowe kolumny w dotychczasowej kolejności, nowe na końcu
+        (ważne dla odbiorców CSV czytających kolumny po pozycji, np. n8n)."""
+        out = []
+        for r in rows:
+            old = {k: v for k, v in r.items() if k not in NEW_OUTPUT_FIELDS}
+            new = {k: r[k] for k in NEW_OUTPUT_FIELDS if k in r}
+            out.append({**old, **new})
+        return out
+
     def _save_outputs():
-        for fname, d in [("results",full_results),("results_main",main_results),("meta",meta)]:
+        full_c, main_c, early_c = _compat(full_results), _compat(main_results), _compat(early_results)
+        for fname, d in [("results",full_c),("results_main",main_c),
+                         ("results_early",early_c),("meta",meta)]:
             with open(f"{OUTPUT_DIR}/{fname}.json","w",encoding="utf-8") as f:
                 json.dump(d, f, indent=2, ensure_ascii=False)
-        if full_results:  pd.DataFrame(full_results).to_csv(f"{OUTPUT_DIR}/results.csv",index=False)
-        if main_results:  pd.DataFrame(main_results).to_csv(f"{OUTPUT_DIR}/results_main.csv",index=False)
+        if full_c:  pd.DataFrame(full_c).to_csv(f"{OUTPUT_DIR}/results.csv",index=False)
+        if main_c:  pd.DataFrame(main_c).to_csv(f"{OUTPUT_DIR}/results_main.csv",index=False)
+        if early_c: pd.DataFrame(early_c).to_csv(f"{OUTPUT_DIR}/results_early.csv",index=False)
 
     def _generate_html():
         print("\n[HTML] Generowanie raportow...")
-        generate_html_main(meta, main_results)
+        generate_html_main(meta, main_results, early_results)
         generate_html_full(meta, full_results)
         generate_html_index(meta)
 
     def _generate_tv():
         print("\n[TV] Listy TradingView...")
-        generate_tradingview_lists(main_results, full_results)
+        generate_tradingview_lists(main_results, full_results, early_results)
 
     # OPT 5: zapis JSON/CSV, HTML i TV równolegle
     # WAŻNE: .result() na każdym future jest konieczne — bez tego wyjątki
@@ -2408,6 +2921,7 @@ def run_screener():
     print(f"\nCzas lacznie: {elapsed} min")
     print(f"Screener glowny : {len(main_results)} wynikow")
     print(f"Full Scan       : {len(full_results)} wynikow")
+    print(f"Early D1        : {len(early_results)} wynikow")
     return main_results, full_results
 
 if __name__ == "__main__":
