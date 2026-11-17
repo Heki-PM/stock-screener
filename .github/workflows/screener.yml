@@ -167,10 +167,25 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
+  # Webhook n8n jest ważniejszy niż Pages: czeka na próbę deployu
+  # (żeby Pages były świeże, jeśli deploy się uda), ale odpala się
+  # także wtedy, gdy deploy się wysypie. Warunek: screener zakończył
+  # się sukcesem (wyniki są scommitowane w repo).
+  notify-n8n:
+    needs: [run-screener, deploy]
+    if: ${{ always() && needs.run-screener.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+
       - name: Powiadom n8n o nowych wynikach (webhook)
         run: |
           DATE=$(date -u +'%Y-%m-%d')
-          curl -sf -X POST "https://eve320-20320.mikrus.cloud/webhook/zhelektro-daily-refresh" \
+          # Retry tylko przy problemach z połączeniem / 5xx (bez --max-time,
+          # żeby wolna odpowiedź n8n nie powodowała podwójnego wywołania).
+          curl -sf --retry 3 --retry-delay 20 --retry-connrefused --connect-timeout 20 \
+            -X POST "https://eve320-20320.mikrus.cloud/webhook/zhelektro-daily-refresh" \
             -H "X-Webhook-Secret: ${{ secrets.N8N_WEBHOOK_SECRET }}" \
             -H "Content-Type: application/json" \
             -d "{\"date\": \"${DATE}\"}"
