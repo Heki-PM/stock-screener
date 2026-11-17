@@ -1,20 +1,23 @@
 {
-  "generated_at": "2026-11-17T12:34:23.561846",
-  "elapsed_min": 11.6,
-  "total_scanned": 7205,
-  "weekly_signals": 582,
-  "main_total": 17,
-  "full_total": 229,
-  "mtf_high_count": 2,
-  "monthly_risk_count": 8,
-  "fuzzy_rescue_count": 4,
+  "generated_at": "2026-11-17T18:38:37.195230",
+  "elapsed_min": 30.2,
+  "total_scanned": 7189,
+  "weekly_signals": 810,
+  "main_total": 24,
+  "full_total": 614,
+  "mtf_high_count": 4,
+  "monthly_risk_count": 16,
+  "fuzzy_rescue_count": 7,
   "indicator": "SMI(10,3,3)",
   "market_direction": {
     "usa_above_sma50w": true,
     "eu_above_sma50w": true,
-    "usa_price": 739.95,
-    "usa_sma50w": 721.45,
-    "eu_price": 88.04,
-    "eu_sma50w": 86.51
-  }
+    "usa_price": 731.92,
+    "usa_sma50w": 721.29,
+    "eu_price": 87.17,
+    "eu_sma50w": 86.49
+  },
+  "early_total": 35,
+  "earnings_warn_count": 5,
+  "closed_weekly_bar": true
 }
