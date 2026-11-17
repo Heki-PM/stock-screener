@@ -1,17 +1,18 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-11-17 12:13 UTC
-### Liczba tickerow: 16
+### Wygenerowano: 2026-11-17 12:34 UTC
+### Liczba tickerow: 17
 ###
-### ── Strong BUY (13) ──
+### ── Strong BUY (14) ──
 FIGR  ### Strong BUY | -67.5% | W:– | MTF:2/5 | Fuzzy:87.2 | --
 DBVT  ### Strong BUY | -60.8% | W:Faza B | MTF:3/5 M:RISK | Fuzzy:83.3 | --
 KLAR  ### Strong BUY | -59.8% | W:– | MTF:1/5 | Fuzzy:86.2 | --
 LRMR  ### Strong BUY | -53.3% | W:– | MTF:1/5 M:RISK | Fuzzy:86.5 | --
 KLAC  ### Strong BUY | -53.2% | W:– | MTF:3/5 M:RISK | Fuzzy:89.9 | --
-OSL:NHY  ### Strong BUY | -43.7% | W:– | MTF:4/5 M:RISK | Fuzzy:67.6 | --
+OSL:NHY  ### Strong BUY | -43.5% | W:– | MTF:4/5 M:RISK | Fuzzy:67.4 | --
 IRD  ### Strong BUY | -42.9% | W:⚠ Dist | MTF:3/5 | Fuzzy:89.3 | --
 HLNE  ### Strong BUY | -41.9% | W:SC | MTF:2/5 | Fuzzy:80.1 | --
 DMRA  ### Strong BUY | -41.3% | W:Faza B | MTF:1/5 | Fuzzy:86.9 | --
+GPW:XTB  ### Strong BUY | -35.2% | W:SOS | MTF:4/5 | Fuzzy:85.8 | --
 BSBR  ### Strong BUY | -32.1% | W:Spring | MTF:0/5 M:RISK | Fuzzy:60.6 | --
 ANRO  ### Strong BUY | -27.6% | W:⚠ Dist | MTF:3/5 | Fuzzy:78.7* | --
 IMVT  ### Strong BUY | -26.7% | W:– | MTF:1/5 | Fuzzy:79.6* | --
