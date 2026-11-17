@@ -97,6 +97,10 @@ EARNINGS_TTL_H = 48   # data wyników zmienia się częściej niż fundamenty
 # RETRY PASS – po głównym przebiegu fundamentów tickery z błędem/niekompletnymi danymi (Yahoo 401 "Invalid Crumb"
 # przy dużej współbieżności) pobieramy ponownie małą liczbą wątków. Test 2026-11-17: 36/36 odzyskanych przy 1-3 wątkach.
 FUNDAMENTALS_RETRY_WORKERS = 3
+# FAIL FAST – w głównym przebiegu (20 wątków) Yahoo odrzuca `info` błędem 401, a ponawianie z backoffem 5/10/20s
+# przy takiej współbieżności nic nie daje (test 2026-11-17: ~16 min zmarnowane). Główny przebieg robi 1 próbę `info`,
+# a RETRY PASS (3 wątki) ponawia pełnym backoffem. Ustaw False, żeby wrócić do ponawiania w głównym przebiegu.
+FUNDAMENTALS_FAIL_FAST = True
 FUNDAMENTALS_RETRY_PAUSE_S = 10
 
 # OPT 6 – wstępny filtr płynności na danych W1 (przed Wyckoffem, D1 i fundamentami).
@@ -1344,7 +1348,7 @@ def _read_fast_info(tkr):
     except Exception:
         return None
 
-def _fetch_fundamentals(symbol: str) -> dict | None:
+def _fetch_fundamentals(symbol: str, fail_fast: bool = False) -> dict | None:
     """
     Pobiera surowe dane fundamentalne z Yahoo Finance dla jednego symbolu.
     Zwraca dict gotowy do złożenia z danymi tygodniowymi lub None przy błędzie.
@@ -1371,16 +1375,17 @@ def _fetch_fundamentals(symbol: str) -> dict | None:
             discount_pct = round((high_52w - price) / high_52w * 100, 1)
         name=symbol; sector="--"; country="--"; eps_ttm=None; sales=None; qr=None
         info_ok = False
+        info_attempts = 1 if fail_fast else RETRY_ATTEMPTS
         try:
             info = None
-            for attempt in range(RETRY_ATTEMPTS):
+            for attempt in range(info_attempts):
                 try:
                     info = tkr.info
                 except Exception:
                     info = None
                 if info and len(info) > 5:
                     break
-                if attempt < RETRY_ATTEMPTS - 1:
+                if attempt < info_attempts - 1:
                     _backoff(attempt)
             if info and len(info) > 5:
                 info_ok = True
@@ -1447,7 +1452,7 @@ def _fetch_fundamentals(symbol: str) -> dict | None:
     except Exception:
         return None
 
-def _collect_one(symbol: str, weekly_data: dict) -> dict | None:
+def _collect_one(symbol: str, weekly_data: dict, fail_fast: bool = False) -> dict | None:
     """
     Łączy dane fundamentalne (z cache lub świeżo pobrane) z danymi tygodniowymi.
     FIX 5: fundamenty trafiają do cache na 24h – kolejne uruchomienia w tym oknie
@@ -1458,7 +1463,7 @@ def _collect_one(symbol: str, weekly_data: dict) -> dict | None:
     if cached is not None:
         fund = cached
     else:
-        fund = _fetch_fundamentals(symbol)
+        fund = _fetch_fundamentals(symbol, fail_fast=fail_fast)
         if fund is None:
             return None
         if not fund.get("_incomplete") and ("_rejected" not in fund or CACHE_REJECTED):
@@ -1531,7 +1536,8 @@ def phase2_collect(weekly_signals):
 
     results = []
     with ThreadPoolExecutor(max_workers=FUNDAMENTALS_WORKERS) as pool:
-        futures = {pool.submit(_collect_one, sym, weekly_signals[sym]): sym
+        futures = {pool.submit(_collect_one, sym, weekly_signals[sym],
+                                   FUNDAMENTALS_FAIL_FAST): sym
                    for sym in candidates}
         for future in as_completed(futures):
             r = future.result()
