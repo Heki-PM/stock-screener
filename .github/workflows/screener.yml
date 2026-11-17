@@ -167,13 +167,11 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-  # Webhook n8n jest ważniejszy niż Pages: czeka na próbę deployu
-  # (żeby Pages były świeże, jeśli deploy się uda), ale odpala się
-  # także wtedy, gdy deploy się wysypie. Warunek: screener zakończył
-  # się sukcesem (wyniki są scommitowane w repo).
+  # n8n czyta dane z katalogu results/ w repo (commit w run-screener),
+  # więc webhook leci od razu po screenerze, równolegle z deployem Pages
+  # i niezależnie od jego wyniku.
   notify-n8n:
-    needs: [run-screener, deploy]
-    if: ${{ always() && needs.run-screener.result == 'success' }}
+    needs: run-screener
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
