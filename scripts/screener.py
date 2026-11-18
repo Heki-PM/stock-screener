@@ -44,7 +44,7 @@ CHANGELOG:
   PRICE W1     – cena i 52W High/Discount z dzisiejszych danych W1 zamiast 24h cache
   EARNINGS     – data najbliższych wyników + ostrzeżenie <= 14 dni (karty, JSON, TV)
   VOL PRORATA  – vol_confirm rzutowany na pełny tydzień, gdy świeca W1 niezamknięta
-  CLOSED BAR   – USE_CLOSED_WEEKLY_BAR = True (run w dni robocze 11:00 UTC)
+  CLOSED BAR   – USE_CLOSED_WEEKLY_BAR = False (domyślnie jak dotąd; True = sygnał tylko z zamkniętej świecy)
 """
 
 import yfinance as yf
@@ -101,6 +101,9 @@ FUNDAMENTALS_RETRY_WORKERS = 3
 # przy takiej współbieżności nic nie daje (test 2026-11-17: ~16 min zmarnowane). Główny przebieg robi 1 próbę `info`,
 # a RETRY PASS (3 wątki) ponawia pełnym backoffem. Ustaw False, żeby wrócić do ponawiania w głównym przebiegu.
 FUNDAMENTALS_FAIL_FAST = True
+# RETRY PASS: spółki, którym Yahoo odmawia `info` także przy 3 wątkach (test 2026-11-17: 0/25 odzyskanych, 6 min na pełnym
+# backoffie), dostają tylko 2 próby – po dłuższym oczekiwaniu i tak nie odpowiadają.
+FUNDAMENTALS_RETRY_INFO_ATTEMPTS = 2
 FUNDAMENTALS_RETRY_PAUSE_S = 10
 
 # OPT 6 – wstępny filtr płynności na danych W1 (przed Wyckoffem, D1 i fundamentami).
@@ -114,7 +117,7 @@ CACHE_REJECTED = True
 
 # CLOSED BAR – True = ignoruj niezamkniętą świecę tygodniową (brak "repaintingu"
 # sygnału przy uruchomieniu w środku tygodnia). False = zachowanie jak dotychczas.
-USE_CLOSED_WEEKLY_BAR = True   # screener startuje w dni robocze 11:00 UTC = świeca W1 niezamknięta
+USE_CLOSED_WEEKLY_BAR = False  # decyzja 2026-11-18: zostajemy przy dotychczasowym liczeniu świecy W1; True włączymy osobno
 
 # STOP LOSS – sugerowany SL z ATR tygodniowego
 ATR_LEN        = 14
@@ -1348,7 +1351,7 @@ def _read_fast_info(tkr):
     except Exception:
         return None
 
-def _fetch_fundamentals(symbol: str, fail_fast: bool = False) -> dict | None:
+def _fetch_fundamentals(symbol: str, info_attempts: int = RETRY_ATTEMPTS) -> dict | None:
     """
     Pobiera surowe dane fundamentalne z Yahoo Finance dla jednego symbolu.
     Zwraca dict gotowy do złożenia z danymi tygodniowymi lub None przy błędzie.
@@ -1375,7 +1378,6 @@ def _fetch_fundamentals(symbol: str, fail_fast: bool = False) -> dict | None:
             discount_pct = round((high_52w - price) / high_52w * 100, 1)
         name=symbol; sector="--"; country="--"; eps_ttm=None; sales=None; qr=None
         info_ok = False
-        info_attempts = 1 if fail_fast else RETRY_ATTEMPTS
         try:
             info = None
             for attempt in range(info_attempts):
@@ -1452,7 +1454,7 @@ def _fetch_fundamentals(symbol: str, fail_fast: bool = False) -> dict | None:
     except Exception:
         return None
 
-def _collect_one(symbol: str, weekly_data: dict, fail_fast: bool = False) -> dict | None:
+def _collect_one(symbol: str, weekly_data: dict, info_attempts: int = RETRY_ATTEMPTS) -> dict | None:
     """
     Łączy dane fundamentalne (z cache lub świeżo pobrane) z danymi tygodniowymi.
     FIX 5: fundamenty trafiają do cache na 24h – kolejne uruchomienia w tym oknie
@@ -1463,7 +1465,7 @@ def _collect_one(symbol: str, weekly_data: dict, fail_fast: bool = False) -> dic
     if cached is not None:
         fund = cached
     else:
-        fund = _fetch_fundamentals(symbol, fail_fast=fail_fast)
+        fund = _fetch_fundamentals(symbol, info_attempts=info_attempts)
         if fund is None:
             return None
         if not fund.get("_incomplete") and ("_rejected" not in fund or CACHE_REJECTED):
@@ -1536,8 +1538,8 @@ def phase2_collect(weekly_signals):
 
     results = []
     with ThreadPoolExecutor(max_workers=FUNDAMENTALS_WORKERS) as pool:
-        futures = {pool.submit(_collect_one, sym, weekly_signals[sym],
-                                   FUNDAMENTALS_FAIL_FAST): sym
+        main_attempts = 1 if FUNDAMENTALS_FAIL_FAST else RETRY_ATTEMPTS
+        futures = {pool.submit(_collect_one, sym, weekly_signals[sym], main_attempts): sym
                    for sym in candidates}
         for future in as_completed(futures):
             r = future.result()
@@ -1555,7 +1557,8 @@ def phase2_collect(weekly_signals):
         time.sleep(FUNDAMENTALS_RETRY_PAUSE_S)
         fixed = {}
         with ThreadPoolExecutor(max_workers=FUNDAMENTALS_RETRY_WORKERS) as pool:
-            futs = {pool.submit(_collect_one, s, weekly_signals[s]): s for s in retry}
+            futs = {pool.submit(_collect_one, s, weekly_signals[s],
+                                FUNDAMENTALS_RETRY_INFO_ATTEMPTS): s for s in retry}
             for f in as_completed(futs):
                 r2 = f.result()
                 if r2 and not r2.get("data_incomplete"):
