@@ -105,6 +105,11 @@ FUNDAMENTALS_FAIL_FAST = True
 # backoffie), dostają tylko 2 próby – po dłuższym oczekiwaniu i tak nie odpowiadają.
 FUNDAMENTALS_RETRY_INFO_ATTEMPTS = 2
 FUNDAMENTALS_RETRY_PAUSE_S = 10
+# BEZPIECZNIK RETRY PASS: gdy Yahoo blokuje wszystko (HTTP 429 przy pobieraniu crumb, 401 dla każdego tickera), retry pass
+# odzyskuje 0 rekordów, a trwa długo (19.11.2026: 0/292 w 11,5 min). Jeśli po tylu przetworzonych tickerach nie odzyskano
+# ani jednego, pozostałe pomijamy. Zdrowy dzień: odzyskiwane jest ~80% (17.11: 136/168), więc 0 z 20 praktycznie się nie zdarza.
+# 0 = bezpiecznik wyłączony.
+FUNDAMENTALS_RETRY_BREAKER_MIN = 20
 
 # OPT 6 – wstępny filtr płynności na danych W1 (przed Wyckoffem, D1 i fundamentami).
 # Średni wolumen tygodniowy / 5 ≈ średni wolumen dzienny. Margines 0.7 zostawia zapas,
@@ -1556,13 +1561,22 @@ def phase2_collect(weekly_signals):
               f"pauza {FUNDAMENTALS_RETRY_PAUSE_S}s)...")
         time.sleep(FUNDAMENTALS_RETRY_PAUSE_S)
         fixed = {}
+        done_n = 0
         with ThreadPoolExecutor(max_workers=FUNDAMENTALS_RETRY_WORKERS) as pool:
             futs = {pool.submit(_collect_one, s, weekly_signals[s],
                                 FUNDAMENTALS_RETRY_INFO_ATTEMPTS): s for s in retry}
             for f in as_completed(futs):
+                done_n += 1
                 r2 = f.result()
                 if r2 and not r2.get("data_incomplete"):
                     fixed[futs[f]] = r2
+                if (FUNDAMENTALS_RETRY_BREAKER_MIN and not fixed
+                        and done_n >= FUNDAMENTALS_RETRY_BREAKER_MIN and done_n < len(retry)):
+                    pool.shutdown(wait=False, cancel_futures=True)
+                    skipped = sum(1 for g in futs if g.cancelled())
+                    print(f"      Retry pass: PRZERWANY -- 0 odzyskanych po {done_n} probach "
+                          f"(Yahoo blokuje), pominieto {skipped} tickerow")
+                    break
         added = [t for t in fixed if t not in got]
         results = [fixed.get(r["ticker"], r) for r in results] + [fixed[t] for t in added]
         print(f"      Retry pass: odzyskano {len(fixed)}/{len(retry)} (w tym {len(added)} nowych rekordow)")
