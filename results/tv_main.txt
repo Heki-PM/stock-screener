@@ -1,18 +1,22 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-11-18 12:07 UTC
-### Liczba tickerow: 12
+### Wygenerowano: 2026-11-19 12:16 UTC
+### Liczba tickerow: 16
 ###
-### ── Strong BUY (8) ──
-FIGR  ### Strong BUY | -68.3% | W:– | MTF:2/5 | Fuzzy:87.2 | Financial Services
-KLAC  ### Strong BUY | -53.0% | W:– | MTF:3/5 M:RISK | Fuzzy:90.2 | Technology
-HLNE  ### Strong BUY | -43.7% | W:SC | MTF:4/5 | Fuzzy:81.3 | Financial Services
-IRD  ### Strong BUY | -42.7% | W:⚠ Dist | MTF:3/5 | Fuzzy:89.1 | --
-GFI  ### Strong BUY | -41.8% | W:– | MTF:4/5 M:RISK | Fuzzy:88.9 | Basic Materials
-DMRA  ### Strong BUY | -41.1% | W:Faza B | MTF:1/5 | Fuzzy:87.0 | Healthcare
-BSBR  ### Strong BUY | -32.8% | W:Spring | MTF:0/5 M:RISK | Fuzzy:61.7 | Financial Services
-GGG  ### Strong BUY | -25.8% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:75.0* | Industrials
+### ── Strong BUY (12) ──
+NGEN  ### Strong BUY | -69.8% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:78.8 | -- | SL:1.27 (-33.2%)
+FIGR  ### Strong BUY | -66.6% | W:– | MTF:2/5 | Fuzzy:87.2 | -- | SL:19.34 (-25.8%)
+KLAR  ### Strong BUY | -56.3% | W:– | MTF:2/5 | Fuzzy:86.2 | -- | SL:12.27 (-15.1%)
+KLAC  ### Strong BUY | -52.7% | W:– | MTF:3/5 M:RISK | Fuzzy:90.2 | -- | SL:126.7 (-12.5%)
+LRMR  ### Strong BUY | -49.8% | W:– | MTF:1/5 M:RISK | Fuzzy:86.5 | -- | SL:2.16 (-32.9%)
+HLNE  ### Strong BUY | -42.9% | W:SC | MTF:2/5 | Fuzzy:80.8 | -- | SL:79.3 (-9.0%)
+DMRA  ### Strong BUY | -40.0% | W:Faza B | MTF:1/5 | Fuzzy:86.3 | -- | SL:20.03 (-12.8%)
+ANAB  ### Strong BUY | -35.0% | W:– | MTF:2/5 | Fuzzy:90.7 | -- | SL:44.19 (-6.1%)
+PRTA  ### Strong BUY | -29.2% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:70.8* | -- | SL:7.62 (-8.7%)
+SLS  ### Strong BUY | -27.9% | W:⚠ Dist | MTF:3/5 | Fuzzy:75.0* | -- | SL:11.64 (-35.2%)
+IMVT  ### Strong BUY | -27.0% | W:– | MTF:3/5 | Fuzzy:80.0* | -- | SL:27.35 (-17.5%)
+GGG  ### Strong BUY | -24.3% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:74.0* | -- | SL:65.3 (-8.8%)
 ### ── Turning Up (4) ──
-BOT  ### Turning Up | -68.2% | W:– | MTF:2/5 | Fuzzy:100.0 | Financial Services
-DXYZ  ### Turning Up | -63.7% | W:– | MTF:3/5 M:RISK | Fuzzy:94.8 | Financial Services
-SCZM  ### Turning Up | -58.0% | W:SOS | MTF:1/5 M:RISK | Fuzzy:72.5 | Basic Materials
-PRTA  ### Turning Up | -30.0% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:71.7 | --
+BOT  ### Turning Up | -66.6% | W:– | MTF:2/5 | Fuzzy:100.0 | -- | SL:16.16 (-17.9%)
+CSHR  ### Turning Up | -66.1% | W:– | MTF:2/5 | Fuzzy:86.1* | -- | SL:3.12 (-11.9%)
+OXLC  ### Turning Up | -57.6% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:83.1 | -- | SL:4.39 (-9.1%)
+LRN  ### Turning Up | -25.0% | W:A+AR | MTF:2/5 | Fuzzy:71.2* | -- | SL:72.28 (-7.1%)
