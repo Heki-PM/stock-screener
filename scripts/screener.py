@@ -3415,6 +3415,39 @@ def add_earnings_info(rows):
 #  GŁÓWNA PĘTLA
 # ══════════════════════════════════════════════════════════════
 
+# JAKOŚĆ DANYCH – flaga dla odbiorców wyników (n8n, generator raportu): czy lista główna ma dane fundamentalne.
+# Gdy Yahoo blokuje pobieranie (HTTP 401/429), rekordy bez sektora i EPS przechodzą przez filtry ("brak danych = przepuszczamy"),
+# a raport wygląda normalnie. Poziomy wg odsetka pozycji listy głównej bez sektora: ok <= 30%, degraded 30-50%, poor > 50%.
+DATA_QUALITY_DEGRADED_PCT = 30
+DATA_QUALITY_POOR_PCT     = 50
+
+def compute_data_quality(main_results: list, full_results: list) -> dict:
+    n = len(main_results)
+    nf = len(full_results)
+    no_sector = sum(1 for r in main_results if r.get("sector") in (None, "--"))
+    no_eps    = sum(1 for r in main_results if r.get("eps_ttm") is None)
+    incompl   = sum(1 for r in main_results if r.get("data_incomplete"))
+    full_inc  = sum(1 for r in full_results if r.get("data_incomplete"))
+    pct = round(100 * no_sector / n, 1) if n else 0.0
+    if not n:
+        level = "n/a"
+    elif pct > DATA_QUALITY_POOR_PCT:
+        level = "poor"
+    elif pct > DATA_QUALITY_DEGRADED_PCT:
+        level = "degraded"
+    else:
+        level = "ok"
+    return {
+        "level":               level,
+        "main_total":          n,
+        "main_no_sector":      no_sector,
+        "main_no_sector_pct":  pct,
+        "main_no_eps":         no_eps,
+        "main_incomplete":     incompl,
+        "full_total":          nf,
+        "full_incomplete_pct": round(100 * full_inc / nf, 1) if nf else 0.0,
+    }
+
 def run_screener():
     t0 = datetime.now()
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -3531,7 +3564,11 @@ def run_screener():
         "earnings_warn_count": earnings_warn_count,
         "closed_weekly_bar":   USE_CLOSED_WEEKLY_BAR,
         "fund_source_sec":     sum(1 for r in all_data if r.get("fund_source") == "SEC"),
+        "data_quality":        compute_data_quality(main_results, full_results),
     }
+    _dq = meta["data_quality"]
+    print(f"      Jakosc danych: {_dq['level']} (lista glowna: {_dq['main_no_sector']}/{_dq['main_total']} bez sektora, "
+          f"{_dq['main_no_eps']} bez EPS; Full Scan niekompletnych: {_dq['full_incomplete_pct']}%)")
 
     def _compat(rows):
         """COMPAT: dotychczasowe kolumny w dotychczasowej kolejności, nowe na końcu
