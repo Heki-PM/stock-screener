@@ -53,6 +53,8 @@ jobs:
         env:
           PYTHONUNBUFFERED: "1"
           WP_API_TOKEN: ${{ secrets.WP_API_TOKEN }}
+          # SEC EDGAR (fundamenty USA): "Nazwa e-mail" – bez e-maila SEC zwraca 403 i screener bierze dane z Yahoo
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
 
       # always(): częściowy postęp (pobrane już rekordy) zostaje także, gdy późniejszy krok się wywali.
       # Unikalny klucz na każdy przebieg; GitHub sam usuwa najstarsze wpisy (limit 10 GB, 7 dni bez użycia).
