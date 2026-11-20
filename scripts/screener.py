@@ -45,6 +45,12 @@ CHANGELOG:
   EARNINGS     – data najbliższych wyników + ostrzeżenie <= 14 dni (karty, JSON, TV)
   VOL PRORATA  – vol_confirm rzutowany na pełny tydzień, gdy świeca W1 niezamknięta
   CLOSED BAR   – USE_CLOSED_WEEKLY_BAR = False (domyślnie jak dotąd; True = sygnał tylko z zamkniętej świecy)
+  SEC EDGAR    – fundamenty spółek z USA z oficjalnego API SEC (XBRL) zamiast Yahoo; nazwa/sektor/kraj
+                 z SEC submissions (SIC -> sektory jak w Yahoo); kapitalizacja = akcje z SEC x cena W1.
+                 Automatyczny powrót do Yahoo per spółka (brak CIK, IFRS, brak danych) i bezpiecznik
+                 wyłączający SEC przy awarii. Osobny cache (.cache/fundamentals_sec, .cache/sec_profile).
+                 Nowe pole fund_source ("SEC"/"Yahoo") na końcu rekordu. USE_SEC_EDGAR=False = jak dotąd.
+                 Wymaga env SEC_USER_AGENT z e-mailem (bez niego SEC odpowie 403 -> całość z Yahoo).
 """
 
 import yfinance as yf
@@ -151,7 +157,7 @@ RS_FALLBACK_EU = ["^STOXX", MARKET_DIRECTION_EU]
 NEW_OUTPUT_FIELDS = [
     "tech_score_raw", "atr_w", "stop_loss", "risk_pct", "stop_breached",
     "vol_projected", "rs_benchmark", "earnings_date", "days_to_earnings",
-    "earnings_warning", "data_incomplete",
+    "earnings_warning", "data_incomplete", "fund_source",
 ]
 
 # EARNINGS – ostrzeżenie o zbliżającej się publikacji wyników (Faza 3, lista finalna)
@@ -1129,6 +1135,18 @@ def phase1_weekly_signals(ticker_market_list):
     return signals
 
 
+def _w1_avg_daily_volume(df_raw, weeks=13):
+    """SEC: średni wolumen dzienny ≈ średni wolumen tygodniowy / 5 (ostatnie pełne tygodnie)."""
+    try:
+        vs = df_raw["Volume"].dropna()
+        if len(vs) < 3:
+            return None
+        v = float(vs.iloc[-(weeks + 1):-1].mean()) / 5
+        return v if np.isfinite(v) and v > 0 else None
+    except Exception:
+        return None
+
+
 def _w1_details(ticker, df, df_raw, smi, s_val, e_val, zone, sig, market,
                 benchmarks, w_price, w_high52):
     """Komplet metryk W1 (dywergencja, wolumen, RS, Wyckoff, SL) dla jednego tickera."""
@@ -1175,6 +1193,7 @@ def _w1_details(ticker, df, df_raw, smi, s_val, e_val, zone, sig, market,
         "atr_w":           stop["atr_w"],
         "stop_loss":       stop["stop_loss"],
         "w_price":         round(w_price, 2),
+        "w_avg_vol":       _w1_avg_daily_volume(df_raw),
         "w_high_52w":      round(w_high52, 2),
         "d1_signal_now":   False, "d1_zone_now": "--",
         "d1_last_cross_days_ago": None, "early_signal": False,
@@ -1459,15 +1478,612 @@ def _fetch_fundamentals(symbol: str, info_attempts: int = RETRY_ATTEMPTS) -> dic
     except Exception:
         return None
 
+# ══════════════════════════════════════════════════════════════
+#  SEC EDGAR – fundamenty spółek z USA (zamiast Yahoo)
+# ══════════════════════════════════════════════════════════════
+#
+# Dla spółek z rynku USA fundamenty (EPS, przychody, marża, ROIC, D/E, QR,
+# liczba akcji -> kapitalizacja) pochodzą z oficjalnego API SEC (XBRL companyfacts),
+# nazwa/sektor/kraj z SEC submissions. Zero zapytań do Yahoo dla tych spółek
+# (poza datą wyników w Fazie 3). Cena, 52W High i wolumen – z danych W1.
+#
+# BEZPIECZEŃSTWO: każdy problem (brak CIK, raport IFRS/20-F, brak kluczowych pozycji,
+# stare dane, HTTP 403/429/5xx) -> automatyczny powrót do dotychczasowej ścieżki Yahoo.
+# Gdy SEC odrzuca wszystko (np. brak User-Agent z e-mailem) – bezpiecznik wyłącza SEC
+# na resztę przebiegu. USE_SEC_EDGAR = False -> zachowanie identyczne jak bez SEC.
+#
+# Cache SEC jest w osobnym katalogu (.cache/fundamentals_sec, .cache/sec_profile),
+# więc powrót do poprzedniej wersji screener.py korzysta z nietkniętego cache Yahoo.
+
+import threading as _threading
+
+USE_SEC_EDGAR      = True
+# SEC wymaga nagłówka User-Agent z nazwą i adresem e-mail (inaczej HTTP 403).
+# Ustaw w workflow: env SEC_USER_AGENT: "Imie Nazwisko twoj@email.pl"
+# `or`: pusty sekret w GitHub Actions daje env = "" (nie brak zmiennej) -> też wartość domyślna.
+# Wartość domyślna nie ma e-maila, więc SEC odpowie 403 i sec_init() przełączy wszystko na Yahoo.
+SEC_USER_AGENT     = (os.environ.get("SEC_USER_AGENT") or "").strip() or \
+                     "Heki-PM stock-screener https://github.com/Heki-PM/stock-screener"
+SEC_MAX_RPS        = 8        # limit SEC to 10 zapytań/s na IP – zostawiamy zapas
+SEC_TIMEOUT_S      = 30
+SEC_CACHE_DIR      = Path(".cache/fundamentals_sec")
+SEC_CACHE_TTL_H    = 72       # sprawozdania wychodzą raz na kwartał
+SEC_PROFILE_DIR    = Path(".cache/sec_profile")     # nazwa/SIC/kraj – praktycznie niezmienne
+SEC_PROFILE_TTL_H  = 24 * 30
+SEC_TICKERS_FILE   = Path(".cache/sec_company_tickers.json")
+SEC_TICKERS_TTL_H  = 24 * 7
+SEC_MAX_STALE_DAYS = 400      # najnowszy bilans starszy niż to -> dane nieaktualne -> Yahoo
+# Bezpiecznik: tyle błędów HTTP Z RZĘDU (403/429/5xx/timeout) -> SEC wyłączony do końca runu
+SEC_BREAKER_FAILS  = 15
+
+_sec_lock        = _threading.Lock()
+_sec_last_call   = [0.0]
+_sec_state       = {"enabled": None, "ok": 0, "fails_in_row": 0, "http_fail": 0,
+                    "used": 0, "fallback": 0, "reasons": {}}
+_sec_cik_map     = {}
+_sec_tls         = _threading.local()     # status ostatniego zapytania w danym wątku
+
+
+def _sec_note(reason):
+    with _sec_lock:
+        _sec_state["reasons"][reason] = _sec_state["reasons"].get(reason, 0) + 1
+
+
+def _sec_get_json(url):
+    """GET z globalnym limitem zapytań/s i bezpiecznikiem. Zwraca dict albo None."""
+    _sec_tls.status = None
+    if _sec_state["enabled"] is False:
+        return None
+    for attempt in range(3):
+        with _sec_lock:
+            wait = _sec_last_call[0] + 1.0 / SEC_MAX_RPS - time.time()
+            if wait > 0:
+                time.sleep(wait)
+            _sec_last_call[0] = time.time()
+        try:
+            r = requests.get(url, timeout=SEC_TIMEOUT_S,
+                             headers={"User-Agent": SEC_USER_AGENT,
+                                      "Accept-Encoding": "gzip, deflate"})
+            _sec_tls.status = r.status_code
+            if r.status_code == 200:
+                with _sec_lock:
+                    _sec_state["ok"] += 1
+                    _sec_state["fails_in_row"] = 0
+                return r.json()
+            if r.status_code == 404:          # spółka bez danych XBRL – to nie awaria SEC
+                return None
+            if r.status_code in (429, 500, 502, 503, 504) and attempt < 2:
+                time.sleep(2 * (attempt + 1))
+                continue
+        except Exception:
+            if attempt < 2:
+                time.sleep(2 * (attempt + 1))
+                continue
+        break
+    with _sec_lock:
+        _sec_state["http_fail"] += 1
+        _sec_state["fails_in_row"] += 1
+        if _sec_state["fails_in_row"] >= SEC_BREAKER_FAILS and _sec_state["enabled"]:
+            _sec_state["enabled"] = False
+            print(f"      [SEC] BEZPIECZNIK: {SEC_BREAKER_FAILS} bledow HTTP z rzedu -- "
+                  f"SEC wylaczony do konca przebiegu, fundamenty USA z Yahoo. "
+                  f"Sprawdz SEC_USER_AGENT (wymagany e-mail).")
+    return None
+
+
+def _sec_read_cache(path, ttl_h):
+    try:
+        if path.exists() and (time.time() - path.stat().st_mtime) / 3600 <= ttl_h:
+            return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        pass
+    return None
+
+
+def _sec_write_cache(path, data):
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(data, ensure_ascii=False, default=str), encoding="utf-8")
+    except Exception:
+        pass
+
+
+def sec_init():
+    """Ładuje mapę ticker -> CIK (cache 7 dni). Bez niej SEC jest wyłączony na ten przebieg."""
+    if not USE_SEC_EDGAR:
+        _sec_state["enabled"] = False
+        return False
+    _sec_state["enabled"] = True
+    data = _sec_read_cache(SEC_TICKERS_FILE, SEC_TICKERS_TTL_H)
+    if data is None:
+        data = _sec_get_json("https://www.sec.gov/files/company_tickers.json")
+        if data:
+            _sec_write_cache(SEC_TICKERS_FILE, data)
+        else:
+            # ostatnia deska ratunku: przeterminowany plik z cache
+            try:
+                data = json.loads(SEC_TICKERS_FILE.read_text(encoding="utf-8"))
+            except Exception:
+                data = None
+    if not data:
+        _sec_state["enabled"] = False
+        hint = "" if "@" in SEC_USER_AGENT else " Brak e-maila w SEC_USER_AGENT (ustaw sekret w repo)."
+        print("  [SEC] Nie udalo sie pobrac listy CIK -- fundamenty USA z Yahoo (jak dotad)." + hint)
+        return False
+    for row in data.values():
+        try:
+            t = str(row["ticker"]).upper().replace(".", "-")
+            _sec_cik_map.setdefault(t, int(row["cik_str"]))
+        except Exception:
+            pass
+    print(f"  [SEC] EDGAR aktywny: {len(_sec_cik_map)} tickerow z CIK "
+          f"(limit {SEC_MAX_RPS} zapytan/s, cache {SEC_CACHE_TTL_H}h)")
+    return True
+
+
+# ── Parsowanie XBRL companyfacts ──────────────────────────────
+
+def _sec_facts(facts, concept, unit="USD", taxonomy="us-gaap"):
+    """Lista faktów (dict: val,start,end,filed,form) danej pozycji, bez duplikatów okresu."""
+    try:
+        rows = facts["facts"][taxonomy][concept]["units"][unit]
+    except Exception:
+        return []
+    best = {}
+    for f in rows:
+        if f.get("val") is None or not f.get("end"):
+            continue
+        if f.get("form") not in ("10-K", "10-Q", "10-K/A", "10-Q/A", "20-F", "40-F", "8-K"):
+            continue
+        key = (f.get("start"), f["end"])
+        # przy wielu wersjach tego samego okresu bierzemy najpóźniej złożoną (korekty)
+        if key not in best or (f.get("filed") or "") > (best[key].get("filed") or ""):
+            best[key] = f
+    return list(best.values())
+
+
+def _days(a, b):
+    return (pd.Timestamp(b) - pd.Timestamp(a)).days
+
+
+def _sec_duration_series(facts, concepts, unit="USD"):
+    """
+    Dla pozycji przepływowych (przychody, zysk, EPS) zwraca:
+      quarters: [(end, val)] kwartały (~3 mies.), malejąco po dacie, z dopełnionym Q4
+                (Q4 = rok obrotowy - Q1 - Q2 - Q3, bo 10-K zwykle nie raportuje Q4 osobno)
+      annual:   (end, val) najnowszy pełny rok obrotowy albo None
+    Spośród kilku nazw pozycji (spółki zmieniają tagi w czasie) wybiera tę z najświeższymi danymi.
+    """
+    best = None
+    for c in concepts:
+        rows = _sec_facts(facts, c, unit)
+        if not rows:
+            continue
+        latest = max(r["end"] for r in rows)
+        if best is None or latest > best[0]:
+            best = (latest, rows)
+    if best is None:
+        return [], None
+    rows = best[1]
+    q, a = {}, {}
+    for r in rows:
+        if not r.get("start"):
+            continue
+        d = _days(r["start"], r["end"])
+        if 80 <= d <= 100:
+            q[r["end"]] = (r["start"], float(r["val"]))
+        elif 350 <= d <= 380:
+            a[r["end"]] = (r["start"], float(r["val"]))
+    # Dopełnienie brakujących Q4 z roku obrotowego
+    for a_end, (a_start, a_val) in a.items():
+        if a_end in q:
+            continue
+        inside = [(e, v) for e, (s, v) in q.items() if s >= a_start and e < a_end]
+        if len(inside) == 3:
+            last_q_end = max(e for e, _ in inside)
+            q[a_end] = (last_q_end, a_val - sum(v for _, v in inside))
+    quarters = sorted(((e, v) for e, (_, v) in q.items()), reverse=True)
+    annual = None
+    if a:
+        e = max(a)
+        annual = (e, a[e][1])
+    return quarters, annual
+
+
+def _sec_ttm(quarters, annual):
+    """Suma 4 ostatnich ciągłych kwartałów (TTM); gdy się nie da – ostatni rok obrotowy."""
+    if len(quarters) >= 4:
+        last4 = quarters[:4]
+        span = _days(last4[3][0], last4[0][0])
+        if 250 <= span <= 300:        # 4 kolejne końce kwartałów są ~9 mies. od siebie
+            return sum(v for _, v in last4), last4[0][0]
+    if annual:
+        return annual[1], annual[0]
+    return None, None
+
+
+def _sec_instant(facts, concepts, unit="USD", taxonomy="us-gaap"):
+    """Najnowsza wartość pozycji bilansowej (stan na dzień). Zwraca (val, end) albo (None, None)."""
+    best = None
+    for c in concepts:
+        for r in _sec_facts(facts, c, unit, taxonomy):
+            if r.get("start"):        # pozycje bilansowe nie mają daty początku
+                continue
+            if best is None or r["end"] > best[1]:
+                best = (float(r["val"]), r["end"])
+    return best if best else (None, None)
+
+
+def _sec_instant_at(facts, concepts, end, unit="USD"):
+    """Wartość pozycji bilansowej dokładnie na dany dzień bilansowy (spójność wskaźników)."""
+    for c in concepts:
+        for r in _sec_facts(facts, c, unit):
+            if not r.get("start") and r["end"] == end:
+                return float(r["val"])
+    return None
+
+
+_SEC_REVENUE = ["Revenues", "RevenueFromContractWithCustomerExcludingAssessedTax",
+                "RevenueFromContractWithCustomerIncludingAssessedTax", "SalesRevenueNet",
+                "SalesRevenueGoodsNet", "SalesRevenueServicesNet", "RevenuesNetOfInterestExpense"]
+_SEC_COGS    = ["CostOfRevenue", "CostOfGoodsAndServicesSold", "CostOfGoodsSold",
+                "CostOfGoodsAndServiceExcludingDepreciationDepletionAndAmortization"]
+_SEC_EPS     = ["EarningsPerShareDiluted", "EarningsPerShareBasicAndDiluted", "EarningsPerShareBasic"]
+_SEC_PRETAX  = ["IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+                "IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+                "IncomeLossFromContinuingOperationsBeforeIncomeTaxesDomestic"]
+_SEC_EQUITY  = ["StockholdersEquity",
+                "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"]
+# (pozycja długoterminowa, bieżąca) – składniki długu, gdy brak pozycji zbiorczej
+_SEC_DEBT_PARTS = [
+    ("ConvertibleDebtNoncurrent",      "ConvertibleDebtCurrent"),
+    ("ConvertibleNotesPayable",        "ConvertibleNotesPayableCurrent"),
+    ("SeniorLongTermNotes",            "SeniorNotesCurrent"),
+    ("LongTermNotesPayable",           "NotesPayableCurrent"),
+    ("LongTermLineOfCredit",           "LineOfCredit"),
+    ("OtherLongTermDebtNoncurrent",    "OtherLongTermDebtCurrent"),
+    ("SecuredLongTermDebt",            "SecuredDebtCurrent"),
+    ("UnsecuredLongTermDebt",          "UnsecuredDebtCurrent"),
+]
+_SEC_CASH    = ["CashAndCashEquivalentsAtCarryingValue", "Cash",
+                "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"]
+
+
+def sec_parse_companyfacts(facts):
+    """
+    Liczy pola w TYM SAMYM formacie co ścieżka Yahoo (_fetch_fundamentals).
+    Zwraca dict z metrykami albo None + powód, gdy dane się nie nadają.
+    """
+    if not facts or "facts" not in facts:
+        return None, "brak_facts"
+    if "us-gaap" not in facts["facts"]:
+        return None, "ifrs_lub_brak_usgaap"     # 20-F/IFRS -> Yahoo
+
+    rev_q, rev_a = _sec_duration_series(facts, _SEC_REVENUE)
+    eps_q, eps_a = _sec_duration_series(facts, _SEC_EPS, unit="USD/shares")
+    gp_q,  gp_a  = _sec_duration_series(facts, ["GrossProfit"])
+    cogs_q, cogs_a = _sec_duration_series(facts, _SEC_COGS)
+    op_q,  op_a  = _sec_duration_series(facts, ["OperatingIncomeLoss"])
+    tax_q, tax_a = _sec_duration_series(facts, ["IncomeTaxExpenseBenefit"])
+    pt_q,  pt_a  = _sec_duration_series(facts, _SEC_PRETAX)
+
+    sales, sales_end = _sec_ttm(rev_q, rev_a)
+    eps_ttm, eps_end = _sec_ttm(eps_q, eps_a)
+
+    # Bilans: najnowszy dzień bilansowy wg aktywów; reszta pozycji z tego samego dnia
+    assets, bs_end = _sec_instant(facts, ["Assets"])
+    if bs_end is None:
+        return None, "brak_bilansu"
+    if _days(bs_end, pd.Timestamp.now()) > SEC_MAX_STALE_DAYS:
+        return None, "dane_nieaktualne"
+    if sales is None and eps_ttm is None:
+        return None, "brak_przychodow_i_eps"
+
+    cl   = _sec_instant_at(facts, ["LiabilitiesCurrent"], bs_end)
+    ca   = _sec_instant_at(facts, ["AssetsCurrent"], bs_end)
+    inv  = _sec_instant_at(facts, ["InventoryNet", "InventoryGross"], bs_end) or 0.0
+    cash = _sec_instant_at(facts, _SEC_CASH, bs_end) or 0.0
+    eq   = _sec_instant_at(facts, _SEC_EQUITY, bs_end)
+
+    # Dług jak "Total Debt" w Yahoo: kredyty i obligacje (krótko- + długoterminowe) + leasing finansowy
+    ltd_total = _sec_instant_at(facts, ["LongTermDebt", "DebtLongtermAndShorttermCombinedAmount"], bs_end)
+    if ltd_total is None:
+        ltd_nc = _sec_instant_at(facts, ["LongTermDebtNoncurrent",
+                                         "LongTermDebtAndCapitalLeaseObligations"], bs_end)
+        ltd_c  = _sec_instant_at(facts, ["LongTermDebtCurrent", "DebtCurrent",
+                                         "LongTermDebtAndCapitalLeaseObligationsCurrent"], bs_end)
+        ltd_total = None if ltd_nc is None and ltd_c is None else (ltd_nc or 0.0) + (ltd_c or 0.0)
+    if ltd_total is None:
+        # Brak pozycji zbiorczej -> suma składników (każdy typ długu liczony raz)
+        parts = []
+        for nc, c in _SEC_DEBT_PARTS:
+            for concept in (nc, c):
+                v = _sec_instant_at(facts, [concept], bs_end)
+                if v:
+                    parts.append(v)
+        ltd_total = sum(parts) if parts else None
+    std = sum(v for v in (_sec_instant_at(facts, ["ShortTermBorrowings"], bs_end),
+                          _sec_instant_at(facts, ["CommercialPaper"], bs_end)) if v)
+    fin_lease = sum(v for v in (_sec_instant_at(facts, ["FinanceLeaseLiabilityNoncurrent"], bs_end),
+                                _sec_instant_at(facts, ["FinanceLeaseLiabilityCurrent"], bs_end)) if v)
+    debt = None
+    if ltd_total is not None or std or fin_lease:
+        debt = (ltd_total or 0.0) + std + fin_lease
+    elif eq is not None and _sec_facts(facts, "Liabilities"):
+        debt = 0.0                     # spółka raportuje zobowiązania, ale nie ma długu odsetkowego
+
+    # Quick Ratio
+    qr = round((ca - inv) / cl, 2) if ca is not None and cl and cl > 0 else None
+
+    # Debt/Equity
+    de = round(debt / eq, 3) if debt is not None and eq and eq > 0 else None
+
+    # Marża brutto (TTM, a gdy brak – rok obrotowy)
+    gp, _ = _sec_ttm(gp_q, gp_a)
+    if gp is None:
+        cogs, _ = _sec_ttm(cogs_q, cogs_a)
+        if cogs is not None and sales:
+            gp = sales - cogs
+    gm = round(gp / sales, 4) if gp is not None and sales else None
+
+    # ROIC = EBIT*(1-t) / (aktywa - zob. bieżące - gotówka) – ten sam wzór co _calc_roic
+    roic = None
+    ebit, _ = _sec_ttm(op_q, op_a)
+    if ebit is not None:
+        tax_rate = 0.21
+        tp, _ = _sec_ttm(tax_q, tax_a)
+        pt, _ = _sec_ttm(pt_q, pt_a)
+        if tp and pt and pt != 0:
+            tax_rate = max(0.0, min(0.5, tp / pt))
+        ic = assets - (cl or 0.0) - cash
+        if ic > 0:
+            roic = round(ebit * (1 - tax_rate) / ic, 4)
+
+    # EPS kwartalny: q0 ostatni, q1 poprzedni (~3 mies. wcześniej), q4 rok wcześniej (dopasowanie po dacie)
+    def _near(end, days_back):
+        target = pd.Timestamp(end) - pd.Timedelta(days=days_back)
+        for e, v in eps_q:
+            if abs((pd.Timestamp(e) - target).days) <= 20:
+                return v
+        return None
+    q0 = eps_q[0][1] if eps_q else None
+    q1 = _near(eps_q[0][0], 91) if eps_q else None
+    q4 = _near(eps_q[0][0], 365) if eps_q else None
+
+    def _pct(new, old):
+        if new is None or old is None or old == 0:
+            return None
+        return round((new - old) / abs(old) * 100, 1)
+
+    # Liczba akcji -> kapitalizacja (cena z W1). Spółki wieloklasowe (np. Class A/B) raportują
+    # `dei` per klasa albo przestają go podawać (Mastercard: ostatni wpis z 2010), więc bierzemy
+    # NAJWIĘKSZĄ ze ŚWIEŻYCH (<= 200 dni od bilansu) wartości: dei, CommonStockSharesOutstanding,
+    # średnia rozwodniona liczba akcji z ostatniego kwartału (obejmuje wszystkie klasy).
+    cands = []
+    v, e = _sec_instant(facts, ["EntityCommonStockSharesOutstanding"], unit="shares", taxonomy="dei")
+    if v and _days(e, bs_end) <= 200:
+        cands.append(v)
+    v, e = _sec_instant(facts, ["CommonStockSharesOutstanding"], unit="shares")
+    if v and _days(e, bs_end) <= 200:
+        cands.append(v)
+    sq, _sa = _sec_duration_series(facts, ["WeightedAverageNumberOfDilutedSharesOutstanding",
+                                           "WeightedAverageNumberOfSharesOutstandingBasic"], unit="shares")
+    if sq and _days(sq[0][0], bs_end) <= 200 and sq[0][1] > 0:
+        cands.append(sq[0][1])
+    shares = max(cands) if cands else None
+
+    return {
+        "eps_ttm":       round(eps_ttm, 2) if eps_ttm is not None else None,
+        "sales_ttm_mln": round(sales / 1e6, 1) if sales is not None else None,
+        "quick_ratio":   qr,
+        "roic":          roic,
+        "debt_equity":   de,
+        "gross_margin":  gm,
+        "eps_q0":  round(q0, 4) if q0 is not None else None,
+        "eps_q1":  round(q1, 4) if q1 is not None else None,
+        "eps_q4":  round(q4, 4) if q4 is not None else None,
+        "eps_qoq": _pct(q0, q1),
+        "eps_yoy": _pct(q0, q4),
+        "_shares": shares,
+        "_entity": facts.get("entityName"),
+        "_bs_end": bs_end,
+    }, "ok"
+
+
+# ── Profil spółki: nazwa, sektor (SIC -> sektory jak w Yahoo), kraj ──
+
+def _sic_to_sector(sic):
+    """Kod SIC (SEC) -> nazwa sektora w konwencji Yahoo (spójnie ze spółkami EU)."""
+    try:
+        s = int(sic)
+    except Exception:
+        return "--"
+    if 6798 == s or 6500 <= s <= 6553:                      return "Real Estate"
+    if 6000 <= s <= 6799:                                   return "Financial Services"
+    if 4900 <= s <= 4991:                                   return "Utilities"
+    if 4800 <= s <= 4899 or 2710 <= s <= 2799 or 7810 <= s <= 7841: return "Communication Services"
+    if 7370 <= s <= 7379 or 3570 <= s <= 3579 or 3660 <= s <= 3679 or 3820 <= s <= 3829 \
+            or 3600 <= s <= 3629 or s == 3695:              return "Technology"
+    if 2830 <= s <= 2836 or 3840 <= s <= 3851 or 8000 <= s <= 8099 or 8731 == s \
+            or 5122 == s:                                   return "Healthcare"
+    if 1300 <= s <= 1389 or 2900 <= s <= 2999 or 1200 <= s <= 1241 \
+            or 4610 <= s <= 4619 or 5170 <= s <= 5172:      return "Energy"
+    if 2840 <= s <= 2844:                                   return "Consumer Defensive"
+    if 1000 <= s <= 1099 or 1400 <= s <= 1499 or 2600 <= s <= 2699 or 2800 <= s <= 2829 \
+            or 2845 <= s <= 2899 or 3300 <= s <= 3399 or 2400 <= s <= 2499 \
+            or 3220 <= s <= 3299:                           return "Basic Materials"
+    if 100 <= s <= 999 or 2000 <= s <= 2199 or 5400 <= s <= 5499 or 5140 <= s <= 5149 \
+            or 5180 <= s <= 5199 or s in (5912, 2844):      return "Consumer Defensive"
+    if 2200 <= s <= 2399 or 2500 <= s <= 2599 or 3710 <= s <= 3716 or 3750 <= s <= 3751 \
+            or 3940 <= s <= 3949 or 5000 <= s <= 5099 and s in (5013, 5020, 5090) \
+            or 5200 <= s <= 5399 or 5500 <= s <= 5999 or 7000 <= s <= 7099 or 7900 <= s <= 7999 \
+            or 3630 <= s <= 3639 or 3650 <= s <= 3652 or 1520 <= s <= 1531 or 8200 <= s <= 8299:
+        return "Consumer Cyclical"
+    if 1500 <= s <= 1799 or 3400 <= s <= 3569 or 3580 <= s <= 3599 or 3700 <= s <= 3799 \
+            or 3800 <= s <= 3819 or 3830 <= s <= 3839 or 4000 <= s <= 4799 or 5000 <= s <= 5099 \
+            or 7300 <= s <= 7369 or 7380 <= s <= 7389 or 8700 <= s <= 8748 \
+            or 3000 <= s <= 3219:                           return "Industrials"
+    return "--"
+
+
+def _sec_profile(cik):
+    """Nazwa, sektor, kraj z SEC submissions (cache 30 dni)."""
+    p = SEC_PROFILE_DIR / f"{cik}.json"
+    prof = _sec_read_cache(p, SEC_PROFILE_TTL_H)
+    if prof is not None:
+        return prof
+    sub = _sec_get_json(f"https://data.sec.gov/submissions/CIK{cik:010d}.json")
+    if not sub:
+        return None
+    biz = (sub.get("addresses") or {}).get("business") or {}
+    foreign = biz.get("isForeignLocation") in (1, "1", True)
+    country = (biz.get("stateOrCountryDescription") or "--") if foreign else "United States"
+    prof = {"name": sub.get("name"), "sic": sub.get("sic"),
+            "sic_desc": sub.get("sicDescription"),
+            "sector": _sic_to_sector(sub.get("sic")), "country": country}
+    _sec_write_cache(p, prof)
+    return prof
+
+
+def _fetch_fundamentals_sec(symbol, weekly_data):
+    """
+    Fundamenty z SEC w formacie identycznym jak _fetch_fundamentals (Yahoo).
+    Zwraca dict, {"_rejected": ...} albo None (= użyj Yahoo).
+    Wynik (także odrzucenie i "brak w SEC") trafia do osobnego cache SEC.
+    """
+    if not _sec_state.get("enabled"):
+        return None
+    cpath = SEC_CACHE_DIR / f"{symbol.replace('/', '_')}.json"
+    cached = _sec_read_cache(cpath, SEC_CACHE_TTL_H)
+    if cached is not None:
+        if "_sec_unavailable" in cached:
+            return None
+        if "_rejected" not in cached:
+            cached["_from_cache"] = True     # jak rekordy z cache Yahoo (ten sam kształt wiersza)
+        return cached
+
+    cik = _sec_cik_map.get(symbol.upper().replace(".", "-"))
+    if cik is None:
+        _sec_note("brak_cik")
+        _sec_write_cache(cpath, {"_sec_unavailable": "brak_cik"})
+        return None
+
+    facts = _sec_get_json(f"https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json")
+    if facts is None:
+        if getattr(_sec_tls, "status", None) == 404:   # spółka bez danych XBRL – zapamiętujemy
+            _sec_note("brak_companyfacts")
+            _sec_write_cache(cpath, {"_sec_unavailable": "brak_companyfacts"})
+        else:                                          # awaria HTTP – bez cache, spróbujemy jutro
+            _sec_note("blad_http")
+        return None
+    m, reason = sec_parse_companyfacts(facts)
+    if m is None:
+        _sec_note(reason)
+        _sec_write_cache(cpath, {"_sec_unavailable": reason})
+        return None
+
+    price  = weekly_data.get("w_price")
+    vol    = weekly_data.get("w_avg_vol")
+    shares = m.pop("_shares")
+    if not price or not shares or not vol:
+        _sec_note("brak_ceny_akcji_lub_wolumenu")
+        return None                         # bez cache – może jutro W1 będzie kompletne
+    cap = shares * price
+    if cap < MIN_MARKET_CAP:
+        rej = {"_rejected": "cap"}
+        if CACHE_REJECTED:
+            _sec_write_cache(cpath, rej)
+        return rej
+    if vol < MIN_VOLUME:
+        rej = {"_rejected": "vol"}
+        if CACHE_REJECTED:
+            _sec_write_cache(cpath, rej)
+        return rej
+
+    prof = _sec_profile(cik) or {}
+    # Spójność z dotychczasowymi raportami: nazwa/sektor/kraj z (nawet przeterminowanego)
+    # cache Yahoo tej spółki, jeśli jest – SIC to tylko przybliżenie sektorów Yahoo.
+    y = _yahoo_profile_from_cache(symbol)
+    if y:
+        prof = {**prof, **y}
+    high52 = weekly_data.get("w_high_52w")
+    rec = {
+        "ticker": symbol,
+        "name": prof.get("name") or m.pop("_entity", None) or symbol,
+        "country": prof.get("country") or "--",
+        "sector": prof.get("sector") or "--",
+        "price": round(price, 2), "currency": "USD",
+        "high_52w": round(high52, 2) if high52 else None,
+        "discount_52w": (round((high52 - price) / high52 * 100, 1) if high52 else None),
+        "market_cap_mln": round(cap / 1e6, 1),
+        "volume_k": round(vol / 1000, 1),
+        "eps_ttm": m["eps_ttm"], "sales_ttm_mln": m["sales_ttm_mln"],
+        "quick_ratio": m["quick_ratio"],
+        "roic": m["roic"], "debt_equity": m["debt_equity"], "gross_margin": m["gross_margin"],
+        "eps_q0": m["eps_q0"], "eps_q1": m["eps_q1"], "eps_q4": m["eps_q4"],
+        "eps_qoq": m["eps_qoq"], "eps_yoy": m["eps_yoy"],
+        "scanned_at": datetime.now().isoformat(),
+    }
+    _sec_write_cache(cpath, rec)
+    return rec
+
+
+def _yahoo_profile_from_cache(symbol):
+    """Nazwa/sektor/kraj z pliku cache Yahoo (bez sprawdzania wieku – te dane się nie starzeją)."""
+    try:
+        d = json.loads(_cache_path(symbol).read_text(encoding="utf-8"))
+        out = {}
+        if d.get("sector") not in (None, "--"):
+            out["sector"] = d["sector"]
+        if d.get("name") and d.get("name") != symbol:
+            out["name"] = d["name"]
+        if d.get("country") not in (None, "--"):
+            out["country"] = d["country"]
+        return out
+    except Exception:
+        return {}
+
+
+def _sec_rejected_cached(symbol):
+    """True, gdy cache SEC pamięta odrzucenie Cap/Vol (retry pass ma tego tickera pominąć)."""
+    c = _sec_read_cache(SEC_CACHE_DIR / f"{symbol.replace('/', '_')}.json", SEC_CACHE_TTL_H)
+    return bool(c and "_rejected" in c)
+
+
+def sec_summary():
+    s = _sec_state
+    if not USE_SEC_EDGAR:
+        return "SEC wylaczony (USE_SEC_EDGAR=False)"
+    if not s.get("enabled") and s["used"] == 0:
+        return "SEC nieaktywny w tym przebiegu -- wszystko z Yahoo"
+    reasons = ", ".join(f"{k}:{v}" for k, v in sorted(s["reasons"].items(), key=lambda x: -x[1]))
+    return (f"SEC: {s['used']} spolek z SEC, {s['fallback']} USA przez Yahoo"
+            + (f" (powody: {reasons})" if reasons else "")
+            + (f" | bledy HTTP: {s['http_fail']}" if s["http_fail"] else ""))
+
+
 def _collect_one(symbol: str, weekly_data: dict, info_attempts: int = RETRY_ATTEMPTS) -> dict | None:
     """
     Łączy dane fundamentalne (z cache lub świeżo pobrane) z danymi tygodniowymi.
     FIX 5: fundamenty trafiają do cache na 24h – kolejne uruchomienia w tym oknie
     pomijają wywołania do Yahoo Finance dla spółek bez zmiany sygnału.
     """
+    # SEC EDGAR dla spółek z USA; None = brak/awaria SEC -> dotychczasowa ścieżka Yahoo
+    fund, source = None, "Yahoo"
+    if USE_SEC_EDGAR and weekly_data.get("market") == "USA" and _sec_state.get("enabled"):
+        fund = _fetch_fundamentals_sec(symbol, weekly_data)
+        with _sec_lock:
+            if fund is not None:
+                _sec_state["used"] += "_rejected" not in fund
+            else:
+                _sec_state["fallback"] += 1
+        if fund is not None:
+            source = "SEC"
     # Próba odczytu z cache
-    cached = _load_cache(symbol)
-    if cached is not None:
+    cached = None if fund is not None else _load_cache(symbol)
+    if fund is not None:
+        pass
+    elif cached is not None:
         fund = cached
     else:
         fund = _fetch_fundamentals(symbol, info_attempts=info_attempts)
@@ -1526,6 +2142,7 @@ def _collect_one(symbol: str, weekly_data: dict, info_attempts: int = RETRY_ATTE
         "vol_projected": weekly_data.get("vol_projected", False),
         "rs_benchmark":  weekly_data.get("rs_benchmark"),
         "data_incomplete": incomplete,
+        "fund_source":   source,
     }
 
 def phase2_collect(weekly_signals):
@@ -1555,7 +2172,8 @@ def phase2_collect(weekly_signals):
     # odrzucone Cap/Vol mają wpis w cache i są pomijane).
     got = {r["ticker"] for r in results}
     retry = sorted({r["ticker"] for r in results if r.get("data_incomplete")} |
-                   {s for s in candidates if s not in got and _load_cache(s) is None})
+                   {s for s in candidates if s not in got and _load_cache(s) is None
+                    and not _sec_rejected_cached(s)})
     if retry:
         print(f"      Retry pass: {len(retry)} tickerow ({FUNDAMENTALS_RETRY_WORKERS} watki, "
               f"pauza {FUNDAMENTALS_RETRY_PAUSE_S}s)...")
@@ -2811,7 +3429,9 @@ def run_screener():
         weekly_signals = f_weekly.result()
     if not market_dir["USA"] and not market_dir["EU"]:
         print("  Oba rynki ponizej SMA50W — sygnaly SMI maja nizsza wiarygodnosc!")
+    sec_init()
     all_data       = phase2_collect(weekly_signals)
+    print(f"      {sec_summary()}")
 
     # EARLY D1 to osobna lista – nie trafia do Full Scan ani do screenera głównego
     early_results = [r for r in all_data if r.get("signal") == EARLY_SIGNAL_LABEL]
@@ -2896,6 +3516,7 @@ def run_screener():
         "early_total":         len(early_results),
         "earnings_warn_count": earnings_warn_count,
         "closed_weekly_bar":   USE_CLOSED_WEEKLY_BAR,
+        "fund_source_sec":     sum(1 for r in all_data if r.get("fund_source") == "SEC"),
     }
 
     def _compat(rows):
