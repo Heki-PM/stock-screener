@@ -1515,6 +1515,8 @@ SEC_TICKERS_TTL_H  = 24 * 7
 SEC_MAX_STALE_DAYS = 400      # najnowszy bilans starszy niż to -> dane nieaktualne -> Yahoo
 # Bezpiecznik: tyle błędów HTTP Z RZĘDU (403/429/5xx/timeout) -> SEC wyłączony do końca runu
 SEC_BREAKER_FAILS  = 15
+# ROIC liczony tylko, gdy kapitał zainwestowany >= tyle aktywów (inaczej mianownik ~0 -> absurd)
+SEC_MIN_IC_SHARE   = 0.05
 
 _sec_lock        = _threading.Lock()
 _sec_last_call   = [0.0]
@@ -1744,7 +1746,13 @@ _SEC_DEBT_PARTS = [
     ("OtherLongTermDebtNoncurrent",    "OtherLongTermDebtCurrent"),
     ("SecuredLongTermDebt",            "SecuredDebtCurrent"),
     ("UnsecuredLongTermDebt",          "UnsecuredDebtCurrent"),
+    ("NotesPayable",                   None),      # łączna pozycja weksli/obligacji (np. ubezpieczyciele)
+    ("SecuredDebt",                    None),
 ]
+# Finansowanie krótkoterminowe instytucji finansowych (mREIT-y, banki) – Yahoo wlicza je do Total Debt.
+# Bez tego REIT finansowany repo (np. ARR: 19 mld USD repo) dostawał D/E = 0.
+_SEC_FUNDING = ["SecuritiesSoldUnderAgreementsToRepurchase", "FederalHomeLoanBankAdvances",
+                "OtherShortTermBorrowings"]
 _SEC_CASH    = ["CashAndCashEquivalentsAtCarryingValue", "Cash",
                 "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"]
 
@@ -1798,6 +1806,8 @@ def sec_parse_companyfacts(facts):
         parts = []
         for nc, c in _SEC_DEBT_PARTS:
             for concept in (nc, c):
+                if concept is None:
+                    continue
                 v = _sec_instant_at(facts, [concept], bs_end)
                 if v:
                     parts.append(v)
@@ -1806,11 +1816,14 @@ def sec_parse_companyfacts(facts):
                           _sec_instant_at(facts, ["CommercialPaper"], bs_end)) if v)
     fin_lease = sum(v for v in (_sec_instant_at(facts, ["FinanceLeaseLiabilityNoncurrent"], bs_end),
                                 _sec_instant_at(facts, ["FinanceLeaseLiabilityCurrent"], bs_end)) if v)
+    funding = sum(v for v in (_sec_instant_at(facts, [c], bs_end) for c in _SEC_FUNDING) if v)
     debt = None
-    if ltd_total is not None or std or fin_lease:
-        debt = (ltd_total or 0.0) + std + fin_lease
-    elif eq is not None and _sec_facts(facts, "Liabilities"):
-        debt = 0.0                     # spółka raportuje zobowiązania, ale nie ma długu odsetkowego
+    if ltd_total is not None or std or fin_lease or funding:
+        debt = (ltd_total or 0.0) + std + fin_lease + funding
+    elif eq is not None and cl is not None and _sec_facts(facts, "Liabilities"):
+        # Bilans z podziałem na bieżące/długoterminowe i brak pozycji dłużnych = brak długu odsetkowego.
+        # Bilans BEZ podziału (banki, ubezpieczyciele, REIT-y) -> D/E nieznane (None), a nie fałszywe 0.
+        debt = 0.0
 
     # Quick Ratio
     qr = round((ca - inv) / cl, 2) if ca is not None and cl and cl > 0 else None
@@ -1836,7 +1849,8 @@ def sec_parse_companyfacts(facts):
         if tp and pt and pt != 0:
             tax_rate = max(0.0, min(0.5, tp / pt))
         ic = assets - (cl or 0.0) - cash
-        if ic > 0:
+        # ic < 5% aktywów (gotówka ~ aktywa - zob. bieżące) -> ROIC bez sensu (POWL: 11 500%) -> None
+        if ic > 0 and assets and ic >= SEC_MIN_IC_SHARE * assets:
             roic = round(ebit * (1 - tax_rate) / ic, 4)
 
     # EPS kwartalny: q0 ostatni, q1 poprzedni (~3 mies. wcześniej), q4 rok wcześniej (dopasowanie po dacie)
@@ -1903,7 +1917,7 @@ def _sic_to_sector(sic):
     if 4900 <= s <= 4991:                                   return "Utilities"
     if 4800 <= s <= 4899 or 2710 <= s <= 2799 or 7810 <= s <= 7841: return "Communication Services"
     if 7370 <= s <= 7379 or 3570 <= s <= 3579 or 3660 <= s <= 3679 or 3820 <= s <= 3829 \
-            or 3600 <= s <= 3629 or s == 3695:              return "Technology"
+            or s == 3695:                                   return "Technology"
     if 2830 <= s <= 2836 or 3840 <= s <= 3851 or 8000 <= s <= 8099 or 8731 == s \
             or 5122 == s:                                   return "Healthcare"
     if 1300 <= s <= 1389 or 2900 <= s <= 2999 or 1200 <= s <= 1241 \
@@ -1922,7 +1936,7 @@ def _sic_to_sector(sic):
     if 1500 <= s <= 1799 or 3400 <= s <= 3569 or 3580 <= s <= 3599 or 3700 <= s <= 3799 \
             or 3800 <= s <= 3819 or 3830 <= s <= 3839 or 4000 <= s <= 4799 or 5000 <= s <= 5099 \
             or 7300 <= s <= 7369 or 7380 <= s <= 7389 or 8700 <= s <= 8748 \
-            or 3000 <= s <= 3219:                           return "Industrials"
+            or 3000 <= s <= 3219 or 3600 <= s <= 3629:      return "Industrials"
     return "--"
 
 
