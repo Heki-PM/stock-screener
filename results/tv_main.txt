@@ -1,21 +1,14 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-11-20 12:05 UTC
-### Liczba tickerow: 15
+### Wygenerowano: 2026-11-20 18:58 UTC
+### Liczba tickerow: 8
 ###
-### ── Strong BUY (12) ──
-NGEN  ### Strong BUY | -69.5% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:78.8 | -- | SL:1.27 (-33.9%)
-FIGR  ### Strong BUY | -66.9% | W:– | MTF:2/5 | Fuzzy:87.2 | -- | SL:19.34 (-25.2%)
-LRMR  ### Strong BUY | -49.8% | W:– | MTF:1/5 M:RISK | Fuzzy:86.5 | -- | SL:2.16 (-32.9%)
-HLNE  ### Strong BUY | -44.3% | W:SC | MTF:3/5 M:RISK | Fuzzy:81.7 | -- | SL:79.3 (-6.7%)
-IRD  ### Strong BUY | -42.3% | W:⚠ Dist | MTF:2/5 | Fuzzy:88.7 | -- | SL:3.2 (-21.6%)
-SLS  ### Strong BUY | -40.3% | W:⚠ Dist | MTF:4/5 | Fuzzy:88.8 | -- | SL:8.55 (-42.5%)
-DMRA  ### Strong BUY | -36.6% | W:Faza B | MTF:2/5 | Fuzzy:84.1 | -- | SL:20.03 (-17.6%)
-ANAB  ### Strong BUY | -34.5% | W:– | MTF:2/5 | Fuzzy:90.3 | -- | SL:44.19 (-6.8%)
-ANRO  ### Strong BUY | -29.3% | W:⚠ Dist | MTF:1/5 | Fuzzy:80.6* | -- | SL:21.28 (-19.7%)
-PRTA  ### Strong BUY | -28.8% | W:A+AR | MTF:2/5 M:RISK | Fuzzy:70.4* | -- | SL:7.62 (-9.3%)
-IMVT  ### Strong BUY | -28.4% | W:– | MTF:3/5 | Fuzzy:81.6* | -- | SL:27.35 (-15.9%)
-GGG  ### Strong BUY | -25.6% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:74.8* | -- | SL:65.3 (-7.3%)
+### ── Strong BUY (5) ──
+NGEN  ### Strong BUY | -70.3% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:78.8 | -- | SL:1.27 (-32.1%)
+FIGR  ### Strong BUY | -69.2% | W:– | MTF:3/5 | Fuzzy:79.2* | Financial Services | SL:19.34 (-19.6%)
+STC  ### Strong BUY | -40.9% | W:SC | MTF:2/5 M:RISK | Fuzzy:69.7 | Financial Services | SL:40.77 (-9.4%)
+ABUS  ### Strong BUY | -26.1% | W:⚠ Dist | MTF:2/5 | Fuzzy:68.2* | Healthcare | SL:3.55 (-11.9%)
+GGG  ### Strong BUY | -25.9% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:67.7* | Industrials | SL:65.3 (-6.8%)
 ### ── Turning Up (3) ──
-CSHR  ### Turning Up | -66.1% | W:– | MTF:2/5 | Fuzzy:86.1* | -- | SL:3.12 (-11.9%)
-CRMD  ### Turning Up | -61.0% | W:Spring | MTF:3/5 M:RISK | Fuzzy:89.3 | -- | SL:4.42 (-13.0%)
-OXLC  ### Turning Up | -56.6% | W:A+AR | MTF:3/5 M:RISK | Fuzzy:83.1 | -- | SL:4.39 (-11.1%)
+CSHR  ### Turning Up | -66.8% | W:SC | MTF:1/5 | Fuzzy:86.1* | -- | SL:3.12 (-9.8%)
+CRMD  ### Turning Up | -59.6% | W:Spring | MTF:3/5 M:RISK | Fuzzy:84.2 | Healthcare | SL:4.43 (-15.8%)
+OXLC  ### Turning Up | -56.4% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:83.1 | -- | SL:4.39 (-11.7%)

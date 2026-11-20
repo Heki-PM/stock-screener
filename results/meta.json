@@ -1,23 +1,34 @@
 {
-  "generated_at": "2026-11-20T12:05:23.375609",
-  "elapsed_min": 3.9,
+  "generated_at": "2026-11-20T18:58:24.901144",
+  "elapsed_min": 5.5,
   "total_scanned": 7217,
-  "weekly_signals": 255,
-  "main_total": 15,
-  "full_total": 140,
-  "mtf_high_count": 2,
-  "monthly_risk_count": 7,
-  "fuzzy_rescue_count": 5,
+  "weekly_signals": 197,
+  "main_total": 8,
+  "full_total": 112,
+  "mtf_high_count": 1,
+  "monthly_risk_count": 5,
+  "fuzzy_rescue_count": 4,
   "indicator": "SMI(10,3,3)",
   "market_direction": {
     "usa_above_sma50w": false,
     "eu_above_sma50w": false,
-    "usa_price": 715.87,
-    "usa_sma50w": 720.97,
-    "eu_price": 84.57,
-    "eu_sma50w": 86.44
+    "usa_price": 701.33,
+    "usa_sma50w": 720.68,
+    "eu_price": 83.22,
+    "eu_sma50w": 86.41
   },
-  "early_total": 49,
+  "early_total": 31,
   "earnings_warn_count": 0,
-  "closed_weekly_bar": false
+  "closed_weekly_bar": false,
+  "fund_source_sec": 117,
+  "data_quality": {
+    "level": "degraded",
+    "main_total": 8,
+    "main_no_sector": 3,
+    "main_no_sector_pct": 37.5,
+    "main_no_eps": 3,
+    "main_incomplete": 3,
+    "full_total": 112,
+    "full_incomplete_pct": 18.8
+  }
 }
