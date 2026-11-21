@@ -1,14 +1,13 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-11-20 18:58 UTC
-### Liczba tickerow: 8
+### Wygenerowano: 2026-11-21 11:35 UTC
+### Liczba tickerow: 7
 ###
-### ── Strong BUY (5) ──
-NGEN  ### Strong BUY | -70.3% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:78.8 | -- | SL:1.27 (-32.1%)
-FIGR  ### Strong BUY | -69.2% | W:– | MTF:3/5 | Fuzzy:79.2* | Financial Services | SL:19.34 (-19.6%)
-STC  ### Strong BUY | -40.9% | W:SC | MTF:2/5 M:RISK | Fuzzy:69.7 | Financial Services | SL:40.77 (-9.4%)
-ABUS  ### Strong BUY | -26.1% | W:⚠ Dist | MTF:2/5 | Fuzzy:68.2* | Healthcare | SL:3.55 (-11.9%)
-GGG  ### Strong BUY | -25.9% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:67.7* | Industrials | SL:65.3 (-6.8%)
+### ── Strong BUY (4) ──
+FIGR  ### Strong BUY | -69.4% | W:– | MTF:3/5 | Fuzzy:79.2* | Financial Services | SL:19.34 (-18.9%)
+POWL  ### Strong BUY | -54.8% | W:– | MTF:3/5 M:RISK | Fuzzy:86.6 | Industrials | SL:119.85 (-19.1%)
+STC  ### Strong BUY | -41.6% | W:SC | MTF:2/5 M:RISK | Fuzzy:70.7 | Financial Services | SL:40.77 (-8.4%)
+ABUS  ### Strong BUY | -26.2% | W:⚠ Dist | MTF:2/5 | Fuzzy:68.3* | Healthcare | SL:3.55 (-11.7%)
 ### ── Turning Up (3) ──
-CSHR  ### Turning Up | -66.8% | W:SC | MTF:1/5 | Fuzzy:86.1* | -- | SL:3.12 (-9.8%)
-CRMD  ### Turning Up | -59.6% | W:Spring | MTF:3/5 M:RISK | Fuzzy:84.2 | Healthcare | SL:4.43 (-15.8%)
-OXLC  ### Turning Up | -56.4% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:83.1 | -- | SL:4.39 (-11.7%)
+CSHR  ### Turning Up | -66.3% | W:– | MTF:1/5 | Fuzzy:86.1* | -- | SL:3.12 (-11.1%)
+CRMD  ### Turning Up | -59.5% | W:Spring | MTF:3/5 M:RISK | Fuzzy:84.2 | Healthcare | SL:4.43 (-15.9%)
+OXLC  ### Turning Up | -56.6% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:83.1 | -- | SL:4.39 (-11.1%)
