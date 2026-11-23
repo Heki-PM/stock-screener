@@ -1,8 +1,8 @@
 ### TradingView Watchlist – Full Scan
-### Wygenerowano: 2026-11-21 11:35 UTC
-### Liczba tickerow: 93
+### Wygenerowano: 2026-11-23 12:04 UTC
+### Liczba tickerow: 95
 ###
-### ── Strong BUY (61) ──
+### ── Strong BUY (63) ──
 JZ  ### Strong BUY | -98.5% | W:A+AR | MTF:-- | Fuzzy:54.3 | Consumer Cyclical | SL:0.9 (-37.1%)
 SCNI  ### Strong BUY | -97.0% | W:– | MTF:-- | Fuzzy:40.0 | Healthcare | SL:1.12 (-29.1%)
 PSQL  ### Strong BUY | -86.6% | W:SC | MTF:-- | Fuzzy:74.5 | -- | SL:2.94 (-10.9%)
@@ -37,7 +37,6 @@ WYNN  ### Strong BUY | -39.7% | W:– | MTF:-- | Fuzzy:42.4 | Consumer Cyclical 
 DMRA  ### Strong BUY | -39.4% | W:Faza B | MTF:-- | Fuzzy:65.4 | Healthcare | SL:20.03 (-13.7%)
 PMT  ### Strong BUY | -38.6% | W:– | MTF:-- | Fuzzy:35.0 | Real Estate | SL:6.96 (-7.1%)
 CSQR  ### Strong BUY | -38.2% | W:– | MTF:-- | Fuzzy:61.9 | -- | SL:12.18 (-16.1%)
-XETR:VNA  ### Strong BUY | -38.1% | W:– | MTF:-- | Fuzzy:36.0 | -- | SL:15.11 (-10.5%)
 MGM  ### Strong BUY | -37.3% | W:– | MTF:-- | Fuzzy:32.3 | Consumer Cyclical | SL:27.12 (-16.2%)
 ANAB  ### Strong BUY | -35.6% | W:– | MTF:-- | Fuzzy:89.6 | Healthcare | SL:44.19 (-5.2%)
 IART  ### Strong BUY | -35.3% | W:– | MTF:-- | Fuzzy:66.7 | Healthcare | SL:11.6 (-12.5%)
@@ -52,17 +51,20 @@ AURA  ### Strong BUY | -27.9% | W:⚠ Dist | MTF:-- | Fuzzy:59.1 | Healthcare | 
 PCG  ### Strong BUY | -27.4% | W:– | MTF:-- | Fuzzy:23.6 | Utilities | SL:12.5 (-9.3%)
 VOR  ### Strong BUY | -26.2% | W:– | MTF:-- | Fuzzy:42.3 | Healthcare | SL:17.52 (-8.7%)
 ABUS  ### Strong BUY | -26.2% | W:⚠ Dist | MTF:2/5 | Fuzzy:68.3* | Healthcare | SL:3.55 (-11.7%)
-LSE:PRU  ### Strong BUY | -24.7% | W:– | MTF:-- | Fuzzy:35.8 | -- | SL:872.78 (-6.3%)
 CALM  ### Strong BUY | -24.1% | W:A+AR | MTF:-- | Fuzzy:36.1 | Consumer Defensive | SL:61.18 (-15.4%)
 SRRK  ### Strong BUY | -22.1% | W:– | MTF:-- | Fuzzy:51.6 | Healthcare | SL:40.54 (-15.8%)
 T  ### Strong BUY | -21.5% | W:Faza B | MTF:-- | Fuzzy:34.2 | Communication Services | SL:20.31 (-9.0%)
+EURONEXT:SAF  ### Strong BUY | -20.1% | W:– | MTF:-- | Fuzzy:62.2 | -- | SL:nan PRZEBITY
 VIRT  ### Strong BUY | -19.5% | W:– | MTF:-- | Fuzzy:21.3 | Financial Services | SL:51.54 (-6.6%)
 NNN  ### Strong BUY | -17.9% | W:– | MTF:-- | Fuzzy:21.5 | Real Estate | SL:39.59 (-1.8%)
 EFC  ### Strong BUY | -17.8% | W:– | MTF:-- | Fuzzy:3.0 | Real Estate | SL:10.49 (-4.7%)
+LSE:RR  ### Strong BUY | -17.6% | W:– | MTF:-- | Fuzzy:43.5 | -- | SL:1201.86 (-8.1%)
 SENEA  ### Strong BUY | -17.1% | W:Spring | MTF:-- | Fuzzy:27.0 | Consumer Defensive | SL:27.86 (-20.0%)
+OMXSTO:VOLV_B  ### Strong BUY | -16.2% | W:– | MTF:-- | Fuzzy:26.3 | -- | SL:nan PRZEBITY
 POR  ### Strong BUY | -15.4% | W:A+AR | MTF:-- | Fuzzy:26.0 | Utilities | SL:43.52 (-3.7%)
 BMRN  ### Strong BUY | -14.9% | W:SOS | MTF:-- | Fuzzy:45.4 | Healthcare | SL:51.83 (-14.2%)
 WPC  ### Strong BUY | -14.5% | W:– | MTF:-- | Fuzzy:39.8 | Real Estate | SL:61.57 (-5.4%)
+SIX:CFR  ### Strong BUY | -14.2% | W:– | MTF:-- | Fuzzy:60.6 | -- | SL:nan PRZEBITY
 ARMK  ### Strong BUY | -13.9% | W:– | MTF:-- | Fuzzy:16.4 | Consumer Cyclical | SL:49.51 (-8.0%)
 ### ── BUY (10) ──
 INO  ### BUY | -35.3% | W:A+AR | MTF:-- | Fuzzy:33.7 | Healthcare | SL:1.08 (-38.6%)

@@ -1,8 +1,8 @@
 ### TradingView Watchlist – Early D1
-### Wygenerowano: 2026-11-21 11:35 UTC
-### Liczba tickerow: 19
+### Wygenerowano: 2026-11-23 12:04 UTC
+### Liczba tickerow: 20
 ###
-### ── Early D1 (19) ──
+### ── Early D1 (20) ──
 BRAI  ### Early D1 | -95.5% | W:– | MTF:-- | Fuzzy:54.1 | -- | SL:1.36 (-8.1%)
 BOT  ### Early D1 | -69.2% | W:– | MTF:-- | Fuzzy:100.0 | -- | SL:16.16 (-11.0%)
 SNDX  ### Early D1 | -65.9% | W:– | MTF:-- | Fuzzy:56.0 | Healthcare | SL:8.33 (-4.5%)
@@ -19,6 +19,7 @@ GNL  ### Early D1 | -36.2% | W:– | MTF:-- | Fuzzy:47.6 | Real Estate | SL:5.8 
 GNTX  ### Early D1 | -28.4% | W:– | MTF:-- | Fuzzy:62.7 | Consumer Cyclical | SL:18.44 (-1.7%)
 GAP  ### Early D1 | -27.0% | W:SC | MTF:-- | Fuzzy:69.7* | Consumer Cyclical | SL:18.46 (-11.8%)
 BKE  ### Early D1 | -21.4% | W:– | MTF:-- | Fuzzy:72.7 | Consumer Cyclical | SL:41.19 (-6.7%)
+LSE:CCH  ### Early D1 | -17.1% | W:– | MTF:-- | Fuzzy:48.2 | -- | SL:3958.02 (-8.1%)
 RDWR  ### Early D1 | -16.3% | W:SOS | MTF:-- | Fuzzy:51.1 | Industrials | SL:29.18 (-9.4%)
 WKC  ### Early D1 | -10.9% | W:– | MTF:-- | Fuzzy:23.1 | Energy | SL:34.16 (-6.3%)
 HNI  ### Early D1 | -7.1% | W:– | MTF:-- | Fuzzy:39.3 | Consumer Cyclical | SL:45.91 (-4.0%)
