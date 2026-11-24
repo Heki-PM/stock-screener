@@ -20,6 +20,7 @@ jobs:
       - name: Check today's screener
         env:
           GH_TOKEN: ${{ github.token }}
+          EVENT_NAME: ${{ github.event_name }}
 
         run: |
 
@@ -31,6 +32,25 @@ jobs:
 
           echo "📅 Data UTC: ${TODAY}"
           echo ""
+
+          # ------------------------------------------------------
+          # OKNO CZASOWE (tylko dla uruchomień z harmonogramu)
+          # GitHub startuje ten cron z opóźnieniem 7–12 h. Po północy UTC
+          # "dzisiaj" to już następny dzień, a jego screener (n8n, 12:00 UTC)
+          # jeszcze nie ruszył — bez tej blokady watchdog uruchamiał zbędny
+          # przebieg (2026-11-24 00:06 UTC). Działamy tylko w dzień roboczy
+          # od 12:20 UTC do końca dnia UTC; ręczne uruchomienie omija okno.
+          # ------------------------------------------------------
+
+          if [ "$EVENT_NAME" = "schedule" ]; then
+            NOW_HM=$(date -u +'%H%M')
+            DOW=$(date -u +'%u')
+            if [ "$DOW" -gt 5 ] || [ "$NOW_HM" -lt 1220 ]; then
+              echo "⏭️ Poza oknem watchdoga (UTC ${NOW_HM}, dzień tygodnia ${DOW})."
+              echo "Harmonogram wystartował z opóźnieniem — nic nie uruchamiam."
+              exit 0
+            fi
+          fi
 
           # ------------------------------------------------------
           # Znajdź dzisiejsze uruchomienia głównego screenera
