@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-11-24T00:13:54.398872",
-  "elapsed_min": 6.7,
-  "total_scanned": 7220,
-  "weekly_signals": 534,
+  "generated_at": "2026-11-24T12:06:55.938094",
+  "elapsed_min": 5.7,
+  "total_scanned": 7221,
+  "weekly_signals": 541,
   "main_total": 25,
-  "full_total": 369,
+  "full_total": 378,
   "mtf_high_count": 1,
   "monthly_risk_count": 17,
   "fuzzy_rescue_count": 7,
@@ -17,10 +17,10 @@
     "eu_price": 84.55,
     "eu_sma50w": 86.49
   },
-  "early_total": 111,
+  "early_total": 120,
   "earnings_warn_count": 0,
   "closed_weekly_bar": false,
-  "fund_source_sec": 382,
+  "fund_source_sec": 385,
   "data_quality": {
     "level": "degraded",
     "main_total": 25,
@@ -28,7 +28,7 @@
     "main_no_sector_pct": 44.0,
     "main_no_eps": 10,
     "main_incomplete": 10,
-    "full_total": 369,
-    "full_incomplete_pct": 20.9
+    "full_total": 378,
+    "full_incomplete_pct": 22.2
   }
 }
