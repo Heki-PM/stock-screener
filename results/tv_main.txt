@@ -1,13 +1,31 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-11-23 12:04 UTC
-### Liczba tickerow: 7
+### Wygenerowano: 2026-11-24 00:13 UTC
+### Liczba tickerow: 25
 ###
-### ── Strong BUY (4) ──
-FIGR  ### Strong BUY | -69.4% | W:– | MTF:3/5 | Fuzzy:79.2* | Financial Services | SL:19.34 (-18.9%)
-POWL  ### Strong BUY | -54.8% | W:– | MTF:3/5 M:RISK | Fuzzy:86.6 | Industrials | SL:119.85 (-19.1%)
-STC  ### Strong BUY | -41.6% | W:SC | MTF:2/5 M:RISK | Fuzzy:70.7 | Financial Services | SL:40.77 (-8.4%)
-ABUS  ### Strong BUY | -26.2% | W:⚠ Dist | MTF:2/5 | Fuzzy:68.3* | Healthcare | SL:3.55 (-11.7%)
-### ── Turning Up (3) ──
-CSHR  ### Turning Up | -66.3% | W:– | MTF:1/5 | Fuzzy:86.1* | -- | SL:3.12 (-11.1%)
-CRMD  ### Turning Up | -59.5% | W:Spring | MTF:3/5 M:RISK | Fuzzy:84.2 | Healthcare | SL:4.43 (-15.9%)
-OXLC  ### Turning Up | -56.6% | W:A+AR | MTF:1/5 M:RISK | Fuzzy:83.1 | -- | SL:4.39 (-11.1%)
+### ── Strong BUY (9) ──
+BOT  ### Strong BUY | -64.8% | W:– | MTF:2/5 | Fuzzy:100.0 | -- | SL:16.16 (-22.1%)
+CSHR  ### Strong BUY | -63.8% | W:– | MTF:2/5 | Fuzzy:86.1* | -- | SL:3.12 (-17.5%)
+CRMD  ### Strong BUY | -57.8% | W:Spring | MTF:2/5 M:RISK | Fuzzy:84.2 | Healthcare | SL:4.43 (-19.3%)
+OXLC  ### Strong BUY | -55.0% | W:SC | MTF:2/5 M:RISK | Fuzzy:83.1 | -- | SL:4.39 (-14.4%)
+PLAB  ### Strong BUY | -52.7% | W:– | MTF:2/5 M:RISK | Fuzzy:71.7* | Technology | SL:23.46 (-11.4%)
+MGTX  ### Strong BUY | -44.3% | W:⚠ Dist | MTF:3/5 | Fuzzy:84.6 | Healthcare | SL:7.73 (-9.6%)
+VC  ### Strong BUY | -33.5% | W:– | MTF:1/5 M:RISK | Fuzzy:64.8 | Consumer Cyclical | SL:73.15 (-13.0%)
+HAPN  ### Strong BUY | -30.9% | W:Spring | MTF:2/5 M:RISK | Fuzzy:60.1 | Financial Services | SL:13.86 (-7.4%)
+GGG  ### Strong BUY | -24.3% | W:A+AR | MTF:4/5 M:RISK | Fuzzy:66.7* | Industrials | SL:66.32 (-7.4%)
+### ── Turning Up (16) ──
+LAC  ### Turning Up | -80.9% | W:– | MTF:3/5 M:RISK | Fuzzy:83.3 | Basic Materials | SL:1.22 (-8.3%)
+ASM  ### Turning Up | -69.4% | W:SOS | MTF:3/5 M:RISK | Fuzzy:78.3 | -- | SL:3.31 (-9.8%)
+SCZM  ### Turning Up | -61.1% | W:SOS | MTF:3/5 M:RISK | Fuzzy:73.3 | -- | SL:5.94 (-13.4%)
+CRDO  ### Turning Up | -60.3% | W:– | MTF:2/5 M:RISK | Fuzzy:86.5 | Technology | SL:96.94 (-20.8%)
+BBAR  ### Turning Up | -58.7% | W:– | MTF:3/5 M:RISK | Fuzzy:85.9 | -- | SL:8.57 (-6.8%)
+ADEA  ### Turning Up | -58.7% | W:⚠ Dist | MTF:2/5 M:RISK | Fuzzy:78.3 | Communication Services | SL:12.51 (-11.2%)
+SE  ### Turning Up | -55.8% | W:SC | MTF:3/5 M:RISK | Fuzzy:77.7* | -- | SL:61.77 (-5.7%)
+GGAL  ### Turning Up | -54.1% | W:SC | MTF:3/5 M:RISK | Fuzzy:87.2 | -- | SL:24.78 (-6.9%)
+CAMT  ### Turning Up | -53.7% | W:– | MTF:1/5 M:RISK | Fuzzy:76.0* | Technology | SL:86.71 (-13.4%)
+KMT  ### Turning Up | -46.0% | W:Spring | MTF:3/5 M:RISK | Fuzzy:83.9 | Industrials | SL:20.96 (-9.5%)
+ENS  ### Turning Up | -45.7% | W:SOS | MTF:2/5 M:RISK | Fuzzy:68.5 | -- | SL:122.42 (-7.5%)
+NVT  ### Turning Up | -39.2% | W:– | MTF:1/5 | Fuzzy:65.3* | Industrials | SL:95.41 (-14.8%)
+SKHY  ### Turning Up | -37.8% | W:– | MTF:2/5 | Fuzzy:89.4 | -- | SL:101.43 (-18.4%)
+Q  ### Turning Up | -35.3% | W:– | MTF:2/5 | Fuzzy:86.9 | Technology | SL:101.59 (-11.4%)
+CGNX  ### Turning Up | -33.3% | W:⚠ Dist | MTF:3/5 | Fuzzy:81.6 | Technology | SL:43.57 (-10.1%)
+BHP  ### Turning Up | -26.9% | W:– | MTF:3/5 | Fuzzy:75.5* | -- | SL:66.29 (-6.1%)
