@@ -1,12 +1,13 @@
 ### TradingView Watchlist – Screener główny
-### Wygenerowano: 2026-11-26 12:09 UTC
-### Liczba tickerow: 30
+### Wygenerowano: 2026-11-27 12:10 UTC
+### Liczba tickerow: 31
 ###
-### ── Strong BUY (10) ──
+### ── Strong BUY (11) ──
 BILI  ### Strong BUY | -68.6% | W:– | MTF:4/5 M:RISK | Fuzzy:69.5* | -- | SL:9.9 (-13.4%)
 CSHR  ### Strong BUY | -61.8% | W:– | MTF:2/5 | Fuzzy:84.2* | -- | SL:3.12 (-21.6%)
 BBAR  ### Strong BUY | -59.8% | W:– | MTF:4/5 M:RISK | Fuzzy:85.9 | -- | SL:7.93 (-11.6%)
 CRMD  ### Strong BUY | -56.3% | W:Spring | MTF:2/5 M:RISK | Fuzzy:84.2 | Healthcare | SL:4.43 (-22.1%)
+OSL:NHY  ### Strong BUY | -45.0% | W:– | MTF:4/5 M:RISK | Fuzzy:68.4 | -- | SL:62.55 (-5.6%)
 MGTX  ### Strong BUY | -40.7% | W:⚠ Dist | MTF:2/5 | Fuzzy:82.7 | Healthcare | SL:7.73 (-15.1%)
 CG  ### Strong BUY | -39.6% | W:– | MTF:1/5 M:RISK | Fuzzy:72.8 | Financial Services | SL:35.5 (-10.0%)
 HAPN  ### Strong BUY | -31.7% | W:Spring | MTF:1/5 M:RISK | Fuzzy:61.2 | Financial Services | SL:13.54 (-8.5%)
@@ -28,9 +29,9 @@ PAAS  ### Turning Up | -52.8% | W:– | MTF:3/5 M:RISK | Fuzzy:74.5* | -- | SL:2
 KGC  ### Turning Up | -52.6% | W:– | MTF:3/5 M:RISK | Fuzzy:88.1 | -- | SL:16.77 (-9.0%)
 BMA  ### Turning Up | -51.1% | W:– | MTF:3/5 M:RISK | Fuzzy:88.9 | -- | SL:46.39 (-7.9%)
 TLK  ### Turning Up | -48.6% | W:– | MTF:3/5 M:RISK | Fuzzy:67.0* | -- | SL:10.27 (-8.0%)
-OSL:NHY  ### Turning Up | -45.9% | W:– | MTF:3/5 M:RISK | Fuzzy:68.4 | -- | SL:62.55 (-3.9%)
 OGC  ### Turning Up | -42.4% | W:Spring | MTF:3/5 M:RISK | Fuzzy:78.7 | -- | SL:22.09 (-10.6%)
 NVDA  ### Turning Up | -38.7% | W:SC | MTF:1/5 | Fuzzy:87.6 | Technology | SL:123.25 (-17.4%)
+GPW:XTB  ### Turning Up | -38.0% | W:SOS | MTF:3/5 | Fuzzy:87.3 | -- | SL:102.21 (-11.7%)
 B  ### Turning Up | -35.8% | W:– | MTF:2/5 M:RISK | Fuzzy:77.4 | -- | SL:31.04 (-10.1%)
 FTNT  ### Turning Up | -31.5% | W:– | MTF:3/5 | Fuzzy:84.8 | Technology | SL:117.43 (-13.0%)
 BHP  ### Turning Up | -26.7% | W:– | MTF:3/5 | Fuzzy:75.6* | -- | SL:66.29 (-6.3%)
