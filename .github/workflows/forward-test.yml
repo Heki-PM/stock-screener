@@ -1,0 +1,54 @@
+name: Forward-test sygnałów SMI
+
+# Raz w tygodniu (sobota rano, rynki zamknięte) + ręcznie z zakładki Actions.
+# Liczy wyniki sygnałów z dziennych snapshotów results/results_main_*.json
+# i zapisuje results/forward_test.html + results/forward_test.json.
+# Strona trafi na GitHub Pages przy najbliższym przebiegu screenera (deploy z katalogu results/).
+on:
+  schedule:
+    - cron: '47 6 * * 6'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stock-screener          # wspólna z screener.yml – bez konfliktów przy git push
+  cancel-in-progress: false
+
+jobs:
+  forward-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install yfinance pandas numpy
+
+      - name: Forward-test
+        run: python scripts/forward_test.py
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Commit wyników
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add results/forward_test.html results/forward_test.json
+          if git diff --staged --quiet; then
+            echo "ℹ️ Brak zmian"
+          else
+            git commit -m "🧪 Forward-test $(date -u +'%Y-%m-%d')"
+            git pull --rebase
+            git push
+          fi

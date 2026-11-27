@@ -51,6 +51,13 @@ CHANGELOG:
                  wyłączający SEC przy awarii. Osobny cache (.cache/fundamentals_sec, .cache/sec_profile).
                  Nowe pole fund_source ("SEC"/"Yahoo") na końcu rekordu. USE_SEC_EDGAR=False = jak dotąd.
                  Wymaga env SEC_USER_AGENT z e-mailem (bez niego SEC odpowie 403 -> całość z Yahoo).
+  SEC ADR      – spółki zagraniczne (20-F/40-F): taksonomia ifrs-full i us-gaap w walucie innej niż USD
+                 (ARS, IDR, CNY...). EPS TTM = ostatni rok obrotowy, EPS YoY rok do roku; kapitalizacja
+                 z Yahoo fast_info (ADR != akcja zwykła). Nowe pola fin_currency, fin_report na końcu
+                 rekordu; meta.fund_sec_foreign. Wpisy cache "brak w SEC" ze starszego parsera ponawiane raz.
+                 Wyniki dla spółek krajowych (10-K/10-Q w USD) bez zmian.
+  FUND ?       – badge na kartach/w tabeli i "| FUND?" w liście TV, gdy spółka nie ma ŻADNYCH danych
+                 fundamentalnych (przeszła tylko na warunkach technicznych). Lista główna bez zmian.
 """
 
 import yfinance as yf
@@ -58,6 +65,7 @@ import pandas as pd
 import numpy as np
 import requests
 import json
+import re
 import html as _html
 import os
 import random
@@ -158,6 +166,7 @@ NEW_OUTPUT_FIELDS = [
     "tech_score_raw", "atr_w", "stop_loss", "risk_pct", "stop_breached",
     "vol_projected", "rs_benchmark", "earnings_date", "days_to_earnings",
     "earnings_warning", "data_incomplete", "fund_source",
+    "fin_currency", "fin_report",
 ]
 
 # EARNINGS – ostrzeżenie o zbliżającej się publikacji wyników (Faza 3, lista finalna)
@@ -490,31 +499,111 @@ def get_sp500():
     except Exception as e:
         print(f"  S&P 500 blad: {e}"); return []
 
-def get_nasdaq():
-    import re
+# ── FUNDS: metadane spółek USA (nazwa/sektor/kraj) + wykluczanie funduszy ──
+# Pełne listy giełd (rreichel3/US-Stock-Symbols *_full_tickers.json) mają nazwę, sektor, branżę i kraj.
+# Służą do: (1) odrzucenia funduszy zamkniętych/ETF/ETN przed pobieraniem danych,
+# (2) awaryjnego sektora/kraju/nazwy, gdy Yahoo i SEC ich nie dały (np. ADR-y przy HTTP 429).
+# BDC (np. OTF, PSEC) odrzucane osobno w ścieżce SEC – raportują NAV na akcję (spółka inwestycyjna).
+EXCLUDE_FUNDS = True
+_FUND_NAME_RE = re.compile(r"\b(Fund|ETF|ETN|Municipal|Closed[- ]End)\b", re.I)
+_FUND_INDUSTRIES = {"Trusts Except Educational Religious and Charitable",
+                    "Finance/Investors Services", "Investment Managers", "Finance Companies",
+                    "Investment Bankers/Brokers/Service"}
+_NASDAQ_TO_YAHOO_SECTOR = {
+    "Finance": "Financial Services", "Health Care": "Healthcare", "Technology": "Technology",
+    "Consumer Discretionary": "Consumer Cyclical", "Consumer Staples": "Consumer Defensive",
+    "Telecommunications": "Communication Services", "Energy": "Energy", "Industrials": "Industrials",
+    "Basic Materials": "Basic Materials", "Real Estate": "Real Estate", "Utilities": "Utilities",
+}
+_US_META = {}            # ticker -> {"name","sector","country","fund"}
+
+
+def _is_fund(name, industry, sector):
+    name = name or ""
+    if _FUND_NAME_RE.search(name):
+        return True
+    # "Trust" w branży funduszowej = fundusz zamknięty (BlackRock/Gabelli ... Trust); REIT-y pomijamy
+    return bool(re.search(r"\bTrust\b", name)) and industry in _FUND_INDUSTRIES \
+        and sector != "Real Estate" and "REIT" not in name
+
+
+_NAME_SUFFIX_RE = re.compile(r"\s+(Common Stock|Common Shares|Ordinary Shares|American Depositary|"
+                             r"Class [A-Z] |Shares of Beneficial|ADS\b|Sponsored ADR).*$", re.I)
+
+def _clean_listing_name(name):
+    name = (name or "").strip()
+    return (_NAME_SUFFIX_RE.sub("", name).strip() or name) or None
+
+
+def _get_exchange_tickers(exchange):
+    """Tickery giełdy USA; z pełnej listy (z metadanymi), a przy błędzie – z prostej listy (jak dotąd)."""
+    base = "https://raw.githubusercontent.com/rreichel3/US-Stock-Symbols/main"
     try:
-        url = ("https://raw.githubusercontent.com/rreichel3/"
-               "US-Stock-Symbols/main/nasdaq/nasdaq_tickers.json")
-        r = requests.get(url, timeout=20, headers={"User-Agent": "Mozilla/5.0"})
-        tickers = [t.strip() for t in r.json() if re.match(r'^[A-Z]{1,5}$', t.strip())]
+        r = requests.get(f"{base}/{exchange}/{exchange}_full_tickers.json", timeout=30,
+                         headers={"User-Agent": "Mozilla/5.0"})
+        out = []
+        for row in r.json():
+            t = (row.get("symbol") or "").strip()
+            if not re.match(r'^[A-Z]{1,5}$', t):
+                continue
+            sec = (row.get("sector") or "").strip()
+            _US_META[t] = {
+                "name": _clean_listing_name(row.get("name")),
+                "sector": _NASDAQ_TO_YAHOO_SECTOR.get(sec),
+                "country": (row.get("country") or "").strip() or None,
+                "fund": _is_fund(row.get("name"), (row.get("industry") or "").strip(), sec),
+            }
+            out.append(t)
+        if out:
+            return out
+    except Exception as e:
+        print(f"  {exchange.upper()} pelna lista blad: {e} -- prosta lista")
+    r = requests.get(f"{base}/{exchange}/{exchange}_tickers.json", timeout=20,
+                     headers={"User-Agent": "Mozilla/5.0"})
+    return [t.strip() for t in r.json() if re.match(r'^[A-Z]{1,5}$', t.strip())]
+
+
+def get_nasdaq():
+    try:
+        tickers = _get_exchange_tickers("nasdaq")
         print(f"  NASDAQ: {len(tickers)}"); return tickers
     except Exception as e:
         print(f"  NASDAQ blad: {e}"); return []
 
 def get_nyse_amex():
-    import re
     tickers = []
     for exchange in ("nyse", "amex"):
         try:
-            url = (f"https://raw.githubusercontent.com/rreichel3/"
-                   f"US-Stock-Symbols/main/{exchange}/{exchange}_tickers.json")
-            r    = requests.get(url, timeout=20, headers={"User-Agent": "Mozilla/5.0"})
-            part = [t.strip() for t in r.json() if re.match(r'^[A-Z]{1,5}$', t.strip())]
+            part = _get_exchange_tickers(exchange)
             tickers.extend(part)
             print(f"  {exchange.upper()}: {len(part)}")
         except Exception as e:
             print(f"  {exchange.upper()} blad: {e}")
     return tickers
+
+
+def _drop_funds(tickers):
+    if not EXCLUDE_FUNDS:
+        return tickers
+    funds = sorted(t for t in tickers if _US_META.get(t, {}).get("fund"))
+    if funds:
+        print(f"  Fundusze (CEF/ETF/ETN) wykluczone: {len(funds)}  np. {', '.join(funds[:8])}")
+    fs = set(funds)
+    return [t for t in tickers if t not in fs]
+
+
+def _us_meta_fill(rec):
+    """Uzupełnia sektor/kraj/nazwę z listy giełdy, gdy Yahoo/SEC ich nie dały ('--' / ticker)."""
+    m = _US_META.get(rec.get("ticker"))
+    if not m:
+        return rec
+    if rec.get("sector") in (None, "--") and m.get("sector"):
+        rec["sector"] = m["sector"]
+    if rec.get("country") in (None, "--") and m.get("country"):
+        rec["country"] = m["country"]
+    if (not rec.get("name") or rec.get("name") == rec.get("ticker")) and m.get("name"):
+        rec["name"] = m["name"]
+    return rec
 
 def get_european_indices():
     dax = [
@@ -1635,7 +1724,8 @@ def _sec_facts(facts, concept, unit="USD", taxonomy="us-gaap"):
     for f in rows:
         if f.get("val") is None or not f.get("end"):
             continue
-        if f.get("form") not in ("10-K", "10-Q", "10-K/A", "10-Q/A", "20-F", "40-F", "8-K"):
+        if f.get("form") not in ("10-K", "10-Q", "10-K/A", "10-Q/A", "20-F", "40-F",
+                                 "20-F/A", "40-F/A", "8-K"):
             continue
         key = (f.get("start"), f["end"])
         # przy wielu wersjach tego samego okresu bierzemy najpóźniej złożoną (korekty)
@@ -1648,7 +1738,7 @@ def _days(a, b):
     return (pd.Timestamp(b) - pd.Timestamp(a)).days
 
 
-def _sec_duration_series(facts, concepts, unit="USD"):
+def _sec_duration_series(facts, concepts, unit="USD", taxonomy="us-gaap"):
     """
     Dla pozycji przepływowych (przychody, zysk, EPS) zwraca:
       quarters: [(end, val)] kwartały (~3 mies.), malejąco po dacie, z dopełnionym Q4
@@ -1658,7 +1748,7 @@ def _sec_duration_series(facts, concepts, unit="USD"):
     """
     best = None
     for c in concepts:
-        rows = _sec_facts(facts, c, unit)
+        rows = _sec_facts(facts, c, unit, taxonomy)
         if not rows:
             continue
         latest = max(r["end"] for r in rows)
@@ -1716,10 +1806,10 @@ def _sec_instant(facts, concepts, unit="USD", taxonomy="us-gaap"):
     return best if best else (None, None)
 
 
-def _sec_instant_at(facts, concepts, end, unit="USD"):
+def _sec_instant_at(facts, concepts, end, unit="USD", taxonomy="us-gaap"):
     """Wartość pozycji bilansowej dokładnie na dany dzień bilansowy (spójność wskaźników)."""
     for c in concepts:
-        for r in _sec_facts(facts, c, unit):
+        for r in _sec_facts(facts, c, unit, taxonomy):
             if not r.get("start") and r["end"] == end:
                 return float(r["val"])
     return None
@@ -1756,50 +1846,97 @@ _SEC_FUNDING = ["SecuritiesSoldUnderAgreementsToRepurchase", "FederalHomeLoanBan
 _SEC_CASH    = ["CashAndCashEquivalentsAtCarryingValue", "Cash",
                 "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"]
 
+# ── Spółki zagraniczne (ADR, raporty 20-F/40-F) ──────────────
+# Dotąd raport bez taksonomii us-gaap albo w walucie innej niż USD -> "ifrs_lub_brak_usgaap" -> Yahoo,
+# a Yahoo .info dla ADR-ów często pada (429) -> spółka na liście bez sektora i fundamentów.
+# Teraz: taksonomia ifrs-full + waluta sprawozdania wykrywana automatycznie (ARS, IDR, CNY, ...).
+# 20-F/40-F to raporty ROCZNE -> EPS TTM = ostatni rok obrotowy, EPS YoY = rok do roku,
+# EPS QoQ zwykle brak (SEC nie zbiera XBRL z kwartalnych 6-K).
+# Wskaźniki (QR, D/E, marża, ROIC) są niezależne od waluty. EPS i przychody zostają w walucie
+# sprawozdania (pole fin_currency) i dotyczą akcji ZWYKŁEJ, nie ADR -> kapitalizacja z Yahoo fast_info.
+SEC_FOREIGN_FORMS          = ("20-F", "40-F", "20-F/A", "40-F/A")
+SEC_PARSER_VERSION         = 2     # zmiana -> ponowna próba dla spółek odrzuconych przez starszy parser
+SEC_MAX_STALE_DAYS_FOREIGN = 500   # raport roczny publikowany do 4 mies. po końcu roku obrotowego
 
-def sec_parse_companyfacts(facts):
+_SEC_CONCEPTS = {
+    "us-gaap": {
+        "revenue": _SEC_REVENUE, "cogs": _SEC_COGS, "eps": _SEC_EPS, "gp": ["GrossProfit"],
+        "op": ["OperatingIncomeLoss"], "tax": ["IncomeTaxExpenseBenefit"], "pretax": _SEC_PRETAX,
+        "assets": ["Assets"], "cl": ["LiabilitiesCurrent"], "ca": ["AssetsCurrent"],
+        "inv": ["InventoryNet", "InventoryGross"], "cash": _SEC_CASH, "equity": _SEC_EQUITY,
+        "liabilities": "Liabilities",
+    },
+    "ifrs-full": {
+        "revenue": ["Revenue", "RevenueFromContractsWithCustomers", "RevenueFromSaleOfGoods"],
+        "cogs": ["CostOfSales"],
+        "eps": ["DilutedEarningsLossPerShare", "BasicEarningsLossPerShare",
+                "BasicAndDilutedEarningsLossPerShare"],
+        "gp": ["GrossProfit"], "op": ["ProfitLossFromOperatingActivities"],
+        "tax": ["IncomeTaxExpenseContinuingOperations"], "pretax": ["ProfitLossBeforeTax"],
+        "assets": ["Assets"], "cl": ["CurrentLiabilities"], "ca": ["CurrentAssets"],
+        "inv": ["Inventories"], "cash": ["CashAndCashEquivalents"],
+        "equity": ["EquityAttributableToOwnersOfParent", "Equity"],
+        "liabilities": "Liabilities",
+    },
+}
+# Dług IFRS: (pozycja zbiorcza, [składniki do zsumowania, gdy brak zbiorczej])
+_IFRS_DEBT_NONCURRENT = ("NoncurrentPortionOfNoncurrentBorrowings", ["LongtermBorrowings"])
+_IFRS_DEBT_CURRENT    = ("CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+                         ["ShorttermBorrowings", "CurrentPortionOfLongtermBorrowings"])
+_IFRS_LEASES          = ("LeaseLiabilities", ["NoncurrentLeaseLiabilities", "CurrentLeaseLiabilities"])
+
+
+def _sec_pick_taxonomy(facts):
     """
-    Liczy pola w TYM SAMYM formacie co ścieżka Yahoo (_fetch_fundamentals).
-    Zwraca dict z metrykami albo None + powód, gdy dane się nie nadają.
+    (taksonomia, waluta sprawozdania, czy_raport_zagraniczny) albo (None, None, False).
+    us-gaap ma pierwszeństwo (jak dotąd). Waluta = jednostka pozycji Assets z najświeższym bilansem.
     """
-    if not facts or "facts" not in facts:
-        return None, "brak_facts"
-    if "us-gaap" not in facts["facts"]:
-        return None, "ifrs_lub_brak_usgaap"     # 20-F/IFRS -> Yahoo
+    for tx in ("us-gaap", "ifrs-full"):
+        units = (facts["facts"].get(tx) or {}).get("Assets", {}).get("units") or {}
+        best = None
+        for cur, rows in units.items():
+            if not rows or "/" in cur:
+                continue
+            latest = max(rows, key=lambda r: r.get("end") or "")
+            if best is None or (latest.get("end") or "") > best[1]:
+                best = (cur, latest.get("end") or "", latest.get("form") or "")
+        if best:
+            cur, _end, form = best
+            foreign = tx == "ifrs-full" or cur != "USD" or form in SEC_FOREIGN_FORMS
+            return tx, cur, foreign
+    return None, None, False
 
-    rev_q, rev_a = _sec_duration_series(facts, _SEC_REVENUE)
-    eps_q, eps_a = _sec_duration_series(facts, _SEC_EPS, unit="USD/shares")
-    gp_q,  gp_a  = _sec_duration_series(facts, ["GrossProfit"])
-    cogs_q, cogs_a = _sec_duration_series(facts, _SEC_COGS)
-    op_q,  op_a  = _sec_duration_series(facts, ["OperatingIncomeLoss"])
-    tax_q, tax_a = _sec_duration_series(facts, ["IncomeTaxExpenseBenefit"])
-    pt_q,  pt_a  = _sec_duration_series(facts, _SEC_PRETAX)
 
-    sales, sales_end = _sec_ttm(rev_q, rev_a)
-    eps_ttm, eps_end = _sec_ttm(eps_q, eps_a)
+def _sec_annual_pair(facts, concepts, unit, taxonomy):
+    """Dwa ostatnie pełne lata obrotowe [(end, val), ...] malejąco – do EPS YoY z raportów rocznych."""
+    for c in concepts:
+        rows = [r for r in _sec_facts(facts, c, unit, taxonomy)
+                if r.get("start") and 350 <= _days(r["start"], r["end"]) <= 380]
+        if rows:
+            rows.sort(key=lambda r: r["end"], reverse=True)
+            return [(r["end"], float(r["val"])) for r in rows[:2]]
+    return []
 
-    # Bilans: najnowszy dzień bilansowy wg aktywów; reszta pozycji z tego samego dnia
-    assets, bs_end = _sec_instant(facts, ["Assets"])
-    if bs_end is None:
-        return None, "brak_bilansu"
-    if _days(bs_end, pd.Timestamp.now()) > SEC_MAX_STALE_DAYS:
-        return None, "dane_nieaktualne"
-    if sales is None and eps_ttm is None:
-        return None, "brak_przychodow_i_eps"
 
-    cl   = _sec_instant_at(facts, ["LiabilitiesCurrent"], bs_end)
-    ca   = _sec_instant_at(facts, ["AssetsCurrent"], bs_end)
-    inv  = _sec_instant_at(facts, ["InventoryNet", "InventoryGross"], bs_end) or 0.0
-    cash = _sec_instant_at(facts, _SEC_CASH, bs_end) or 0.0
-    eq   = _sec_instant_at(facts, _SEC_EQUITY, bs_end)
+def _ifrs_sum(facts, group, end, cur):
+    """Pozycja zbiorcza IFRS albo suma jej składników na dany dzień bilansowy (None = brak danych)."""
+    total_c, parts = group
+    v = _sec_instant_at(facts, [total_c], end, cur, "ifrs-full")
+    if v is not None:
+        return v
+    vals = [_sec_instant_at(facts, [p], end, cur, "ifrs-full") for p in parts]
+    vals = [x for x in vals if x is not None]
+    return sum(vals) if vals else None
 
-    # Dług jak "Total Debt" w Yahoo: kredyty i obligacje (krótko- + długoterminowe) + leasing finansowy
-    ltd_total = _sec_instant_at(facts, ["LongTermDebt", "DebtLongtermAndShorttermCombinedAmount"], bs_end)
+
+def _usgaap_debt(facts, bs_end, cur, eq, cl):
+    """Dług jak "Total Debt" w Yahoo (us-gaap): kredyty i obligacje + leasing finansowy + repo."""
+    ltd_total = _sec_instant_at(facts, ["LongTermDebt", "DebtLongtermAndShorttermCombinedAmount"], bs_end, cur)
     if ltd_total is None:
         ltd_nc = _sec_instant_at(facts, ["LongTermDebtNoncurrent",
-                                         "LongTermDebtAndCapitalLeaseObligations"], bs_end)
+                                         "LongTermDebtAndCapitalLeaseObligations"], bs_end, cur)
         ltd_c  = _sec_instant_at(facts, ["LongTermDebtCurrent", "DebtCurrent",
-                                         "LongTermDebtAndCapitalLeaseObligationsCurrent"], bs_end)
+                                         "LongTermDebtAndCapitalLeaseObligationsCurrent"], bs_end, cur)
         ltd_total = None if ltd_nc is None and ltd_c is None else (ltd_nc or 0.0) + (ltd_c or 0.0)
     if ltd_total is None:
         # Brak pozycji zbiorczej -> suma składników (każdy typ długu liczony raz)
@@ -1808,22 +1945,95 @@ def sec_parse_companyfacts(facts):
             for concept in (nc, c):
                 if concept is None:
                     continue
-                v = _sec_instant_at(facts, [concept], bs_end)
+                v = _sec_instant_at(facts, [concept], bs_end, cur)
                 if v:
                     parts.append(v)
         ltd_total = sum(parts) if parts else None
-    std = sum(v for v in (_sec_instant_at(facts, ["ShortTermBorrowings"], bs_end),
-                          _sec_instant_at(facts, ["CommercialPaper"], bs_end)) if v)
-    fin_lease = sum(v for v in (_sec_instant_at(facts, ["FinanceLeaseLiabilityNoncurrent"], bs_end),
-                                _sec_instant_at(facts, ["FinanceLeaseLiabilityCurrent"], bs_end)) if v)
-    funding = sum(v for v in (_sec_instant_at(facts, [c], bs_end) for c in _SEC_FUNDING) if v)
+    std = sum(v for v in (_sec_instant_at(facts, ["ShortTermBorrowings"], bs_end, cur),
+                          _sec_instant_at(facts, ["CommercialPaper"], bs_end, cur)) if v)
+    fin_lease = sum(v for v in (_sec_instant_at(facts, ["FinanceLeaseLiabilityNoncurrent"], bs_end, cur),
+                                _sec_instant_at(facts, ["FinanceLeaseLiabilityCurrent"], bs_end, cur)) if v)
+    funding = sum(v for v in (_sec_instant_at(facts, [c], bs_end, cur) for c in _SEC_FUNDING) if v)
     debt = None
     if ltd_total is not None or std or fin_lease or funding:
         debt = (ltd_total or 0.0) + std + fin_lease + funding
-    elif eq is not None and cl is not None and _sec_facts(facts, "Liabilities"):
+    elif eq is not None and cl is not None and _sec_facts(facts, "Liabilities", cur):
         # Bilans z podziałem na bieżące/długoterminowe i brak pozycji dłużnych = brak długu odsetkowego.
         # Bilans BEZ podziału (banki, ubezpieczyciele, REIT-y) -> D/E nieznane (None), a nie fałszywe 0.
         debt = 0.0
+    return debt
+
+
+def _ifrs_debt(facts, bs_end, cur, eq, cl):
+    """Dług IFRS: kredyty i pożyczki (długo- + krótkoterminowe) + zobowiązania leasingowe (IFRS 16)."""
+    tx = "ifrs-full"
+    loans_total = _sec_instant_at(facts, ["Borrowings"], bs_end, cur, tx)
+    if loans_total is not None:
+        parts = [loans_total]
+    else:
+        parts = [_ifrs_sum(facts, _IFRS_DEBT_NONCURRENT, bs_end, cur),
+                 _ifrs_sum(facts, _IFRS_DEBT_CURRENT, bs_end, cur)]
+    parts.append(_ifrs_sum(facts, _IFRS_LEASES, bs_end, cur))
+    parts = [v for v in parts if v is not None]
+    if parts:
+        return sum(parts)
+    if eq is not None and cl is not None and _sec_facts(facts, "Liabilities", cur, tx):
+        return 0.0          # bilans z podziałem i brak pozycji dłużnych = brak długu odsetkowego
+    return None             # bilans bez podziału (banki, ubezpieczyciele) -> D/E nieznane
+
+
+def _sec_is_investment_co(facts, tx, cur, bs_end):
+    """BDC / fundusz: raportuje NAV na akcję (us-gaap NetAssetValuePerShare) w ostatnim bilansie."""
+    if tx != "us-gaap":
+        return False
+    for r in _sec_facts(facts, "NetAssetValuePerShare", f"{cur}/shares", tx):
+        if not r.get("start") and abs(_days(r["end"], bs_end)) <= 120:
+            return True
+    return False
+
+
+def sec_parse_companyfacts(facts):
+    """
+    Liczy pola w TYM SAMYM formacie co ścieżka Yahoo (_fetch_fundamentals).
+    Zwraca dict z metrykami albo None + powód, gdy dane się nie nadają.
+    """
+    if not facts or "facts" not in facts:
+        return None, "brak_facts"
+    tx, cur, foreign = _sec_pick_taxonomy(facts)
+    if tx is None:
+        return None, "ifrs_lub_brak_usgaap"     # brak bilansu w us-gaap i ifrs-full -> Yahoo
+    C = _SEC_CONCEPTS[tx]
+    eps_unit = f"{cur}/shares"
+
+    rev_q, rev_a = _sec_duration_series(facts, C["revenue"], cur, tx)
+    eps_q, eps_a = _sec_duration_series(facts, C["eps"], eps_unit, tx)
+    gp_q,  gp_a  = _sec_duration_series(facts, C["gp"], cur, tx)
+    cogs_q, cogs_a = _sec_duration_series(facts, C["cogs"], cur, tx)
+    op_q,  op_a  = _sec_duration_series(facts, C["op"], cur, tx)
+    tax_q, tax_a = _sec_duration_series(facts, C["tax"], cur, tx)
+    pt_q,  pt_a  = _sec_duration_series(facts, C["pretax"], cur, tx)
+
+    sales, sales_end = _sec_ttm(rev_q, rev_a)
+    eps_ttm, eps_end = _sec_ttm(eps_q, eps_a)
+
+    # Bilans: najnowszy dzień bilansowy wg aktywów; reszta pozycji z tego samego dnia
+    assets, bs_end = _sec_instant(facts, C["assets"], cur, tx)
+    if bs_end is None:
+        return None, "brak_bilansu"
+    max_stale = SEC_MAX_STALE_DAYS_FOREIGN if foreign else SEC_MAX_STALE_DAYS
+    if _days(bs_end, pd.Timestamp.now()) > max_stale:
+        return None, "dane_nieaktualne"
+    if sales is None and eps_ttm is None:
+        return None, "brak_przychodow_i_eps"
+
+    cl   = _sec_instant_at(facts, C["cl"], bs_end, cur, tx)
+    ca   = _sec_instant_at(facts, C["ca"], bs_end, cur, tx)
+    inv  = _sec_instant_at(facts, C["inv"], bs_end, cur, tx) or 0.0
+    cash = _sec_instant_at(facts, C["cash"], bs_end, cur, tx) or 0.0
+    eq   = _sec_instant_at(facts, C["equity"], bs_end, cur, tx)
+
+    # Dług jak "Total Debt" w Yahoo (us-gaap albo IFRS)
+    debt = (_ifrs_debt if tx == "ifrs-full" else _usgaap_debt)(facts, bs_end, cur, eq, cl)
 
     # Quick Ratio
     qr = round((ca - inv) / cl, 2) if ca is not None and cl and cl > 0 else None
@@ -1869,6 +2079,13 @@ def sec_parse_companyfacts(facts):
             return None
         return round((new - old) / abs(old) * 100, 1)
 
+    eps_yoy = _pct(q0, q4)
+    if foreign and eps_yoy is None:
+        # 20-F/40-F: brak kwartałów -> EPS YoY = ostatni rok obrotowy vs poprzedni
+        ap = _sec_annual_pair(facts, C["eps"], eps_unit, tx)
+        if len(ap) == 2 and 330 <= _days(ap[1][0], ap[0][0]) <= 400:
+            eps_yoy = _pct(ap[0][1], ap[1][1])
+
     # Liczba akcji -> kapitalizacja (cena z W1). Spółki wieloklasowe (np. Class A/B) raportują
     # `dei` per klasa albo przestają go podawać (Mastercard: ostatni wpis z 2010), więc bierzemy
     # NAJWIĘKSZĄ ze ŚWIEŻYCH (<= 200 dni od bilansu) wartości: dei, CommonStockSharesOutstanding,
@@ -1897,10 +2114,13 @@ def sec_parse_companyfacts(facts):
         "eps_q1":  round(q1, 4) if q1 is not None else None,
         "eps_q4":  round(q4, 4) if q4 is not None else None,
         "eps_qoq": _pct(q0, q1),
-        "eps_yoy": _pct(q0, q4),
+        "eps_yoy": eps_yoy,
         "_shares": shares,
         "_entity": facts.get("entityName"),
         "_bs_end": bs_end,
+        "_foreign": foreign,
+        "_currency": cur,
+        "_investment_co": _sec_is_investment_co(facts, tx, cur, bs_end),
     }, "ok"
 
 
@@ -1971,7 +2191,14 @@ def _fetch_fundamentals_sec(symbol, weekly_data):
     cached = _sec_read_cache(cpath, SEC_CACHE_TTL_H)
     if cached is not None:
         if "_sec_unavailable" in cached:
-            return None
+            # Wpisy sprzed obsługi IFRS/walut (bez "_v") dla powodów, które nowa wersja
+            # potrafi obsłużyć -> ignorujemy i pobieramy ponownie (jednorazowo).
+            if cached.get("_v") != SEC_PARSER_VERSION and \
+                    cached["_sec_unavailable"] not in ("brak_cik", "brak_companyfacts"):
+                cached = None
+            else:
+                return None
+    if cached is not None:
         if "_rejected" not in cached:
             cached["_from_cache"] = True     # jak rekordy z cache Yahoo (ten sam kształt wiersza)
         return cached
@@ -1993,16 +2220,35 @@ def _fetch_fundamentals_sec(symbol, weekly_data):
     m, reason = sec_parse_companyfacts(facts)
     if m is None:
         _sec_note(reason)
-        _sec_write_cache(cpath, {"_sec_unavailable": reason})
+        _sec_write_cache(cpath, {"_sec_unavailable": reason, "_v": SEC_PARSER_VERSION})
         return None
 
     price  = weekly_data.get("w_price")
     vol    = weekly_data.get("w_avg_vol")
     shares = m.pop("_shares")
-    if not price or not shares or not vol:
+    foreign  = m.pop("_foreign", False)
+    fin_cur  = m.pop("_currency", "USD")
+    if m.pop("_investment_co", False) and EXCLUDE_FUNDS:
+        _sec_note("bdc_fundusz")
+        rej = {"_rejected": "fund"}
+        _sec_write_cache(cpath, rej)
+        return rej
+    if foreign:
+        # ADR: liczba akcji ZWYKŁYCH z SEC x cena ADR != kapitalizacja (ADR = 2, 10, 100 akcji...)
+        # -> kapitalizacja z Yahoo fast_info (lekkie zapytanie, zwykle przechodzi, gdy .info dostaje 429)
+        if not price or not vol:
+            _sec_note("brak_ceny_akcji_lub_wolumenu")
+            return None
+        cap = _foreign_market_cap(symbol)
+        if not cap:
+            _sec_note("zagr_brak_kapitalizacji")
+            return None                     # bez cache -> dotychczasowa ścieżka Yahoo
+        _sec_note("zagr_20F_ok")
+    elif not price or not shares or not vol:
         _sec_note("brak_ceny_akcji_lub_wolumenu")
         return None                         # bez cache – może jutro W1 będzie kompletne
-    cap = shares * price
+    else:
+        cap = shares * price
     if cap < MIN_MARKET_CAP:
         rej = {"_rejected": "cap"}
         if CACHE_REJECTED:
@@ -2037,9 +2283,25 @@ def _fetch_fundamentals_sec(symbol, weekly_data):
         "eps_q0": m["eps_q0"], "eps_q1": m["eps_q1"], "eps_q4": m["eps_q4"],
         "eps_qoq": m["eps_qoq"], "eps_yoy": m["eps_yoy"],
         "scanned_at": datetime.now().isoformat(),
+        # Waluta EPS/przychodów ze sprawozdania. Dla raportów 20-F/40-F EPS dotyczy akcji zwykłej,
+        # nie ADR – liczy się znak (>0) i dynamika, nie porównanie z ceną ADR.
+        "fin_currency": fin_cur,
+        "fin_report": "20-F" if foreign else "10-K/Q",
     }
     _sec_write_cache(cpath, rec)
     return rec
+
+
+def _foreign_market_cap(symbol):
+    """Kapitalizacja z Yahoo fast_info (USD) dla ADR-ów; None przy błędzie/limicie."""
+    tkr = yf.Ticker(symbol)
+    for attempt in range(2):
+        fast = _read_fast_info(tkr)
+        if fast and fast[1]:
+            return float(fast[1])
+        if attempt == 0:
+            _backoff(attempt)
+    return None
 
 
 def _yahoo_profile_from_cache(symbol):
@@ -2128,6 +2390,9 @@ def _collect_one(symbol: str, weekly_data: dict, info_attempts: int = RETRY_ATTE
             risk_pct = round((cur - sl) / cur * 100, 1)
         else:
             stop_breached = True
+
+    if weekly_data.get("market") == "USA":
+        fund = _us_meta_fill(dict(fund))
 
     # Scalamy fundamenty z danymi tygodniowymi (sygnał SMI + Wyckoff)
     return {
@@ -2594,6 +2859,9 @@ COMMON_CSS = """
                      padding:.15rem .5rem;border-radius:4px;border:1px solid #c471ed66;margin-left:.3rem}
   .badge-earn       {background:#2e2400;color:#ffd24d;font-size:.7rem;font-weight:700;
                      padding:.18rem .55rem;border-radius:4px;border:1px solid #ffd24d55;margin-right:.3rem}
+  .badge-nofund     {background:#2a1a2e;color:#e08cff;font-size:.62rem;font-weight:700;
+                     padding:.1rem .4rem;border-radius:3px;border:1px solid #e08cff55;margin-left:.3rem;
+                     vertical-align:middle;cursor:help}
   @media(max-width:900px){.page{padding:1rem} th,td{padding:.45rem .6rem}}
 """
 
@@ -2682,6 +2950,26 @@ def _fuzzy_badge(score, rescued=False):
         return f'<span class="badge-fuzzy-rescue" title="{title}">&#128302; Fuzzy {score}</span>'
     cls = "badge-fuzzy-high" if score >= 70 else "badge-fuzzy-mid" if score >= 45 else "badge-fuzzy-low"
     return f'<span class="{cls}" title="Fuzzy Score - ciagla ocena jakosci fundamentalnej">Fuzzy {score}</span>'
+
+_FUND_KEYS = ("eps_ttm", "quick_ratio", "roic", "debt_equity", "gross_margin")
+
+def _fund_missing(r):
+    """Brak WSZYSTKICH danych fundamentalnych -> spółka przeszła wyłącznie na warunkach technicznych."""
+    return all(r.get(k) is None for k in _FUND_KEYS)
+
+def _nofund_badge(r):
+    if not _fund_missing(r):
+        return ""
+    return ('<span class="badge-nofund" title="Brak danych fundamentalnych (Yahoo/SEC) - spolka przeszla '
+            'tylko na warunkach technicznych. Sprawdz fundamenty w TradingView.">FUND ?</span>')
+
+def _fin_cur_suffix(r):
+    """Waluta sprawozdania, gdy EPS/przychody nie są w USD albo pochodzą z 20-F (akcja zwykła, nie ADR)."""
+    cur = r.get("fin_currency")
+    if r.get("fin_report") == "20-F" or (cur and cur != "USD"):
+        tip = "z raportu rocznego 20-F/40-F, na akcje zwykla (nie ADR)" if r.get("fin_report") == "20-F" else ""
+        return f' <span style="color:#555d7a;font-size:.65rem" title="{tip}">{_html.escape(str(cur or ""))}</span>'
+    return ""
 
 def _stop_row(r):
     """Wiersz karty z sugerowanym SL (ATR W1 / dołek 4 tyg.) i ryzykiem w %."""
@@ -2832,6 +3120,7 @@ def render_cards(data, show_quality=False):
             f'{_d1_badge(r.get("d1_last_cross_days_ago"), r.get("early_signal", False))}'
             f'{_mtf_badge(r.get("mtf_score"))}'
             f'{_fuzzy_badge(r.get("fuzzy_score"), r.get("fuzzy_rescue", False))}'
+            f'{_nofund_badge(r)}'
             f'</div>'
             f'<div class="sc-name">{_html.escape(str(r["name"]))}</div></div>'
             f'<span class="badge-{mc}">{r["market"]}</span></div>'
@@ -2850,11 +3139,11 @@ def render_cards(data, show_quality=False):
             f'<div class="sc-divider"></div>'
             f'<div class="sc-row"><span>EPS TTM</span>'
             f'<span style="color:{_color_ok(r.get("eps_ttm"), (r.get("eps_ttm") or 0) > 0)}">'
-            f'{na(r.get("eps_ttm"))}</span></div>'
+            f'{na(r.get("eps_ttm"))}{_fin_cur_suffix(r)}</span></div>'
             f'{_eps_growth_rows(r)}'
             f'{_stop_row(r)}'
             f'<div class="sc-row"><span>Sales TTM</span>'
-            f'<span>{na(r.get("sales_ttm_mln"))} M</span></div>'
+            f'<span>{na(r.get("sales_ttm_mln"))} M{_fin_cur_suffix(r)}</span></div>'
             f'<div class="sc-row"><span>Quick Ratio</span>'
             f'<span style="color:{_color_ok(r.get("quick_ratio"), (r.get("quick_ratio") or 0) >= 1)}">'
             f'{na(r.get("quick_ratio"))}</span></div>'
@@ -2916,7 +3205,7 @@ def render_table_rows(data, show_quality=False):
             )
 
         html += f"""<tr>
-          <td><span class="ticker">{r['ticker']}</span>{badge}{_score_badge(r.get('tech_score'))}{_div_badge(r.get('divergence_bull'),r.get('divergence_desc',''))}{_d1_badge(r.get('d1_last_cross_days_ago'), r.get('early_signal', False))}{_mtf_badge(r.get('mtf_score'))}{_fuzzy_badge(r.get('fuzzy_score'), r.get('fuzzy_rescue', False))}</td>
+          <td><span class="ticker">{r['ticker']}</span>{badge}{_score_badge(r.get('tech_score'))}{_div_badge(r.get('divergence_bull'),r.get('divergence_desc',''))}{_d1_badge(r.get('d1_last_cross_days_ago'), r.get('early_signal', False))}{_mtf_badge(r.get('mtf_score'))}{_fuzzy_badge(r.get('fuzzy_score'), r.get('fuzzy_rescue', False))}{_nofund_badge(r)}</td>
           <td class="name-col">{_html.escape(str(r['name']))}</td>
           <td><span class="badge-{'usa' if r['market']=='USA' else 'eu'}">{r['market']}</span></td>
           <td>{_html.escape(str(r['sector']))}</td>
@@ -2927,9 +3216,9 @@ def render_table_rows(data, show_quality=False):
           <td class="num smi-col">{r['smi']}</td>
           <td class="num">{r['smi_ema']}</td>
           <td>{_zone_badge(r['zone'])}</td>
-          <td class="num" style="color:{eps_c}">{na(eps)}</td>
+          <td class="num" style="color:{eps_c}">{na(eps)}{_fin_cur_suffix(r)}</td>
           {_eps_growth_cells(r)}
-          <td class="num">{na(r.get('sales_ttm_mln'))} M</td>
+          <td class="num">{na(r.get('sales_ttm_mln'))} M{_fin_cur_suffix(r)}</td>
           <td class="num" style="color:{qr_c}">{na(qr)}</td>
           <td class="num" style="background:{wyk_bg};color:{wyk_fc};font-weight:600;text-align:center">{wyk_label}</td>
           {quality_cols}
@@ -3326,6 +3615,8 @@ def generate_tradingview_lists(main_results, full_results, early_results=()):
                     extra = f" | SL:{r['stop_loss']} (-{r['risk_pct']}%)"
                 if r.get("earnings_warning"):
                     extra += f" | ER:{r['days_to_earnings']}d"
+                if _fund_missing(r):
+                    extra += " | FUND?"
                 lines.append(
                     f"{tv}  ### {r['signal']} | {disc} | W:{wyk_l} | {mtf_s}{mrisk} | {fuzzy_s} | {r.get('sector','--')}{extra}"
                 )
@@ -3464,6 +3755,7 @@ def run_screener():
         f_nyse   = pool.submit(get_nyse_amex)
         f_eu     = pool.submit(get_european_indices)
         usa = list(set(f_sp500.result() + f_nasdaq.result() + f_nyse.result()))
+        usa = _drop_funds(usa)
         eu  = list(set(f_eu.result()))
     ticker_market = [(t,"USA") for t in usa] + [(t,"EU") for t in eu]
     print(f"\nLacznie: {len(ticker_market)} ({len(usa)} USA, {len(eu)} EU)")
@@ -3564,6 +3856,7 @@ def run_screener():
         "earnings_warn_count": earnings_warn_count,
         "closed_weekly_bar":   USE_CLOSED_WEEKLY_BAR,
         "fund_source_sec":     sum(1 for r in all_data if r.get("fund_source") == "SEC"),
+        "fund_sec_foreign":    sum(1 for r in all_data if r.get("fin_report") == "20-F"),
         "data_quality":        compute_data_quality(main_results, full_results),
     }
     _dq = meta["data_quality"]
